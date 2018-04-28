@@ -1,0 +1,79 @@
+package projeto.app.sobral.Utils
+
+import agency.tango.materialintroscreen.MaterialIntroActivity
+import agency.tango.materialintroscreen.MessageButtonBehaviour
+import agency.tango.materialintroscreen.SlideFragmentBuilder
+import android.Manifest
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import projeto.app.sobral.R
+
+/**
+ * Created by Risonaldo on 26/04/2018.
+ */
+class IntroActivity : MaterialIntroActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        verifyIntroActivity()
+
+        addSlide(
+                SlideFragmentBuilder()
+                        .backgroundColor(R.color.slide_1)
+                        .buttonsColor( R.color.slide_button )
+                        .title( resources.getString(R.string.slide_1_title) )
+                        .description( resources.getString(R.string.slide_1_description) )
+                        .image( R.mipmap.slide_1 )
+                        .build()
+        )
+
+
+        addSlide(
+                SlideFragmentBuilder()
+                        .backgroundColor(R.color.slide_2)
+                        .buttonsColor( R.color.slide_button )
+                        .title( resources.getString(R.string.slide_2_title) )
+                        .description( resources.getString(R.string.slide_2_description) )
+                        .image( R.mipmap.slide_2 )
+                        .build()
+        )
+
+
+        addSlide(
+                SlideFragmentBuilder()
+                        .backgroundColor(R.color.slide_3)
+                        .buttonsColor( R.color.slide_button )
+                        .title( resources.getString(R.string.slide_3_title) )
+                        .description( resources.getString(R.string.slide_3_description) )
+                        .image( R.mipmap.slide_3 )
+                        .build()
+        )
+
+        addSlide(
+                SlideFragmentBuilder()
+                        .backgroundColor(R.color.slide_4)
+                        .buttonsColor( R.color.slide_button )
+                        .title( resources.getString(R.string.slide_4_1_title) )
+                        .description( resources.getString(R.string.slide_4_1_description) )
+                        .image( R.mipmap.slide_4 )
+                        .build()
+        )
+
+
+        addSlide( TermsConditionsSlide() )
+
+
+    }
+
+
+    private fun verifyIntroActivity(){
+        if( SPInfo(this).isIntroShown() ){
+            startActivity(
+                    Intent(this, Login_activity::class.java)
+            )
+            finish()
+        }
+    }
+}

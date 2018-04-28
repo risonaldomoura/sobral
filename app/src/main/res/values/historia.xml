@@ -1,0 +1,574 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="objetivo_historia">
+         A Base Nacional Comum Curricular (BNCC) foi divulgada pelo Ministério da
+Educação, através da Secretaria de Educação Básica, em setembro de 2015,
+apresentando componentes curriculares sujeitos à consulta pública através de um
+portal online, aberto para este fim até dezembro do mesmo ano. Essa iniciativa do
+Ministério da Educação e Cultura (MEC) cumpriu o que estava previsto desde 1996 na
+Lei de Diretrizes e Bases sobre a elaboração de uma Base Nacional Curricular, metas
+reafirmadas ainda pelo Plano Nacional de Educação (PNE).
+    </string>
+
+
+    <string name="title_historia_sexto_I">
+        Eixo: O trabalho do trabalhador
+    </string>
+
+    <string name="cont_historia_sexto_I">
+       - O que são fontes históricas?;\n
+       - Verdades absolutas ou versões históricas?;\n
+       - Novos personagens em cena;\n
+       - A história e as outras áreas do conhecimento.
+    </string>
+
+    <string name="obj_historia_sexto_I">
+    1. Conhecer a história da Grécia antiga,
+com ênfase no processo de
+surgimento da polis e da Filosofia.
+    </string>
+
+
+    <string name="title_historia_sexto_II">
+        Eixo: A formação da civilização grega
+    </string>
+
+    <string name="cont_historia_sexto_II">
+        - Grécia, um território favorecido pelo mar;\n
+        - A era dos palácios, sociedade micênica;\n
+        - Dos genos à cidade-estado;\n
+        - A cidade-estado grega;\n
+        - A expansão colonial grega;\n
+        - O processo de colonização;\n
+        - A Vida Cotidiana na Grécia Antiga;\n
+        - A cidade de Atenas;\n
+        - Esparta, uma polis guerreira;\n
+        - As habitações gregas;\n
+        - A Filosofia e a Ciência Grega;\n
+        - O mundo das perguntas: a filosofia;\n
+        - Hipócrates: o pai da medicina;\n
+        - Heródoto: o pai da história;\n
+        - Mito e Religião na Grécia;\n
+        - A mitologia grega, Deuses e heróis;\n
+        - Homens e deuses, Uma religião cívica.
+    </string>
+
+    <string name="obj_historia_sexto_II">
+       1. Reconhecer os conceitos de
+democracia e cidadania construídos
+na Grécia clássica e, em particular,
+em Atenas;\n
+       2. Identificar a importância da mitologia
+grega e de suas representações nas
+artes e na literatura, até os dias de
+hoje.
+    </string>
+
+
+    <string name="title_historia_sexto_III">
+        Eixo: A civilização romana
+    </string>
+
+    <string name="cont_historia_sexto_III">
+        - A Formação de Roma;\n
+        - Pequenos núcleos às margens do Tibre;\n
+        - A influência etrusca;\n
+        - A organização social;\n
+        - A organização política;\n
+        - O fim da dominação etrusca;\n
+        - As Guerras de Conquista;\n
+        - A expansão pelo Mediterrâneo;\n
+        - Uma nova cidade- Muitos escravos;\n
+        - As revoltas de escravos;\n
+        - O Império Romano;\n
+        - Lutas sociais em Roma;\n
+        - O prestígio dos militares;\n
+        - Júlio César e a centralização do poder;\n
+        - Otávio inicia o Império;\n
+        - A Sociedade e a Cultura;\n
+        - A religião;\n
+        - A família;\n
+        - Os escravos;\n
+        - Diversão e cultura;\n
+        - O teatro romano;\n
+        - A produção intelectual.
+    </string>
+
+    <string name="obj_historia_sexto_III">
+       1. Conhecer o papel do Teatro
+(Tragédia) na Grécia enquanto forma
+de apropriação do espaço público.
+    </string>
+
+
+    <string name="title_historia_sexto_IV">
+        Eixo: A formação da europa feudal
+    </string>
+
+    <string name="cont_historia_sexto_IV">
+        - Saem os Romanos, entram os Germânicos;\n
+        - Um império esfacelado;\n
+        - A ruralização do império;\n
+        - A formação do colonato;\n
+        - O poder político e jurídico dos bárbaros;\n
+        - O Império Franco e a Idade Média;\n
+        - Os francos se destacaram;\n
+        - A dinastia merovíngia;\n
+        - Quem escolhe o rei?;\n
+        - Carlos Magno ocupa o trono dos francos;\n
+        - A administração do reino;\n
+        - O enfraquecimento carolíngio;\n
+        - O Império Carolíngio e a Igreja Católica;\n
+        - Aliança entre reis e papas;\n
+        - Características do feudalismo;\n
+        - O feudo e sua organização;\n
+        - A formação do feudalismo;\n
+        - Origens do feudalismo;\n
+        - Características do feudalismo;\n
+        - O feudo;\n
+        - A Sociedade Feudal;\n
+        - A organização do feudo;\n
+        - Uma sociedade dividida;\n
+        - A escultura e a pintura;\n
+        - A ciência, a literatura e as escolas monásticas;\n
+        - A Economia Feudal e sua Transformação;\n
+        - Uma economia agrária;\n
+        - As transformações no feudalismo;\n
+        - A Cultura e a Ciência na Europa Feudal;\n
+        - A arte românica;\n
+        - A escultura e a pintura;\n
+        - A literatura cavalheiresca;\n
+        - Roger Bacon e a ciência;\n
+        - As escolas monásticas e eclesiásticas.\n
+    </string>
+
+    <string name="obj_historia_sexto_IV">
+       1. Valorizar as contribuições do
+pensamento grego para a
+Matemática e para o conhecimento
+da natureza.
+    </string>
+
+
+
+
+
+
+    <string name="title_historia_setimo_I">
+        Eixo: O mundo além da Europa
+    </string>
+
+    <string name="cont_historia_setimo_I">
+        - Os Árabes e a Arábia;\n
+        - Onde o islamismo surgiu; \n
+	- O deserto e as tribos nômades;\n
+        - A religião e Meca;\n
+        - O Nascimento do Islamismo;\n
+        - Nasce um profeta;\n
+        - Nasce uma religião e um Estado;\n
+        - Os sucessores do profeta;\n
+        - A rápida expansão do islamismo;\n
+        - A Consolidação do Islamismo;\n
+        - O alcance da obra de Maomé;\n
+        - A economia no Império Muçulmano;\n
+        - A cultura no mundo muçulmano;\n
+        - A sociedade Muçulmana;\n
+        - A população nas cidades;\n
+        - O trabalho nos campos, As mulheres, Os escravos, A
+        administração da justiça.\n
+    </string>
+
+    <string name="obj_historia_setimo_I">
+       1. Reconhecer as origens do
+Islamismo na Península
+Arábica no século VIII;\n
+       2. Valorizar as contribuições
+do pensamento grego para
+a Matemática e para o
+conhecimento da natureza.
+    </string>
+
+
+
+    <string name="title_historia_setimo_II">
+        Eixo: O renascimento
+    </string>
+
+    <string name="cont_historia_setimo_II">
+        - A Expansão Marítima Portuguesa;\n
+        - O pioneirismo português;\n
+        - Comércio e pesca em Portugal;\n
+        - O início da expansão portuguesa;\n
+        - O caminho marítimo para as Índias;\n
+        - As viagens de Bartolomeu Dias e Vasco da Gama;\n
+        - A expedição de Pedro Álvares Cabral;\n
+        - A Expansão Marítima Espanhola;\n
+        - Chegar ao Oriente viajando pelo Ocidente;\n
+        - A viagem de Cristóvão Colombo;\n
+        - As outras viagens de Colombo;\n
+        - Novas expedições;\n
+        - América: Terra de Grandes Civilizações;\n
+        - Diversidade cultural;\n
+        - Mesoamerica;\n
+        - América do Sul;\n
+        - A Civilização Asteca;\n
+        - Os astecas formaram um grande império;\n
+        - As atividades econômicas;\n
+        - Técnicas e conhecimentos;\n
+        - A educação de meninos e meninas;\n
+        - A religião e a arte;\n
+        - A Civilização Inca;\n
+        - Os incas, Dominação política;\n
+        - As atividades econômicas;\n
+        - A composição das elites incas;\n
+        - A cidade de Machu Picchu;\n
+        - Astronomia inca;\n
+        - A conquista dos impérios Inca e Asteca.
+    </string>
+
+    <string name="obj_historia_setimo_II">
+       1. Estabelecer a relação entre
+a formação dos Estados
+Nacionais europeus, o
+mercantilismo e a
+expansão ultramarina;\n
+       2. Estabelecer a relação entre
+a formação dos Estados
+Nacionais europeus, o
+mercantilismo e a
+expansão ultramarina.
+    </string>
+
+
+    <string name="title_historia_setimo_III">
+        Eixo: A exploraçãço dos impérios coloniais
+    </string>
+
+    <string name="cont_historia_setimo_III">
+        - A Colonização Espanhola na América;\n
+        - Conquista: violência e exploração;\n
+        - A administração espanhola;\n
+        - Principais órgãos da administração;\n
+        - O controle da metrópole;\n
+        - A sociedade colonial;\n
+        - Pureza de sangue;\n
+        - As Atividades Econômicas na Colônia;\n
+        - Prata e ouro em abundância;\n
+        - Explorando o trabalho indígena;\n
+        - A Coroa e os índios;\n
+        - A Igreja e o trabalho indígena;\n
+        - A produção açucareira no Caribe;\n
+        - O Império Ultramarino Português;\n
+        - Conquistas no Extremo Oriente;\n
+        - Várias formas de relação colonial;\n
+        - Riquezas vindas do vasto império;\n
+        - A Colonização Portuguesa na América;\n
+        - Extração de pau-brasil;\n
+        - A Coroa decide colonizar o Brasil;\n
+        - A escravidão africana na América.\n
+    </string>
+
+    <string name="obj_historia_setimo_III">
+       1. Compreender o processo
+de organização do domínio
+colonial nas Américas
+portuguesa e espanhola.
+    </string>
+
+
+    <string name="title_historia_setimo_IV">
+        Eixo: A exploração dos impérios coloniais
+    </string>
+
+    <string name="cont_historia_setimo_IV">
+        - A Administração da América Portuguesa;\n
+        - O início da colonização;\n
+        - As capitanias hereditárias;\n
+        - O governo-geral;\n
+        - As Câmaras Municipais;\n
+        - Economia mineradora;\n
+        - As bandeiras;\n
+        - As missões;\n
+        - Bandeirantes contra quilombos;\n
+        - A vila de São Paulo na época dos bandeirantes;\n
+        - Tratados que definiram o território brasileiro;\n
+        - A exploração das minas;\n
+        - A guerra dos emboabas;\n
+        - A tecnologia na mineração colonial;\n
+        - A escravidão nas lavras e cidades;\n
+        - A integração do mercado interno;\n
+        - Os Impostos;\n
+        - A vida nas minas;\n
+        - A conjuração Mineira;\n
+        - Os Bandeirantes presente e passado;\n
+        - A arte barroca;\n
+        - A partilha da África;\n
+        - As revoltas coloniais;\n
+        - Conjuração Mineira;\n
+        - Proposta dos conjurados;\n
+        - Punição dos Conjurados;\n
+        - A Condenação dos conjurados;\n
+        - Revolução pernambucana;\n
+        - A vinda da corte portuguesa para o Brasil;\n
+        - Novos Rumos na Colônia;\n
+        - Incentivo a Manufatura;\n
+        - Novas Medidas Econômicas;\n
+        - O Rio de janeiro se transforma;\n
+        - Processo de independência do Brasil.\n
+    </string>
+
+    <string name="obj_historia_setimo_IV">
+       1. Destacar a importância da
+ação missionária na
+América Ibérica,
+percebendo a violência
+implícita na catequese.
+    </string>
+
+
+
+
+
+    <string name="title_historia_oitavo_I">
+        Eixo: A revolução do século XVII: O período regencial no Brasil
+    </string>
+
+    <string name="cont_historia_oitavo_I">
+        - O absolutismo inglês;\n
+        - O Governo de Elizabeth;\n
+        - Dinastia Tudor;\n
+        - A revolução puritana;\n
+        - A instabilidade Politica;\n
+        - Os Movimentos Sociais;\n
+        - Cabanagem;\n
+        - Guerra dos Farrapos;\n
+        - Sabinada;\n
+        - Balaiada;\n
+        - A Revolta dos Males.
+    </string>
+
+    <string name="obj_historia_oitavo_I">
+       1. Conhecer o processo de formação do Estado
+Nacional brasileiro na condição de Império;\n
+       2. Compreender a especificidade do processo de
+formação do Estado Nacional brasileiro em
+relação aos outros países da América que
+adotaram o regime republicano.
+    </string>
+
+
+
+    <string name="title_historia_oitavo_II">
+        Eixo: Segundo reinado
+    </string>
+
+    <string name="cont_historia_oitavo_II">
+        - Guerra do Paraguai;\n
+        - A Guerra do Paraguai;\n
+        - Os voluntários da Pátria;\n
+        - Desdobramento da guerra;\n
+        - Fim do trafico Negreiro;\n
+        - O regime de Parceria;\n
+        - O processo de Imigração;\n
+        - O trabalho assalariado;\n
+        - A Campanha Abolicionista;\n
+        - Canudos (Os sertões);\n
+        - Proclamação da república;\n
+        - Primeira república;\n
+        - Economia da Borracha.
+    </string>
+
+    <string name="obj_historia_oitavo_II">
+       1. Analisar as consequências sociais e políticas da
+permanência da escravidão ao longo do Império;\n
+       2. Reconhecer o Período Regencial e as motivações
+das revoltas provinciais que eclodiram nessa
+conjuntura;\n
+       3. Conhecer as relações do Brasil com os demais
+países da América do Sul;\n
+       4. Compreender a Guerra do Paraguai e seus
+desdobramentos nacionais e regionais.
+    </string>
+
+
+    <string name="title_historia_oitavo_III">
+        Eixo: O Brasil na Era Vargas
+    </string>
+
+    <string name="cont_historia_oitavo_III">
+        - Modernismo;\n
+        - A semana da Arte moderna;\n
+        - Fim da Politica do Café com Leite;\n
+        - Governo provisório;\n
+        - Governo constitucional;\n
+        - Governo ditatorial estado novo;\n
+        - Governo democrático;\n
+        - A cultura popular na era Vargas;\n
+        - O mito Vargas;\n
+        - Os meios de Comunicação;\n
+        - O papel da DIP;\n
+        - O Brasil na Guerra;\n
+        - Os direitos Trabalhistas;\n
+        - A politica Econômica;
+    </string>
+
+    <string name="obj_historia_oitavo_III">
+       1. Reconhecer as representações da nação brasileira
+na literatura e na pintura ao longo do Segundo
+Reinado;\n
+       2. Analisar os sentidos sociais e culturais da revolta
+de Canudos no sertão da Bahia, na década de
+1890;\n
+       3. Identificar o sistema políticopartidário da Primeira
+República e as bases sociais do Partido
+Republicano nos estados participantes da
+chamada política do “café com leite”, São Paulo e
+Minas Gerais.
+    </string>
+
+
+    <string name="title_historia_oitavo_IV">
+        Eixo: Governo de JK - A redemocratização do Brasil
+    </string>
+
+    <string name="cont_historia_oitavo_IV">
+        - A construção de Brasília;\n
+        - Governo Jânio Quadros;\n
+        - Os Militares no Poder;\n
+        - A educação sob o regime militar;\n
+        - Repressão e censura;\n
+        - Os atos Institucionais e a legalização da ditadura;
+        - História regional: Movimentos e
+        revoluções a transamazônica.
+    </string>
+
+    <string name="obj_historia_oitavo_IV">
+       1. Caracterizar os aspectos fundamentais do período
+republicano entre 1946 e 1964;\n
+       2. Analisar o processo de transição democrática e as
+principais características da Constituição de 1988.
+    </string>
+
+
+
+
+
+    <string name="title_historia_nono_I">
+        Eixo: Revolução gloriosa / Colonização da Ásia / Revolução industrial / Iluminismo
+    </string>
+
+    <string name="cont_historia_nono_I">
+        - A instabilidade Politica;\n
+        - Imperialismo na Ásia;\n
+        - Origem do Capital Inglês;\n
+        - O surgimento do Proletariado;\n
+        - A consequência dos cercamentos;\n
+        - A Indústria e as novas tecnologias;\n
+        - O relógio como instrumento de Dominação;\n
+        - A Reação dos proletariados;\n
+        - Os Luditas;\n
+        - Urbanização e Industrialização;\n
+        - Mudaram as Relações entre Patrão e empregado;\n
+        - A burguesia expressa suas ideias;\n
+        - A luz da razão;\n
+        - Direitos Naturais;\n
+        - Os filósofos Iluministas;\n
+        - Comportamentos e atitudes burguesas;\n
+        - Os Déspotas esclarecidos;\n
+        - As novas teorias Econômicas;\n
+        - A riqueza de uma nação.\n
+    </string>
+
+    <string name="obj_historia_nono_I">
+       1. Analisar a importância da Revolução
+Francesa e seu confronto com o Regime
+Absolutista e com a sociedade
+dominada pela nobreza e pelo clero;\n
+       2. Analisar as representações simbólicas
+construídas sobre a Revolução e a
+República na França a partir da “tomada
+da Bastilha” e vitória dos revolucionários;\n
+       3. Compreender os desdobramentos do
+processo revolucionário que resultaram
+na formação do Império comandado por
+Napoleão Bonaparte.
+    </string>
+
+
+
+    <string name="title_historia_nono_II">
+        Eixo: Revolução francesa / Independência dos Estados Unidos/América Portuguesa
+    </string>
+
+    <string name="cont_historia_nono_II">
+        - A França pré-Revolucionária;\n
+        - A carestia;\n
+        - Os Estados Gerais;\n
+        - Em busca da igualdade;\n
+        - A Revolução na Linguagem;\n
+        - O legado da Revolução Francesa.
+    </string>
+
+    <string name="obj_historia_nono_II">
+       1. Analisar as transformações que
+ocorreram na Europa (luta contra o
+absolutismo) e nas Américas
+(independência) a partir das ideias
+liberais e iluministas no século XIX;\n
+       2. Estabelecer comparações entre os
+processos de Independência da América
+do Norte, da América Espanhola e da
+América Portuguesa, identificando os
+aspectos comuns e as múltiplas
+diferenças entre eles.
+    </string>
+
+
+    <string name="title_historia_nono_III">
+        Eixo: Estados nacionais / Primeira guerra mundial
+    </string>
+
+    <string name="cont_historia_nono_III">
+        - As Rivalidades entre as Nações;\n
+        - Imperialismo e Nacionalismo;\n
+        - As Causas da guerra;\n
+        - As fases da guerra;\n
+        - As Politicas de Alianças;\n
+        - O desdobramento do conflito;\n
+        - Estratégia de Guerra e Tecnologia Militar.
+    </string>
+
+    <string name="obj_historia_nono_III">
+      1. Estabelecer a relação entre imperialismo
+e corrida imperialista dos Estados
+europeus, que resultou na política
+neocolonialista na Ásia e África.
+    </string>
+
+
+    <string name="title_historia_nono_IV">
+        Eixo: Segunda guerra mundial / Guerra fria
+    </string>
+
+    <string name="cont_historia_nono_IV">
+        - A politica de Alianças;\n
+        - Invasão Russa;\n
+        - O Holocausto;\n
+        - A Itália entra na Guerra;\n
+        - Consequências da Guerra;\n
+        - Revolução Cubana: aspectos econômicos
+        e sociais antes e depois da era Fidel Castro;\n
+        - Berlim dividida e a construção do muro;\n
+    </string>
+
+    <string name="obj_historia_nono_IV">
+       1. Conhecer o período entre guerras e o
+surgimento do fascismo e do nazismo.
+Conhecer as origens e os propósitos da
+Organização das Nações Unidas.
+    </string>
+
+
+
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="xingu.inteceleri.xingu.sobral.inteceleri.sobral.Main_activity"
+    tools:showIn="@layout/app_bar_main_activity"
+    android:orientation="vertical">
+
+
+    <include
+        android:id="@+id/fl_portugues"
+        layout="@layout/apresentacao_portugues"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/fl_matematica"
+        layout="@layout/apresentacao_matematica"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+
+    <include
+        android:id="@+id/fl_obj"
+        layout="@layout/obj"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+
+</LinearLayout>

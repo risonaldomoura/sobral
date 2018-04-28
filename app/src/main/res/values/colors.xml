@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFEB3B</color>
+    <color name="colorPrimaryDark">#F0d809</color>
+    <color name="colorPrimaryantiga">#32b0de</color>
+    <color name="colorPrimaryDarkantiga">#0c9dd4</color>
+    <color name="colorAccent">#878787</color>
+    <color name="apresentacao_tela_bg">#fdd451</color>
+    <color name="apresentacao">#FFF176</color>
+    <color name="elementos_conteudo">#c5c5c5</color>
+    <color name="texto_cinza">#c5c5c5</color>
+    <color name="fundo_bloco_bimestre">#e5e5e5</color>
+    <color name="btn_login">#d63518</color>
+    <color name="sombra_bimestre">#30000000</color>
+    <color name="btn_registrar">#2873b8</color>
+    <color name="black">#000000</color>
+    <color name="Botao_ok">#FFEB3B</color>
+    <color name="Botao_ok_pressionado">#FFEB3B</color>
+    <color name="nav_header">#3c42b1</color>
+    <color name="botao_pressionado">#ededed</color>
+    <color name="white">#ffffff</color>
+
+
+    <color name="slide_button">#66000000</color>
+    <color name="slide_1">#FFEE58</color>
+    <color name="slide_2">#FFA726</color>
+    <color name="slide_3">#29B6F6</color>
+    <color name="slide_4">#66BB6A</color>
+
+
+
+</resources>

@@ -1,0 +1,526 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="objetivo_ciencias">
+        As ciências naturais constituem numa classificação que abarca as áreas da 
+ciência que visam a estudar a natureza em seus aspectos mais gerais e fundamentais, isso é, 
+o universo como um todo, que é entendido como regulado por regras ou leis de origem natural e 
+com validade universal, fazendo-o de forma a focar-se nos aspectos físicos e não no homem ou 
+em aspectos comportamentais.
+    </string>
+
+
+    <string name="title_ciencias_sexto_I">
+        Eixo: Os Seres Vivos e o Ambiente
+    </string>
+
+    <string name="cont_ciencias_sexto_I">
+        - Ecologia; \n
+        - Teia Alimentar;\n
+        - Relação entre os Seres Vivos.\n
+    </string>
+
+    <string name="obj_ciencias_sexto_I">
+       1. Enfocamos a diversidade dos componentes básicos do
+mundo vivo, seus níveis de organização, a estrutura dos
+ecossistemas que formam a biosfera e como se dá a
+distribuição de vida na biosfera. Os alunos deverão perceber
+a profunda interdependência entre as espécies de qualquer
+ambiente e sua relação com o meio abiótico, além da
+participação do ser humano como agente transformador
+dos ambientes naturais.
+    </string>
+
+
+    <string name="title_ciencias_sexto_II">
+        Eixo: As Rochas e o Solo
+    </string>
+
+    <string name="cont_ciencias_sexto_II">
+        - O Planeta por dentro e por fora;\n
+        - Rochas e Minerais;\n
+        - Cuidados com o Solo e Lixo;\n
+        - O Solo e a saúde do Corpo;\n
+        - Nossos Recursos Naturais.\n
+    </string>
+
+    <string name="obj_ciencias_sexto_II">
+       1. Estudaremos, basicamente, o solo, a água, e o ar.
+Destacaremos a importância desses recursos para os
+interesses humanos, os impactos decorrentes das
+atividades humanas e a necessidade de medidas eficazes
+que conduzem à sua preservação.
+    </string>
+
+
+    <string name="title_ciencias_sexto_III">
+        Eixo: A Água
+    </string>
+
+    <string name="cont_ciencias_sexto_III">
+       - Os Estados Físicos da Água;\n
+       - Qualidade da Água;\n
+       - Água e a nossa Saúde;\n
+       - Aproveitando a pressão da Água.\n
+    </string>
+
+    <string name="obj_ciencias_sexto_III">
+       1. Estudaremos, basicamente, o solo, a água, e o ar.
+Destacaremos a importância desses recursos para os
+interesses humanos, os impactos decorrentes das
+atividades humanas e a necessidade de medidas eficazes
+que conduzem à sua preservação.
+    </string>
+
+
+    <string name="title_ciencias_sexto_IV">
+        Eixo: O Ar
+    </string>
+
+    <string name="cont_ciencias_sexto_IV">
+       - A Atmosfera;\n
+       - De que é feito o Ar;\n
+       - As Propriedades do Ar;\n
+       - A Previsão do Tempo;\n
+       - O Ar e a nossa Saúde.\n
+    </string>
+
+    <string name="obj_ciencias_sexto_IV">
+   1. Estudaremos, basicamente, o solo, a água, e o ar.
+Destacaremos a importância desses recursos para os
+interesses humanos, os impactos decorrentes das
+atividades humanas e a necessidade de medidas eficazes
+que conduzem à sua preservação.
+    </string>
+
+
+
+
+
+
+    <string name="title_ciencias_setimo_I">
+        Eixo: A diversidade da vida na terra
+    </string>
+
+    <string name="cont_ciencias_setimo_I">
+       - A organização dos seres vivos;\n
+       - A origem da vida e evolução dos seres vivos;\n
+       - Fósseis;\n
+       - Extinção;\n
+       - Células;\n
+       - Os Vírus;\n
+       - Classificação dos seres vivos.\n
+    </string>
+
+    <string name="obj_ciencias_setimo_I">
+      1. Caracterizar e diferenciar seres vivos de seres inanimados e
+compreender as estruturas da célula e a história da descoberta das
+mesmas;\n
+      2. Identificar as características gerais dos seres, reconhecendo a
+diversidade dos mesmos nos diversos ambientes;\n
+       3. Compreender o surgimento da vida por meio das hipóteses;\n
+       4. Compreender o processo evolutivo dos seres vivos destacando os
+fatores que causam a evolução;\n
+       5. Perceber a importância e a utilização da sistemática na classificação
+dos seres vivos para o estudo e o conhecimento da biodiversidade;\n
+       6. Conhecer as principais características do vírus, e como ele atua
+dentro de uma célula;\n
+       7. Compreender que as vacinas virais são meio de prevenção para um
+organismo.\n
+    </string>
+
+
+
+    <string name="title_ciencias_setimo_II">
+        Eixo: Reino Monera, Protista e Fungi
+    </string>
+
+    <string name="cont_ciencias_setimo_II">
+       - Monera;\n
+       - Protozoários;\n
+       - Fungos.\n
+    </string>
+
+    <string name="obj_ciencias_setimo_II">
+        1. Reconhecer a importância dos microrganismos-protozoários,
+bactérias e vírus para o ser humano, como os principais agentes
+etiológicos de doenças infectocontagiosas;\n
+        2. Conhecer as principais características dos reinos monera, protista e
+fungos, que permite colocá-los em reinos diferentes;\n
+    </string>
+
+
+    <string name="title_ciencias_setimo_III">
+        Eixo: Reino dos animais invertebrados e vertebrados
+    </string>
+
+    <string name="cont_ciencias_setimo_III">
+        - Espongiários e Cnidários;\n
+        - Platelmintos e Nematelmintos;\n
+        - Anelídeos e Moluscos;\n
+        - Equinodermos e Artrópodes;\n
+        - Peixes, Anfíbios;\n
+        - Répteis, Aves;\n
+        - Mamíferos.\n
+    </string>
+
+    <string name="obj_ciencias_setimo_III">
+        1. Reconhecer os principais filos do Reino Animal e dar exemplos de
+cada um desses grupos;\n
+       2. Identificar as doenças humanas comuns causadas ou veiculadas por
+platelmintos, nematelmintos, artrópodes e cordados;\n
+       3. Reconhecer as classes do filo dos cordados e as principais
+características que as diferenciam;\n
+       4. Identificar e relacionar as adaptações analisadas em todos os filos
+com os ambientes onde vivem nutrição e digestão, reprodução,
+excreção, respiração e reação a estímulos;\n
+       5. Identificar as formas de vidas existentes no ambiente aquático.\n
+    </string>
+
+
+    <string name="title_ciencias_setimo_IV">
+        Eixo: Reino das Plantas
+    </string>
+
+    <string name="cont_ciencias_setimo_IV">
+       - Classificação;\n
+       - (Algas, Briófitas e Pteridófitas);\n
+       - Gimnospermas e Angiospermas;\n
+       - Estudos dos órgãos e suas funções;\n
+       - Reprodução e nutrição das plantas;\n
+       - Utilização das plantas pela humanidade.\n
+    </string>
+
+    <string name="obj_ciencias_setimo_IV">
+       1. Identificar os integrantes do reino vegetal por suas principais
+características, exemplificando-os;\n
+       2. Distinguir e identificar os padrões morfológicos e fisiológicos dos
+seres do reino plantae;\n
+       3. Compreender a importância dos vegetais no ecossistema da
+biosfera;\n
+       4. Caracterizar o processo de reprodução dos vegetais por meio de
+flores;\n
+       5. Compreender a importância da preservação da flora e da fauna nos
+ecossistemas brasileiros;\n
+       6. Conhecer algumas espécies de uso medicinal, caseiro e fitoterápicos.\n
+    </string>
+
+
+
+
+
+    <string name="title_ciencias_oitavo_I">
+        Eixo: Ciências: Homem e natureza I
+    </string>
+
+    <string name="cont_ciencias_oitavo_I">
+        - Célula (estrutura e função);\n
+        - Tecidos (estrutura e funções);
+        - Processos celulares relacionados à herança e energia. (Divisão Celular);\n
+        - Os Sentidos:\n
+        - Tato (pele);\n
+        - Paladar;\n
+        - Audição;\n
+        - Olfato;\n
+        - Visão;\n
+        - Fonação (voz);\n
+    </string>
+
+    <string name="obj_ciencias_oitavo_I">
+        1. Identificar as evidências da distribuição do ser humano no
+planeta através de registros arqueológicos;\n
+        2. Identificar as células como unidades estruturais e funcionais
+do corpo humano;\n
+        3. relacionar diferentes funções do organismo humano a
+diferentes tipos e funções dos tecidos;\n
+        4. Identificar processos celulares relacionados com
+metabolismo energético;\n
+        5. identificar as estruturas e funções celulares relacionadas à
+herança genética;\n
+        6. Identificar, conhecer e diferenciar os órgãos dos sentidos;\n
+        7. Cuidar da higiene dos órgãos dos sentidos.\n
+    </string>
+
+
+
+    <string name="title_ciencias_oitavo_II">
+        Eixo: Ciências: Homem e Natureza II.
+    </string>
+
+    <string name="cont_ciencias_oitavo_II">
+        - Construindo um ser humano;\n
+        - Células reprodutivas fecundação gestação e desenvolvimento;\n
+        - Infância e puberdade;\n
+        - Sistema genital masculino;\n
+        - Sistema genital feminino;\n
+        - Ciclo menstrual;\n
+        - Métodos anticoncepcionais;\n
+        - Gravidez na adolescência e aborto;\n
+        - Doenças sexualmente transmissíveis (DSTs).\n
+    </string>
+
+    <string name="obj_ciencias_oitavo_II">
+        1. Relacionar as etapas do desenvolvimento embrionário às
+características em ascensão do embrião;\n
+        2. Reconhecer a infância e a puberdade como faces do
+desenvolvimento humano;\n
+        3. identificar características da adolescência;\n
+        4. Ler e interpretar textos sobre adolescência e sexualidade;\n
+        5. Interpretar situações do cotidiano relacionadas ao
+desenvolvimento e manifestação da adolescência;\n
+        6. Emitir opiniões substanciadas sobre reprodução e
+sexualidade;\n
+        7. Identificar semelhanças e diferenças entre os aparelhos
+genitaismasculino e feminino;\n
+        8. Fazer pesquisa (busca de informações) em diferentes fontes
+sobre a organização e funcionamento do corpo humano;\n
+        9. Estabelecer relações entre o funcionamento dos diferentes
+sistemas do corpo humano;\n
+        10. Ler e interpretar figuras que representam a organização do
+corpo humano;\n
+        11. Relacionar informações representadas na forma escrita e
+conhecimentos prévios para construir argumentação
+consistente sobre o funcionamento do corpo humano;\n
+        12. Identificar os tipos, causas e consequências da transmissão
+e prevenção das doenças sexualmente transmissíveis (DSTs).\n
+    </string>
+
+
+    <string name="title_ciencias_oitavo_III">
+        Eixo: Ciências: Homem e Natureza III
+    </string>
+
+    <string name="cont_ciencias_oitavo_III">
+        - Nutrição;\n
+        - Tipos de alimentos;\n
+        - Distúrbios alimentares: Obsidade, Anorexia, Bulimia;\n
+        - Sistema Digestório;\n
+        - Sistema respiratório (cigarros e drogas);\n
+        - Sistema Cardiovascular.\n
+    </string>
+
+    <string name="obj_ciencias_oitavo_III">
+        1. Reconhecer os órgãos que integram os sistemas Digestório e
+respiratório;\n
+        2. Identificar as funções de nutrição e o papel dos nutrientes em
+nosso organismo;\n
+        3. Identificar situações de desnutrição, obesidade e de outros
+distúrbios alimentares;\n
+        4. Ler rótulos de alimentos buscando dados que permitam
+avaliar sua qualidade;\n
+        5. relacionar o desenvolvimento e funcionamento do corpo com
+a ação dos hormônios.\n
+    </string>
+
+
+    <string name="title_ciencias_oitavo_IV">
+        Eixo: Ciências: Homem e Natureza IV.
+    </string>
+
+    <string name="cont_ciencias_oitavo_IV">
+        - Sistema Urinário;\n
+        - Sistema Locomotor;\n
+        - Sistema Nervoso (álcool e doenças ocupacionais);\n
+        - Sistema Endócrino.\n
+    </string>
+
+    <string name="obj_ciencias_oitavo_IV">
+        1. Identificar o papel dos hormônios e do sistema nervoso no
+controle do corpo;\n
+        2. Reconhecer os órgãos que integram os sistemas Locomotor,
+Cardiovascular, Urinário, Endócrino e Nervoso.\n
+    </string>
+
+
+
+
+
+    <string name="title_ciencias_nono_I">
+        Eixo: Ciências: Fenômenos e matéria I
+    </string>
+
+    <string name="cont_ciencias_nono_I">
+        A física I;\n
+        O mundo em movimento;\n
+        Conceitos básicos de cinemática;\n
+        Leis de Newton;\n
+        Aplicações das leis de Newton em nosso dia a dia;\n
+        A Terra no Universo;\n
+        Movimentos planetários;\n
+        Estações do ano.\n
+    </string>
+
+    <string name="obj_ciencias_nono_I">
+       1. Identificar as variáveis associadas ao movimento dos corpos;\n
+       2. Estabelecer critérios para comparar o movimento entre corpos
+distintos;\n
+       3. Identificar os pressupostos das leis de Newton;\n
+       4. Relacionar a física newtoniana aos eventos cotidianos;\n
+       5. Reconhecer em uma perspectiva histórica, as implicações do
+impacto da ciência, da física no desenvolvimento da sociedade
+humana;\n
+       6. Descrever a universalidade dos fenômenos cinéticos;\n
+       7. Analisar o movimento dos corpos astronômicos aos princípios
+newtonianos;\n
+       8. Descrever os fenômenos naturais sazonais como as mudanças
+de estações ao longo do ano, e a sucessão de dias e noites com
+base na movimentação dos corpos celestes.\n
+    </string>
+
+
+
+    <string name="title_ciencias_nono_II">
+        Eixo: Ciências: Fenômenos e matéria II
+    </string>
+
+    <string name="cont_ciencias_nono_II">
+       - A física II;\n
+       - Calor;\n
+       - Transferência;\n
+       - Conseqüências;\n
+       - Ondulatória;\n
+       - Som;\n
+       - Luz;\n
+       - Tecnologias e comunicação;\n
+       - Magnetismo natural;\n
+       - Eletricidade (Energia elétrica) e suas transformações.\n
+    </string>
+
+    <string name="obj_ciencias_nono_II">
+       1. Reconhecer as propriedades dos materiais que geram
+eletricidade;\n
+       2. Descrever a universalidade dos fenômenos elétricos;\n
+       3. Reconhecer em uma perspectiva histórica, o impacto da
+eletricidade ao logo da vida humana;\n
+       4. Classificar as tecnologias que utilizam eletricidade em função de
+seus usos;\n
+       5. Reconhecer os processos de transformação de energia; \n
+       6. Relacionar o calor à manifestação de energia;\n
+       7. Levantar suposições a cerca de transferência de calor entre
+diferentes materiais entre seres vivos e ambientes;\n
+       8. Diferenciar temperatura de sensação térmica;\n
+       9. Reconhecer a natureza física dos fenômenos sonoros e
+luminosos;\n
+       10. Reconhecer e saber utilizar corretamente a nomenclatura e as
+unidades relacionadas aos fenômenos ondulatórios;\n
+       11. Classificar a luz visível como forma de radiação
+eletromagnética;\n
+       12. Associa os fenômenos da visão e da audição à manifestação das
+ondas sonoras e eletromagnéticas;\n
+       13. Compreender e diferenciar as radiações de acordo com suas
+freqüências;\n
+       14. Fazer uso de escalas apropriadas para a representação do
+espectro eletromagnético;\n
+       15. Descrever e representar qualitativamente, fenômenos de
+transmissão de informação por meio das ondas
+eletromagnéticas;\n
+       16. Compreender o desenvolvimento histórico de modelos sobre luz
+e visão;\n
+       17. Construir um experimento para verificar o fenômeno da
+decomposição da luz;\n
+       18. Identificar as manifestações naturais do magnetismo;\n
+       19. Construir um eletroímã;\n
+       20. Compreender o magnetismo como um fenômeno
+eletromagnético;\n
+       21. Identificar a importância do eletromagnetismo no
+desenvolvimento da indústria;\n
+       22. Relacionar o eletromagnetismo à produção de energia elétrica e
+ao funcionamento de motores.\n
+       23. Reconhecer os diferentes usos das radiações eletromagnéticas
+pelo homem;\n
+       24. Reconhecer que, se por um lado a tecnologia melhora a qualidade
+de vida, por outro, ela pode trazer efeitos que precisam ser
+ponderados e avaliados;\n
+       25. Reconhecer limitações de modelos de partículas para interpretar
+diferenças de condutibilidade elétricas.\n
+       26. Reconhecer e explicar os fenômenos de formação de cores a
+partir das cores primaria;\n
+       27. Classificar as tecnologias que utilizam radiações em função de
+seus usos;\n
+       28. Relacionar e identificar os fenômenos físicos observados
+experimentalmente, às tecnologias de comunicação utilizadas
+pela humanidade.\n
+    </string>
+
+
+    <string name="title_ciencias_nono_III">
+        Eixo: Ciências: Homem e Natureza III.
+    </string>
+
+    <string name="cont_ciencias_nono_III">
+       - O que a física e a química estudam;\n
+       - Diversidade e propriedades Gerais dos materiais;\n
+       - Matéria;\n
+       - Energia;\n
+       - Massa;\n
+       - Volume;\n
+       - Extensão.\n
+    </string>
+
+    <string name="obj_ciencias_nono_III">
+       1. Reconhecer a natureza corpuscular da matéria;\n
+       2. Reconhecer a diversidade dos materiais;\n
+       3. Descrever os diferentes estados da matéria e associá-los a
+diferentes condições de pressão e temperatura;\n
+       4. Reconhecer diferentes propriedades dos materiais;\n
+       5. Correlacionar os diferentes materiais à suas propriedades;\n
+       6. Comparar condutibilidade elétricas de diferentes materiais;\n
+       7. Propor explicações pra comportamento dos materiais utilizando
+modelos interpretativos simples;\n
+       8. Fazer generalizações que permitam diferenciar elemento químico
+de átomos e substancias químicas;\n
+       9. Determinar por método experimental densidade de misturas e
+substâncias química solida;\n
+       10. Comparar misturas e substâncias químicas a partir de medidas
+de densidade e de análise de tabela de dados;\n
+       11. Interpretar tabelas de dados relativas aos elementos químicos;
+       12. Compreender a natureza histórica e cumulativa do conhecimento
+científico.\n
+    </string>
+
+
+    <string name="title_ciencias_nono_IV">
+        Eixo: Ciências: Homem e Natureza IV
+    </string>
+
+    <string name="cont_ciencias_nono_IV">
+       - Impenetrabilidade;\n
+       - Elasticidade;\n
+       - Compressibilidade;\n
+       - Divisibilidade;\n
+       - Unidades de Medidas;\n
+       - Propriedades;\n
+       - Especificas dos materiais;\n
+       - Estados físicos;\n
+       - Condutibilidade;\n
+       - Fenômeno químico e físico;\n
+       - Densidade;\n
+       - Dureza;\n
+       - Átomos\n
+       - Elementos químicos.\n
+    </string>
+
+    <string name="obj_ciencias_nono_IV">
+       1. Reconhecer a natureza corpuscular da matéria;\n
+       2. Reconhecer a diversidade dos materiais;\n
+       3. Descrever os diferentes estados da matéria e associá-los a
+diferentes condições de pressão e temperatura;\n
+       4. Reconhecer diferentes propriedades dos materiais;\n
+       5. Correlacionar os diferentes materiais à suas propriedades;\n
+       6. Comparar condutibilidade elétricas de diferentes materiais;\n
+       7. Propor explicações pra comportamento dos materiais utilizando
+modelos interpretativos simples;\n
+       8. Fazer generalizações que permitam diferenciar elemento químico
+de átomos e substancias químicas;\n
+       9. Determinar por método experimental densidade de misturas e
+substâncias química solida;\n
+       10. Comparar misturas e substâncias químicas a partir de medidas
+de densidade e de análise de tabela de dados;\n
+       11. Interpretar tabelas de dados relativas aos elementos químicos;\n
+       12. Compreender a natureza histórica e cumulativa do conhecimento\n
+científico.
+    </string>
+
+
+
+</resources>

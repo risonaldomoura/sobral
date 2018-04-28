@@ -1,0 +1,159 @@
+<resources>
+    <string name="app_name">M-Sobral</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_apresentacao_activity">Apresentacao</string>
+    <string name="title_activity_login_activity">Login</string>
+    <!--<string name="title_activity_main_activity">Painel</string> -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_config_activity">Configurações</string>
+    <string name="conteudo">Configurações</string>
+
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+    </string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_table_activity">table_activity</string>
+    <string name="title_activity_tab_">Menu de tabelas</string>
+    <string name="title_activity_tab_activity">Tab_activity</string>
+    <string name="title_activity_teste_spinner">Teste_spinner</string>
+    <string name="title_activity_config_bimestre">Configuração de bimestre</string>
+    <string name="confirmacao_marcar">Deseja MARCAR este assunto?</string>
+    <string name="confirmacao_desmarcar">Deseja DESMARCAR este assunto?</string>
+
+
+
+    <string name="slide_1_title">Olá, professores!</string>
+    <string name="slide_1_description">
+        Esta é a matriz curricular digital
+        \n
+        da cidade de Sobral.
+
+    </string>
+
+    <string name="slide_2_title">Linha do Tempo</string>
+    <string name="slide_2_description">
+        Tenha em mãos todo o conteúdo na
+        \n
+        forma de linha do tempo.
+    </string>
+
+
+    <string name="slide_3_title">Marcações e anotações</string>
+    <string name="slide_3_description">
+        Marque os conteúdos que voce já lecionou
+        \n
+        e adicione anotações.
+
+    </string>
+
+    <string name="slide_4_1_title">Escolha as datas</string>
+    <string name="slide_4_1_description">
+        Configure as datas dos bimestres
+        \n
+        conforme seu calendario escolar.
+
+    </string>
+
+
+    <string name="slide_4_title">Termos e condições de uso</string>
+    <string name="slide_4_checkbox_label">Concordo com os termos e condições de uso</string>
+    <string name="slide_4_checkbox_error">
+        Você precisa concordar com os termos e condições de uso para prosseguir
+    </string>
+    <string name="slide_4_content">
+        Passagem padrão original de Lorem Ipsum, usada desde o século XVI.
+        \n\n
+
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        \n\n
+
+        Seção 1.10.32 de "de Finibus Bonorum et Malorum", escrita por Cícero em 45 AC
+        \n\n
+
+        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+        totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
+        vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+        aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
+        sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
+        voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
+        laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui
+        in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
+        voluptas nulla pariatur?
+        \n\n
+
+        Tradução para o inglês por H. Rackha, feita em 1914
+        \n\n
+
+        But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
+        born and I will give you a complete account of the system, and expound the actual teachings of
+        the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes,
+        or avoids pleasure itself, because it is pleasure, but because those who do not know how to
+        pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there
+        anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because
+        occasionally circumstances occur in which toil and pain can procure him some great pleasure. To
+        take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain
+        some advantage from it? But who has any right to find fault with a man who chooses to enjoy a
+        pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant
+        pleasure?
+        \n\n
+
+        Seção 1.10.33 de "de Finibus Bonorum et Malorum", escrita por Cícero em 45 AC
+        \n\n
+
+        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
+        deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non
+        provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum
+        fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta
+        nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus,
+        omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis
+        debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non
+        recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus
+        maiores alias consequatur aut perferendis doloribus asperiores repellat.
+        \n\n
+
+        Tradução para o inglês por H. Rackha, feita em 1914
+        \n\n
+
+        On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
+        demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee
+        the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their
+        duty through weakness of will, which is the same as saying through shrinking from toil and pain.
+        These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice
+        is untrammelled and when nothing prevents our being able to do what we like best, every pleasure
+        is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of
+        duty or the obligations of business it will frequently occur that pleasures have to be repudiated
+        and annoyances accepted. The wise man therefore always holds in these matters to this principle of
+        selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to
+        avoid worse pains.
+    </string>
+
+
+</resources>

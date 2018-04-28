@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="projeto.app.sobral">
+
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon_app"
+        android:label="M-Sobral"
+        android:roundIcon="@drawable/icon_app"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Utils.Splash_activity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Utils.Apresentacao_activity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/title_activity_apresentacao_activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Utils.Login_activity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/title_activity_login_activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Utils.Main_activity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label=""
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Utils.Config_bimestre_activity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/title_activity_config_bimestre"
+            android:parentActivityName=".Utils.Config_activity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="projeto.app.sobral.Utils.Config_activity" />
+        </activity>
+        <activity
+            android:name=".Utils.IntroActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Utils.Config_activity"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+        <activity
+            android:name=".Utils.Registro_activity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label=" "
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Utils.AppBarMainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"></activity>
+        <activity android:name=".Utils.PostData"></activity>
+        <activity android:name=".Utils.PdfViewActivity"></activity>
+    </application>
+
+</manifest>

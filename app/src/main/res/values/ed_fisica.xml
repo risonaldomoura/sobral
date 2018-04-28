@@ -1,0 +1,532 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="objetivo_ed_fisica">
+        Educação física é uma área do conhecimento humano ligada às 
+práticas corporais historicamente produzidas pela humanidade. 
+A educação física é o processo pedagógico que visa à formação do 
+homem capaz de se conduzir plenamente em suas atividades. 
+Trabalha num sentido amplo, visando à prevenção de determinadas doenças.
+    </string>
+
+
+    <string name="title_ed_fisica_sexto_I">
+        Eixo: Vida: Corpo e Saúde e Movimento I
+    </string>
+
+    <string name="cont_ed_fisica_sexto_I">
+       - Voleibol;\n
+       - Ginástica acrobática;\n
+       - Avaliação física;\n
+       - Tema transversal: Cuidados com o corpo;\n
+    </string>
+
+    <string name="obj_ed_fisica_sexto_I">
+       1. Identificar as características principais do voleibol, seu histórico e
+regras básicas;\n
+       2. Vivenciar habilidades motoras para melhorar sua capacidade em
+relação aos fundamentos básicos do esporte;\n
+       3. Realizar de forma satisfatória os fundamentos aprendidos durante as
+aulas;\n
+       4. Conhecer os movimentos malabares acrobáticos elementares,
+individual e coletivo;\n
+       5. Conhecer e interpretar indicadores básicos da composição corporal;
+Analisar as proporções corporais relativas ao desenvolvimento físico;\n
+       6. Identificar as principais adaptações do funcionamento do organismo
+durante o esforço físico;\n
+       7. Reconhecer a importância dos exercícios físicos para uma boa
+qualidade de vida e prevenção de doenças;\n
+       8. Refletir sobre a relação entre o sedentarismo e a má alimentação
+com a obesidade;\n
+       9. Perceber a importância da hidratação para o bom funcionamento do
+organismo antes, durante e depois dos exercícios físicos;\n
+      10. Relacionar a prática de exercícios físicos com a prevenção de
+doenças;\n\
+      11. Relacionar os hábitos de higiene pessoal com o bem-estar e
+qualidade de vida;n
+      12. Conhecer as noções básicas de prevenção de acidentes e primeiros
+socorros.\n
+    </string>
+
+
+    <string name="title_ed_fisica_sexto_II">
+        Eixo: Vida: Corpo e Saúde e Movimento II
+    </string>
+
+    <string name="cont_ed_fisica_sexto_II">
+       - Handebol;\n
+       - História das danças;\n
+       - Capoeira;\n
+       - Tema transversal: violência.\n
+    </string>
+
+    <string name="obj_ed_fisica_sexto_II">
+       1. Conhecer as características principais do handebol, seu histórico e
+regras básicas;\n
+       2. Dominar os fundamentos e regras básicas da modalidade proposta;\n
+       3. Realizar de forma satisfatória os fundamentos aprendidos durante as
+aulas na teoria e prática;\n
+       4. Discutir sobre o tema através do conhecimento prévio do educando;\n
+       5. Identificar e compreender a história das danças em suas diversas
+épocas;\n
+       6. Entender a dança como um processo construtivo da cultura corporal;
+      7.  Ressignificar a dança em seu cotidiano;\n
+conhecer e identificar os diversos tipos de manifestações da capoeira;\n
+      8.  Refletir sobre a transformação da inserção social da capoeira na
+sociedade brasileira;\n
+      9.  Diferenciar e problematizar a relação lutas, brigas e violência;\n
+      10.  Identificar os diferentes tipos de violência;\n
+      11.  Auto percepção de atos de violência;\n
+      12.  Analisar as consequências da violência na escola e sociedade.\n
+    </string>
+
+
+    <string name="title_ed_fisica_sexto_III">
+        Eixo: Vida: Corpo eSaúde e Movimento III
+    </string>
+
+    <string name="cont_ed_fisica_sexto_III">
+       - Avaliação física;\n
+       - Basquetebol;\n\
+       - Atletismo;n
+       - Tema transversal: ética.\n
+    </string>
+
+    <string name="obj_ed_fisica_sexto_III">
+       1. Conhecer e interpretar indicadores básicos da composição corporal;\n
+       2. Analisar as proporções corporais relativas ao desenvolvimento físico;\n
+       3. Identificar as principais adaptações do funcionamento do organismo
+durante o esforço físico;\n
+       4. Reconhecer a importância dos exercícios físicos para uma boa
+qualidade de vida e prevenção de doenças;\n
+       5. Dominar de forma teórica e prática os fundamentos técnicos da
+modalidade;\n
+       6. Conhecer a história do basquetebol;\n
+       7. Identificar as características principais do basquetebol;\n
+       8. Dominar as regras básicas do basquetebol;\n
+       9. Aprimorar a coordenação motora para a prática deste esporte;\n
+       10. Conhecer a história do atletismo;\n
+       11. Conhecer os tipos de corridas e de salto;\n
+       12. Executar as técnicas das corridas e saltos;\n
+       13. Respeitar as regras de convívio no esporte e na sociedade;\n
+       14. Compreender as consequências de atitudes ilícitas no esporte e na
+sociedade.\n
+    </string>
+
+
+    <string name="title_ed_fisica_sexto_IV">
+        Eixo: Vida: Corpo e Saúde e Movimento IV
+    </string>
+
+    <string name="cont_ed_fisica_sexto_IV">
+       - Futsal;
+       - Corrida;
+       - Tema transversal: diversidade.
+    </string>
+
+    <string name="obj_ed_fisica_sexto_IV">
+       1. A avaliação será contínua, qualitativa e participativa, com diagnóstico
+realizado a partir das limitações impostas pelas situações das
+modalidades, tanto do que se diz respeito a sua possibilidade de
+desempenho e a interação com os outros;\n
+       2. A avaliação será contínua, qualitativa e participativa, com diagnóstico
+realizado a partir das limitações impostas pelas situações das
+modalidades, tanto do que se diz respeito a sua possibilidade de
+desempenho e a interação com os outros;\n
+       3. A avaliação será contínua, qualitativa e participativa, com diagnóstico
+realizado a partir das limitações impostas pelas situações das
+modalidades, tanto do que se diz respeito a sua possibilidade de
+desempenho e a interação com os outros.\n
+    </string>
+
+
+
+
+
+
+    <string name="title_ed_fisica_setimo_I">
+        Eixo: Corpo: Habilidades, Movimentos e descobertas I
+    </string>
+
+    <string name="cont_ed_fisica_setimo_I">
+       - Voleibol;\n
+       - Ginástica Rítmica;\n
+       - Avaliação física;\n
+       - Tema transversal: Cuidados com o corpo.\n
+    </string>
+
+    <string name="obj_ed_fisica_setimo_I">
+       1. Identificar e aprofundar seu conhecimento acerca das características
+principais do voleibol, seu histórico e regras básicas;\n
+       2. Melhorar sua capacidade em relação aos fundamentos básicos do
+esporte;\n
+       3. Realizar de forma satisfatória os fundamentos aprendidos durante as
+aulas;\n
+       4. Desenvolver e aprimorar as habilidades motoras e capacidades
+físicas relacionadas ao ritmo;\n
+       5. Conhecer e interpretar indicadores básicos da composição corporal;\n
+        6. Analisar as proporções corporais relativas ao desenvolvimento físico;\n
+       7. Identificar as principais adaptações do funcionamento do organismo
+durante o esforço físico;\n
+       8. Reconhecer a importância dos exercícios físicos para uma boa
+qualidade de vida e prevenção de doenças;\n
+       9. Refletir sobre a relação entre o sedentarismo e a má alimentação
+com a obesidade;\n
+       10. Perceber a importância da hidratação para o bom funcionamento do
+organismo antes, durante e depois dos exercícios físicos;\n
+       11. Relacionar a prática de exercícios físicos com a prevenção de
+doenças;\n
+       12. Relacionar os hábitos de higiene pessoal com o bem-estar e
+qualidade de vida;\n
+       13. Conhecer as noções básicas de prevenção de acidentes e primeiros
+socorros.\n
+    </string>
+
+
+
+    <string name="title_ed_fisica_setimo_II">
+        Eixo: Corpo: Habilidades, Movimentos e descobertas II
+    </string>
+
+    <string name="cont_ed_fisica_setimo_II">
+       - Handebol;\n
+       - Danças típicas da Região Norte do Brasil;\n
+       - Lutas regionais: huka-huka e luta marajoara;\n
+       - Tema transversal: violência.\n
+    </string>
+
+    <string name="obj_ed_fisica_setimo_II">
+       1. Conhecer as características principais do handebol, seu histórico e
+regras básicas;\n
+       2. Conhecer os fundamentos e regras básicas da modalidade;\n
+       3. Realizar de forma satisfatória os fundamentos aprendidos durante as
+aulas na teoria e prática;\n
+       4. Conhecer, explicar e vivenciar as diferentes danças da cultura
+popular da região norte do Brasil;\n
+       5. Vivenciar possibilidades de criação de movimentos expressivos
+respeitando os ritmos de cada um;\n
+       6. Valorizar as habilidades artísticas;\n
+       7. Conhecer e criar sequências coreografadas valorizando o repertório
+motor dos educandos e os gestos aprendidos;\n
+       8. Conhecer e identificar os diversos tipos de manifestações de lutas da
+região norte;\n
+       9. Relacionar o conhecimento das lutas à diversidade cultural da região
+norte;\n
+       10. Identificar os diferentes tipos de violência;\n
+       11. Auto percepção de atos de violência;\n
+       12. Analisar as consequências da violência na escola e sociedade.\n
+    </string>
+
+
+    <string name="title_ed_fisica_setimo_III">
+        Eixo: Corpo: Habilidades, Movimentos e descobertas III
+    </string>
+
+    <string name="cont_ed_fisica_setimo_III">
+       - Avaliação física;\n
+       - Basquetebol;\n
+       - Atletismo;\n
+       - Tema transversal: ética;\n
+    </string>
+
+    <string name="obj_ed_fisica_setimo_III">
+       1. Conhecer e interpretar indicadores básicos da composição corporal;\n
+       2. Analisar as proporções corporais relativas ao desenvolvimento físico;\n
+       3. Identificar as principais adaptações do funcionamento do organismo
+durante o esforço físico;\n
+       4. Reconhecer a importância dos exercícios físicos para uma boa
+qualidade de vida e prevenção de doenças;\n
+       5. Conhecer as características acerca da história do basquetebol;\n
+       6. Identificar as características principais do basquetebol;\n
+       7. Conhecer e aplicar os fundamentos e regras básicas da modalidade;\n
+       8. Conhecer a história do atletismo;\n
+       9. Realizar na prática os diferentes tipos de corridas e saltos;\n
+       10. Executar de forma satisfatória as técnicas e regras das corridas e saltos;\n
+       11. Respeito às regras de convívio no esporte e na sociedade;\n
+       12. Compreender as consequências de atitudes ilícitas no esporte e na
+sociedade.\n
+    </string>
+
+
+    <string name="title_ed_fisica_setimo_IV">
+        Eixo: Corpo: Habilidades, Movimentos e descobertas IV
+    </string>
+
+    <string name="cont_ed_fisica_setimo_IV">
+       - Futsal;\n
+       - Skate, parkour e bike;\n
+       - Tema transversal: diversidade.\n
+    </string>
+
+    <string name="obj_ed_fisica_setimo_IV">
+       1. Conhecer as características principais do futsal, seu histórico e
+regras básicas;\n
+       2. Aplicar as regras básicas e fundamentos da modalidade;\n
+       3. Conhecer as principais manobras;\n
+       4. Reconhecer os equipamentos e a importância dos mesmos para a
+realização dos movimentos;\n
+       5. Identificar os riscos e formular estratégias para superar os desafios
+na realização de práticas corporais de aventura;\n
+       6. Compreender e respeitar as diferentes concepções de sexualidade.\n
+    </string>
+
+
+
+
+
+    <string name="title_ed_fisica_oitavo_I">
+        Eixo: Qualidade de vida I
+    </string>
+
+    <string name="cont_ed_fisica_oitavo_I">
+       - Voleibol;\n
+       - Ginástica aeróbica;\n
+       - Avaliação física;\n
+       - Tema transversal – Cuidados com o corpo;\n
+    </string>
+
+    <string name="obj_ed_fisica_oitavo_I">
+       1. Aplicar de forma satisfatória os fundamentos aprendidos durante as aulas;\n
+       2. Identificar as diferentes regras que compõem o jogo de voleibol;\n
+       3. Arbitrar jogos entre alunos durante as aulas práticas desta modalidade;\n
+       4. Executar os sistemas de jogo corretamente;\n
+       5. Identificar os aspectos históricos da ginastica aeróbica;\n
+       6. Aprimorar as habilidades motoras e capacidades físicas;\n
+       7. Conhecer e interpretar indicadores básicos da composição corporal;\n
+       8. Analisar as proporções corporais relativas ao desenvolvimento físico;\n
+       9. Identificar as principais adaptações do funcionamento do organismo\n
+durante o esforço físico;\n
+       10. Reconhecer a importância dos exercícios físicos para uma boa qualidade
+de vida e prevenção de doenças;\n
+       11. Refletir sobre a relação entre o sedentarismo e a má alimentação com a
+obesidade;\n
+       12. Perceber a importância da hidratação para o bom funcionamento do
+organismo antes, durante e depois dos exercícios físicos;\n
+       13. Relacionar a prática de exercícios físicos com a prevenção de doenças;\n
+       14. Relacionar os hábitos de higiene pessoal com o bem-estar e qualidade de
+vida.\n
+        Executar ações de primeiros socorros.\n
+    </string>
+
+
+
+    <string name="title_ed_fisica_oitavo_II">
+        Eixo: Qualidade de vida II
+    </string>
+
+    <string name="cont_ed_fisica_oitavo_II">
+       - Handebol;\n
+       - Danças típicas das Regiões Nordeste e Centro Oeste do Brasil;\n
+       - Judô;\n
+       - Tema transversal: violência.\n
+    </string>
+
+    <string name="obj_ed_fisica_oitavo_II">
+       1. Executar de forma satisfatória os fundamentos;\n
+       2. Aplicar as diferentes regras que compõem o jogo de handebol;\n
+       3. Arbitrar jogos entre alunos durante as aulas práticas desta modalidade;\n
+       4. Conhecer, explicar e vivenciar as diferentes danças da cultura popular das
+regiões nordeste e Centro Oeste do Brasil;\n
+       5. Reconhecer as possibilidades corporais na dança;\n
+       6. Compreender os benefícios das práticas relacionadas à dança;\n
+       7. Conhecer e identificar os diversos tipos de manifestações de lutas;\n
+       8. Conhecer onde, quando e porque do surgimento das lutas;\n
+       9. Apresentar a história da arte marcial judô e seu fundador;\n
+       10. Proporcionar através das lutas um meio de socialização, interação e
+integração entre os alunos;\n
+       11. Combater os diferentes tipos de violência;\n
+       12. Percepção de atos de violência;\n
+       13. Discutir as consequências da violência na escola e sociedade.\n
+    </string>
+
+
+    <string name="title_ed_fisica_oitavo_III">
+        Eixo: Qualidade de vida III.
+    </string>
+
+    <string name="cont_ed_fisica_oitavo_III">
+       - Avaliação física;\n
+       - Basquetebol;\n
+       - Atletismo;\n
+       - Tema transversal: ética.\n
+    </string>
+
+    <string name="obj_ed_fisica_oitavo_III">
+       1. Conhecer e interpretar indicadores básicos da composição corporal;\n
+       2. Analisar as proporções corporais relativas ao desenvolvimento físico;\n
+       3. Identificar as principais adaptações do funcionamento do organismo
+durante o esforço físico;\n
+       4. Reconhecer a importância dos exercícios físicos para uma boa qualidade
+de vida e prevenção de doenças;\n
+       5. Aplicar as regras do basquetebol;\n
+       6. Identificar e utilizar os diferentes sistemas de jogo;\n
+       7. Arbitrar jogos entre alunos durante as aulas práticas desta modalidade;\n
+       8. Executar as modalidades do atletismo;\n
+       9. Realizar satisfatoriamente as técnicas das corridas, arremessos e
+lançamentos;\n
+       10. Aplicar as regras oficiais;\n
+       11. Respeito às regras no esporte e na sociedade;\n
+       12. Compreender as consequências de atitudes ilícitas no esporte e na
+sociedade;\n
+    </string>
+
+
+    <string name="title_ed_fisica_oitavo_IV">
+        Eixo: Qualidade de vida IV
+    </string>
+
+    <string name="cont_ed_fisica_oitavo_IV">
+       - Futsal;\n
+       - Trilhas interpretativas e arborismo;\n
+       - Tema transversal: diversidade;\n
+    </string>
+
+    <string name="obj_ed_fisica_oitavo_IV">
+       1. Desenvolver os fundamentos do Futsal;\n
+       2. Executar de forma satisfatória os fundamentos;\n
+       3. Executar os sistemas de jogo;\n
+       4. Cumprir as regras que compõem o jogo de futsal;\n
+       5. Arbitrar jogos entre alunos durante as aulas práticas;\n
+       6. Reconhecer os equipamentos e a importância dos mesmos para a
+realização dos movimentos;\n
+       7. Desenvolver habilidades motoras;\n
+       8. Vivenciar o contato com a natureza;\n
+       9. Compreender e respeitar as diferentes concepções de sexualidade;\n
+       10. Compreender e respeitar as diferentes concepções de cultura.\n
+    </string>
+
+
+
+
+
+    <string name="title_ed_fisica_nono_I">
+        Eixo: Prática, ludicidade  aprendizado I
+    </string>
+
+    <string name="cont_ed_fisica_nono_I">
+       - Voleibol;\n
+       - Ginástica Olímpica (Artística);\n
+       - Avaliação física;\n
+       - Tema transversal: Cuidados com o corpo;\n
+    </string>
+
+    <string name="obj_ed_fisica_nono_I">
+       1. Executar de forma satisfatória os fundamentos aprendidos durante as aulas;\n
+       2. Identificar e aplicar as diferentes regras que compõem o jogo de voleibol;\n
+       3. Arbitrar jogos entre alunos durante as aulas práticas desta modalidade;\n
+       4. Executar os sistemas de rodízio corretamente;\n
+       5. Conhecer os diferentes sistemas de jogo;\n
+       6. Identificar os aspectos históricos da ginástica olímpica;\n
+       7. Compreender os elementos que compõem a ginástica olímpica;\n
+       8. Aprimorar as habilidades motoras e capacidades físicas;\n
+       9. Conhecer e interpretar indicadores básicos da composição corporal;\n
+       10. Analisar as proporções corporais relativas ao desenvolvimento físico;\n
+       11. Identificar as principais adaptações do funcionamento do organismo
+durante o esforço físico;\n
+       12. Reconhecer a importância dos exercícios físicos para uma boa qualidade de
+vida e prevenção de doenças;\n
+       13. Refletir sobre a relação entre o sedentarismo e a má alimentação com a
+obesidade;\n
+       14. Perceber a importância da hidratação para o bom funcionamento do
+organismo antes, durante e depois dos exercícios físicos;\n
+       15. Relacionar a prática de exercícios físicos com a prevenção de doenças;\n
+       16. Relacionar os hábitos de higiene pessoal com o bem-estar e qualidade de
+vida;\n
+       17. Executar ações de primeiros socorros.
+    </string>
+
+
+
+    <string name="title_ed_fisica_nono_II">
+        Eixo: Prática, ludicidade e aprendizado II
+    </string>
+
+    <string name="cont_ed_fisica_nono_II">
+       - Handebol;\n
+       - Danças da região sul do Brasil;\n
+       - Karatê e kickboxing;\n
+       - Tema transversal: violência.\n
+    </string>
+
+    <string name="obj_ed_fisica_nono_II">
+       1. Executar de forma satisfatória os fundamentos do Handebol;\n
+       2. Conhecer e aplicar as diferentes regras que compõem o handebol;\n
+       3. Arbitrar jogos entre alunos durante as aulas práticas;\n
+       4. Conhecer e saber identificar os principais gestos utilizados pelos árbitros
+durante os jogos;\n
+       5. Conhecer, explicar e vivenciar as diferentes danças da cultura popular das
+regiões nordeste e Centro Oeste do Brasil;\n
+       6. Reconhecer as possibilidades corporais na dança;\n
+       7. Compreender os benefícios das práticas relacionadas à dança;
+       8. Conhecer onde, quando e porque do surgimento do karatê e do kickboxing;\n
+       9. Conhecer e executar os fundamentos básicos de ataque e defesa do karatê
+e do kickboxing;\n
+       10. Diferenciar a arte marcial de esporte de lutas;\n
+       11. Relacionar o conhecimento das lutas à outras modalidades esportivas;\n
+       12. Combater os diferentes tipos de violência;\n
+       13. Percepção de atos de violência;\n
+       14. Discutir as consequências da violência na escola e sociedade.\n
+    </string>
+
+
+    <string name="title_ed_fisica_nono_III">
+        Eixo: Prática, ludicidade e aprendizado III.
+    </string>
+
+    <string name="cont_ed_fisica_nono_III">
+       - Avaliação física;\n
+       - Basquetebol;\n
+       - Atletismo;\n
+       - Tema transversal: ética.\n
+    </string>
+
+    <string name="obj_ed_fisica_nono_III">
+       1. Conhecer e interpretar indicadores básicos da composição corporal;\n
+       2. Analisar as proporções corporais relativas ao desenvolvimento físico;\n
+       3. Identificar as principais adaptações do funcionamento do organismo
+durante o esforço físico;\n
+       4. Reconhecer a importância dos exercícios físicos para uma boa qualidade de
+vida e prevenção de doenças;\n
+       5. Aplicar as regras do basquetebol;\n
+       6. Identificar e utilizar os diferentes sistemas de jogo;\n
+       7. Arbitrar jogos entre alunos durante as aulas práticas desta modalidade;\n
+       8. Executar as modalidades do atletismo;\n
+       9. Realizar satisfatoriamente as técnicas das corridas, arremessos e
+lançamentos;\n
+       10. Aplicar as regras oficiais;\n
+       11. Respeito às regras no esporte e na sociedade;\n
+       12. Compreender as consequências de atitudes ilícitas no esporte e na
+sociedade.\n
+    </string>
+
+
+    <string name="title_ed_fisica_nono_IV">
+        Eixo: Prática, ludicidade e aprendizado IV
+    </string>
+
+    <string name="cont_ed_fisica_nono_IV">
+       - Futsal;\n
+       - Tirolesa, rapel, falsa baiana e slack line;\n
+       - Tema transversal: diversidade.\n
+    </string>
+
+    <string name="obj_ed_fisica_nono_IV">
+       1. Identificar e aplicar os fundamentos do Futsal;\n
+       2. Executar de forma satisfatória os fundamentos;\n\
+       3. Executar os diferentes sistemas de jogo;n
+       4. Aplicar as regras de futsal;\n
+       5. Arbitrar jogos entre alunos durante as aulas práticas;\n
+       6. Conhecer e saber identificar os principais gestos utilizados pelos árbitros
+durante os jogos;\n
+       7. Aprimorar habilidades motoras e capacidades físicas;\n
+       8. Executar de forma satisfatória os movimentos específicos das modalidades;\n
+       9. Identificar riscos e formular estratégias para superar os desafios;\n
+       10. Estimular a prática de atividade física de aventura;\n
+       11. Explorar o meio ambiente;\n
+       12. Compreender e respeitar as diferentes concepções de sexualidade;\n
+       13. Compreender e respeitar as diferentes concepções de cultura.
+    </string>
+
+
+
+</resources>

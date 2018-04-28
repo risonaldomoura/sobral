@@ -1,0 +1,784 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Objetivo Geral-->
+    <string name="objetivo_portugues">
+        A língua portuguesa é uma língua românica flexiva originada no galego-português falado no 
+Reino da Galiza e no norte de Portugal. Com a criação do Reino de Portugal em 1139 e a expansão para 
+o sul como parte da Reconquista deu-se a difusão da língua pelas terras conquistadas e mais tarde, com 
+as descobertas portuguesas, para o Brasil, África e outras partes do mundo. O português foi usado, 
+naquela época, não somente nas cidades conquistadas, mas também por muitos governantes 
+locais nos seus contatos com outros estrangeiros poderosos. Especialmente nessa altura a língua portuguesa 
+também influenciou várias línguas.
+    </string>
+
+    <!-- I bimestre Titulo -->
+    <string name="title_portugues_sexto_I">
+        Eixo: Língua Portuguesa
+    </string>
+
+
+    <string name="obj_portugues_sexto_I_I">
+        Nesse segmento é esperado que o aluno já tenha
+desenvolvem as habilidades relacionadas a essa
+expectativa.
+
+    </string>
+
+    <string name="obj_portugues_sexto_I_II">
+        Respeitar as regras de cortesia, combinadas pelo
+grupo, nas diversas situações de interação,\n
+a) ouvindo sem interromper;\n
+b) adequando a sua linguagem corporal;\n
+c) pedindo a palavra para expor suas ideias;\n
+d) modelando o tom de voz nas interações
+comunicativas;\n
+e) utilizando as formas de tratamento adequadas;\n
+f) colaborando com a elaboração do conjunto dos
+valores e das regras de convivência da classe,
+escola e/ou rede;\n
+g) evitando o uso de palavras com potencial
+ofensivo;\n
+h) reagindo de forma pacífica diante de conflitos;\n
+i) respeitando a opinião dos demais.\n
+
+    </string>
+
+    <string name="obj_portugues_sexto_I_III">
+Expressar-se de maneira efetiva nas diferentes
+interações,\n
+a) pronunciando, de forma articulada e com
+clareza palavras, frases, perguntas, queixas,
+opiniões ou manifestações gerais;\n
+b) utilizando vocabulário familiar de forma correta;\n
+c) fazendo uso da persuasão, sem coação,
+quando conveniente;\n
+d) mantendo-se no tema abordado;\n
+e) constituindo uma imagem positiva de si e de
+seus pares;\n
+f) conectando o tema abordado com suas próprias
+ideias;\n
+g) corrigindo sua fala mediante percepção de erro;\n
+h) explicando seu raciocínio aos interlocutores;\n
+i) reformulando o que lhe foi dito pelo interlocutor;\n
+j) apresentando, quando necessário, seu
+posicionamento diante da opinião de outros;\n
+k) avaliando a extensão da fala.\n
+
+    </string>
+
+
+
+
+
+
+    <!-- Titulo 2 bimestre -->
+    <string name="title_portugues_sexto_II">
+        Eixo: Língua Portuguesa
+    </string>
+
+
+    <!-- Conteudo 2 bimestre  parte 1-->
+    <string name="obj_portugues_sexto_II_I">
+Nesse segmento é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas a essa
+expectativa.\n
+
+    </string>
+
+    <!-- Conteudo 2 bimestre  parte 2-->
+
+    <string name="obj_portugues_sexto_II_II">
+Ler textos, com velocidade de140 a 170 palavras
+por minuto, de forma audível e compreensível,
+respeitando os princípios de precisão e prosódia.\n
+
+    </string>
+
+    <!-- Conteudo 2 bimestre  parte 3-->
+
+    <string name="obj_portugues_sexto_II_III">
+Compreender os elementos que deram origem à
+situação de comunicação, identificando\n
+• contexto;\n
+• tema;\n
+• suporte;\n
+• interlocutor;\n
+• linguagem;\n
+• locutor.\n
+
+    </string>
+
+
+
+    <!-- titulo 3 bimestre -->
+    <string name="title_portugues_sexto_III">
+        Eixo: Língua Portuguesa
+    </string>
+
+
+    <!-- Conteudo 3 bimestre  parte 1-->
+
+    <string name="obj_portugues_sexto_III_I">
+Nesse segmento é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas a essa
+expectativa (A partir do 2º ano essa habilidade
+não progride).\n
+
+    </string>
+
+    <!-- Conteudo 3 bimestre  parte 2-->
+
+    <string name="obj_portugues_sexto_III_II">
+Anotar os pontos principais de orientações,
+explicações ou exposições,\n
+a) selecionando questionamentos para
+discussão posterior.\n
+
+    </string>
+
+
+    <!-- Conteudo 3 bimestre  parte 3-->
+
+    <string name="obj_portugues_sexto_III_III">
+Planejar a escrita de acordo com a situação de
+comunicação,\n
+a) identificando o contexto;\n
+b) selecionando o tema;\n
+c) escolhendo os interlocutores;\n
+d) definindo a linguagem;\n
+e) organizando a estrutura.\n
+
+    </string>
+
+    <!-- titulo 4 bimestre-->
+
+    <string name="title_portugues_sexto_IV">
+        Eixo: Língua Portuguesa
+    </string>
+
+    <!-- Conteudo 4 bimestre  parte 1-->
+
+    <string name="obj_portugues_sexto_IV_I">
+Nesse segmento é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas a essa
+expectativa (A partir do 2º ano essa habilidade
+não progride).\n
+
+    </string>
+
+    <!-- Conteudo 4 bimestre  parte 2-->
+
+    <string name="obj_portugues_sexto_IV_II">
+Grafar palavras ortograficamente corretas,\n
+a) diferenciando, em contextos regulares, os
+valores fonológicos e grafofonêmicos de\n
+• P de B;\n
+• P de D;\n
+• F de V;\n
+• T de D;\n
+• S de SS;\n
+• R de RR;\n
+• C de CH;\n
+• L de LH;\n
+• N de NH;\n
+• C de QU;\n
+• G de J.\n
+• S de Z;\n
+• AM de ÃO;\n
+• U de L;\n
+• GA de GUA;\n
+• GE de GUE;\n
+• GI de GUI;\n
+• CE de QUE;\n
+• CI de QUI;\n
+• GUE de QUE;\n
+• GUI de QUI.\n
+b) diferenciando\n
+• letra não cursiva de cursiva;\n
+• letra maiúscula de minúscula;\n
+c) usando de\n
+• Encontros vocálicos;\n
+• Dígrafos vocálicos;\n
+        • R no final da palavra;\n
+• S no final da palavra;\n
+• M antes de P ou B;\n
+• M ou N no final de palavra;\n
+• E ou I no final da palavra;\n
+• consoante muda.\n
+
+    </string>
+
+    <!-- Conteudo 4 bimestre  parte 3-->
+
+    <string name="obj_portugues_sexto_IV_III">
+Conjugar, corretamente, verbos regulares e
+irregulares\n
+a) no presente, nos pretéritos perfeito, imperfeito e\n
+mais-que-perfeito, e nos futuros do presente e do
+pretérito do indicativo;\n
+b) no imperativo afirmativo e negativo;\n
+c) no presente, no pretérito imperfeito e no
+futuro do subjuntivo;\n
+d) nas formas nominais infinitivo, gerúndio e
+particípio.\n
+
+    </string>
+
+
+    <string name="title_portugues_setimo_I">
+        Eixo: Português
+    </string>
+
+
+    <string name="obj_portugues_setimo_I_I">
+Nesse segmento é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas a essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_portugues_setimo_I_II">
+Respeitar as regras de cortesia, combinadas pelo
+grupo, nas diversas situações de interação,\n
+a) ouvindo sem interromper;\n
+b) adequando a sua linguagem corporal;\n
+c) pedindo a palavra para expor suas ideias;\n
+d) modelando o tom de voz nas interações
+comunicativas;\n
+e) utilizando as formas de tratamento adequadas;\n
+f) colaborando com a elaboração do conjunto dos
+valores e das regras de convivência da classe,
+escola e/ou rede;\n
+g) evitando o uso de palavras com potencial
+ofensivo;\n
+h) reagindo de forma pacífica diante de conflitos;\n
+i) respeitando a opinião dos demais.\n
+
+    </string>
+
+    <string name="obj_portugues_setimo_I_III">
+Expressar-se de maneira efetiva nas diferentes
+interações,\n
+a) pronunciando, de forma articulada e com
+clareza palavras, frases, perguntas, queixas,
+opiniões ou manifestações gerais;\n
+b) utilizando vocabulário familiar de forma correta;\n
+c) fazendo uso da persuasão, sem coação,
+quando conveniente;\n
+d) mantendo-se no tema abordado;\n
+e) constituindo uma imagem positiva de si e de
+seus pares;\n
+f) conectando o tema abordado com suas próprias
+ideias;\n
+g) corrigindo sua fala mediante percepção de erro;\n
+h) explicando seu raciocínio aos interlocutores;\n
+i) reformulando o que lhe foi dito pelo interlocutor;\n
+j) apresentando, quando necessário, seu
+posicionamento diante da opinião de outros;\n
+k) avaliando a extensão da fala;\n
+l) questionando pontos de vista, com
+argumentos de maneira coerente ao contexto.\n
+
+    </string>
+
+
+
+    <string name="title_portugues_setimo_II">
+        Eixo: Português
+    </string>
+
+
+    <string name="obj_portugues_setimo_II_I">
+Nesse segmento é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas a essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_portugues_setimo_II_II">
+Ler textos, com velocidade de170 a 190 palavras
+por minuto, de forma audível e compreensível,
+respeitando os princípios de precisão e prosódia.\n
+
+    </string>
+
+    <string name="obj_portugues_setimo_II_III">
+Compreender os elementos que deram origem à
+situação de comunicação, identificando\n
+• contexto;\n
+• tema;\n
+• suporte;\n
+• interlocutor;\n
+• linguagem;\n
+• locutor.\n
+
+    </string>
+
+
+    <string name="title_portugues_setimo_III">
+        Eixo: Português
+    </string>
+
+
+    <string name="obj_portugues_setimo_III_I">
+Nesse segmento é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas a essa
+expectativa (A partir do 2º ano essa habilidade
+não progride).\n
+
+    </string>
+
+
+    <string name="obj_portugues_setimo_III_II">
+Anotar os pontos principais de orientações,
+explicações ou exposições,\n
+a) selecionando questionamentos para discussão
+posterior;\n
+b) destacando a conexão entre eles\n
+
+    </string>
+
+
+    <string name="obj_portugues_setimo_III_III">
+Planejar a escrita de acordo com a situação de
+comunicação,\n
+a) identificando o contexto;\n
+b) selecionando o tema;\n
+c) escolhendo os interlocutores;\n
+d) definindo a linguagem;\n
+e) organizando a estrutura\n
+
+    </string>
+
+
+    <string name="title_portugues_setimo_IV">
+        Eixo: Português
+    </string>
+
+
+    <string name="obj_portugues_setimo_IV_I">
+Incorporar, de modo funcional, as regras e os
+mecanismos de estrutura e formação de palavras,
+para decodificação, a leitura e a escrita corretas,
+diferenciando,\n
+• encontros vocálicos;\n
+• dígrafos vocálicos;\n
+• dígrafos consonantais (LH, CH, NH, SS, RR, GU,
+QU, SC e XC);\n
+• /s/ (S, C, SS, Ç, X, SC e XC);\n
+• /ɾ/ e /h/ (R e RR);\n
+• /ʃ/ (X e CH);\n
+• /k/ (K, C e QU);\n
+• /Ʒ/ (G e J);\n
+• /z/ (Z, S e X);\n
+• /w/ (O, U e L);\n
+• /j/ (E e I).\n
+
+    </string>
+
+    <string name="obj_portugues_setimo_IV_II">
+Grafar palavras ortograficamente corretas,
+a) diferenciando, em contextos regulares, os
+valores fonológicos e grafofonêmicos de\n
+• P de B;\n
+• P de D;\n
+• F de V;\n
+• T de D;\n
+• S de SS;\n
+• R de RR;\n
+• C de CH;\n
+• L de LH;\n
+• N de NH;\n
+• C de QU;\n
+• G de J.\n
+
+    </string>
+
+    <string name="obj_portugues_setimo_IV_III">
+Compreender frases, orações e períodos, sua
+construção e a relação entre os seus termos, com
+referência aos seus nomes formais,\n
+a) identificando\n
+•frases nominais e verbais (declarativas,
+interrogativas, exclamativas e imperativas).\n
+b) empregando corretamente\n
+• componentes de uma oração (sujeito e
+predicado).\n
+c) identificando\n
+• sujeito e predicado;\n
+• número de orações em um período;\n
+• complemento (s) verbal e/ou nominal;\n
+• predicativos do sujeito e do objeto.\n
+• aposto;\n
+• vocativo.\n
+d) analisando\n
+• sujeito (simples, composto,
+desinencial,indeterminado ou inexistente) e
+seus determinantes;\n
+• predicado (verbal e nominal);\n
+• transitividade verbal (transitivos direto,
+indireto e intransitivo);\n
+• complementos verbais (objetos diretos e
+indiretos).\n
+
+    </string>
+
+
+
+
+
+    <string name="title_portugues_oitavo_I">
+        Eixo: Português
+    </string>
+
+
+    <string name="obj_portugues_oitavo_I_I">
+Nesse segmento é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas a essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_portugues_oitavo_I_II">
+Respeitar as regras de cortesia, combinadas pelo
+grupo, nas diversas situações de interação,\n
+a) ouvindo sem interromper;\n
+b) adequando a sua linguagem corporal;\n
+c) pedindo a palavra para expor suas ideias;\n
+d) modelando o tom de voz nas interações
+comunicativas;\n
+e) utilizando as formas de tratamento adequadas;\n
+f) colaborando com a elaboração do conjunto dos
+valores e das regras de convivência da classe,
+escola e/ou rede;\n
+g) evitando o uso de palavras com potencial
+ofensivo;\n
+h) reagindo de forma pacífica diante de conflitos;\n
+i) respeitando a opinião dos demais.\n
+
+    </string>
+
+    <string name="obj_portugues_oitavo_I_III">
+Expressar-se de maneira efetiva nas diferentes
+interações,\n
+a) pronunciando, de forma articulada e com
+clareza palavras, frases, perguntas, queixas,
+opiniões ou manifestações gerais;\n
+b) utilizando vocabulário familiar de forma correta;\n
+c) fazendo uso da persuasão, sem coação,
+quando conveniente;\n
+d) mantendo-se no tema abordado;\n
+e) constituindo uma imagem positiva de si e de
+seus pares;\n
+f) conectando o tema abordado com suas próprias
+ideias;\n
+g) corrigindo sua fala mediante percepção de erro;\n
+h) explicando seu raciocínio aos interlocutores;\n
+i) reformulando o que lhe foi dito pelo interlocutor;\n
+j) apresentando, quando necessário, seu
+posicionamento diante da opinião de outros;\n
+k) avaliando a extensão da fala;\n
+l) questionando pontos de vista, com argumentos
+de maneira coerente ao contexto;\n
+m) sintetizando os pontos abordados.\n
+
+    </string>
+
+
+
+    <string name="title_portugues_oitavo_II">
+        Eixo: Português
+    </string>
+
+
+    <string name="obj_portugues_oitavo_II_I">
+Nesse segmento é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas a essa
+expectativa\n
+
+    </string>
+
+    <string name="obj_portugues_oitavo_II_II">
+Ler textos, com velocidade de190 a 220 palavras
+por minuto, de forma audível e compreensível,
+respeitando os princípios de precisão e prosódia.
+
+    </string>
+
+    <string name="obj_portugues_oitavo_II_III">
+Compreender os elementos que deram origem à
+situação de comunicação, identificando\n
+• contexto;\n
+• tema;\n
+• suporte;\n
+• interlocutor;\n
+• linguagem;\n
+• locutor.\n
+
+    </string>
+
+
+    <string name="title_portugues_oitavo_III">
+        Eixo: Português
+    </string>
+
+
+    <string name="obj_portugues_oitavo_III_I">
+Nesse segmento é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas a essa
+expectativa (A partir do 2º ano essa habilidade
+não progride).\n
+
+    </string>
+
+    <string name="obj_portugues_oitavo_III_II">
+Anotar os pontos principais de orientações,
+explicações ou exposições,\n
+a) selecionando questionamentos para discussão
+posterior;\n
+b) destacando a conexão entre eles;\n
+c) construindo esquema que contenha uma
+sequência lógica.\n
+
+    </string>
+
+    <string name="obj_portugues_oitavo_III_III">
+Planejar a escrita de acordo com a situação de
+comunicação,\n
+a) identificando o contexto;\n
+b) selecionando o tema;\n
+c) escolhendo os interlocutores;\n
+d) definindo a linguagem;\n
+e) organizando a estrutura.\n
+
+    </string>
+
+
+    <string name="title_portugues_oitavo_IV">
+        Eixo: Português
+    </string>
+
+
+    <string name="obj_portugues_oitavo_IV_I">
+Nesse segmento é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas a essa
+expectativa (A partir do 2º ano essa habilidade
+não progride).\n
+
+    </string>
+
+    <string name="obj_portugues_oitavo_IV_II">
+Grafar palavras ortograficamente corretas,
+a) diferenciando, em contextos regulares, os
+valores fonológicos e grafofonêmicos de\n
+• P de B;\n
+• P de D;\n
+• S de SS;\n
+• R de RR;\n
+• C de CH;\n
+• L de LH;\n
+• N de NH;\n
+• C de QU;\n
+• G de J.\n
+• S de Z;\n
+• AM de ÃO;\n
+• U de L;\n
+• GA de GUA;\n
+• GE de GUE;\n
+
+    </string>
+
+    <string name="obj_portugues_oitavo_IV_III">
+Conjugar, corretamente, os verbos regulares,
+irregulares e defectivos (pessoais, impessoais e
+unipessoais) e locuções verbais\n
+a) no presente, nos pretéritos perfeito, imperfeito e
+mais-que-perfeito, e nos futuros do presente e do
+pretérito do indicativo;\n
+b) no imperativo afirmativo e negativo;\n
+c) no presente, no pretérito imperfeito e no futuro
+do subjuntivo;\n
+d) nas formas nominais infinitivo, gerúndio e
+particípio.\n
+
+    </string>
+
+
+
+    <string name="title_portugues_nono_I">
+        Eixo: Português
+    </string>
+
+
+    <string name="obj_portugues_nono_I_I">
+Nesse segmento é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas a essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_portugues_nono_I_II">
+Respeitar as regras de cortesia, combinadas pelo
+grupo, nas diversas situações de interação,\n
+a) ouvindo sem interromper;\n
+b) adequando a sua linguagem corporal;\n
+c) pedindo a palavra para expor suas ideias;\n
+d) modelando o tom de voz nas interações
+comunicativas;\n
+e) utilizando as formas de tratamento adequadas;\n
+f) colaborando com a elaboração do conjunto dos
+valores e das regras de convivência da classe,
+escola e/ou rede;\n
+g) evitando o uso de palavras com potencial
+ofensivo;\n
+h) reagindo de forma pacífica diante de conflitos;\n
+i) respeitando a opinião dos demais.\n
+
+    </string>
+
+    <string name="obj_portugues_nono_I_III">
+Expressar-se de maneira efetiva nas diferentes
+interações,\n
+a) pronunciando, de forma articulada e com
+clareza palavras, frases, perguntas, queixas,
+opiniões ou manifestações gerais;\n
+b) utilizando vocabulário familiar de forma correta;\n
+c) fazendo uso da persuasão, sem coação,
+quando conveniente;\n
+d) mantendo-se no tema abordado;\n
+e) constituindo uma imagem positiva de si e de
+seus pares;\n
+f) conectando o tema abordado com suas próprias
+ideias;\n
+g) corrigindo sua fala mediante percepção de erro;\n
+h) explicando seu raciocínio aos interlocutores;\n
+i) reformulando o que lhe foi dito pelo interlocutor;\n
+j) apresentando, quando necessário, seu
+posicionamento diante da opinião de outros;\n
+k) avaliando a extensão da fala;\n
+l) questionando pontos de vista, com argumentos
+de maneira coerente ao contexto;\n
+m) sintetizando os pontos abordados.\n
+
+    </string>
+
+
+
+    <string name="title_portugues_nono_II">
+        Eixo: Português
+    </string>
+
+    <string name="obj_portugues_nono_II_I">
+Nesse segmento é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas a essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_portugues_nono_II_II">
+Ler textos, com velocidade de 220 a 250 palavras
+por minuto, de forma audível e compreensível,
+respeitando os princípios de precisão e prosódia.\n
+
+    </string>
+
+    <string name="obj_portugues_nono_II_III">
+Compreender os elementos que deram origem à
+situação de comunicação, identificando\n
+• contexto;\n
+• tema;\n
+• suporte;\n
+• interlocutor;\n
+• linguagem;\n
+• locutor.\n
+
+    </string>
+
+
+    <string name="title_portugues_nono_III">
+        Eixo: Português
+    </string>
+
+
+    <string name="obj_portugues_nono_III_I">
+Nesse segmento é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas a essa
+expectativa (A partir do 2º ano essa habilidade
+não progride).\n
+
+    </string>
+
+    <string name="obj_portugues_nono_III_II">
+Anotar os pontos principais de orientações,
+explicações ou exposições,\n
+a) selecionando questionamentos para discussão
+posterior;\n
+b) destacando a conexão entre eles;\n
+c) construindo esquema que contenha uma
+sequência lógica;\n
+d) usando paráfrase.\n
+
+    </string>
+
+    <string name="obj_portugues_nono_III_III">
+Planejar a escrita de acordo com a situação de
+comunicação,\n
+a) identificando o contexto;\n
+b) selecionando o tema;\n
+c) escolhendo os interlocutores;\n
+d) definindo a linguagem;\n
+e) organizando a estrutura.\n
+
+    </string>
+
+
+    <string name="title_portugues_nono_IV">
+        Eixo: Português
+    </string>
+
+    <string name="obj_portugues_nono_IV_I">
+Nesse segmento é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas a essa
+expectativa (A partir do 2º ano essa habilidade
+não progride).\n
+
+    </string>
+
+    <string name="obj_portugues_nono_IV_II">
+Grafar palavras ortograficamente corretas,
+a) diferenciando, em contextos regulares, os
+valores fonológicos e grafofonêmicos de\n
+• P de B;\n
+• P de D;\n
+• F de V;\n
+• T de D;\n
+• S de SS;\n
+• R de RR;\n
+• C de CH;\n
+• L de LH;\n
+• N de NH;\n
+• C de QU;\n
+• G de J.\n
+• S de Z;\n
+• AM de ÃO;\n
+• U de L;\n
+
+    </string>
+
+    <string name="obj_portugues_nono_IV_III">
+Conjugar, corretamente, os verbos regulares,
+irregulares e defectivos (pessoais, impessoais e
+unipessoais) e locuções verbais\n
+a) no presente, nos pretéritos perfeito, imperfeito e
+mais-que-perfeito, e nos futuros do presente e do
+pretérito do indicativo;\n
+b) no imperativo afirmativo e negativo;\n
+c) no presente, no pretérito imperfeito e no futuro
+do subjuntivo;\n
+d) nas formas nominais infinitivo, gerúndio e
+particípio.\n
+
+    </string>
+
+</resources>

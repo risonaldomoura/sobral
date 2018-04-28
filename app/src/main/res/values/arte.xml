@@ -1,0 +1,651 @@
+﻿<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <string name="objetivo_arte">
+        A presente matriz curricular surgiu da rica experiência de profissionais
+pertencentes ao processo educativo, da área de Artes, em construí-la de forma
+coletiva. Porém, depois de construída, dever ser compreendida e adaptada de
+acordo com a realidade de cada escola, visto que serve para planejar, intervir e
+replanejar a prática pedagógica. \n
+            Para se entender por que a matriz curricular de Artes foi organizada
+dessa forma, deve-se fazer as seguintes perguntas: a quem ensinar? O que
+ensinar? por que ensinar?
+    </string>
+
+
+    <string name="title_arte_sexto_I">
+     Eixo: Linguagens das artes visuais
+    </string>
+
+    <string name="cont_arte_sexto_I">
+        - Os elementos das artes visuais; \n
+        - Criar e sentir; \n
+        - Pintura; \n
+        - A arte dos povos indígenas; \n
+        - Realismo; \n
+        - Missão colonial: A Caravela; \n
+        - Simetria \n- O que é cultura?; \n
+        - As sementes da cultura afrodescendente; \n
+        - Riscar e rabiscar.
+    </string>
+
+    <string name="obj_arte_sexto_I">
+        1. Aprofundar as vivências e compreensão de
+            práticas artístico-visuais e o conhecimento
+            dos elementos constitutivos específicos das
+            artes visuais;\n
+        2. Experimentar materiais, instrumentos e
+            recursos convencionais, alternativos e digitais
+            no planejamento e na criação de produções;\n
+        3. Conhecer e pesquisar processos e produtos
+            de artistas locais, regionais, nacionais e
+            estrangeiros, em diferentes matrizes estéticas
+            e culturais;\n
+        4. Estudar aspectos históricos, sociais e
+            políticos da produção artística,
+            problematizando as narrativas eurocêntricas e
+            as diversas categorizações da arte (arte,
+            artesanato, folclore, design etc.);\n
+        5. Investigar e experimentar as relações
+            profissionais do sistema das Artes Visuais,
+            diferenciando as categorias de artista,
+            artesão, produtor cultural, curador, designer,
+            entre outras.\n
+    </string>
+
+
+    <string name="title_arte_sexto_II">
+     Eixo: Linguagem da dança
+    </string>
+
+    <string name="cont_arte_sexto_II">
+        -História da dança; \n
+        -Ouvir e dançar;\n
+        -Sons ritmo e movimento; \n
+        -Vem cantar! Vem dançar!; \n
+        -Dançando no ritmo maracatu;\n
+        -Dançando nas paredes. \n
+    </string>
+
+    <string name="obj_arte_sexto_II">
+        1. Conhecer e explorar elementos constitutivos
+            do movimento cotidiano e do movimento
+            dançado a partir do desenvolvimento das
+            formas da dança, presentes em sua história
+            tradicional e contemporânea;\n
+        2. Vivenciar técnicas de improvisação e criação
+            do movimento como fonte de pesquisa e
+            investigação coreográfica, construindo
+            vocabulários e repertórios próprios;\n
+        3. Utilizar brincadeiras, jogos e danças
+            coletivas de diferentes matrizes estéticas e
+            culturais, como território de investigação para
+            a criação e composição de danças autorais,
+            individualmente e em grupo;\n
+        4. Experimentar, conhecer, apreciar e pesquisar
+            diferentes formas de expressão,
+            representação e encenação da dança em
+            seus diversos contextos;\n
+        5. Conhecer e explorar elementos constitutivos
+            do movimento cotidiano e do movimento
+            dançado a partir do desenvolvimento das
+            formas da dança, presentes em sua história
+            tradicional e contemporânea.\n
+    </string>
+
+
+    <string name="title_arte_sexto_III">
+     Eixo: Linguagem do teatro
+    </string>
+
+    <string name="cont_arte_sexto_III">
+        -História do teatro; \n
+        -Lugar para encenar; \n
+        -A arte da mímica; \n
+        -Imagens e cores fantásticas; \n
+        -O circo: Um lugar especial; \n
+        -Teatro jesuítico; \n
+        -Auto lá; \n
+        -Improvisar e jogar. \n
+    </string>
+
+    <string name="obj_arte_sexto_III">
+        1. Pesquisar e criar formas de dramaturgias e
+            espaços cênicos para o acontecimento
+            teatral, em diálogo com o teatro
+            contemporâneo;\n
+        2. Pesquisar, conhecer e apreciar o trabalho de
+            grupos de teatro, de dramaturgos, de atores e
+            diretores locais, regionais, nacionais e
+            estrangeiros, do passado e do presente;\n
+        3. Refletir sobre as experiências teatrais
+            desenvolvidas em aula de modo a
+            problematizar as questões de gênero, corpo e
+            sexualidade;\n
+        4. Criar acontecimentos cênicos, relacionando
+            elementos como figurinos, adereços, cenário,
+            iluminação, sonoplastia, tecnologias da
+            comunicação e informação, jogo, textos,
+            improvisações e as relações com o
+            espectador;\n
+        5. Experimentar elementos de diferentes
+            matrizes estéticas e culturais, investigando
+            suas teatralidades e possibilidades de
+            encenações.
+    </string>
+
+
+    <string name="title_arte_sexto_IV">
+    Eixo: Linguagem da música
+    </string>
+
+    <string name="cont_arte_sexto_IV">
+        - História da musica;\n
+        - A musica e seus códigos;\n
+        - Ouvir e cantar;\n
+        - Este som é nossa cara; \n
+        - Sons e lugares; \n
+        - Compondo, regendo e cantando; \n
+        - Música de estilo múltiplo; \n
+    </string>
+
+    <string name="obj_arte_sexto_IV">
+        1. Identificar e manipular diferentes tecnologias
+            para apreciar, produzir, registrar e
+            compartilhar práticas e repertórios musicais
+            de modo ético, considerando, em especial, as
+            culturas infanto-juvenis;\n
+        2. Reconhecer e valorizar o patrimônio musical,
+            material e imaterial, de culturas diversas, em
+            especial as de matriz africanas e indígenas,
+            em diferentes épocas, privilegiando as
+            culturas infanto-juvenis;\n
+        3. Propor e produzir formas de compartilhar as
+            aprendizagens musicais com a comunidade
+            Interagir criticamente com diferentes
+            dispositivos e equipamentos culturais de
+            circulação da música e do conhecimento
+            musical, considerando, em especial, aqueles
+            que contemplam as culturas infanto-juvenis
+            escolar e a sociedade em geral, ampliando os
+            âmbitos de interações sociais mediadas pela
+            música.\n
+
+    </string>
+
+
+
+
+
+
+    <string name="title_arte_setimo_I">
+        Eixo: Linguagens das artes visuais
+    </string>
+
+    <string name="cont_arte_setimo_I">
+        - História da arte ( arte bizantina e romana);\n
+        - Cores quentes e cores frias;\n
+        - Policromia e contraste;\n
+        - Monocromia;\n
+        - Colagens truques e efeitos;\n
+        - Positivo e Negativo;\n
+    </string>
+
+    <string name="obj_arte_setimo_I">
+        1. Aprofundar as vivências e compreensão de
+            práticas artístico-visuais e o conhecimento
+            dos elementos constitutivos específicos das
+            artes visuais;\n
+        2. Experimentar materiais, instrumentos e
+            recursos convencionais, alternativos e digitais
+            no planejamento e na criação de produções;\n
+        3. Conhecer e pesquisar processos e produtos
+            de artistas locais, regionais, nacionais e
+            estrangeiros, em diferentes matrizes estéticas
+            e culturais;\n
+        4. Estudar aspectos históricos, sociais e
+            políticos da produção artística,
+            problematizando as narrativas eurocêntricas e
+            as diversas categorizações da arte (arte,
+            artesanato, folclore, design etc.);\n
+        5. Investigar e experimentar as relações
+            profissionais do sistema das Artes Visuais,
+            diferenciando as categorias de artista,
+            artesão, produtor cultural, curador, designer,
+            entre outras;\n
+    </string>
+
+
+
+    <string name="title_arte_setimo_II">
+        Eixo: Linguagem do teatro
+    </string>
+
+    <string name="cont_arte_setimo_II">
+        - História do teatro; \n
+        - Teatro de sombras;\n
+        - Diferentes formas de criar teatro;\n
+        - Criação de personagens ( dramatização, mascara, fantoche...);\n
+        - Cinema e teatro ( filme, figurino, palco, luz,sombra e ação);\n
+        - Oficina de teatro (apresentações teatrais).\n
+    </string>
+
+    <string name="obj_arte_setimo_II">
+       1. Pesquisar e criar formas de dramaturgias e
+            espaços cênicos para o acontecimento
+            teatral, em diálogo com o teatro
+            contemporâneo;\n
+        2. Pesquisar, conhecer e apreciar o trabalho de
+            grupos de teatro, de dramaturgos, de atores e
+            diretores locais, regionais, nacionais e
+            estrangeiros, do passado e do presente; \n
+        3. Refletir sobre as experiências teatrais
+            desenvolvidas em aula de modo a
+            problematizar as questões de gênero, corpo e
+            sexualidade;\n
+        4. Criar acontecimentos cênicos, relacionando
+            elementos como figurinos, adereços, cenário,
+            iluminação, sonoplastia, tecnologias da
+            comunicação e informação, jogo, textos,
+            improvisações e as relações com o
+            espectador;\n
+        5. Experimentar elementos de diferentes
+            matrizes estéticas e culturais, investigando
+            suas teatralidades e possibilidades de
+            encenações.
+    </string>
+
+
+    <string name="title_arte_setimo_III">
+        Eixo: Linguagem da dança
+    </string>
+
+    <string name="cont_arte_setimo_III">
+        - História da dança;\n
+        - Quem dança seus males espanta;\n
+        - O folclore e a dança;\n
+        - Estudos de lendas e danças (dança do boto, das cadeiras, tango, frevo, folia de reis, etc).\n
+    </string>
+
+    <string name="obj_arte_setimo_III">
+         1. Conhecer e explorar elementos constitutivos
+            do movimento cotidiano e do movimento
+            dançado a partir do desenvolvimento das
+            formas da dança, presentes em sua história
+            tradicional e contemporânea;\n
+        2. Vivenciar técnicas de improvisação e criação
+            do movimento como fonte de pesquisa e
+            investigação coreográfica, construindo
+            vocabulários e repertórios próprios;\n
+        3. Utilizar brincadeiras, jogos e danças
+            coletivas de diferentes matrizes estéticas e
+            culturais, como território de investigação para
+            a criação e composição de danças autorais,
+            individualmente e em grupo;\n
+        4. Experimentar, conhecer, apreciar e pesquisar
+            diferentes formas de expressão,
+            representação e encenação da dança em
+            seus diversos contextos;\n
+        5. Conhecer e explorar elementos constitutivos
+            do movimento cotidiano e do movimento
+            dançado a partir do desenvolvimento das
+            formas da dança, presentes em sua história
+            tradicional e contemporânea.\n
+    </string>
+
+
+    <string name="title_arte_setimo_IV">
+        Eixo: Linguagem da música
+    </string>
+
+    <string name="cont_arte_setimo_IV">
+        - História da música ( a música na década de 1960);\n
+        - A música também pode ser escrita;\n
+        - Música para participar e ouvir;\n
+        - Arte multimídia;\n
+        - A música clássica e a erudita brasileira;\n
+        - Estilos musicais;\n
+        - Oficina - apresentações.\n
+    </string>
+
+    <string name="obj_arte_setimo_IV">
+         1. Identificar e manipular diferentes tecnologias
+            para apreciar, produzir, registrar e
+            compartilhar práticas e repertórios musicais
+            de modo ético, considerando, em especial, as
+            culturas infanto-juvenis;\n
+        2. Reconhecer e valorizar o patrimônio musical,
+            material e imaterial, de culturas diversas, em
+            especial as de matriz africanas e indígenas,
+            em diferentes épocas, privilegiando as
+            culturas infanto-juvenis;\n
+        3. Propor e produzir formas de compartilhar as
+            aprendizagens musicais com a comunidade
+            Interagir criticamente com diferentes
+            dispositivos e equipamentos culturais de
+            circulação da música e do conhecimento
+            musical, considerando, em especial, aqueles
+            que contemplam as culturas infanto-juvenis
+            escolar e a sociedade em geral, ampliando os
+            âmbitos de interações sociais mediadas pela
+            música.\n
+    </string>
+
+
+
+
+
+    <string name="title_arte_oitavo_I">
+        Eixo: Linguagens das artes visuais
+    </string>
+
+    <string name="cont_arte_oitavo_I">
+        - História da arte - Barroca;\n
+        - Historia da arte neoclássico, romantismo e realismo\n
+        - Técnica de pintura;\n
+        - A arte feita com forma geométrica;\n
+        - Oficina – apresentações dos trabalhos.\n
+    </string>
+
+    <string name="obj_arte_oitavo_I">
+        1. Aprofundar as vivências e compreensão de
+            práticas artístico-visuais e o conhecimento
+            dos elementos constitutivos específicos das
+            artes visuais;\n
+        2. Experimentar materiais, instrumentos e
+            recursos convencionais, alternativos e digitais
+            no planejamento e na criação de produções;\n
+        3. Conhecer e pesquisar processos e produtos
+            de artistas locais, regionais, nacionais e
+            estrangeiros, em diferentes matrizes estéticas
+            e culturais;\n
+        4. Estudar aspectos históricos, sociais e
+            políticos da produção artística,
+            problematizando as narrativas eurocêntricas e
+            as diversas categorizações da arte (arte,
+            artesanato, folclore, design etc.);\n
+        5. Investigar e experimentar as relações
+            profissionais do sistema das Artes Visuais,
+            diferenciando as categorias de artista,
+            artesão, produtor cultural, curador, designer,
+            entre outras.\n
+    </string>
+
+
+
+    <string name="title_arte_oitavo_II">
+        Eixo: Linguagem da dança
+    </string>
+
+    <string name="cont_arte_oitavo_II">
+        -História da dança;\n
+        - Coreografia;\n
+        -Elementos complementares para criação de coreografia;\n
+        - Danças de rua;\n
+        - Danças populares.\n
+    </string>
+
+    <string name="obj_arte_oitavo_II">
+        1. Conhecer e explorar elementos constitutivos
+            do movimento cotidiano e do movimento
+            dançado a partir do desenvolvimento das
+            formas da dança, presentes em sua história
+            tradicional e contemporânea;\n
+        2. Vivenciar técnicas de improvisação e criação
+            do movimento como fonte de pesquisa e
+            investigação coreográfica, construindo
+            vocabulários e repertórios próprios;\n
+        3. Utilizar brincadeiras, jogos e danças
+            coletivas de diferentes matrizes estéticas e
+            culturais, como território de investigação para
+            a criação e composição de danças autorais,
+            individualmente e em grupo;\n
+        4. Experimentar, conhecer, apreciar e pesquisar
+            diferentes formas de expressão,
+            representação e encenação da dança em
+            seus diversos contextos;\n
+        5. Conhecer e explorar elementos constitutivos
+            do movimento cotidiano e do movimento
+            dançado a partir do desenvolvimento das
+            formas da dança, presentes em sua história
+            tradicional e contemporânea.\n
+    </string>
+
+
+    <string name="title_arte_oitavo_III">
+        Eixo: Linguagem do teatro
+    </string>
+
+    <string name="cont_arte_oitavo_III">
+
+
+
+    </string>
+
+    <string name="obj_arte_oitavo_III">
+         1. Pesquisar e criar formas de dramaturgias e
+            espaços cênicos para o acontecimento
+            teatral, em diálogo com o teatro
+            contemporâneo;\n
+        2. Pesquisar, conhecer e apreciar o trabalho de
+            grupos de teatro, de dramaturgos, de atores e
+            diretores locais, regionais, nacionais e
+            estrangeiros, do passado e do presente;\n
+        3. Refletir sobre as experiências teatrais
+            desenvolvidas em aula de modo a
+            problematizar as questões de gênero, corpo e
+            sexualidade;\n
+        4. Criar acontecimentos cênicos, relacionando
+            elementos como figurinos, adereços, cenário,
+            iluminação, sonoplastia, tecnologias da
+            comunicação e informação, jogo, textos,
+            improvisações e as relações com o
+            espectador;\n
+        5. Experimentar elementos de diferentes
+            matrizes estéticas e culturais, investigando
+            suas teatralidades e possibilidades de
+            encenações.
+    </string>
+
+
+    <string name="title_arte_oitavo_IV">
+        Eixo: Linguagem da música
+    </string>
+
+    <string name="cont_arte_oitavo_IV">
+        - História da música;\n
+        - A musica na década de 1970;\n
+        - Estilos musicais;\n
+        - Música e cordel;\n
+        - Tipos de instrumentos musicais;\n
+        - Oficina (banda musical feita por alguns da sala e amigos da escola).\n
+    </string>
+
+    <string name="obj_arte_oitavo_IV">
+         1. Identificar e manipular diferentes tecnologias
+            para apreciar, produzir, registrar e
+            compartilhar práticas e repertórios musicais
+            de modo ético, considerando, em especial, as
+            culturas infanto-juvenis;\n
+        2. Reconhecer e valorizar o patrimônio musical,
+            material e imaterial, de culturas diversas, em
+            especial as de matriz africanas e indígenas,
+            em diferentes épocas, privilegiando as
+            culturas infanto-juvenis;\n
+        3. Propor e produzir formas de compartilhar as
+            aprendizagens musicais com a comunidade
+            Interagir criticamente com diferentes
+            dispositivos e equipamentos culturais de
+            circulação da música e do conhecimento
+            musical, considerando, em especial, aqueles
+            que contemplam as culturas infanto-juvenis
+            escolar e a sociedade em geral, ampliando os
+            âmbitos de interações sociais mediadas pela
+            música.\n
+    </string>
+
+
+
+
+
+    <string name="title_arte_nono_I">
+        Eixo: Linguagens das artes visuais
+    </string>
+
+    <string name="cont_arte_nono_I">
+        - História da arte; \n
+        - Pintura acadêmica no Brasil;\n
+        - Arte multimídia;\n
+        - Arte e o patrimônio histórico – semana da arte moderna;\n
+        - Desenhar, pintar e gravar;\n
+        - O grafite.\n
+    </string>
+
+    <string name="obj_arte_nono_I">
+        1. Aprofundar as vivências e compreensão de
+            práticas artístico-visuais e o conhecimento
+            dos elementos constitutivos específicos das
+            artes visuais;\n
+        2. Experimentar materiais, instrumentos e
+            recursos convencionais, alternativos e digitais
+            no planejamento e na criação de produções;\n
+        3. Conhecer e pesquisar processos e produtos
+            de artistas locais, regionais, nacionais e
+            estrangeiros, em diferentes matrizes estéticas
+            e culturais;\n
+        4. Estudar aspectos históricos, sociais e
+            políticos da produção artística,
+            problematizando as narrativas eurocêntricas e
+            as diversas categorizações da arte (arte,
+            artesanato, folclore, design etc.;\n
+        5. Investigar e experimentar as relações
+            profissionais do sistema das Artes Visuais,
+            diferenciando as categorias de artista,
+            artesão, produtor cultural, curador, designer,
+            entre outras.\n
+    </string>
+
+
+
+    <string name="title_arte_nono_II">
+        Eixo: Linguagem da dança
+    </string>
+
+    <string name="cont_arte_nono_II">
+        - História da dança;\n
+        - Que língua fala a dança?;\n
+        - Coreografia;\n
+        - As danças e o dançar;\n
+        - Pensamento X movimento.\n
+    </string>
+
+    <string name="obj_arte_nono_II">
+        1. Conhecer e explorar elementos constitutivos
+            do movimento cotidiano e do movimento
+            dançado a partir do desenvolvimento das
+            formas da dança, presentes em sua história
+            tradicional e contemporânea;\n
+        2. Vivenciar técnicas de improvisação e criação
+            do movimento como fonte de pesquisa e
+            investigação coreográfica, construindo
+            vocabulários e repertórios próprios;\n
+        3. Utilizar brincadeiras, jogos e danças
+            coletivas de diferentes matrizes estéticas e
+            culturais, como território de investigação para
+            a criação e composição de danças autorais,
+            individualmente e em grupo;\n
+        4. Experimentar, conhecer, apreciar e pesquisar
+            diferentes formas de expressão,
+            representação e encenação da dança em
+            seus diversos contextos;\n
+        5. Conhecer e explorar elementos constitutivos
+            do movimento cotidiano e do movimento
+            dançado a partir do desenvolvimento das
+            formas da dança, presentes em sua história
+            tradicional e contemporânea.\n
+    </string>
+
+
+    <string name="title_arte_nono_III">
+        Eixo: Linguagem do teatro
+    </string>
+
+    <string name="cont_arte_nono_III">
+        - História do teatro;\n
+        - Elementos do teatro(personagens, texto,caracterização, cenário,
+            sonoplastia e iluminação);\n
+        - Linguagem verbal e não verbal da dramaturgia;\n
+        - linguagem cênica;\n
+        - A linguagem do corpo;\n
+        -Enredo;\n
+        - Expressão humana – o rosto.\n
+    </string>
+
+    <string name="obj_arte_nono_III">
+        1. Experimentar elementos de
+            diferentes matrizes estéticas e
+            culturais, investigando suas
+            teatralidades e possibilidades de
+            encenações;\n
+        2. Pesquisar e criar formas de dramaturgias e
+            espaços cênicos para o acontecimento
+            teatral, em diálogo com o teatro
+            contemporâneo;\n
+        3. Pesquisar, conhecer e apreciar o trabalho de
+            grupos de teatro, de dramaturgos, de atores e
+            diretores locais, regionais, nacionais e
+            estrangeiros, do passado e do presente;\n
+        4. Refletir sobre as experiências teatrais
+            desenvolvidas em aula de modo a
+            problematizar as questões de gênero, corpo e
+            sexualidade;\n
+        5. Criar acontecimentos cênicos, relacionando
+            elementos como figurinos, adereços, cenário,
+            iluminação, sonoplastia, tecnologias da
+            comunicação e informação, jogo, textos,
+            improvisações e as relações com o
+            espectador;\n
+        6. Experimentar elementos de diferentes
+            matrizes estéticas e culturais, investigando
+            suas teatralidades e possibilidades de
+            encenações.
+    </string>
+
+
+    <string name="title_arte_nono_IV">
+        Eixo: Linguagem da música
+    </string>
+
+    <string name="cont_arte_nono_IV">
+        - História da música;\n
+        - História da música brasileira de 1998 a 1990;\n
+        - O sistema de escrita musical;\n
+        - Elementos da música (altura,intensidade,timbre e densidade);\n
+        - Babel musical.\n
+    </string>
+
+    <string name="obj_arte_nono_IV">
+         1. Identificar e manipular diferentes tecnologias
+            para apreciar, produzir, registrar e
+            compartilhar práticas e repertórios musicais
+            de modo ético, considerando, em especial, as
+            culturas infanto-juvenis;\n
+        2. Reconhecer e valorizar o patrimônio musical,
+            material e imaterial, de culturas diversas, em
+            especial as de matriz africanas e indígenas,
+            em diferentes épocas, privilegiando as
+            culturas infanto-juvenis;\n
+        3. Propor e produzir formas de compartilhar as
+            aprendizagens musicais com a comunidade
+            Interagir criticamente com diferentes
+            dispositivos e equipamentos culturais de
+            circulação da música e do conhecimento
+            musical, considerando, em especial, aqueles
+            que contemplam as culturas infanto-juvenis
+            escolar e a sociedade em geral, ampliando os
+            âmbitos de interações sociais mediadas pela
+            música.\n
+    </string>
+
+
+
+</resources>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "489101759509",
+    "firebase_url": "https://matriz-sobral-194718.firebaseio.com",
+    "project_id": "matriz-sobral-194718",
+    "storage_bucket": "matriz-sobral-194718.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:489101759509:android:0f40560509ca074a",
+        "android_client_info": {
+          "package_name": "projeto.app.sobral"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "489101759509-44srhdj9ivmvjg5o8ghtnflo9bukmt5k.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "489101759509-kokjdc80da4s5b32qclo46ekru02k8uj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "projeto.app.sobral",
+            "certificate_hash": "da8cd89502711140c016c3fab7b63d6ff545aa77"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUnpHhBRFkG9B35RKVy-TMW_eOslSYXdI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "489101759509-44srhdj9ivmvjg5o8ghtnflo9bukmt5k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

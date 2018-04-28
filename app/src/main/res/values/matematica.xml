@@ -1,0 +1,1145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="objetivo_matematica">
+        Dentre todas as disciplinas do currículo escolar em todo o mundo, a
+matemática ocupa o lugar privilegiado. Em primeiro lugar porque está presente
+em todos os currículos de graduação de forma pura ou aplicada e em segundo
+porque carrega consigo o estigma histórico de ser imprescindível para o
+desenvolvimento intelectual do homem. Se a disciplina Matemática ocupa um
+lugar tão especial, deve ser de grande importância para a formação do
+indivíduo como cidadão. Um ensino fragmentado, não contextualizado e por
+fim, muitas vezes ineficiente para os nossos dias. \n
+    </string>
+
+
+    <string name="title_matematica_sexto_I">
+        Eixo: Matemática
+    </string>
+
+    <string name="cont_matematica_sexto_I">
+
+    </string>
+
+    <string name="obj_matematica_sexto_I_I">
+       Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa.\n
+    </string>
+
+    <string name="obj_matematica_sexto_I_II">
+       1 – Reconhecer as várias representações de
+um número natural\n
+a) realizando contagem oral associando a
+sequência numérica de diferentes múltiplos a
+partir de um determinado número;\n
+b) identificando as representações dos números
+naturais para as diferentes grandezas.\n
+2 – Determinar os divisores e múltiplos de
+números naturais\n
+a) reconhecendo os múltiplos e divisores de um
+número natural;\n
+b) aplicando os critérios de divisibilidade;
+c) identificando números primos e compostos;
+d) decompondo um número natural em fatores
+primos;\n
+e) aplicando o processo prático para a
+determinação do mínimo múltiplo comum e
+máximo divisor comum;\n
+f) resolvendo problemas que envolvem múltiplos,
+divisores, mínimo múltiplo comum e máximo
+divisor comum.\n
+3 – Resolver situações-problemas que
+envolvam os diferentes significados da adição
+        subtração, multiplicação e divisão:\n
+a) efetuando cálculos envolvendo as quatro
+operações com números de qualquer ordem;\n
+b) solucionando problemas de maneira fluente
+envolvendo as quatro operações, com números de
+qualquer ordem;\n
+c) reconhecendo as diferentes estratégias de
+resolução: estimativas, decomposição,
+composição e arredondamento de números;\n
+d) descrevendo o processo de resolução dos
+problemas.\n
+4 – Conceituar e efetuar cálculos com
+potenciação\n
+a) conhecendo os significados da potenciação;\n
+b) fazendo a leitura de potências;\n
+c) aplicando as propriedades da potenciação:\n
+produto e quociente de potências de mesma base
+e potência de potência; produto de potências de
+mesmo expoente;\n
+d) efetuando cálculos com potenciação;\n
+e) resolvendo expressões numéricas com
+potenciação;\n
+f) analisando o que acontece nas potências
+quando o expoente é um ou zero.\n
+5 – Conceituar e calcular raiz quadrada de um
+número exato\n
+a) conhecendo os significados da radiciação;\n
+b) interpretando a radiciação como uma operação
+inversa da potenciação;\n
+c) investigando números quadrados (25, 36, 49,
+81 etc.) para desenvolver a notação de raiz
+quadrada;\n
+d) efetuando cálculo de raiz quadrada exata;
+e) resolvendo expressões numéricas com
+potenciação e radiciação.\n
+    </string>
+
+    <string name="obj_matematica_sexto_I_III">
+        1 – Utilizar porcentagem em diferentes
+situações\n
+a) estabelecendo relação entre fração, número
+decimal e porcentagem;\n
+b) calculando porcentagens por equivalência de
+frações ou fração de uma quantidade;\n
+c) resolvendo problemas com diferentes
+abordagens de porcentagem (descontos e
+acréscimos).\n
+    </string>
+
+    <string name="obj_matematica_sexto_I_IV">
+        1 – Reconhecer os conceitos de razão e
+proporção\n
+a) conceituando razão como a divisão entre dois
+números;\n
+b) conceituando proporção e utilizando o
+raciocínio proporcional;\n
+c) fazendo uso da linguagem para descrever uma
+relação de proporção entre duas quantidades.\n
+    </string>
+
+    <string name="obj_matematica_sexto_I_V">
+        1 – Resolver uma equação do 1º grau do tipo
+ax + b = c com números naturais\n
+a) aplicando os conhecimentos sobre as
+operações numéricas e suas propriedades para
+construir estratégias de cálculo algébrico;\n
+b) introduzindo o conceito de variável e incógnita
+como meio de representação (números por letras);\n
+c) reconhecendo que uma expressão algébrica é
+uma expressão matemática formada por letras e
+números;\n
+d) interpretando o que é uma incógnita e uma
+equação;\n
+e) aplicando os princípios aditivo e multiplicativo
+das igualdades;\n
+f) solucionando problemas que envolvem
+        equações do 1º grau do tipo ax + b=c, no conjunto
+dos números naturais, por meio de tentativa ou
+princípio da igualdade.\n
+    </string>
+
+
+    <string name="title_matematica_sexto_II">
+        Eixo: Matemática
+    </string>
+
+    <string name="obj_matematica_sexto_II">
+
+    </string>
+
+    <string name="obj_matematica_sexto_II_I">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa.\n
+    </string>
+
+    <string name="obj_matematica_sexto_II_II">
+        1 – Identificar o ponto, a reta e o plano\n
+a) interpretando as noções de ponto, reta, plano,
+semirreta e segmento de reta, e como representar
+esses elementos;\n
+b) analisando as possíveis posições entre duas
+retas no plano: paralelas e concorrentes (oblíquas
+e perpendiculares);\n
+c) diferenciando retas paralelas e retas
+concorrentes;\n
+d) construindo retas paralelas e perpendiculares
+com uso de régua e transferidor e/ou régua e
+esquadro.\n
+2 – Caracterizar os polígonos de acordo com
+seus elementos\n
+a) classificando os polígonos em convexos e não
+convexos;\n
+b) analisando os elementos de um polígono:
+lados, vértices, ângulos internos, diagonais;\n
+c) classificando polígonos quanto às suas
+características: lados, vértices, ângulos;\n
+d) classificando triângulos quanto a medida dos
+lados: equilátero, isósceles e escaleno;\n
+e) classificando triângulos quanto a medida dos
+ângulos internos: acutângulo, obtusângulo e
+retângulo;\n
+f) analisando dois tipos de quadriláteros:\n
+paralelogramos e trapézios, identificando suas
+características;\n
+g) reconhecendo que polígonos regulares são
+aqueles que possuem os lados com a mesma
+medida.\n
+3 – Reconhecer a diferença de círculo e
+circunferência e seus elementos\n
+        a) interpretando a diferença entre círculo e
+circunferência;\n
+b) identificando os elementos de uma
+circunferência;\n
+c) utilizando compasso para fazer a construção da
+circunferência.\n
+4 – Reconhecer a planificação e caracterizar
+sólidos geométricos\n
+a) classificando formas espaciais quanto às suas
+características: faces, vértices e arestas;\n
+b) classificando os poliedros em prismas e
+pirâmides;\n
+c) relacionando os sólidos geométricos com suas
+planificações.\n
+    </string>
+
+    <string name="obj_matematica_sexto_II_III">
+        1 – Medir e construir ângulos agudos, retos,
+rasos e obtusos\n
+a) reconhecendo a ideia de ângulo associada a
+giros;\n
+b) reconhecendo que um giro de uma volta
+completa corresponde ao ângulo de 360º;\n
+c) reconhecendo que um giro de meia volta
+corresponde ao ângulo de 180º, denominado
+ângulo raso;\n
+d) reconhecendo que um giro de 1/4 de volta
+corresponde ao ângulo de 90º, denominado
+ângulo reto;\n
+e) classificando e construindo ângulos (raso, reto,
+agudo e obtuso) por meio da medição de ângulo
+com uso de transferidor.\n
+    </string>
+
+    <string name="obj_matematica_sexto_II_IV">
+        1 – Associar figuras com um ou mais eixos de
+simetria\n
+a) traçando os eixos de simetria nas figuras;\n
+b) caracterizando o eixo de simetria de reflexão.\n
+
+    </string>
+
+
+
+    <string name="title_matematica_sexto_III">
+        Eixo: Matemática
+    </string>
+
+    <string name="obj_matematica_sexto_III_I">
+        1 – Relacionar os diferentes sistemas
+monetários existentes\n
+a) reconhecendo as formas de diferentes sistemas
+financeiros;\n
+b) resolvendo problemas com moedas de outros
+sistemas financeiros;\n
+c) interpretando o conceito de câmbio.\n
+    </string>
+
+    <string name="obj_matematica_sexto_III_II">
+
+        1 – Realizar transformações entre medidas de
+comprimento, massa e capacidade com seus
+múltiplos e submúltiplos\n
+a) identificando o metro com seus múltiplos e
+submúltiplos como unidades de medidas de
+comprimento;\n
+b) relacionando o metro com seus múltiplos e
+submúltiplos para realizar conversões entre essas
+unidades;\n
+c) identificando o grama com seus múltiplos e
+submúltiplos como unidades de medidas de
+massa;\n
+d) relacionando o grama com seus múltiplos e
+submúltiplos para realizar conversões entre essas
+unidades;\n
+e) identificando o litro com seus múltiplos e
+submúltiplos como unidades de medidas de
+capacidade;\n
+f) relacionando o litro com seus múltiplos e
+submúltiplos para realizar conversões entre essas
+unidades.\n
+2 – Ampliar os conceitos de perímetro de
+regiões planas\n
+a) interpretando o conceito de perímetro em
+        diferentes regiões planas;\n
+b) calculando perímetro de regiões planas com
+unidades de medidas diferentes;\n
+c) resolvendo problema que envolva cálculo de
+perímetro de regiões planas.\n
+3 – Relacionar medidas de superfície e
+resolver problemas envolvendo área de figuras
+planas\n
+a) identificando o metro quadrado com seus
+múltiplos e submúltiplos como unidades de
+medidas de superfície;\n
+b) realizando conversões entre o metro quadrado
+e seus múltiplos e submúltiplos;\n
+c) calculando área de figuras planas por
+decomposição e com a utilização das fórmulas
+apropriadas;\n
+d) calculando área de triângulo e paralelogramo
+por composição em retângulos;\n
+e) calculando áreas de quadrado, retângulo,
+triângulo, paralelogramo, trapézio e losango com a
+utilização das fórmulas;\n
+f) calculando área de polígonos irregulares por
+decomposição em quadrados e retângulos;\n
+g) resolvendo problemas que envolvem cálculo de
+área de figuras planas.\n
+4 – Relacionar medidas de volume\n
+a) identificando o metro cúbico com seus múltiplos
+e submúltiplos como unidades de medidas de
+volume;\n
+b) realizando conversões entre o metro cúbico e
+seus múltiplos e submúltiplos;\n
+c) relacionando as principais unidades de medida
+de volume (cm3, dm3 e m3) e de capacidade (l);\n
+d) calculando o volume de cubo e paralelepípedo;\n
+e) resolvendo problemas que envolvem o volume
+de cubo e paralelepípedo.\n
+    </string>
+
+    <string name="obj_matematica_sexto_III">
+
+    </string>
+
+
+
+    <string name="title_matematica_sexto_IV">
+        Eixo: Matemática
+    </string>
+
+
+    <string name="obj_matematica_sexto_IV_I">
+
+       1 – Interpretar e comparar diferentes
+representações de dados\n
+a) analisando diferentes diagramas, tabelas e
+gráficos de acordo com suas semelhanças e
+diferenças.\n
+2 – Analisar informações apresentadas em
+tabelas de dupla entrada e em gráficos de
+colunas, de barras duplas, de linhas e de
+setores\n
+a) lendo informações apresentadas em tabelas de
+dupla entrada e em gráficos de colunas, de barras
+duplas, de linhas e de setores;\n
+b) interpretando informações apresentadas em
+tabelas de dupla entrada e em gráficos de
+colunas, de barras duplas, de linhas e de setores;\n
+c) associando gráfico à tabela e vice-versa;\n
+d) resolvendo problemas com as informações
+apresentadas nas tabelas e nos gráficos de
+colunas, de barras duplas, de linhas e de setores;\n
+e) sintetizando as informações apresentadas nas
+tabelas e gráficos.\n
+
+    </string>
+
+    <string name="obj_matematica_sexto_IV_II">
+
+        1 – Representar probabilidades utilizando
+frações, decimais e porcentagens\n
+a) listando resultados de experimentos;\n
+b) registrando probabilidades dos resultados
+utilizando porcentagens, frações e decimais;\n
+c) comparando frequências de acontecimentos
+cotidianos: esperado e ocorrido.\n
+2 – Interpretar o uso da média em diferentes
+situações\n
+a) assimilando a ideia de média;\n
+b) calculando a média de dois ou mais números.\n
+    </string>
+
+    <string name="obj_matematica_sexto_IV">
+
+    </string>
+
+
+
+
+
+
+    <string name="title_matematica_setimo_I">
+        Eixo: Matemática
+    </string>
+
+
+    <string name="obj_matematica_setimo_I_I">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa\n
+
+    </string>
+
+    <string name="obj_matematica_setimo_I_II">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa\n
+
+    </string>
+
+    <string name="obj_matematica_setimo_I_III">
+        1 – Resolver problemas com porcentagem e
+juros simples\n
+a) estabelecendo relação entre fração, número
+decimal e porcentagem;\n
+b) abordando os conceitos relacionados ao
+sistema monetário: lucro, acréscimos e descontos;\n
+c) relacionando situações que se aplica o conceito
+de juros simples;\n
+d) solucionando problemas que envolvem juros
+simples.\n
+
+    </string>
+
+    <string name="obj_matematica_setimo_I_IV">
+        1 - Resolver situações-problema com
+grandezas direta e inversamente proporcionais
+a) interpretando a razão entre grandezas de
+naturezas diferentes;\n
+b) identificando algumas razões especiais como
+escala, velocidade média e densidade;\n
+c) identificando os elementos de uma proporção;
+d) aplicando a propriedade fundamental das
+proporções e outras propriedades;\n
+e) interpretando o conceito de grandezas
+proporcionais;\n
+f) identificando se duas grandezas são
+diretamente ou inversamente proporcionais;\n
+g) aplicando a regra de três simples e composta
+para resolver problemas de proporcionalidade.\n
+
+    </string>
+
+    <string name="obj_matematica_setimo_I_V">
+        1 – Identificar e calcular o valor numérico de
+uma expressão algébrica\n
+a) reconhecendo a linguagem algébrica como
+instrumento de representação e solução de
+problemas;\n
+b) reconhecendo a expressão algébrica que
+expressa uma regularidade observada em
+sequências de números ou figuras (padrões);\n
+c) calculando o valor numérico de uma expressão
+algébrica;\n
+d) interpretando o que é um termo algébrico;
+e) realizando operações com termos algébricos
+semelhantes.\n
+2 – Utilizar técnicas apropriadas para
+resolução de equações, inequações e sistemas
+de equações do 1º grau\n
+a) identificando uma equação do 1º grau com uma
+ou duas incógnitas;\n
+b) resolvendo equações com uma ou duas
+incógnitas;\n
+c) reconhecendo se duas ou mais equações são
+equivalentes;\n
+d) identificando uma equação de 1º grau que
+expressa um problema;\n
+e) resolvendo problemas que envolvem equações
+do 1º grau;\n
+f) realizando a representação geométrica da
+solução de uma equação do 1º grau utilizando
+simbologia adequada;\n
+        g) interpretando o conceito de inequação e suas
+aplicações;\n
+h) resolvendo inequação utilizando os
+procedimentos adequados;\n
+i) identificando uma inequação de 1º grau que
+expressa um problema;\n
+j) resolvendo problemas que envolvem
+inequações do 1º grau com uma incógnita;\n
+k) identificando um sistema de duas equações do
+1º grau com duas incógnitas que expressa um
+problema;\n
+l) aplicando o método da adição e da substituição
+para a resolução de um sistema de equações;\n
+m) resolvendo problemas que envolvem sistemas
+de equações do 1º grau.\n
+    </string>
+
+
+
+
+
+    <string name="title_matematica_setimo_II">
+        Eixo: Matemática
+    </string>
+
+
+
+    <string name="obj_matematica_setimo_II_I">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_matematica_setimo_II_II">
+        1 – Reconhecer e diferenciar os triângulos a
+partir de seus ângulos\n
+a) identificando nos triângulos os ângulos internos
+e externos;\n
+b) construindo triângulos e reconhecendo que a
+soma de seus ângulos internos é 180°;\n
+c) identificando as medidas dos ângulos internos
+para classificação de triângulos;\n
+d) analisando a condição de existência de um
+triângulo quanto a medida dos lados.\n
+
+    </string>
+
+    <string name="obj_matematica_setimo_II_III">
+        1 – Reconhecer outras propriedades dos
+ângulos, relacionando-os com suas operações
+de submúltiplos de grau\n
+a) medindo e construindo diferentes ângulos;
+b) classificando os ângulos como adjacentes,
+complementares e suplementares;\n
+c) definindo ângulos opostos pelo vértice e
+ângulos formados por duas retas paralelas
+cortadas por uma transversal;\n
+d) relacionando os ângulos suplementares,
+complementares e opostos pelo vértice com
+ângulos internos e externos de polígonos;\n
+e) realizando as transformações de unidades de
+grau e seus submúltiplos: minuto e segundo;\n
+f) realizando as operações com medidas de
+ângulos.\n
+
+    </string>
+
+    <string name="obj_matematica_setimo_II_IV">
+        1 – Reconhecer e construir figuras obtidas por
+simetria de translação\n
+a) aplicando o conceito de translação;\n
+b) relacionando simetria axial e simetria de
+translação;\n
+c) traçando simetrias com a utilização de
+instrumentos de desenho ou tecnologias digitais.\n
+
+    </string>
+
+    <string name="obj_matematica_setimo_II">
+
+    </string>
+
+
+    <string name="title_matematica_setimo_III">
+        Eixo: Matemática
+    </string>
+
+    <string name="obj_matematica_setimo_III_I">
+        1 – Resolver problemas que envolvem os
+conceitos de desconto, lucro e prejuízo em
+diferentes sistemas monetários e para
+diferentes decisões financeiras\n
+a) interpretando as conversões de diferentes
+sistemas financeiros;\n
+b) comparando situações financeiras de diferentes
+sistemas financeiros utilizando as conversões;\n
+c) estabelecendo relações com a variação de
+câmbio (dólar, euro);\n
+d) solucionando problemas com os conceitos
+envolvidos na operação da bolsa de valores.\n
+
+    </string>
+
+    <string name="obj_matematica_setimo_III_II">
+        1 – Realizar conversões entre unidades de
+medida\n
+a) relacionando as medidas de comprimento,
+massa, capacidade, superfície e volume com seus
+        múltiplos e submúltiplos.\n
+2 – Calcular perímetro de figuras planas
+a) conceituando o significado de perímetro em uma
+circunferência;\n
+b) determinando o comprimento da circunferência
+por aproximação;\n
+c) resolvendo problemas que envolvem cálculo de
+perímetro de figuras planas.\n
+3 – Calcular a área de polígonos por composição
+e decomposição\n
+a) utilizando as fórmulas apropriadas para calcular
+área de figuras planas por composição e
+decomposição;\n
+b) resolvendo problemas com cálculo de área de
+figuras planas;\n
+c) definindo a equivalência entre áreas de figuras
+planas;\n
+d) comparando as áreas das figuras planas por
+meio de composição e decomposição.\n
+4 – Resolver problemas que envolvem volume
+do cubo e de blocos retangulares
+a) fazendo a relação entre os conceitos de
+capacidade e de volume;\n
+b) calculando o volume de prismas retangulares a
+partir das medidas das arestas;\n
+c) calculando o volume de sólidos por
+decomposição.
+
+    </string>
+
+
+    <string name="title_matematica_setimo_IV">
+        Eixo: Matemática
+    </string>
+
+
+    <string name="obj_matematica_setimo_IV_I">
+        1 – Formular pesquisa por meio de uma coleta
+de dados indiretos\n
+a) planejando estratégias para eleger as questões
+relevantes de uma pesquisa;\n
+b) registrando os dados coletados em gráficos e
+tabelas;\n
+c) apresentando os dados coletados.\n
+2 – Analisar informações apresentadas em
+gráficos e tabelas\n
+a) associando gráfico à tabela e vice-versa;\n
+b) resolvendo problemas com as informações
+apresentadas em diferentes tabelas e gráficos;\n
+c) expondo conclusões, a partir das informações
+apresentadas nas tabelas e gráficos.\n
+
+    </string>
+
+    <string name="obj_matematica_setimo_IV_II">
+        1 – Descrever os significados dos termos e
+das variáveis estatísticas\n
+a) definindo os significados dos termos, como
+aleatoriedade, população e amostra, resultados
+favoráveis, tentativas e experimentos
+equiprováveis;\n
+b) identificando os tipos de variáveis como
+qualitativa e quantitativa e seus valores;\n
+c) definindo frequência absoluta e frequência
+relativa de uma variável.\n
+2 – Reconhecer o significado de média e
+calcular o seu valor\n
+a) analisando que um conjunto de dados
+coletados para responder a uma pergunta de
+estatística tem uma distribuição que pode ser
+descrita pela sua média;\n
+b) calculando a média em diferentes situações
+problemas.\n
+3 – Calcular a probabilidade de um evento
+a) interpretando que a probabilidade é a medida
+da chance de um evento acontecer;\n
+b) determinando a probabilidade de um evento.
+
+    </string>
+
+    <string name="obj_matematica_setimo_IV">
+
+    </string>
+
+
+
+
+    <string name="title_matematica_oitavo_I">
+        Eixo: Matemática
+    </string>
+
+
+    <string name="obj_matematica_oitavo_I_I">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_matematica_oitavo_I_II">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa.\n
+    </string>
+
+    <string name="obj_matematica_oitavo_I_III">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_matematica_oitavo_I_IV">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_matematica_oitavo_I_V">
+        1 – Representar geometricamente e
+algebricamente um sistema de equações
+a) interpretando a ideia de par ordenado;
+b) relacionando reta horizontal e vertical com os
+eixos de um plano cartesiano;\n
+c) localizando pontos no plano cartesiano;\n
+d) realizando a representação geométrica da
+solução de um sistema de equação do 1º grau
+com duas variáveis;\n
+e) associando a forma geométrica do sistema com
+a forma algébrica e vice-versa.\n
+2 – Realizar operações com monômios e
+polinômios\n
+a) reconhecendo monômios semelhantes para
+realizar operações: adição, subtração,
+multiplicação, divisão e potenciação;\n
+b) reconhecendo polinômio como uma soma
+algébrica de monômios não semelhantes;\n
+c) reconhecendo o grau de um polinômio;\n
+d) aplicando a redução dos termos semelhantes
+de um polinômio;\n
+e) resolvendo operações com polinômios: adição,
+subtração, multiplicação e divisão.\n
+3 – Reconhecer os principais casos de
+produtos notáveis e fatoração para efetuar
+cálculos algébricos\n
+a) interpretando geometricamente e
+algebricamente, os principais casos de produtos
+notáveis: o quadrado da soma de dois termos, o
+        quadrado da diferença de dois termos e o produto
+da soma pela diferença de dois termos;\n
+b) resolvendo situações-problema utilizando
+produtos notáveis;\n
+c) interpretando geometricamente e
+algebricamente, os principais casos de fatoração:\n
+fator comum em evidência, agrupamento, trinômio
+quadrado perfeito e diferença de dois quadrados;\n
+d) fatorando expressões algébricas.\n
+4 – Resolver operações com frações
+algébricas\n
+a) solucionando problemas e operações com
+frações algébricas;\n
+b) aplicando os casos de fatoração na
+simplificação de frações algébricas.\n
+5 – Aplicar as leis dos expoentes a termos
+algébricos\n
+a) utilizando as leis dos expoentes para fatoração
+de expressões algébricas;\n
+b) simplificando produtos e quocientes algébricos
+com a utilização das leis dos expoentes.\n
+
+    </string>
+
+
+
+    <string name="title_matematica_oitavo_II">
+        Eixo: Matemática
+    </string>
+
+
+    <string name="obj_matematica_oitavo_II_I">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_matematica_oitavo_II_II">
+        1 – Obter a soma dos ângulos internos e o
+número de diagonais de um polígono\n
+a) calculando a soma dos ângulos internos e
+externos de um polígono convexo;\n
+b) calculando a medida de cada ângulo interno de
+um polígono regular;\n
+c) demonstrando a relação entre as medidas de
+um ângulo externo e a soma das medidas de dois
+ângulos internos não adjacentes em um triângulo;\n
+d) calculando o número de diagonais de um
+polígono convexo.\n
+        2 – Reconhecer as propriedades de triângulos
+e quadriláteros\n
+a) classificando triângulos quanto às medidas de
+seus lados e quanto às medidas de seus ângulos;\n
+b) identificando os elementos de um triângulo:\n
+medianas, alturas, bissetrizes e mediatrizes;\n
+c) interpretando as propriedades dos pontos
+notáveis de um triângulo: baricentro, incentro,
+ortocentro e circuncentro;\n
+d) resolvendo situações-problema que envolvem a
+obtenção de cevianas e de pontos notáveis de um
+triângulo;\n
+e) interpretando o conceito de congruência de
+triângulos;\n
+f) reconhecendo triângulos congruentes de acordo
+com os casos: LAL, ALA, LLL e LAA;\n
+g) interpretando congruência de triângulos a partir
+das relações com transformações isométricas;\n
+h) identificando quadriláteros côncavos e
+convexos;\n
+i) interpretando o conceito de paralelogramo:
+retângulo, losango e quadrado com suas
+propriedades fundamentais;\n
+j) interpretando o conceito de trapézio: isósceles,
+escaleno e retângulo com suas propriedades
+fundamentais.\n
+l) aplicando os conceitos relacionados aos
+elementos dos polígonos regulares: altura,
+número de diagonais e ângulos internos.\n
+3 – Aplicar as propriedades de círculo e
+circunferência\n
+a) identificando a posição de uma circunferência
+em relação a um ponto;\n
+b) identificando posição relativa entre retas e
+circunferências e entre duas circunferências;
+c) identificando ângulo central e setor circular em
+        circunferências;\n
+d) determinado a medida de um ângulo central;
+e) interpretando o conceito de ângulo inscrito a
+uma circunferência e determinando a medida
+desse ângulo;\n
+f) reconhecendo arcos, ângulo central e ângulo
+inscrito na circunferência, estabelecendo a relação
+entre eles.\n
+    </string>
+
+    <string name="obj_matematica_oitavo_II_III">
+        1 – Reconhecer os ângulos formados por duas
+retas paralelas cortadas por uma transversal\n
+a) aplicando o conceito de bissetriz de um ângulo
+para construí-la com régua e compasso;\n
+b) construindo ângulos congruentes a um ângulo
+dado;\n
+c) identificando os ângulos formados por duas
+retas paralelas cortadas por uma transversal:
+alternos, colaterais, correspondentes;\n
+d) relacionando os ângulos formados por duas
+retas paralelas cortadas por uma transversal.
+
+    </string>
+
+    <string name="obj_matematica_oitavo_II_IV">
+        1 – Reconhecer e construir figuras obtidas por
+simetria de rotação\n
+a) aplicando o conceito de rotação;\n
+b) relacionando simetria axial e de rotação;\n
+c) representando figuras no plano, a partir da
+composição das simetrias de reflexão, translação
+e rotação.\n
+
+    </string>
+
+    <string name="obj_matematica_oitavo_II">
+
+    </string>
+
+
+    <string name="title_matematica_oitavo_III">
+        Eixo: Matemática
+    </string>
+
+
+    <string name="obj_matematica_oitavo_III_I">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_matematica_oitavo_III_II">
+        1 – Calcular perímetro e área de figuras planas
+a) determinando perímetro de figuras planas;
+b) determinando áreas de superfícies planas com
+figuras compostas;\n
+        c) determinando área de regiões não poligonais
+por aproximação;\n
+d) determinando a área de círculo, por
+aproximação;\n
+e) resolvendo problemas que envolvem cálculo de
+perímetro e área de figuras planas.\n
+2 – Resolver problemas que envolvem o
+cálculo de volume de prismas retos\n
+a) utilizando fórmulas para calcular o volume de
+prismas retos: prisma de base triangular e prisma
+de base quadrada;\n
+b) solucionando problemas que envolvem
+relações entre áreas de regiões planas,
+capacidade e volume.
+
+    </string>
+
+    <string name="obj_matematica_oitavo_III">
+
+    </string>
+
+
+    <string name="title_matematica_oitavo_IV">
+        Eixo: Matemática
+    </string>
+
+
+    <string name="obj_matematica_oitavo_IV_I">
+        1 – Analisar informações apresentadas em
+diferentes representações de gráficos e
+tabelas\n
+a) investigando técnicas para coleta de dados:
+censos, amostragens e observações;\n
+b) interpretando dados expressos em gráficos de
+colunas, barras, setores, linhas e histogramas;\n
+c) resolvendo problemas com as informações
+apresentadas em diferentes tabelas e gráficos.\n
+
+    </string>
+
+    <string name="obj_matematica_oitavo_IV_II">
+        1 – Aplicar os conceitos de média, moda e
+mediana dos dados de uma pesquisa
+a) calculando média, mediana e moda para
+conjunto de dados;\n
+b) utilizando os conceitos de média, mediana e
+moda em diferentes tipos de problemas.\n
+2 – Conhecer e elaborar o espaço amostral de
+experimentos\n
+a) indicando a probabilidade de um evento, por
+meio de uma razão;\n
+b) verificando que a soma das probabilidades de
+todos os resultados individuais é igual a 1;\n
+c) interpretando o significado de experimento
+aleatório, espaço amostral e evento.\n
+
+    </string>
+
+
+    <string name="title_matematica_nono_I">
+        Eixo: Matemática
+    </string>
+
+    <string name="obj_matematica_nono_I_I">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_matematica_nono_I_II">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_matematica_nono_I_III">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_matematica_nono_I_IV">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_matematica_nono_I_V">
+        1 – Utilizar técnicas apropriadas para
+resolução de equações e sistemas de
+equações do 2º grau\n
+a) reconhecendo uma equação do 2º grau com
+uma variável e seus elementos;\n
+b) resolvendo equações do 2º grau completas e
+incompletas por meio de fatoração e fórmula
+resolutiva;\n
+c) aplicando as relações entre as raízes e os
+coeficientes de uma equação do 2º grau;\n
+d) resolvendo situações-problema que envolvem
+equações do 1º e do 2º grau;\n
+e) resolvendo equações fracionárias (1º e 2º
+graus);\n
+f) resolvendo problemas que envolvem sistemas
+de equações que recaem em uma equação do 2º
+grau.\n
+2 – Identificar o conceito de função e
+representação gráfica de função polinomial de
+1º grau\n
+a) reconhecendo o conceito de função;\n
+b) reconhecendo as variáveis de uma função:\n
+dependente e independente;\n
+c) reconhecendo o gráfico de uma função
+polinomial do 1º grau;\n
+d) determinando o zero de uma função de 1º grau;\n
+e) resolvendo problemas que envolvem função
+polinomial do 1º grau.\n
+    </string>
+
+
+
+    <string name="title_matematica_nono_II">
+        Eixo: Matemática
+    </string>
+
+    <string name="obj_matematica_nono_II_I">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa\n
+
+    </string>
+
+    <string name="obj_matematica_nono_II_II">
+        1 – Identificar e aplicar os conceitos de
+semelhança\n
+a) avaliando as condições necessárias e
+suficientes para se ter uma figura semelhante;\n
+b) relacionando a ampliação e redução de figuras
+e semelhança de figuras planas;\n
+c) interpretando as ideias de razão entre medidas
+de segmentos de retas e de segmentos
+proporcionais;\n
+d) aplicando o teorema fundamental da
+proporcionalidade;\n
+        e) analisando o teorema de Tales e suas
+aplicações;\n
+f) aplicando o teorema da bissetriz interna;
+g) analisando qual é a razão entre os perímetros e
+a razão entre as áreas de dois polígonos
+semelhantes;\n
+h) reconhecendo triângulos semelhantes segundo
+cada um dos casos de semelhança;\n
+i) aplicando o teorema fundamental da
+semelhança de triângulos;\n
+j) aplicando as propriedades da homotetia;\n
+l) reconhecendo que as imagens de uma figura
+construída por uma transformação homotética são
+semelhantes;\n
+m) resolvendo problemas que envolvem a
+semelhança de figuras planas.
+2 – Reconhecer os elementos de um triângulo
+retângulo e a aplicação do Teorema de
+Pitágoras e outras relações métricas
+a) identificando os elementos de um triângulo
+retângulo: hipotenusa e catetos;\n
+b) analisando os casos de semelhança e as
+relações métricas no triângulo retângulo;\n
+c) aplicando o teorema de Pitágoras;\n
+d) aplicando outras relações métricas no triângulo
+retângulo;\n
+e) resolvendo problemas que envolvem as
+relações métricas no triângulo retângulo.\n
+3 – Identificar e aplicar as razões
+trigonométricas no triângulo retângulo\n
+a) reconhecendo as razões trigonométricas em
+um triângulo retângulo: seno, cosseno e tangente
+de um ângulo agudo;\n
+b) obtendo os valores de seno, cosseno e da
+tangente dos ângulos notáveis: 30º, 45º e 60º;\n
+c) utilizando a tabela com valores aproximados do
+        seno, cosseno e da tangente de ângulos agudos
+para resolver problemas;\n
+d) resolvendo problemas que envolvem as
+aplicações das razões trigonométricas.\n
+
+    </string>
+
+    <string name="obj_matematica_nono_II_III">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_matematica_nono_II_IV">
+        1 – Reconhecer simetria nos sólidos de
+revolução\n
+a) identificando simetrias em sólidos de revolução;
+b) planificando os sólidos de revolução, a partir do
+conceito de simetria\n
+
+    </string>
+
+    <string name="obj_matematica_nono_II">
+
+    </string>
+
+
+    <string name="title_matematica_nono_III">
+        Eixo: Matemática
+    </string>
+
+    <string name="obj_matematica_nono_III_I">
+        Nesse ano é esperado que o aluno já tenha
+desenvolvido as habilidades relacionadas à essa
+expectativa.\n
+
+    </string>
+
+    <string name="obj_matematica_nono_III_II">
+        1 – Calcular o comprimento de uma
+circunferência e de um arco da circunferência
+a) determinando o comprimento do arco de uma
+circunferência;\n
+
+    </string>
+
+    <string name="obj_matematica_nono_III_III">
+        b) resolvendo situações-problemas que envolvem
+os conceitos de comprimento e arco de
+circunferência.\n
+2 – Calcular área de figuras planas
+a) determinando a área de quadrado, triângulo,
+retângulo, paralelogramo, trapézio, losango,
+polígonos regulares em geral, círculo, coroa
+circular e setor circular;\n
+b) utilizando o Teorema de Pitágoras para
+determinar o apótema dos principais polígonos
+regulares;\n
+c) determinando a área do triângulo circunscrito e
+inscrito em uma circunferência;\n
+d) realizando cálculo aproximado de áreas.\n
+3 – Calcular volume de prisma, cilindro e de
+pirâmide\n
+a) utilizando conceitos para calcular volume de
+prismas, cilindros e pirâmides;\n
+b) resolvendo problemas que envolvem cálculo de
+volume de sólidos geométricos: prisma, cilindro e
+pirâmide.\n
+
+    </string>
+
+    <string name="obj_matematica_nono_III">
+
+    </string>
+
+
+    <string name="title_matematica_nono_IV">
+        Eixo: Matemática
+    </string>
+
+
+    <string name="obj_matematica_nono_IV_I">
+        1 – Construir tabela de frequência\n
+a) assimilando os conceitos de intervalo de classe;\n
+b) utilizando o agrupamento de dados com
+intervalos de classes.\n
+2 – Avaliar gráfico para apresentação de dados\n
+a) analisando diagramas com histogramas e
+gráficos, fazendo comparações e conclusões;\n
+b) construindo os gráficos da pesquisa,
+destacando aspectos como as medidas de
+tendência central: média, mediana e moda.\n
+
+    </string>
+
+    <string name="obj_matematica_nono_IV_II">
+        1 – Calcular frequência absoluta e relativa\n
+a) utilizando termos como frequência absoluta,
+frequência relativa e amostra de uma população
+dentro de situações contextuais;\n
+b) assimilando que a frequência absoluta é o
+número de vezes que cada valor da variável é
+citado e que frequência relativa é a razão entre a
+variável e a amostra;\n
+c) determinando frequência absoluta e relativa em
+diferentes situações-problemas.\n
+    </string>
+
+
+
+</resources>

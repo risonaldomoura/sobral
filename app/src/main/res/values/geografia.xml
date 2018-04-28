@@ -1,0 +1,544 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="objetivo_geografia">
+        A Geografia é a ciência que estuda o conjunto de fenómenos naturais e humanos, 
+os quais são aspectos da superfície da Terra, considerada na sua distribuição e relações recíprocas.
+O conhecimento sistematicamente abordado da Terra é o objetivo específico da Geografia. A Geografia é uma disciplina 
+que nasceu na própria época em que surgiu o homem, mas o homem só categorizou a Geografia como ciência depois que a 
+civilização grega floresceu.
+    </string>
+
+
+    <string name="title_geografia_sexto_I">
+        Eixo: Meu lugar e suas transformações I
+    </string>
+
+    <string name="cont_geografia_sexto_I">
+       - Orientação e localização no espaço
+geográfico;\n
+       - Orientação no espaço geográfico;\n
+       - Paralelos e meridianos;\n
+       - Latitude e longitude;\n
+       - Elementos básicos de cartografia;\n
+       - A escala;\n
+       - A representação gráfica de relevo;\n
+       - Os gráficos.\n
+    </string>
+
+    <string name="obj_geografia_sexto_I">
+       1. Caracterizar a diversidade territorial
+brasileira, relacionando-a ao seu lugar de
+vivência;\n
+       2. Identificar processos naturais, históricos,
+socioeconômicos, socioambientais e
+socioculturais que caracterizam as
+paisagens, em seus ritmos de
+transformação;\n
+       3. Pesquisar processos, dinâmicas, ritmos e
+ciclos da natureza, relacionando-os às
+unidades naturais (domínios
+morfoclimáticos, biomas etc) e a paisagens
+do território brasileiro.\n
+    </string>
+
+
+    <string name="title_geografia_sexto_II">
+       Eixo: Meu lugar e suas transformações II
+    </string>
+
+    <string name="cont_geografia_sexto_II">
+       - A Terra: aspectos físicos gerais;\n
+       - A Terra em movimento;\n
+       - A história da Terra;\n
+       - Teoria da deriva continental e as placas
+tectônicas;\n
+       - O relevo continental: agente internos;\n
+       - Os dobramentos;\n
+       - As falhas e os terremotos;\n
+       - O vulcanismo.\n
+    </string>
+
+    <string name="obj_geografia_sexto_II">
+       1. Compreender a ação das tecnologias na
+intensificação de conexões entre lugares,
+por meio de fluxos de informações, pessoas,
+mercadorias, ideias e valores;\n
+       2. Entender as relações entre sociedade e
+natureza, a partir da análise das
+transformações das paisagens naturais
+pelas atividades sociais, culturais,
+econômicas e políticas, no processo de
+produção e apropriação do espaço
+geográfico.\n
+    </string>
+
+
+    <string name="title_geografia_sexto_III">
+        Eixo: Meu lugar e suas transformações III
+    </string>
+
+    <string name="cont_geografia_sexto_III">
+       - O relevo continental: agentes externos;\n
+       - A ação do vento, das geleiras e dos seres vivos sobre o relevo;\n
+       - O relevo no Brasil;\n
+       - A hidrografia do Brasil;\n
+       - Clima e vegetação natural;\n
+       - Os climas do mundo e do Brasil;\n
+       - Terra: grande paisagens vegetais;\n
+       - Brasil: formação vegetais naturais.\n
+    </string>
+
+    <string name="obj_geografia_sexto_III">
+       1. Coletar informações de fontes variadas
+sobre o Brasil, organizá-las, analisá-las e
+apresentá-las por meio de múltiplas
+linguagens;\n
+       2. Ler e interpretar mapas e outros recursos
+para analisar fenômenos, fatos e processos
+geográficos;\n
+       3. Compreender como avanços científicos e
+tecnológicos promovem modificações nos
+modos de ver, de explicar e de apresentar
+fenômenos, fatos e processos geográficos.\n
+    </string>
+
+
+    <string name="title_geografia_sexto_IV">
+        Eixo: Meu lugar e suas transformações IV
+    </string>
+
+    <string name="cont_geografia_sexto_IV">
+       - Extrativismo e agropecuária;\n
+       - Extrativismo mineral;\n
+       - A Agricultura;\n
+       - A pecuária;\n
+       - Indústria, sociedade e espaço;\n
+       - Indústria: transformações sociais e impactos ambientais;\n
+       - Indústria fonte de energia;\n
+       - Atividade industrial no Brasil.\n
+    </string>
+
+    <string name="obj_geografia_sexto_IV">
+       1. Compreender o saber geográfico como
+construção histórica, elaborado e
+acumulado culturalmente pela humanidade;\n
+       2. Reconhecer elementos das matrizes
+indígenas e africanas, sua importância na
+formação da sociedade brasileira e seus
+direitos territoriais;\n
+       3. Identificar problemas ambientais e seus
+impactos, apontando possibilidades de
+intervenção.\n
+    </string>
+
+
+
+
+
+
+    <string name="title_geografia_setimo_I">
+        Eixo: Territórios, fluxos e população I
+    </string>
+
+    <string name="cont_geografia_setimo_I">
+       - O Território brasileiro;\n
+       - A regionalização do território brasileiro;\n
+       - Domínios naturais: ameaças e conservação;\n
+       - A população brasileira;\n
+       - Brasil: migração internas e emigração;\n
+       - População e trabalho: mulheres, crianças e
+idosos;\n
+        Brasil: a diversidade cultural e os afrobrasileiros.\n
+    </string>
+
+    <string name="obj_geografia_setimo_I">
+       1. Situar seus lugares de vivências em relação
+aos vários recortes regionais, reconhecendo
+as marcas desses recortes na vida
+cotidiana;\n
+       2. Analisar, na vida cotidiana, elementos
+culturais, sociais e políticos que influenciam
+dinâmicas regionais em suas múltiplas
+escalas.\n
+    </string>
+
+
+
+    <string name="title_geografia_setimo_II">
+        Eixo: Territórios, fluxos e população II
+    </string>
+
+    <string name="cont_geografia_setimo_II">
+       - Brasil: da sociedade agrária para a Urbanoindustrial;
+Rede, hierarquia e problemas urbanos;\n
+       - A industrialização brasileira;\n
+       - O espaço agrário e a questão da terra;\n
+       - Região Norte;\n
+       - Região Norte: a construção de espaços
+geográficos;\n
+       - Amazônia: conflitos, desmatamento e
+biodiversidade;\n
+       - Amazônia: o desenvolvimento sustentável.\n
+    </string>
+
+    <string name="obj_geografia_setimo_II">
+       1. Identificar e caracterizar áreas de ocorrência
+e de distribuição de unidades naturais,
+relacionando-as com seus aproveitamentos
+econômicos, sociais e culturais;\n
+       2. Relacionar as principais redes de circulação
+de pessoas e de informações aos
+movimentos migratórios e as implicações
+nos avanços técnico-científicoinformacionais;\n
+       3. Analisar fluxos econômicos, populacionais e
+culturais pelo território brasileiro, bem como
+políticas nacionais e internacionais que os
+produziram e produzem.\n
+    </string>
+
+
+    <string name="title_geografia_setimo_III">
+        Eixo: Territórios, fluxos e população III
+    </string>
+
+    <string name="cont_geografia_setimo_III">
+       - Região Nordeste: o meio natural e a Zona da Mata;\n
+       - O Agreste;\n
+       - O sertão;\n
+       - O Meio-Norte;\n
+       - Região Sudeste: meio natural;\n
+       - Região Sudeste: ocupação e povoamento;\n
+       - Região Sudeste: a cafeicultura e a organização do espaço;\n
+       - Região Sudeste: população e economia.\n
+    </string>
+
+    <string name="obj_geografia_setimo_III">
+       1. Reconhecer e contextualizar os processos
+de ocupação, povoamento e urbanização
+das regiões;\n
+       2. Descrever e mapear a atual divisão territorial
+do Brasil e outras possibilidades de
+regionalização, considerando critérios e
+finalidades utilizados para isso;\n
+       3. Utilizar tecnologias da informação e
+comunicação para se localizar, realizar
+pesquisas e apreender/analisar fatos,
+fenômenos e processos geográficos.\n
+    </string>
+
+
+    <string name="title_geografia_setimo_IV">
+        Eixo: Territórios, fluxos e população IV
+    </string>
+
+    <string name="cont_geografia_setimo_IV">
+      - Região Sul: o meio natural;\n
+      - Região Sul: a construção de espaços
+geográficos;\n
+      - Região Sul: problemas ambientais;\n
+      - Região Sul: população e economia;\n
+      - Região Centro-Oeste: localização e meio
+natural;\n
+      - Região Centro-Oeste: fatores iniciais da
+construção de espaços geográficos;\n
+      - Região Centro-Oeste: a dinamização da
+economia;\n
+      - Região Centro-Oeste: população, economia e
+meio ambiente.\n
+    </string>
+
+    <string name="obj_geografia_setimo_IV">
+       1. Coletar e sistematizar informações a partir
+de plantas, mapas, croquis, maquetes,
+tabelas, gráficos, para apresentação,
+avaliação, análise e comparação de
+fenômenos, fatos e processos geográficos;\n
+       2. Analisar aspectos da gestão e do direito à
+utilização do patrimônio cultural, histórico,
+natural e à biodiversidade brasileira;\n
+       3. Pesquisar a origem de problemas sociais,
+ambientais, culturais e políticos que afetam
+o território brasileiro, desenvolvendo senso
+crítico e posicionamento em relação a eles.\n
+    </string>
+
+
+
+
+
+    <string name="title_geografia_oitavo_I">
+        Eixo: Território, Globalização I
+    </string>
+
+    <string name="cont_geografia_oitavo_I">
+       - Espaço mundial: diversidade e
+regionalização;\n
+       - Estados e população do mundo;\n
+       - Diferentes modos de ver o mundo;\n
+       - Outras regionalizações do espaço
+mundial;\n
+       - Mundo Global: origem e desafios;\n
+       - A economia Global;\n
+       - Globalização e meio ambiente;\n
+       - Crises e desigualdades no mundo.\n
+global.
+    </string>
+
+    <string name="obj_geografia_oitavo_I">
+       1. Identificar a diversidade e a territorialidade dos povos
+formadores das América(s) e África(s);\n
+       2. Identificar usos e impactos das tecnologias nos
+processos produtivos das sociedades americanas e
+africanas e suas interferências na vida cotidiana;\n
+       3. Compreender contextos históricos da emergência
+das ideias de africanizada, latino-americanizada,
+norte-americanizado e suas implicações no mundo
+contemporâneo e no seu cotidiano.\n
+    </string>
+
+
+
+    <string name="title_geografia_oitavo_II">
+        Eixo: Território, Globalização II
+    </string>
+
+    <string name="cont_geografia_oitavo_II">
+       - América: natureza e herança colonial;\n
+       - Clima e vegetação;\n
+       - A conquista da América pelos
+europeus;\n
+       - Outras regionalizações da América;\n
+       - América: países desenvolvidos;\n
+       - Estados Unidos: potência
+econômica;\n
+       - Estados Unidos: população e megalópoles;\n
+       - Canadá: economia integrada ao Nafta.\n
+    </string>
+
+    <string name="obj_geografia_oitavo_II">
+       1. Relacionar dinâmicas entre natureza e sociedade que
+caracterizam as paisagens americanas e africanas
+em seus ritmos e processos de transformação;\n
+       2. Compreender e explicar processos de
+deslocamentos dos grupos humanos pelo mundo e
+as condições socioambientais envolvidas na
+ocupação territorial;\n
+       3. Correlacionar a localização da(s) África(s) e das
+América(s) às condições de apropriação de seus
+territórios por povos de outros lugares, em diferentes
+contextos históricos, e as marcas desse processo
+nas paisagens, na produção do espaço e nos modos
+de vida locais.\n
+    </string>
+
+
+    <string name="title_geografia_oitavo_III">
+        Eixo: Território, Globalização III
+    </string>
+
+    <string name="cont_geografia_oitavo_III">
+       - América: países emergentes;\n
+       - México;\n
+       - Argentina;\n
+       - Brasil: conflitos e cooperação na Bacia Platina;\n
+       - América: economias de base mineral;\n
+       - Venezuela e Trinidad e Tobago;\n
+       - Equador e Chile;\n
+       - Peru e Bolívia;\n
+       - Guiana, Suriname e Jamaica.\n
+    </string>
+
+    <string name="obj_geografia_oitavo_III">
+       1. Conhecer a formação histórica, cultural e econômica
+da(s) América(s) e da(s) África(s) em relação aos
+processos históricos mundiais;\n
+       2. Coletar informações de fontes variadas, organizá-las,
+analisá-las e apresentá-las por meio de múltiplas
+linguagens, para o estudo da(s) América(s) e da(s)
+África(s);\n
+       3. Usar tecnologias da informação e da comunicação,
+para realizar pesquisas e apreender/analisar fatos,
+fenômenos e processos geográficos;\n
+       4. Sistematizar e registrar informações, a partir de
+mapas, plantas, croquis, maquetes, tabelas, gráficos
+para apresentação, avaliação, análise, comparação e
+observações de fenômenos, fatos e processos
+geográficos.\n
+    </string>
+
+
+    <string name="title_geografia_oitavo_IV">
+        Eixo: Território, Globalização IV
+    </string>
+
+    <string name="cont_geografia_oitavo_IV">
+       - América: economias de base
+agropecuária;\n
+       - Colômbia;\n
+       - Uruguai e Paraguai;\n
+       - América central continental e Insular;\n
+       - Cuba;\n
+       - América: projetos de integração;\n
+       - Integração nas Américas rivalidades e cooperação;\n
+       - O Brasil na América do Sul: fronteiras e integração física e
+energética;\n
+       - Brasil: liderança e tensões na integração sul- americana.\n
+    </string>
+
+    <string name="obj_geografia_oitavo_IV">
+       1. Reconhecer a legitimidade e o direito de existência
+dos diversos modos de vida dos indivíduos e dos
+grupos sociais;\n
+       2. Analisar a importância das matrizes indígenas da(s)
+América(s) e da(s) África(s) e suas contribuições na
+formação sócio espacial do continente americano;\n
+       3. Mapear e analisar tensões e conflitos existentes nos
+territórios americanos e africanos;\n
+       4. Compreender o alcance mundial da exploração de
+recursos naturais locais, em relação à acumulação
+de riqueza e aos impactos socioambientais.\n
+    </string>
+
+
+
+
+
+    <string name="title_geografia_nono_I">
+        Eixo: Política e a nova organização mundial I
+    </string>
+
+    <string name="cont_geografia_nono_I">
+       - Mundo global: geopolítica e organizações internacionais;\n
+       - A nova Ordem Mundial e os Estados Unidos;\n
+       - Organizações internacionais mundiais;\n
+       - Organizações internacionais regionais;\n
+       - População mundial: ritmo de crescimento, desigualdade e migrações;\n
+       - População mundial: cidades e consumo;\n
+       - Mundo: principais religiões;\n
+       - Desafios humanos da ONU e de todos nós num mundo global.\n
+    </string>
+
+    <string name="obj_geografia_nono_I">
+       1. Conhecer a organização do espaço geográfico
+mundial e as relações econômicas e políticas entre
+as nações do planeta e entre essas e seus lugares
+de vivências;\n
+       2. Caracterizar dinâmicas da natureza nos aspectos
+geológicos e geomorfológicos, relacionando as
+marcas desses processos e conexões ambientais
+aos seus lugares de vivências;\n
+       3. Identificar a presença de trabalho, ideias, valores
+culturais, tecnologias oriundos de diferentes
+contextos, relacionando essa presença a questões
+econômicas, políticas e culturais que afetam a
+dinâmica sócia espacial em seu contexto próximo;\n
+       4. Identificar arranjos e acordos internacionais
+econômicos, políticos e ambientais, analisando
+seus desdobramentos nos lugares de vivências e
+no Brasil.\n
+    </string>
+
+
+
+    <string name="title_geografia_nono_II">
+        Eixo: Política e a nova organização mundial II
+    </string>
+
+    <string name="cont_geografia_nono_II">
+       - Europa: diversidade e integração;\n
+       - Meio Ambiente natural;\n
+       - Aspectos populacionais;\n
+       - A construção da União Europeia;\n
+       - A economia europeia;\n
+       - CEI e Europa Oriental;\n
+       - Do império Russo à CEI;\n
+       - A comunidade dos Estados;\n
+       - Independentes;\n
+       - CEI: economia;\n
+       - Europa Oriental: países ex – socialistas.\n
+    </string>
+
+    <string name="obj_geografia_nono_II">
+       1. Identificar arranjos e acordos internacionais
+econômicos, políticos e ambientais, analisando
+seus desdobramentos nos lugares de vivências e
+no Brasil;\n
+       2. Compreender, a partir de diferentes leituras de
+mundo, fatos, processos, fenômenos geográficos,
+suas redes e conexões com múltiplas escalas;
+        Pesquisar em processos históricos mundiais a
+formação sócia espacial da Europa, Ásia, Oceania e
+Antártida;\n
+       3. Entender a origem e as implicações dos conflitos
+étnicos, econômicos, políticos e culturais na
+configuração de fronteiras na contemporaneidade;\n
+       4. Conhecer e usar princípios e elementos das
+múltiplas linguagens para pesquisar, apreender e
+analisar fatos, fenômenos e processos geográficos
+dos continentes.\n
+    </string>
+
+
+    <string name="title_geografia_nono_III">
+        Eixo: Política e a nova organização mundial III
+    </string>
+
+    <string name="cont_geografia_nono_III">
+       - As grandes economias da Ásia;\n
+       - Diversidade física e cultura;\n
+       - O Japão e os Tigres Asiáticos;\n
+       - China: o dragão asiático;\n
+       - Índia: o país das diversidades;\n
+       - Oriente Médio;\n
+       - Aspectos físicos e humanos gerais;\n
+       - O Oriente Médio e o petróleo;\n
+       - Israel e Palestina;\n
+       - Os conflitos árabes-israelenses.\n
+    </string>
+
+    <string name="obj_geografia_nono_III">
+       1. Analisar o papel das tecnologias da comunicação e
+das redes informacionais na contemporaneidade e
+suas implicações nos modos de vida, de produção,
+de trabalho e de consumo;\n
+       2. Observar, coletar informações de fontes variadas,
+organizá-las, analisá-las e apresentá-las por meio
+de múltiplas linguagens para o estudo dos
+continentes;\n
+       3. Analisar a origem de problemas sociais,
+ambientais, culturais e políticos que afetam Europa,
+Ásia, Oceania e Antártida, manifestando
+posicionamento crítico em relação a eles.\n
+    </string>
+
+
+    <string name="title_geografia_nono_IV">
+        Eixo: Política e a nova organização mundial IV
+    </string>
+
+    <string name="cont_geografia_nono_IV">
+       - África: heranças, conflitos e diversidades;\n
+       - A África e o imperialismo europeu;\n
+       - África: população, regionalização e economia;\n
+       - A África no início do século XXI;\n
+       - Oceania e regiões polares;\n
+       - Austrália e Nova Zelândia;\n
+       - Ártico;\n
+       - Antártida.\n
+    </string>
+
+    <string name="obj_geografia_nono_IV">
+       1. Identificar e conhecer as instâncias supranacionais
+que formulam políticas econômicas, ambientais,
+sociais e suas implicações no lugar e na vida das
+pessoas para a participação social individual e
+coletiva;\n
+       2. Analisar as lutas de grupos sociais por territórios
+autônomos no contexto atual da Europa, da Ásia e
+da Oceania.\n
+    </string>
+
+
+
+</resources>

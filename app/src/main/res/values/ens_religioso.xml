@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="objetivo_ens_religioso">
+        Os novos paradigmas da disciplina Ensino Religioso Escolar, apontam
+para o respeito à diversidade cultural religiosa, quando a lei nº 9.475/97 (que
+modifica o Art. 33 da Lei 9394/96 ) estabelece:\n
+    O Ensino Religioso, de matricula facultativa, é parte integrante
+da formação básica do cidadão e constitui disciplina dos
+horários normais das escolas públicas de Ensino Fundamental,
+assegurado o respeito à diversidade cultural religiosa do Brasil,
+vedadas quaisquer formas de proselitismo.\n
+    </string>
+
+
+    <string name="title_ens_religioso_sexto_I">
+        Eixo: Identidades e diferenças
+    </string>
+
+    <string name="cont_ens_religioso_sexto_I">
+        - Concepções sobre o sentido da Vida(pessoais religiosas, científicas e filosóficas);\n
+        - Religião, religiosidade e a busca pelo sentido da vida;\n
+        - O origem da vida: Visão científica e religiosas;\n
+        - Valores e práticas religiosas que dignificam a
+Vida.\n
+    </string>
+
+    <string name="obj_ens_religioso_sexto_I">
+        1. Perceber que as religiões, concepções
+científicas e/ou filosóficas possibilitam
+sentidos e significados para a existência
+das pessoas.
+    </string>
+
+
+    <string name="title_ens_religioso_sexto_II">
+        Eixo: Conhecimento dos fenômenos religiosos/não-religiosos
+    </string>
+
+    <string name="cont_ens_religioso_sexto_II">
+    - Intolerância Religiosa e suas manifestações ;\n
+    - Diversidade Religiosa e direitos humanos;\n
+    - Viver em Paz: uma tarefa de pessoas, grupos e
+nações;\n
+    - Práticas religiosas em favor da paz e da
+fraternidade universal.
+    </string>
+
+    <string name="obj_ens_religioso_sexto_II">
+       1. Reconhecer valores e fundamentos éticos
+que contribuem para a erradicação de
+discursos e práticas de violência por
+motivações religiosas.
+    </string>
+
+
+    <string name="title_ens_religioso_sexto_III">
+        Eixo: Conhecimento dos fenômenos religiosos/não-religiosos
+
+    </string>
+
+    <string name="cont_ens_religioso_sexto_III">
+        - Crenças Não-religiosas;\n
+        - ateísmo, agnosticismo, materialismo, ceticismo;\n
+        - Crenças religiosas Monoteístas: Judaísmo, Cristianismo, Islamismo e Espiritismo
+        (Histórico, idéia do transcendente, textos
+sagrados, mitos, ritos e símbolos).
+    </string>
+
+    <string name="obj_ens_religioso_sexto_III">
+       1. Reconhecer espaços e territórios
+sagrados de diferentes tradições e
+movimentos religiosos , em suas
+práticas, símbolos, expressões, princípios
+e valores.
+    </string>
+
+
+    <string name="title_ens_religioso_sexto_IV">
+        Eixo: Idéias e práticas religiosas/não-religiosas
+    </string>
+
+    <string name="cont_ens_religioso_sexto_IV">
+        - Valores, princípios e práticas do Judaísmo , Cristianismo, Islamismo e Espiritismo que
+contribuem para a paz;\n
+        - Movimentos sociais e Práticas não-religiosas
+que contribuem para a paz.
+    </string>
+
+    <string name="obj_ens_religioso_sexto_IV">
+       1. Identificar valores humanos que
+contribuem ao bem-viver e à convivência
+coletiva presentes nas filosofias de vida,
+tradições e movimentos religiosos.
+    </string>
+
+
+
+
+
+
+    <string name="title_ens_religioso_setimo_I">
+        Eixo: Identidades e diferenças
+    </string>
+
+    <string name="cont_ens_religioso_setimo_I">
+       - Conceito de Mito;\n
+       - Mitos Religiosos e não–religiosos;\n
+       - Os símbolos e seu papel na comunicação humana;\n
+       - Diferença entre Símbolos religiosos e não-religiosos;\n
+       - Conceito de rito e suas expressões no cotidiano;\n
+       - Ritos religiosos e não-religiosos;\n
+       - Sincretismo religioso no Brasil.
+    </string>
+
+    <string name="obj_ens_religioso_setimo_I">
+       1. Conceituar ritos, símbolos e mitos, estabelecendo relações entre eles.
+    </string>
+
+
+
+    <string name="title_ens_religioso_setimo_II">
+        Eixo: Conhecimento dos fenômenos religiosos/não-religiosos
+    </string>
+
+    <string name="cont_ens_religioso_setimo_II">
+       - Religiões Orientais: Budismo,Hinduísmo, taoísmo, xintoísmo(Origem, Ideia do transcendente, Símbolos, Ritos, Textos sagrados).
+    </string>
+
+    <string name="obj_ens_religioso_setimo_II">
+       1. Identificar relações entre crenças,
+ideologias religiosas e filosofias
+de vida, com mitos, ritos,
+símbolos sagrados de diferentes
+tradições religiosas e
+movimentos religiosos;
+    </string>
+
+
+    <string name="title_ens_religioso_setimo_III">
+        Eixo: Ideias e práticas religiosas/não-religiosas
+    </string>
+
+    <string name="cont_ens_religioso_setimo_III">
+       - Religiões orientais e sua influência sobre os costumes, valores e comportamentos dos seus adeptos;
+    </string>
+
+    <string name="obj_ens_religioso_setimo_III">
+       1. (Re) conhecer como crenças,
+ideologias religiosas e filosofias
+de vida influenciam na vivência e
+definição de valores, atitudes e
+comportamentos.
+    </string>
+
+
+    <string name="title_ens_religioso_setimo_IV">
+        Eixo: Ideias e práticas religiosas/não-religiosas
+    </string>
+
+    <string name="cont_ens_religioso_setimo_IV">
+      - A Intolerância religiosa e suas manifestações na sociedade;\n
+      - O direito à liberdade de crença na legislação.
+    </string>
+
+    <string name="obj_ens_religioso_setimo_IV">
+       1. Problematizar processos de exclusão, xenofobias e desigualdades, estimuladas por crenças, ideologias religiosas ou filosofias de vida.
+    </string>
+
+
+
+
+
+    <string name="title_ens_religioso_oitavo_I">
+        Eixo: Identidades e diferenças
+    </string>
+
+    <string name="cont_ens_religioso_oitavo_I">
+        - Valores éticos e religiosos e sua influência na vida das
+pessoas e da sociedade;\n
+        - A sociedade atual e a crise de valores;\n
+        - Valores éticos na família;\n
+        - As determinações das tradições religiosas no processo de
+humanização;\n
+        - Praticas religiosa e ideologias favoráveis / contrarias a
+vida;\n
+        - Movimentos religiosos e não-religiosos que defendem os
+direitos humanos.
+    </string>
+
+    <string name="obj_ens_religioso_oitavo_I">
+       1. Analisar a influencia
+de determinações e
+posicionamentos éticos
+de tradições religiosas
+ou filosofias de vida na
+estruturação do cotidiano
+pessoal e das praticas
+socioculturais;
+    </string>
+
+
+
+    <string name="title_ens_religioso_oitavo_II">
+        Eixo: Conhecimento dos fenômenos religiosos/não-religiosos
+    </string>
+
+    <string name="cont_ens_religioso_oitavo_II">
+        - Culturas indígenas na Amazônia e sua tradições religiosas
+(Pajelança; Curandeirismo, etc.);\n
+        - Nações indígenas existentes na região do Xingu;\n
+        - Ambientes sagrados das tradições indígenas
+        (Ideia do transcendente, Ritos, Símbolos, Mitos, Valores éticos.
+    </string>
+
+    <string name="obj_ens_religioso_oitavo_II">
+       1. Identificar princípios éticos de
+filosofias de vida,tradições e
+movimentos religiosos que
+contribuam com o cuidado e
+a preservação da vida, na
+perspectiva dos direitos
+humanos e da Terra.
+    </string>
+
+
+    <string name="title_ens_religioso_oitavo_III">
+        Eixo: Idéias e práticas religiosas/não-religiosas
+    </string>
+
+    <string name="cont_ens_religioso_oitavo_III">
+        - Os direitos humanos perpassam as tradições religiosas;\n
+        - Diversidade religiosa X preconceito;\n
+        - Dignidade humana X preceitos religiosos;\n
+        - Preconceito religioso contra religiosidades indígenas.
+
+
+    </string>
+
+    <string name="obj_ens_religioso_oitavo_III">
+       1. Problematizar as
+Determinações de tradições
+religiosas, a utilizacao de
+seus preceitos que atentam
+a dignidade humana e
+impedem o reconhecimento
+das diversidades na
+sociedade;\n
+       2. Compreender o papel de
+líderes ou grupos religiosos e
+de outras lideranças na
+defesa e promoção dos
+direitos humanos e
+ambientais.
+    </string>
+
+
+    <string name="title_ens_religioso_oitavo_IV">
+        Eixo: Idéias e práticas religiosas/não-religiosas
+    </string>
+
+    <string name="cont_ens_religioso_oitavo_IV">
+        - A participação dos movimentos religiosos nas lutas
+populares;\n
+        - O papel das lideranças religiosas e não-religiosas na defesa
+e na promoção dos direitos humanos e ambientais;\n
+        - Movimentos religiosos e não religiosos defensores dos
+direitos humanos.
+    </string>
+
+    <string name="obj_ens_religioso_oitavo_IV">
+       1. Problematizar as
+Determinações de tradições
+religiosas, a utilizacao de
+seus preceitos que atentam
+a dignidade humana e
+impedem o reconhecimento
+das diversidades na
+sociedade;\n
+       2. Compreender o papel de
+líderes ou grupos religiosos e
+de outras lideranças na
+defesa e promoção dos
+direitos humanos e
+ambientais.
+    </string>
+
+
+
+
+
+    <string name="title_ens_religioso_nono_I">
+        Eixo: Identidades e diferenças
+    </string>
+
+    <string name="cont_ens_religioso_nono_I">
+        - A importância do Corpo para a vida humana;\n
+        - A sociedade de consumo e a mercantilização do corpo;\n
+        - O consumo de drogas e suas consequências para
+o equilíbrio do ser humano;\n
+        - Valorização da pessoa humana e de sua dignidade;\n
+        - Corpo e alma: Concepções religiosas e não
+religiosas.
+    </string>
+
+    <string name="obj_ens_religioso_nono_I">
+       1. Conhecer concepções de
+corporeidade, pessoa e
+pessoalidades em tradições
+religiosas e filosofias de vida;\n
+       2. Reconhecer o valor da vida e do
+corpo, problematizando a
+mercantilização da corporeidade e a
+banalização da dignidade humana.
+    </string>
+
+
+
+    <string name="title_ens_religioso_nono_II">
+        Eixo: Conhecimento dos fenômenos religiosos/não-religiosos
+    </string>
+
+    <string name="cont_ens_religioso_nono_II">
+       - O destino do Ser Humano (Ancestralidade, Reencarnação, Ressurreição, o Nada).
+    </string>
+
+    <string name="obj_ens_religioso_nono_II">
+       1. Identificar concepções de
+transcendência nas tradições e
+movimentos religiosos, como
+possibilidade de superação da
+finitude humana.
+    </string>
+
+
+    <string name="title_ens_religioso_nono_III">
+        Eixo: Conhecimento dos fenômenos religiosos/não-religiosos
+    </string>
+
+    <string name="cont_ens_religioso_nono_III">
+        - Religiões de matriz africana e afrobrasileiras: Candomblé,Umbanda,Bambucuê,Tambor
+de Minas (Origem, Ideia do transcendente, Símbolos, Ritos, Mitos, Valores).
+    </string>
+
+    <string name="obj_ens_religioso_nono_III">
+       1. Identificar concepções de
+transcendência nas tradições e
+movimentos religiosos, como
+possibilidade de superação da
+finitude humana.
+    </string>
+
+
+    <string name="title_ens_religioso_nono_IV">
+        Eixo: Idéias e práticas religiosas/não-religiosas
+    </string>
+
+    <string name="cont_ens_religioso_nono_IV">
+       - Viver como um cidadão: Um direito de todos;\n
+       - Somos todos responsáveis pela paz.
+    </string>
+
+    <string name="obj_ens_religioso_nono_IV">
+       1. Problematizar a vida enquanto
+experiência existencial na
+coletividade, considerando princípios
+éticos, estéticos, econômicos,
+políticos, ambientais e socioculturais.
+    </string>
+
+
+
+</resources>
