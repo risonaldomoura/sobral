@@ -24,6 +24,13 @@
         android:layout_height="match_parent"
         android:visibility="gone" />
 
+    <include
+        android:id="@+id/fl_contato"
+        layout="@layout/layout_contato"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
 
     <include
         android:id="@+id/fl_obj"

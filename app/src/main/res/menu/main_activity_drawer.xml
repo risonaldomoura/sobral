@@ -26,6 +26,11 @@
             android:icon="@drawable/ic_configuracoes"
             android:title="Configurações" />
         <item
+            android:id="@+id/contato"
+            android:icon="@mipmap/ic_contato"
+            android:title="Fale conosco"/>
+
+        <item
             android:id="@+id/compartilhar"
             android:icon="@drawable/ic_menu_share"
             android:title="Compartilhar" />

@@ -190,6 +190,19 @@ public class Main_activity extends AppCompatActivity
             }
         });
 
+        //FrameLayout contato
+        final FrameLayout fl_contato = (FrameLayout) findViewById(R.id.fl_contato);
+        Button btn_ok_contato;
+        btn_ok_contato = (Button) findViewById(R.id.btn_ok_contato);
+        btn_ok_contato.setOnClickListener(new View.OnClickListener() {
+                                                 @Override
+                                                 public void onClick(View v) {
+                                                     fl_contato.setVisibility(View.GONE);
+                                                     fl_spinner.setVisibility(View.VISIBLE);
+                                                 }
+                                             }
+        );
+
         //FrameLayout matematica
         final FrameLayout fl_matematica = (FrameLayout) findViewById(R.id.fl_matematica);
         Button btn_ok_matematica;
@@ -898,6 +911,13 @@ public class Main_activity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
+        if(id == R.id.contato){
+            FrameLayout fl = (FrameLayout) findViewById(R.id.fl_contato);
+            FrameLayout fls = (FrameLayout) findViewById(R.id.fl_spinner);
+            fl.setVisibility(View.VISIBLE);
+            fls.setVisibility(View.GONE);
+        }
 
         if (id == R.id.matrizpdf){
             Intent it = new Intent(this, PdfViewActivity.class);

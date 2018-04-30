@@ -48,15 +48,33 @@
             android:orientation="horizontal"
             android:weightSum="1">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="30dp">
 
-            <Spinner
-                android:id="@+id/spn_disciplina"
-                android:layout_width="wrap_content"
-                android:layout_height="56dp"
-                android:layout_marginLeft="80dp"
-                android:gravity="center"
-                android:textAlignment="center"
-                />
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <Spinner
+                    android:id="@+id/spn_disciplina"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:gravity="center"
+                    android:textAlignment="center" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
     </FrameLayout>

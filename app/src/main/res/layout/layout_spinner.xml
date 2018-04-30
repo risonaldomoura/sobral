@@ -7,6 +7,5 @@
     android:layout_height="wrap_content"
     android:textAlignment="center"
     android:maxLines="1"
-
     android:typeface="normal">
 </TextView>
