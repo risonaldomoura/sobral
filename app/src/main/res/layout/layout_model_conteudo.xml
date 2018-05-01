@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <ScrollView
+            android:id="@+id/scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -28,7 +29,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     app:cardCornerRadius="5dp"
-                    app:cardElevation="3dp">
+                    app:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -44,7 +45,6 @@
                             android:gravity="center"
                             android:textColor="@android:color/black"
                             android:textSize="20sp"
-                            android:textStyle="bold"
                             android:text="TÍTULO"/>
 
                         <LinearLayout
@@ -54,46 +54,60 @@
                             android:weightSum="1">
 
                             <LinearLayout
-                                android:layout_width="60dp"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="10dp">
+                                android:layout_marginLeft="10dp">
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:orientation="vertical"
-                                    android:background="@drawable/layout_circular">
+                                <FrameLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="70dp">
 
-                                    <TextView
-                                        android:id="@+id/dia_inicio_I"
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:orientation="horizontal"
+                                        android:background="@drawable/layout_gota"
+                                        android:rotation="45"
+                                        android:layout_marginTop="10dp"/>
+
+                                    <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="15"
-                                        android:textColor="@android:color/black"
-                                        android:textSize="28sp"
-                                        android:layout_marginBottom="-7dp"
-                                        android:layout_marginTop="2dp"/>
+                                        android:layout_gravity="center"
+                                        android:orientation="vertical"
+                                        android:background="@color/transparent"
+                                        android:layout_marginBottom="2dp">
 
-                                    <TextView
-                                        android:id="@+id/mes_inicio_I"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="JAN"
-                                        android:textColor="@android:color/black"
-                                        android:textSize="14sp" />
+                                        <TextView
+                                            android:id="@+id/dia_inicio_I"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="15"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="22sp"
+                                            android:layout_marginBottom="-7dp"/>
 
-                                </LinearLayout>
+                                        <TextView
+                                            android:id="@+id/mes_inicio_I"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="JAN"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="12sp" />
+
+                                    </LinearLayout>
+                                </FrameLayout>
+
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal"
-                                    android:layout_weight="1">
+                                    android:layout_weight="1"
+                                    android:layout_marginTop="-3dp">
 
                                     <Space
                                         android:layout_width="wrap_content"
@@ -101,7 +115,7 @@
                                         android:layout_weight="1"/>
 
                                     <LinearLayout
-                                        android:layout_width="4dp"
+                                        android:layout_width="3.5dp"
                                         android:layout_height="match_parent"
                                         android:background="@color/colorPrimary"/>
 
@@ -111,34 +125,48 @@
                                         android:layout_weight="1"/>
                                 </LinearLayout>
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:orientation="vertical"
-                                    android:background="@drawable/layout_circular">
+                                <FrameLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:layout_marginTop="-2dp">
 
-                                    <TextView
-                                        android:id="@+id/dia_termino_I"
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:orientation="horizontal"
+                                        android:background="@drawable/layout_gota"
+                                        android:rotation="225"
+                                        android:layout_marginTop="10dp" />
+
+                                    <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="25"
-                                        android:textColor="@android:color/black"
-                                        android:textSize="28sp"
-                                        android:layout_marginBottom="-7dp"
-                                        android:layout_marginTop="2dp"/>
+                                        android:layout_gravity="center"
+                                        android:orientation="vertical"
+                                        android:background="@color/transparent"
+                                        android:layout_marginTop="2dp">
 
-                                    <TextView
-                                        android:id="@+id/mes_termino_I"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="MAR"
-                                        android:textColor="@android:color/black"
-                                        android:textSize="14sp" />
+                                        <TextView
+                                            android:id="@+id/dia_termino_I"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="25"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="22sp"
+                                            android:layout_marginBottom="-7dp"/>
 
-                                </LinearLayout>
+                                        <TextView
+                                            android:id="@+id/mes_termino_I"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="MAR"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="12sp" />
+
+                                    </LinearLayout>
+                                </FrameLayout>
 
 
                             </LinearLayout>
@@ -196,7 +224,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     app:cardCornerRadius="5dp"
-                    app:cardElevation="3dp">
+                    app:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -212,8 +240,7 @@
                             android:gravity="center"
                             android:textColor="@android:color/black"
                             android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:text="TÍTULO"/>
+                            android:text="Título"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -222,46 +249,60 @@
                             android:weightSum="1">
 
                             <LinearLayout
-                                android:layout_width="60dp"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="10dp">
+                                android:layout_marginLeft="10dp">
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:orientation="vertical"
-                                    android:background="@drawable/layout_circular">
+                                <FrameLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="70dp">
 
-                                    <TextView
-                                        android:id="@+id/dia_inicio_II"
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:orientation="horizontal"
+                                        android:background="@drawable/layout_gota"
+                                        android:rotation="45"
+                                        android:layout_marginTop="10dp"/>
+
+                                    <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="26"
-                                        android:textColor="@android:color/black"
-                                        android:textSize="28sp"
-                                        android:layout_marginBottom="-7dp"
-                                        android:layout_marginTop="2dp"/>
+                                        android:layout_gravity="center"
+                                        android:orientation="vertical"
+                                        android:background="@color/transparent"
+                                        android:layout_marginBottom="2dp">
 
-                                    <TextView
-                                        android:id="@+id/mes_inicio_II"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="MAR"
-                                        android:textColor="@android:color/black"
-                                        android:textSize="14sp" />
+                                        <TextView
+                                            android:id="@+id/dia_inicio_II"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="26"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="22sp"
+                                            android:layout_marginBottom="-7dp"/>
 
-                                </LinearLayout>
+                                        <TextView
+                                            android:id="@+id/mes_inicio_II"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="MAR"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="12sp" />
+
+                                    </LinearLayout>
+                                </FrameLayout>
+
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal"
-                                    android:layout_weight="1">
+                                    android:layout_weight="1"
+                                    android:layout_marginTop="-3dp">
 
                                     <Space
                                         android:layout_width="wrap_content"
@@ -269,9 +310,9 @@
                                         android:layout_weight="1"/>
 
                                     <LinearLayout
-                                        android:layout_width="4dp"
+                                        android:layout_width="3.5dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/colorPrimaryDark"/>
+                                        android:background="@color/colorPrimary"/>
 
                                     <Space
                                         android:layout_width="wrap_content"
@@ -279,34 +320,48 @@
                                         android:layout_weight="1"/>
                                 </LinearLayout>
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:orientation="vertical"
-                                    android:background="@drawable/layout_circular">
+                                <FrameLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:layout_marginTop="-2dp">
 
-                                    <TextView
-                                        android:id="@+id/dia_termino_II"
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:orientation="horizontal"
+                                        android:background="@drawable/layout_gota"
+                                        android:rotation="225"
+                                        android:layout_marginTop="10dp" />
+
+                                    <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="18"
-                                        android:textColor="@android:color/black"
-                                        android:textSize="28sp"
-                                        android:layout_marginBottom="-7dp"
-                                        android:layout_marginTop="2dp"/>
+                                        android:layout_gravity="center"
+                                        android:orientation="vertical"
+                                        android:background="@color/transparent"
+                                        android:layout_marginTop="2dp">
 
-                                    <TextView
-                                        android:id="@+id/mes_termino_II"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="JUN"
-                                        android:textColor="@android:color/black"
-                                        android:textSize="14sp" />
+                                        <TextView
+                                            android:id="@+id/dia_termino_II"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="18"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="22sp"
+                                            android:layout_marginBottom="-7dp"/>
 
-                                </LinearLayout>
+                                        <TextView
+                                            android:id="@+id/mes_termino_II"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="JUN"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="12sp" />
+
+                                    </LinearLayout>
+                                </FrameLayout>
 
 
                             </LinearLayout>
@@ -363,7 +418,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     app:cardCornerRadius="5dp"
-                    app:cardElevation="3dp">
+                    app:cardElevation="2dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -379,8 +434,7 @@
                             android:gravity="center"
                             android:textColor="@android:color/black"
                             android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:text="TÍTULO"/>
+                            android:text="Título"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -389,46 +443,60 @@
                             android:weightSum="1">
 
                             <LinearLayout
-                                android:layout_width="60dp"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="10dp">
+                                android:layout_marginLeft="10dp">
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:orientation="vertical"
-                                    android:background="@drawable/layout_circular">
+                                <FrameLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="70dp">
 
-                                    <TextView
-                                        android:id="@+id/dia_inicio_III"
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:orientation="horizontal"
+                                        android:background="@drawable/layout_gota"
+                                        android:rotation="45"
+                                        android:layout_marginTop="10dp"/>
+
+                                    <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="10"
-                                        android:textColor="@android:color/black"
-                                        android:textSize="28sp"
-                                        android:layout_marginBottom="-7dp"
-                                        android:layout_marginTop="2dp"/>
+                                        android:layout_gravity="center"
+                                        android:orientation="vertical"
+                                        android:background="@color/transparent"
+                                        android:layout_marginBottom="2dp">
 
-                                    <TextView
-                                        android:id="@+id/mes_inicio_III"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="AGO"
-                                        android:textColor="@android:color/black"
-                                        android:textSize="14sp" />
+                                        <TextView
+                                            android:id="@+id/dia_inicio_III"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="10"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="22sp"
+                                            android:layout_marginBottom="-7dp"/>
 
-                                </LinearLayout>
+                                        <TextView
+                                            android:id="@+id/mes_inicio_III"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="AGO"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="12sp" />
+
+                                    </LinearLayout>
+                                </FrameLayout>
+
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal"
-                                    android:layout_weight="1">
+                                    android:layout_weight="1"
+                                    android:layout_marginTop="-3dp">
 
                                     <Space
                                         android:layout_width="wrap_content"
@@ -436,9 +504,9 @@
                                         android:layout_weight="1"/>
 
                                     <LinearLayout
-                                        android:layout_width="4dp"
+                                        android:layout_width="3.5dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/colorPrimaryDark"/>
+                                        android:background="@color/colorPrimary"/>
 
                                     <Space
                                         android:layout_width="wrap_content"
@@ -446,34 +514,48 @@
                                         android:layout_weight="1"/>
                                 </LinearLayout>
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:orientation="vertical"
-                                    android:background="@drawable/layout_circular">
+                                <FrameLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:layout_marginTop="-2dp">
 
-                                    <TextView
-                                        android:id="@+id/dia_termino_III"
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:orientation="horizontal"
+                                        android:background="@drawable/layout_gota"
+                                        android:rotation="225"
+                                        android:layout_marginTop="10dp" />
+
+                                    <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="29"
-                                        android:textColor="@android:color/black"
-                                        android:textSize="28sp"
-                                        android:layout_marginBottom="-7dp"
-                                        android:layout_marginTop="2dp"/>
+                                        android:layout_gravity="center"
+                                        android:orientation="vertical"
+                                        android:background="@color/transparent"
+                                        android:layout_marginTop="2dp">
 
-                                    <TextView
-                                        android:id="@+id/mes_termino_III"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="SET"
-                                        android:textColor="@android:color/black"
-                                        android:textSize="14sp" />
+                                        <TextView
+                                            android:id="@+id/dia_termino_III"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="29"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="22sp"
+                                            android:layout_marginBottom="-7dp"/>
 
-                                </LinearLayout>
+                                        <TextView
+                                            android:id="@+id/mes_termino_III"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="SET"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="12sp" />
+
+                                    </LinearLayout>
+                                </FrameLayout>
 
 
                             </LinearLayout>
@@ -528,6 +610,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_weight="1"
                     app:cardCornerRadius="5dp"
                     app:cardElevation="3dp">
@@ -546,8 +629,7 @@
                             android:gravity="center"
                             android:textColor="@android:color/black"
                             android:textSize="20sp"
-                            android:textStyle="bold"
-                            android:text="TÍTULO"/>
+                            android:text="Título"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -556,46 +638,60 @@
                             android:weightSum="1">
 
                             <LinearLayout
-                                android:layout_width="60dp"
+                                android:layout_width="50dp"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginTop="10dp">
+                                android:layout_marginLeft="10dp">
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:orientation="vertical"
-                                    android:background="@drawable/layout_circular">
+                                <FrameLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="70dp">
 
-                                    <TextView
-                                        android:id="@+id/dia_inicio_IV"
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:orientation="horizontal"
+                                        android:background="@drawable/layout_gota"
+                                        android:rotation="45"
+                                        android:layout_marginTop="10dp"/>
+
+                                    <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="01"
-                                        android:textColor="@android:color/black"
-                                        android:textSize="28sp"
-                                        android:layout_marginBottom="-7dp"
-                                        android:layout_marginTop="2dp"/>
+                                        android:layout_gravity="center"
+                                        android:orientation="vertical"
+                                        android:background="@color/transparent"
+                                        android:layout_marginBottom="2dp">
 
-                                    <TextView
-                                        android:id="@+id/mes_inicio_IV"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="OUT"
-                                        android:textColor="@android:color/black"
-                                        android:textSize="14sp" />
+                                        <TextView
+                                            android:id="@+id/dia_inicio_IV"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="1"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="22sp"
+                                            android:layout_marginBottom="-7dp"/>
 
-                                </LinearLayout>
+                                        <TextView
+                                            android:id="@+id/mes_inicio_IV"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="OUT"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="12sp" />
+
+                                    </LinearLayout>
+                                </FrameLayout>
+
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal"
-                                    android:layout_weight="1">
+                                    android:layout_weight="1"
+                                    android:layout_marginTop="-3dp">
 
                                     <Space
                                         android:layout_width="wrap_content"
@@ -603,9 +699,9 @@
                                         android:layout_weight="1"/>
 
                                     <LinearLayout
-                                        android:layout_width="4dp"
+                                        android:layout_width="3.5dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/colorPrimaryDark"/>
+                                        android:background="@color/colorPrimary"/>
 
                                     <Space
                                         android:layout_width="wrap_content"
@@ -613,34 +709,48 @@
                                         android:layout_weight="1"/>
                                 </LinearLayout>
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:orientation="vertical"
-                                    android:background="@drawable/layout_circular">
+                                <FrameLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:layout_marginTop="-2dp">
 
-                                    <TextView
-                                        android:id="@+id/dia_termino_IV"
+                                    <LinearLayout
+                                        android:layout_width="50dp"
+                                        android:layout_height="50dp"
+                                        android:orientation="horizontal"
+                                        android:background="@drawable/layout_gota"
+                                        android:rotation="225"
+                                        android:layout_marginTop="10dp" />
+
+                                    <LinearLayout
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="14"
-                                        android:textColor="@android:color/black"
-                                        android:textSize="28sp"
-                                        android:layout_marginBottom="-7dp"
-                                        android:layout_marginTop="2dp"/>
+                                        android:layout_gravity="center"
+                                        android:orientation="vertical"
+                                        android:background="@color/transparent"
+                                        android:layout_marginTop="2dp">
 
-                                    <TextView
-                                        android:id="@+id/mes_termino_IV"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="DEZ"
-                                        android:textColor="@android:color/black"
-                                        android:textSize="14sp" />
+                                        <TextView
+                                            android:id="@+id/dia_termino_IV"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="14"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="22sp"
+                                            android:layout_marginBottom="-7dp"/>
 
-                                </LinearLayout>
+                                        <TextView
+                                            android:id="@+id/mes_termino_IV"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="DEZ"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="12sp" />
+
+                                    </LinearLayout>
+                                </FrameLayout>
 
 
                             </LinearLayout>

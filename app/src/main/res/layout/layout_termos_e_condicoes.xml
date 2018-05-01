@@ -3,30 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/slide_4_background"
     android:orientation="vertical"
-    android:padding="16dp"
-    tools:context="br.com.thiengo.introapitests.QuestionsActivity">
+    tools:context="projeto.app.sobral.Util.IntroActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="20dp"
         android:text="@string/slide_4_title"
-        android:textColor="@android:color/white"
-        android:textSize="26sp" />
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:gravity="center"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        android:layout_weight="1"
-        android:padding="16dp">
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_weight="1">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:textColor="@color/texto_cinza"
             android:text="@string/slide_4_content" />
     </ScrollView>
 
@@ -35,6 +37,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="76dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14dp"
         android:text="@string/slide_4_checkbox_label"
-        android:textColor="@android:color/white" />
+        android:textColor="@color/black" />
 </LinearLayout>

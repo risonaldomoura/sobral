@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -28,7 +30,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.support.design.widget.TabLayout;
@@ -36,7 +37,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -46,11 +46,7 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -383,51 +379,45 @@ public class Main_activity extends AppCompatActivity
 
         DataSistema();
 
+
     }//end OnCreate
 
+    //Verifica se tem conexão com a internet
     private void verificaconexao() {
-        //Para a Snackbar Funcionar
-        final DrawerLayout linearlayout = (DrawerLayout) findViewById(R.id
+        ConnectivityManager cm =
+                (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        final DrawerLayout DrawerLayout = (DrawerLayout) findViewById(R.id
                 .drawer_layout);
 
         @SuppressLint("WifiManagerLeak") final WifiManager wifi = (WifiManager)this.getSystemService(Context.WIFI_SERVICE);
 
-        DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
-        connectedRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                boolean connected = snapshot.getValue(Boolean.class);
-                if (connected) {
-                    //System.out.println("connected");
-                } else if (!connected){
-                    Snackbar snackbar = Snackbar
-                            .make(linearlayout, "Sem Conexão à internet", Snackbar.LENGTH_LONG)
-                            .setAction("ATIVAR WIFI", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    wifi.setWifiEnabled(true);
-                                }
-                            });
-                    snackbar.setActionTextColor(Color.RED);
-                    View sbView = snackbar.getView();
-                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
-                    textView.setTextColor(Color.YELLOW);
-                    snackbar.show();
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean connected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+        if (connected) {
+            //System.out.println("connected");
+        } else if (!connected){
+            Snackbar snackbar = Snackbar
+                    .make(DrawerLayout, "Sem Conexão à internet", Snackbar.LENGTH_LONG)
+                    .setAction("ATIVAR WIFI", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            wifi.setWifiEnabled(true);
+                        }
+                    });
+            snackbar.setActionTextColor(Color.RED);
+            View sbView = snackbar.getView();
+            TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setTextColor(Color.YELLOW);
+            snackbar.show();
 
-                    //System.out.println("not connected");
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                System.err.println("Listener was cancelled");
-            }
-        });
+            //System.out.println("not connected");
+        }
     }
 
     public void data_bimestre_shared_pref()
     {
-
         //=================PRIMEIRO BIMESTRE========================================================
 
         //DIA INÍCIO
@@ -615,6 +605,7 @@ public class Main_activity extends AppCompatActivity
         });
 
     }
+
     protected void onStart(){
         super.onStart();
 
@@ -629,22 +620,17 @@ public class Main_activity extends AppCompatActivity
         {
             CheckUserExistence();
         }
+        verificaconexao();
     }
 
     private void CheckUserExistence()
     {
-        //final String user_id = fbAuth.getCurrentUser().getUid();
 
         UsersRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 SaveAccountSetupInformation();
-
-                /*if(!dataSnapshot.hasChild(user_id))
-                {
-                    //SaveAccountSetupInformation();
-                }*/
             }
 
             @Override
@@ -689,9 +675,9 @@ public class Main_activity extends AppCompatActivity
     private void SendUserToLoginActivity() 
     {
         //Intent loginIntent = new Intent(Main_activity.this, Login_activity.class);
-        Intent loginIntent = new Intent(Main_activity.this, IntroActivity.class);
-        loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(loginIntent);
+        Intent IntroIntent = new Intent(Main_activity.this, IntroActivity.class);
+        IntroIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(IntroIntent);
         finish();
     }
 
@@ -920,7 +906,7 @@ public class Main_activity extends AppCompatActivity
         }
 
         if (id == R.id.matrizpdf){
-            Intent it = new Intent(this, PdfViewActivity.class);
+            Intent it = new Intent(this, Pdf_view_activity.class);
             startActivity(it);
         }
 

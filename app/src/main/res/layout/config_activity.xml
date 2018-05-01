@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="xingu.inteceleri.xingu.sobral.inteceleri.sobral.Config_activity">
+    android:orientation="vertical"
+    tools:context="projeto.app.sobral.Utils.Config_activity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,27 +28,96 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:clickable="true"
-                android:layout_marginTop="5dp"
                 android:background="@drawable/effect_bottom_act_config">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bimestre"
+                    android:text="Datas do bimestre"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:layout_marginTop="18dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="18dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="18dp"
-                    android:text="Clique para configurar"
+                    android:text="Configure início e final de cada bimestre"
                     android:textColor="@color/texto_cinza"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:layout_marginLeft="18dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:background="@color/elementos_conteudo"/>
+
+            <LinearLayout
+                android:id="@+id/btn_apresentacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:background="@drawable/effect_bottom_act_config">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apresentação"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="18dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:text="Ver novamente telas de apresentação"
+                    android:layout_marginLeft="18dp"
+                    android:textColor="@color/texto_cinza"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:background="@color/elementos_conteudo"/>
+
+            <LinearLayout
+                android:id="@+id/btn_termos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:background="@drawable/effect_bottom_act_config">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Termos e condições"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="18dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:text="Leia os termos e condições de uso"
+                    android:layout_marginLeft="18dp"
+                    android:textColor="@color/texto_cinza"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -67,21 +138,21 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Conta"
+                    android:text="Conta Google"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:layout_marginTop="18dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="18dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="18dp"
-                    android:text="Clique para sair"
+                    android:text="Clique para sair ou trocar sua conta Google "
                     android:layout_marginLeft="18dp"
                     android:textColor="@color/texto_cinza"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -109,4 +180,4 @@
         </LinearLayout>
 
     </LinearLayout>
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

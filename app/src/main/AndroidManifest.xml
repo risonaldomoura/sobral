@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"    />
 
     <application
         android:allowBackup="true"
@@ -60,10 +61,14 @@
             android:label=" "
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".Utils.Termos_activity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".Utils.AppBarMainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"></activity>
         <activity android:name=".Utils.PostData"></activity>
-        <activity android:name=".Utils.PdfViewActivity"></activity>
+        <activity android:name=".Utils.Pdf_view_activity"></activity>
     </application>
 
 </manifest>

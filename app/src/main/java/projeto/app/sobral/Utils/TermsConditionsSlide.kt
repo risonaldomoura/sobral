@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_terms_conditions_slide.*
+import kotlinx.android.synthetic.main.layout_termos_e_condicoes.*
 import projeto.app.sobral.R
 
 /**
@@ -19,7 +19,7 @@ class TermsConditionsSlide : SlideFragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?): View? {
 
-        return inflater?.inflate( R.layout.fragment_terms_conditions_slide, container, false )
+        return inflater?.inflate( R.layout.layout_termos_e_condicoes, container, false )
     }
 
     override fun canMoveFurther(): Boolean {

@@ -19,3 +19,4 @@ class SPInfo (val context : Context) {
             .getSharedPreferences("PREF", Context.MODE_PRIVATE)
             .getBoolean("status", false)
 }
+

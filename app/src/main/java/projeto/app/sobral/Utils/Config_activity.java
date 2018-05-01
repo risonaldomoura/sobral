@@ -21,13 +21,13 @@ import com.google.firebase.auth.FirebaseUser;
 
 import projeto.app.sobral.R;
 
-public class Config_activity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener{
+public class Config_activity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
     private FirebaseAuth mAuth;
     private static final int RC_SIGN_IN = 1;
     private GoogleApiClient mGoogleApiClient;
     private GoogleSignInAccount GoogleSignInApi;
-    private static final String TAG = "LoginActivity";
+    private static final String TAG = "Config_activity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +45,6 @@ public class Config_activity extends AppCompatActivity implements View.OnClickLi
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-
-
     }
 
     public void onBackPressed() {
@@ -57,27 +55,9 @@ public class Config_activity extends AppCompatActivity implements View.OnClickLi
         return;
     }
 
-
-
-    @Override
-    public void onClick(View v){
-
-        {
-
-            switch (v.getId()) {
-
-
-                //case R.id.btn_logout:
-
-                    //signOut();
-            }
-
-        }
-
-    }
-
-
     private void signOut() {
+
+        Toast.makeText(Config_activity.this, "Saindo da conta Google...", Toast.LENGTH_SHORT).show();
 
         Auth.GoogleSignInApi.signOut(mGoogleApiClient);
         mAuth.signOut();
@@ -115,15 +95,6 @@ public class Config_activity extends AppCompatActivity implements View.OnClickLi
         getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
         getSupportActionBar().setTitle("Configurações"); //titulo a mostrar na barra
 
-        final LinearLayout btn_logout = (LinearLayout) findViewById(R.id.btn_logout);
-        btn_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signOut();
-            }
-        });
-
-
         final LinearLayout btn_config_bimestre = (LinearLayout) findViewById(R.id.btn_config_bimestre);
         btn_config_bimestre.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +103,43 @@ public class Config_activity extends AppCompatActivity implements View.OnClickLi
                 Intent intent = new Intent(Config_activity.this, Config_bimestre_activity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        final LinearLayout btn_apresentacao = (LinearLayout) findViewById(R.id.btn_apresentacao);
+        btn_apresentacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Resetando contador de inicialização da IntroActivity
+                Boolean status = false;
+                SharedPreferences sharedPref_intro = getSharedPreferences("PREF",Context.MODE_PRIVATE);
+                SharedPreferences.Editor prefEditor = sharedPref_intro.edit();
+                prefEditor.putBoolean("status",status).apply();
+
+                //Chamando a IntroActivity
+                Intent IntroIntent = new Intent(Config_activity.this, IntroActivity.class);
+                startActivity(IntroIntent);
+                finish();
+            }
+        });
+
+        final LinearLayout btn_termos = (LinearLayout) findViewById(R.id.btn_termos);
+        btn_termos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Chamando a TermosActivity
+                Intent TermosIntent = new Intent(Config_activity.this, Termos_activity.class);
+                startActivity(TermosIntent);
+                finish();
+            }
+        });
+
+        final LinearLayout btn_logout = (LinearLayout) findViewById(R.id.btn_logout);
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
             }
         });
 
