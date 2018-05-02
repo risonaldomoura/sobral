@@ -443,7 +443,6 @@ public class Tab_portugues_sexto_ extends Fragment{
 
                 MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
 
-
                 listData.add(x);
                 rv_I_Bimestre.setAdapter(adp_portugues_sexto);
             }

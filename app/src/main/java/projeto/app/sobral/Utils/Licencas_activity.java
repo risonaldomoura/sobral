@@ -7,22 +7,22 @@ import android.view.MenuItem;
 
 import projeto.app.sobral.R;
 
-public class Termos_activity extends AppCompatActivity {
+public class Licencas_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_termos);
+        setContentView(R.layout.activity_licencas);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //Mostrar o botão
         getSupportActionBar().setHomeButtonEnabled(true);      //Ativar o botão
-        getSupportActionBar().setTitle("Termos e condições"); //titulo a mostrar na barra
+        getSupportActionBar().setTitle("Licenças de software"); //titulo a mostrar na barra
 
     }
 
     public void onBackPressed() {
 
-        Intent it = new Intent(Termos_activity.this, Config_activity.class);
+        Intent it = new Intent(Licencas_activity.this, Config_activity.class);
         startActivity(it);
 
         return;

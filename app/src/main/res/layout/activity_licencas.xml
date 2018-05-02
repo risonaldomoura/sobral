@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="projeto.app.sobral.Util.Termos_activity">
+    tools:context="projeto.app.sobral.Util.Licencas_activity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:textSize="14dp"
             android:textColor="@color/texto_cinza"
-            android:text="@string/slide_4_content" />
+            android:text="@string/licencas" />
     </ScrollView>
 
 </LinearLayout>

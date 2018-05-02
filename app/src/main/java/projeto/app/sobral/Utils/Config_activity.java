@@ -135,6 +135,17 @@ public class Config_activity extends AppCompatActivity implements GoogleApiClien
             }
         });
 
+        final LinearLayout btn_licencas = (LinearLayout) findViewById(R.id.btn_licencas);
+        btn_licencas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Chamando a LicençasActivity
+                Intent LicencaIntent = new Intent(Config_activity.this, Licencas_activity.class);
+                startActivity(LicencaIntent);
+                finish();
+            }
+        });
+
         final LinearLayout btn_logout = (LinearLayout) findViewById(R.id.btn_logout);
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -65,6 +65,10 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/AppTheme" />
         <activity
+            android:name=".Utils.Licencas_activity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".Utils.AppBarMainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"></activity>
         <activity android:name=".Utils.PostData"></activity>

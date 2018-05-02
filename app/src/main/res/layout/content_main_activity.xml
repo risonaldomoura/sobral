@@ -12,14 +12,14 @@
 
     <include
         android:id="@+id/fl_portugues"
-        layout="@layout/apresentacao_portugues"
+        layout="@layout/layout_portugues"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
 
     <include
         android:id="@+id/fl_matematica"
-        layout="@layout/apresentacao_matematica"
+        layout="@layout/layout_matematica"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />

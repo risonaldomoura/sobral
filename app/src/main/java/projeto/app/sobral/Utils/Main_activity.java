@@ -140,9 +140,6 @@ public class Main_activity extends AppCompatActivity
         SharedPreferences sharedPref_configurar = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
         configurar = sharedPref_configurar.getInt("configurar",-1);
 
-        configurar();
-        //verificaconexao();
-
         //Salva booleana para saber se o app já executou anteriormente
         SharedPreferences sharedPref_execucao = getSharedPreferences("pref_bimestre",0);
         SharedPreferences.Editor prefEditor = sharedPref_execucao.edit();
@@ -543,38 +540,6 @@ public class Main_activity extends AppCompatActivity
 
     }
     //==============================================================================================
-
-    public void configurar(){
-
-        if(configurar != 1){
-
-                //Escreve configurar == 1;
-                SharedPreferences sharedPref_configurar = getSharedPreferences("pref_bimestre", 0);
-                SharedPreferences.Editor prefEditor2 = sharedPref_configurar.edit();
-                prefEditor2.putInt("configurar", 1);
-                prefEditor2.commit();
-
-                //Toast.makeText(Main_activity.this, "estado: "+ configurar,Toast.LENGTH_SHORT).show();
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Bem Vindo(a)!");
-                builder.setMessage("Deseja modificar as datas padrão dos bimestres?")
-                        .setCancelable(false)
-                        .setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        })
-                        .setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Intent intent = new Intent(Main_activity.this, Config_bimestre_activity.class);
-                                startActivity(intent);
-                            }
-                        });
-                builder.show();
-        }
-
-    }
 
 
     //=============================FUNÇÃO DE LEITURA DA DATA DO SISTEMA============================

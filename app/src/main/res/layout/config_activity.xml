@@ -128,6 +128,41 @@
                 android:background="@color/elementos_conteudo"/>
 
             <LinearLayout
+                android:id="@+id/btn_licencas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:background="@drawable/effect_bottom_act_config">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Licenças"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="18dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:text="Texto de licença de softwares terceiros"
+                    android:layout_marginLeft="18dp"
+                    android:textColor="@color/texto_cinza"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                android:background="@color/elementos_conteudo"/>
+
+            <LinearLayout
                 android:id="@+id/btn_logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

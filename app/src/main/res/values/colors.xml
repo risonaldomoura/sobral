@@ -14,8 +14,8 @@
     <color name="sombra_bimestre">#30000000</color>
     <color name="btn_registrar">#2873b8</color>
     <color name="black">#000000</color>
-    <color name="Botao_ok">#FFEB3B</color>
-    <color name="Botao_ok_pressionado">#FFEB3B</color>
+    <color name="Botao_ok">#2873b8</color>
+    <color name="Botao_ok_pressionado">#0c9dd4</color>
     <color name="nav_header">#2873b8</color>
     <color name="botao_pressionado">#ededed</color>
     <color name="white">#ffffff</color>

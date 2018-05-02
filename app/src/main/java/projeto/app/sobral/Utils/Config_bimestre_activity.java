@@ -205,7 +205,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
                         })
                         .setPositiveButton("SIM", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                Intent intent = new Intent(getApplicationContext(), Main_activity.class);
+                                Intent intent = new Intent(getApplicationContext(), Config_activity.class);
                                 startActivity(intent);
 
                                 Toast.makeText(getApplicationContext(), "Alterações descartadas", Toast.LENGTH_SHORT).show();
@@ -235,7 +235,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
 
                                 SaveAccountSetupInformation();
 
-                                Intent intent = new Intent(getApplicationContext(), Main_activity.class);
+                                Intent intent = new Intent(getApplicationContext(), Config_activity.class);
                                 startActivity(intent);
 
                                 //Toast.makeText(getApplicationContext(), "Datas salvas", Toast.LENGTH_SHORT).show();
