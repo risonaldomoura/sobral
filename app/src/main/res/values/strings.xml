@@ -77,6 +77,11 @@
 
     </string>
 
+    <string name="objetivo_I">
+        LÍNGUA PORTUGUESA\n Nesse segmento é esperado que o aluno já tenha desenvolvem as habilidades relacionadas a essa expectativa.\nRespeitar as regras de cortesia, combinadas pelo grupo, nas diversas situações de interação,\n a) ouvindo sem interromper;\n b) adequando a sua linguagem corporal;\n c) pedindo a palavra para expor suas ideias;\n d) modelando o tom de voz nas interações comunicativas;\n e) utilizando as formas de tratamento adequadas;\n f) colaborando com a elaboração do conjunto dos valores e das regras de convivência da classe, escola e/ou rede;\n g) evitando o uso de palavras com potencial ofensivo;\n h) reagindo de forma pacífica diante de conflitos;\n i) respeitando a opinião dos demais.\nExpressar-se de maneira efetiva nas diferentes interações,\n a) pronunciando, de forma articulada e com clareza palavras, frases, perguntas, queixas, opiniões ou manifestações gerais;\n b) utilizando vocabulário familiar de forma correta;\n c) fazendo uso da persuasão, sem coação, quando conveniente;\n d) mantendo-se no tema abordado;\n e) constituindo uma imagem positiva de si e de seus pares;\n f) conectando o tema abordado com suas próprias ideias;\n g) corrigindo sua fala mediante percepção de erro;\n h) explicando seu raciocínio aos interlocutores;\n i) reformulando o que lhe foi dito pelo interlocutor;\n j) apresentando, quando necessário, seu posicionamento diante da opinião de outros;\n k) avaliando a extensão da fala.\n
+
+    </string>
+
 
     <string name="slide_4_title">Termos e condições de uso</string>
     <string name="slide_4_checkbox_label">Concordo com os termos e condições</string>

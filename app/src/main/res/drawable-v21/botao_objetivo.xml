@@ -35,7 +35,7 @@
             android:radius="5dp"
             />
         <solid
-            android:color="@color/texto_cinza"
+            android:color="@color/elementos_conteudo"
             />
         <padding
             android:left="0dp"

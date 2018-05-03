@@ -67,7 +67,7 @@
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
-                                        android:background="@drawable/layout_gota"
+                                        android:background="@drawable/layout_gota_depois"
                                         android:rotation="45"
                                         android:layout_marginTop="10dp"/>
 
@@ -117,7 +117,7 @@
                                     <LinearLayout
                                         android:layout_width="3.5dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/colorPrimary"/>
+                                        android:background="@color/elementos_conteudo"/>
 
                                     <Space
                                         android:layout_width="wrap_content"
@@ -134,7 +134,7 @@
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
-                                        android:background="@drawable/layout_gota"
+                                        android:background="@drawable/layout_gota_depois"
                                         android:rotation="225"
                                         android:layout_marginTop="10dp" />
 
@@ -262,7 +262,7 @@
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
-                                        android:background="@drawable/layout_gota"
+                                        android:background="@drawable/layout_gota_agora"
                                         android:rotation="45"
                                         android:layout_marginTop="10dp"/>
 
@@ -329,7 +329,7 @@
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
-                                        android:background="@drawable/layout_gota"
+                                        android:background="@drawable/layout_gota_agora"
                                         android:rotation="225"
                                         android:layout_marginTop="10dp" />
 
@@ -456,7 +456,7 @@
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
-                                        android:background="@drawable/layout_gota"
+                                        android:background="@drawable/layout_gota_antes"
                                         android:rotation="45"
                                         android:layout_marginTop="10dp"/>
 
@@ -523,7 +523,7 @@
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
-                                        android:background="@drawable/layout_gota"
+                                        android:background="@drawable/layout_gota_antes"
                                         android:rotation="225"
                                         android:layout_marginTop="10dp" />
 
@@ -651,7 +651,7 @@
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
-                                        android:background="@drawable/layout_gota"
+                                        android:background="@drawable/layout_gota_antes"
                                         android:rotation="45"
                                         android:layout_marginTop="10dp"/>
 
@@ -718,7 +718,7 @@
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
-                                        android:background="@drawable/layout_gota"
+                                        android:background="@drawable/layout_gota_antes"
                                         android:rotation="225"
                                         android:layout_marginTop="10dp" />
 

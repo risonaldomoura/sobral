@@ -55,7 +55,7 @@
                         android:layout_marginRight="15dp"
                         android:layout_weight="1"
                         android:lineSpacingExtra="7sp"
-                        android:text="O texto será setado aqui"
+                        android:text="@string/objetivo_I"
                         android:textAlignment="viewStart"
                         android:textColor="@color/texto_cinza"
                         android:textSize="18sp" />
