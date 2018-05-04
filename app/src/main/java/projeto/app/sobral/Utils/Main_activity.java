@@ -5,10 +5,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -37,6 +39,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -900,6 +903,86 @@ public class Main_activity extends AppCompatActivity
             fl.setVisibility(View.VISIBLE);
             fls.setVisibility(View.GONE);
 
+        } if (id == R.id.docs){
+            PackageManager packageManager = getPackageManager();
+            String packageName = "com.google.android.apps.docs.editors.docs";
+            Intent intent = packageManager.getLaunchIntentForPackage(packageName);
+
+            String url = "https://play.google.com/store/apps/details?id=com.google.android.apps.docs.editors.docs";
+            Intent googleplay = new Intent(Intent.ACTION_VIEW);
+            googleplay.setData(Uri.parse(url));
+
+            if(null != intent){
+                startActivity(intent);
+            }
+            else if (null == intent){
+                Toast.makeText(this, "Redirecionando para play store...", Toast.LENGTH_SHORT).show();
+                startActivity(googleplay);
+            }
+        } if (id == R.id.calendario){
+            PackageManager packageManager = getPackageManager();
+            String packageName = "com.google.android.calendar";
+            Intent intent = packageManager.getLaunchIntentForPackage(packageName);
+
+            String url = "https://play.google.com/store/apps/details?id=com.google.android.calendar";
+            Intent googleplay = new Intent(Intent.ACTION_VIEW);
+            googleplay.setData(Uri.parse(url));
+
+            if(null != intent){
+                startActivity(intent);
+            }
+            else if (null == intent){
+                Toast.makeText(this, "Redirecionando para play store...", Toast.LENGTH_SHORT).show();
+                startActivity(googleplay);
+            }
+        } if (id == R.id.classroom){
+            PackageManager packageManager = getPackageManager();
+            String packageName = "com.google.android.apps.classroom";
+            Intent intent = packageManager.getLaunchIntentForPackage(packageName);
+
+            String url = "https://play.google.com/store/apps/details?id=com.google.android.apps.classroom";
+            Intent googleplay = new Intent(Intent.ACTION_VIEW);
+            googleplay.setData(Uri.parse(url));
+
+            if(null != intent){
+                startActivity(intent);
+            }
+            else if (null == intent){
+                Toast.makeText(this, "Redirecionando para play store...", Toast.LENGTH_SHORT).show();
+                startActivity(googleplay);
+            }
+        } if (id == R.id.hangouts){
+            PackageManager packageManager = getPackageManager();
+            String packageName = "com.google.android.apps.meetings";
+            Intent intent = packageManager.getLaunchIntentForPackage(packageName);
+
+            String url = "https://play.google.com/store/apps/details?id=com.google.android.apps.meetings";
+            Intent googleplay = new Intent(Intent.ACTION_VIEW);
+            googleplay.setData(Uri.parse(url));
+
+            if(null != intent){
+                startActivity(intent);
+            }
+            else if (null == intent){
+                Toast.makeText(this, "Redirecionando para play store...", Toast.LENGTH_SHORT).show();
+                startActivity(googleplay);
+            }
+        } if (id == R.id.youtube){
+            PackageManager packageManager = getPackageManager();
+            String packageName = "com.google.android.youtube";
+            Intent intent = packageManager.getLaunchIntentForPackage(packageName);
+
+            String url = "https://play.google.com/store/apps/details?id=com.google.android.youtube";
+            Intent googleplay = new Intent(Intent.ACTION_VIEW);
+            googleplay.setData(Uri.parse(url));
+
+            if(null != intent){
+                startActivity(intent);
+            }
+            else if (null == intent){
+                Toast.makeText(this, "Redirecionando para play store...", Toast.LENGTH_SHORT).show();
+                startActivity(googleplay);
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

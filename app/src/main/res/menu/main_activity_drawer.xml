@@ -36,4 +36,32 @@
             android:title="Compartilhar" />
     </group>
 
+    <group android:checkableBehavior="single">
+        <item android:title="Aplicativos externos"
+            android:textSize="18sp">
+            <menu>
+                <item
+                    android:id="@+id/calendario"
+                    android:icon="@mipmap/ic_calendario"
+                    android:title="Google Agenda" />
+                <item
+                    android:id="@+id/docs"
+                    android:icon="@mipmap/ic_docs"
+                    android:title="Google Docs" />
+                <item
+                    android:id="@+id/classroom"
+                    android:icon="@mipmap/ic_classroom"
+                    android:title="Google Sala de aula" />
+                <item
+                    android:id="@+id/hangouts"
+                    android:icon="@mipmap/ic_hangouts"
+                    android:title="Google Hangouts Meet" />
+                <item
+                    android:id="@+id/youtube"
+                    android:icon="@mipmap/ic_youtube"
+                    android:title="Youtube" />
+            </menu>
+        </item>
+    </group>
+
 </menu>
