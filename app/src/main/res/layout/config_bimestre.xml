@@ -81,7 +81,7 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/canto_sup_arredondado"
                                 android:gravity="center"
-                                android:text="I BIMESTRE"
+                                android:text="1º BIMESTRE"
                                 android:textColor="@color/black"
                                 android:textSize="17sp"
                                 android:layout_marginTop="3dp"
@@ -171,17 +171,17 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center_horizontal"
-                                                android:text="15"
+                                                android:layout_marginBottom="-7dp"
+                                                android:text=" "
                                                 android:textColor="@android:color/black"
-                                                android:textSize="22sp"
-                                                android:layout_marginBottom="-7dp"/>
+                                                android:textSize="22sp" />
 
                                             <TextView
                                                 android:id="@+id/mes_inicio_I"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center_horizontal"
-                                                android:text="JAN"
+                                                android:text=" "
                                                 android:textColor="@android:color/black"
                                                 android:textSize="12sp" />
 
@@ -237,7 +237,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center_horizontal"
-                                                android:text="25"
+                                                android:text=" "
                                                 android:textColor="@android:color/black"
                                                 android:textSize="22sp"
                                                 android:layout_marginBottom="-7dp"/>
@@ -247,7 +247,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center_horizontal"
-                                                android:text="MAR"
+                                                android:text=" "
                                                 android:textColor="@android:color/black"
                                                 android:textSize="12sp" />
 
@@ -290,7 +290,7 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/canto_sup_arredondado"
                                 android:gravity="center"
-                                android:text="II BIMESTRE"
+                                android:text="2º BIMESTRE"
                                 android:textColor="@color/black"
                                 android:textSize="17sp"
                                 android:layout_marginTop="3dp"
@@ -379,7 +379,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center_horizontal"
-                                                android:text="26"
+                                                android:text=" "
                                                 android:textColor="@android:color/black"
                                                 android:textSize="22sp"
                                                 android:layout_marginBottom="-7dp"/>
@@ -389,7 +389,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center_horizontal"
-                                                android:text="MAR"
+                                                android:text=" "
                                                 android:textColor="@android:color/black"
                                                 android:textSize="12sp" />
 
@@ -445,7 +445,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center_horizontal"
-                                                android:text="18"
+                                                android:text=" "
                                                 android:textColor="@android:color/black"
                                                 android:textSize="22sp"
                                                 android:layout_marginBottom="-7dp"/>
@@ -455,7 +455,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center_horizontal"
-                                                android:text="JUN"
+                                                android:text=" "
                                                 android:textColor="@android:color/black"
                                                 android:textSize="12sp" />
 
@@ -498,7 +498,7 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/canto_sup_arredondado"
                                 android:gravity="center"
-                                android:text="III BIMESTRE"
+                                android:text="3º BIMESTRE"
                                 android:textColor="@color/black"
                                 android:textSize="17sp"
                                 android:layout_marginTop="3dp"
@@ -587,7 +587,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center_horizontal"
-                                                android:text="10"
+                                                android:text=" "
                                                 android:textColor="@android:color/black"
                                                 android:textSize="22sp"
                                                 android:layout_marginBottom="-7dp"/>
@@ -597,7 +597,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center_horizontal"
-                                                android:text="AGO"
+                                                android:text=" "
                                                 android:textColor="@android:color/black"
                                                 android:textSize="12sp" />
 
@@ -653,7 +653,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center_horizontal"
-                                                android:text="29"
+                                                android:text=" "
                                                 android:textColor="@android:color/black"
                                                 android:textSize="22sp"
                                                 android:layout_marginBottom="-7dp"/>
@@ -663,7 +663,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center_horizontal"
-                                                android:text="SET"
+                                                android:text=" "
                                                 android:textColor="@android:color/black"
                                                 android:textSize="12sp" />
 
@@ -707,7 +707,7 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/canto_sup_arredondado"
                                 android:gravity="center"
-                                android:text="IV BIMESTRE"
+                                android:text="4º BIMESTRE"
                                 android:textColor="@color/black"
                                 android:textSize="17sp"
                                 android:layout_marginTop="3dp"
@@ -796,7 +796,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center_horizontal"
-                                                android:text="1"
+                                                android:text=" "
                                                 android:textColor="@android:color/black"
                                                 android:textSize="22sp"
                                                 android:layout_marginBottom="-7dp"/>
@@ -806,7 +806,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center_horizontal"
-                                                android:text="OUT"
+                                                android:text=" "
                                                 android:textColor="@android:color/black"
                                                 android:textSize="12sp" />
 
@@ -862,7 +862,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center_horizontal"
-                                                android:text="14"
+                                                android:text=" "
                                                 android:textColor="@android:color/black"
                                                 android:textSize="22sp"
                                                 android:layout_marginBottom="-7dp"/>
@@ -872,7 +872,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_gravity="center_horizontal"
-                                                android:text="DEZ"
+                                                android:text=" "
                                                 android:textColor="@android:color/black"
                                                 android:textSize="12sp" />
 

@@ -1,19 +1,17 @@
 package projeto.app.sobral.Utils;
 
 /**
- * Created by Daniel on 09/01/2018.
+ * Created by Risonaldo on 04/05/2018.
  */
 
-public class MyDataGetSet {
+public class Adapter {
     private String x;
 
-    public MyDataGetSet(){
-
+    public Adapter() {
     }
 
-    public MyDataGetSet(String x){
+    public Adapter(String x) {
         this.x = x;
-
     }
 
     public String getX() {
@@ -23,6 +21,4 @@ public class MyDataGetSet {
     public void setX(String x) {
         this.x = x;
     }
-
 }
-

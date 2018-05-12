@@ -207,7 +207,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
 
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref_dia_inicio_I = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_dia_inicio_I = sharedPref_dia_inicio_I.getInt("dia_inicio_I",15);
+        ID_salvo_dia_inicio_I = sharedPref_dia_inicio_I.getInt("dia_inicio_balao_1",15);
         //if(ID_salvo_dia_inicio_I != -1)
             // set the value of the spinner
             spn_dia_inicio_I.setSelection(ID_salvo_dia_inicio_I);
@@ -222,7 +222,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
                 dia_inicio_I = spn_dia_inicio_I.getSelectedItemPosition();
                 SharedPreferences sharedPref_dia_inicio_I = getSharedPreferences("pref_bimestre",0);
                 SharedPreferences.Editor prefEditor = sharedPref_dia_inicio_I.edit();
-                prefEditor.putInt("dia_inicio_I",dia_inicio_I);
+                prefEditor.putInt("dia_inicio_balao_1",dia_inicio_I);
                 prefEditor.commit();
 
             }
@@ -237,7 +237,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
 
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref_dia_termino_I = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_dia_termino_I = sharedPref_dia_termino_I.getInt("dia_termino_I",15);
+        ID_salvo_dia_termino_I = sharedPref_dia_termino_I.getInt("dia_termino_balao_1",15);
         //if(ID_salvo_dia_termino_I != -1)
             // set the value of the spinner
             spn_dia_termino_I.setSelection(ID_salvo_dia_termino_I);
@@ -253,7 +253,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
                 dia_termino_I = spn_dia_termino_I.getSelectedItemPosition();
                 SharedPreferences sharedPref_dia_termino_I = getSharedPreferences("pref_bimestre",0);
                 SharedPreferences.Editor prefEditor = sharedPref_dia_termino_I.edit();
-                prefEditor.putInt("dia_termino_I",dia_termino_I);
+                prefEditor.putInt("dia_termino_balao_1",dia_termino_I);
                 prefEditor.commit();
             }
 
@@ -267,7 +267,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
 
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref_mes_inicio_I = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_mes_inicio_I = sharedPref_mes_inicio_I.getInt("mes_inicio_I",1);
+        ID_salvo_mes_inicio_I = sharedPref_mes_inicio_I.getInt("mes_inicio_balao_1",1);
         //if(ID_salvo_mes_inicio_I != -1)
             // set the value of the spinner
             spn_mes_inicio_I.setSelection(ID_salvo_mes_inicio_I);
@@ -282,7 +282,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
                 mes_inicio_I = spn_mes_inicio_I.getSelectedItemPosition();
                 SharedPreferences sharedPref_mes_inicio_I = getSharedPreferences("pref_bimestre",0);
                 SharedPreferences.Editor prefEditor = sharedPref_mes_inicio_I.edit();
-                prefEditor.putInt("mes_inicio_I",mes_inicio_I);
+                prefEditor.putInt("mes_inicio_balao_1",mes_inicio_I);
                 prefEditor.commit();
 
                 //BuscaErroData();
@@ -300,7 +300,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
 
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref_mes_termino_I = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_mes_termino_I = sharedPref_mes_termino_I.getInt("mes_termino_I",3);
+        ID_salvo_mes_termino_I = sharedPref_mes_termino_I.getInt("mes_termino_balao_1",3);
         //if(ID_salvo_mes_termino_I != -1)
             // set the value of the spinner
             spn_mes_termino_I.setSelection(ID_salvo_mes_termino_I);
@@ -315,7 +315,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
                 mes_termino_I = spn_mes_termino_I.getSelectedItemPosition();
                 SharedPreferences sharedPref_mes_termino_I = getSharedPreferences("pref_bimestre",0);
                 SharedPreferences.Editor prefEditor = sharedPref_mes_termino_I.edit();
-                prefEditor.putInt("mes_termino_I",mes_termino_I);
+                prefEditor.putInt("mes_termino_balao_1",mes_termino_I);
                 prefEditor.commit();
 
                 //BuscaErroData();
@@ -381,7 +381,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
 
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref_dia_inicio_II = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_dia_inicio_II = sharedPref_dia_inicio_II.getInt("dia_inicio_II",16);
+        ID_salvo_dia_inicio_II = sharedPref_dia_inicio_II.getInt("dia_inicio_balao_2",16);
         //if(ID_salvo_dia_inicio_II != -1)
             // set the value of the spinner
             spn_dia_inicio_II.setSelection(ID_salvo_dia_inicio_II);
@@ -396,7 +396,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
                 dia_inicio_II = spn_dia_inicio_II.getSelectedItemPosition();
                 SharedPreferences sharedPref_dia_inicio_II = getSharedPreferences("pref_bimestre",0);
                 SharedPreferences.Editor prefEditor = sharedPref_dia_inicio_II.edit();
-                prefEditor.putInt("dia_inicio_II",dia_inicio_II);
+                prefEditor.putInt("dia_inicio_balao_2",dia_inicio_II);
                 prefEditor.commit();
 
             }
@@ -412,7 +412,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
 
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref_dia_termino_II = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_dia_termino_II = sharedPref_dia_termino_II.getInt("dia_termino_II",16);
+        ID_salvo_dia_termino_II = sharedPref_dia_termino_II.getInt("dia_termino_balao_2",16);
         //if(ID_salvo_dia_termino_II != -1)
             // set the value of the spinner
             spn_dia_termino_II.setSelection(ID_salvo_dia_termino_II);
@@ -427,7 +427,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
                 dia_termino_II = spn_dia_termino_II.getSelectedItemPosition();
                 SharedPreferences sharedPref_dia_termino_II = getSharedPreferences("pref_bimestre",0);
                 SharedPreferences.Editor prefEditor = sharedPref_dia_termino_II.edit();
-                prefEditor.putInt("dia_termino_II",dia_termino_II);
+                prefEditor.putInt("dia_termino_balao_2",dia_termino_II);
                 prefEditor.commit();
 
             }
@@ -443,7 +443,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
 
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref_mes_inicio_II = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_mes_inicio_II = sharedPref_mes_inicio_II.getInt("mes_inicio_II",3);
+        ID_salvo_mes_inicio_II = sharedPref_mes_inicio_II.getInt("mes_inicio_balao_2",3);
         //if(ID_salvo_mes_inicio_II != -1)
             // set the value of the spinner
             spn_mes_inicio_II.setSelection(ID_salvo_mes_inicio_II);
@@ -458,7 +458,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
                 mes_inicio_II = spn_mes_inicio_II.getSelectedItemPosition();
                 SharedPreferences sharedPref_mes_inicio_II = getSharedPreferences("pref_bimestre",0);
                 SharedPreferences.Editor prefEditor = sharedPref_mes_inicio_II.edit();
-                prefEditor.putInt("mes_inicio_II",mes_inicio_II);
+                prefEditor.putInt("mes_inicio_balao_2",mes_inicio_II);
                 prefEditor.commit();
 
                 if (mes_inicio_II < mes_termino_I ){
@@ -485,7 +485,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
 
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref_mes_termino_II = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_mes_termino_II = sharedPref_mes_termino_II.getInt("mes_termino_II",5);
+        ID_salvo_mes_termino_II = sharedPref_mes_termino_II.getInt("mes_termino_balao_2",5);
         //if(ID_salvo_mes_termino_II != -1)
             // set the value of the spinner
             spn_mes_termino_II.setSelection(ID_salvo_mes_termino_II);
@@ -500,7 +500,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
                 mes_termino_II = spn_mes_termino_II.getSelectedItemPosition();
                 SharedPreferences sharedPref_mes_termino_II = getSharedPreferences("pref_bimestre",0);
                 SharedPreferences.Editor prefEditor = sharedPref_mes_termino_II.edit();
-                prefEditor.putInt("mes_termino_II",mes_termino_II);
+                prefEditor.putInt("mes_termino_balao_2",mes_termino_II);
                 prefEditor.commit();
 
                 if (mes_termino_II < mes_inicio_II ){
@@ -563,7 +563,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
 
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref_dia_inicio_III = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_dia_inicio_III = sharedPref_dia_inicio_III.getInt("dia_inicio_III",5);
+        ID_salvo_dia_inicio_III = sharedPref_dia_inicio_III.getInt("dia_inicio_balao_3",5);
         //if(ID_salvo_dia_inicio_III != -1)
             // set the value of the spinner
             spn_dia_inicio_III.setSelection(ID_salvo_dia_inicio_III);
@@ -578,7 +578,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
                 dia_inicio_III = spn_dia_inicio_III.getSelectedItemPosition();
                 SharedPreferences sharedPref_dia_inicio_III = getSharedPreferences("pref_bimestre",0);
                 SharedPreferences.Editor prefEditor = sharedPref_dia_inicio_III.edit();
-                prefEditor.putInt("dia_inicio_III",dia_inicio_III);
+                prefEditor.putInt("dia_inicio_balao_3",dia_inicio_III);
                 prefEditor.commit();
 
             }
@@ -599,7 +599,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
 
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref_dia_termino_III = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_dia_termino_III = sharedPref_dia_termino_III.getInt("dia_termino_III",5);
+        ID_salvo_dia_termino_III = sharedPref_dia_termino_III.getInt("dia_termino_balao_3",5);
         //if(ID_salvo_dia_termino_III != -1)
             // set the value of the spinner
             spn_dia_termino_III.setSelection(ID_salvo_dia_termino_III);
@@ -614,7 +614,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
                 dia_termino_III = spn_dia_termino_III.getSelectedItemPosition();
                 SharedPreferences sharedPref_dia_termino_III = getSharedPreferences("pref_bimestre",0);
                 SharedPreferences.Editor prefEditor = sharedPref_dia_termino_III.edit();
-                prefEditor.putInt("dia_termino_III",dia_termino_III);
+                prefEditor.putInt("dia_termino_balao_3",dia_termino_III);
                 prefEditor.commit();
 
 
@@ -635,7 +635,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
 
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref_mes_inicio_III = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_mes_inicio_III = sharedPref_mes_inicio_III.getInt("mes_inicio_III",7);
+        ID_salvo_mes_inicio_III = sharedPref_mes_inicio_III.getInt("mes_inicio_balao_3",7);
         //if(ID_salvo_mes_inicio_III != -1)
             // set the value of the spinner
             spn_mes_inicio_III.setSelection(ID_salvo_mes_inicio_III);
@@ -650,7 +650,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
                 mes_inicio_III = spn_mes_inicio_III.getSelectedItemPosition();
                 SharedPreferences sharedPref_mes_inicio_III = getSharedPreferences("pref_bimestre",0);
                 SharedPreferences.Editor prefEditor = sharedPref_mes_inicio_III.edit();
-                prefEditor.putInt("mes_inicio_III",mes_inicio_III);
+                prefEditor.putInt("mes_inicio_balao_3",mes_inicio_III);
                 prefEditor.commit();
 
                 if (mes_inicio_III < mes_termino_II ){
@@ -680,7 +680,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
 
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref_mes_termino_III = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_mes_termino_III = sharedPref_mes_termino_III.getInt("mes_termino_III",9);
+        ID_salvo_mes_termino_III = sharedPref_mes_termino_III.getInt("mes_termino_balao_3",9);
         //if(ID_salvo_mes_termino_III != -1)
             // set the value of the spinner
             spn_mes_termino_III.setSelection(ID_salvo_mes_termino_III);
@@ -695,7 +695,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
                 mes_termino_III = spn_mes_termino_III.getSelectedItemPosition();
                 SharedPreferences sharedPref_mes_termino_III = getSharedPreferences("pref_bimestre",0);
                 SharedPreferences.Editor prefEditor = sharedPref_mes_termino_III.edit();
-                prefEditor.putInt("mes_termino_III",mes_termino_III);
+                prefEditor.putInt("mes_termino_balao_3",mes_termino_III);
                 prefEditor.commit();
 
                 if (mes_termino_III < mes_inicio_III ){
@@ -754,7 +754,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
 
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref_dia_inicio_IV = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_dia_inicio_IV = sharedPref_dia_inicio_IV.getInt("dia_inicio_IV",6);
+        ID_salvo_dia_inicio_IV = sharedPref_dia_inicio_IV.getInt("dia_inicio_balao_4",6);
         //if(ID_salvo_dia_inicio_IV != -1)
             // set the value of the spinner
             spn_dia_inicio_IV.setSelection(ID_salvo_dia_inicio_IV);
@@ -770,7 +770,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
                 dia_inicio_IV = spn_dia_inicio_IV.getSelectedItemPosition();
                 SharedPreferences sharedPref_dia_inicio_IV = getSharedPreferences("pref_bimestre",0);
                 SharedPreferences.Editor prefEditor = sharedPref_dia_inicio_IV.edit();
-                prefEditor.putInt("dia_inicio_IV",dia_inicio_IV);
+                prefEditor.putInt("dia_inicio_balao_4",dia_inicio_IV);
                 prefEditor.commit();
             }
 
@@ -785,7 +785,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
 
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref_dia_termino_IV = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_dia_termino_IV = sharedPref_dia_termino_IV.getInt("dia_termino_IV",6);
+        ID_salvo_dia_termino_IV = sharedPref_dia_termino_IV.getInt("dia_termino_balao_4",6);
         //if(ID_salvo_dia_termino_IV != -1)
             // set the value of the spinner
             spn_dia_termino_IV.setSelection(ID_salvo_dia_termino_IV);
@@ -800,7 +800,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
                 dia_termino_IV = spn_dia_termino_IV.getSelectedItemPosition();
                 SharedPreferences sharedPref_dia_termino_IV = getSharedPreferences("pref_bimestre",0);
                 SharedPreferences.Editor prefEditor = sharedPref_dia_termino_IV.edit();
-                prefEditor.putInt("dia_termino_IV",dia_termino_IV);
+                prefEditor.putInt("dia_termino_balao_4",dia_termino_IV);
                 prefEditor.commit();
             }
 
@@ -819,7 +819,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
 
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref_mes_inicio_IV = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_mes_inicio_IV = sharedPref_mes_inicio_IV.getInt("mes_inicio_IV",9);
+        ID_salvo_mes_inicio_IV = sharedPref_mes_inicio_IV.getInt("mes_inicio_balao_4",9);
         //if(ID_salvo_mes_inicio_IV != -1)
             // set the value of the spinner
             spn_mes_inicio_IV.setSelection(ID_salvo_mes_inicio_IV);
@@ -834,7 +834,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
                 mes_inicio_IV = spn_mes_inicio_IV.getSelectedItemPosition();
                 SharedPreferences sharedPref_mes_inicio_IV = getSharedPreferences("pref_bimestre",0);
                 SharedPreferences.Editor prefEditor = sharedPref_mes_inicio_IV.edit();
-                prefEditor.putInt("mes_inicio_IV",mes_inicio_IV);
+                prefEditor.putInt("mes_inicio_balao_4",mes_inicio_IV);
                 prefEditor.commit();
 
                 if (mes_inicio_IV < mes_termino_III ){
@@ -864,7 +864,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
 
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref_mes_termino_IV = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_mes_termino_IV = sharedPref_mes_termino_IV.getInt("mes_termino_IV",11);
+        ID_salvo_mes_termino_IV = sharedPref_mes_termino_IV.getInt("mes_termino_balao_4",11);
         //if(ID_salvo_mes_termino_IV != -1)
             // set the value of the spinner
             spn_mes_termino_IV.setSelection(ID_salvo_mes_termino_IV);
@@ -879,7 +879,7 @@ public class Config_bimestre_activity_Antiga extends AppCompatActivity{
                 mes_termino_IV = spn_mes_termino_IV.getSelectedItemPosition();
                 SharedPreferences sharedPref_mes_termino_IV = getSharedPreferences("pref_bimestre",0);
                 SharedPreferences.Editor prefEditor = sharedPref_mes_termino_IV.edit();
-                prefEditor.putInt("mes_termino_IV",mes_termino_IV);
+                prefEditor.putInt("mes_termino_balao_4",mes_termino_IV);
                 prefEditor.commit();
 
                 if (mes_termino_IV < mes_inicio_IV ){

@@ -1,5 +1,11 @@
 package projeto.app.sobral.Utils;
 
+/*
+* Esta tela salva as datas configuradas nesta tela no firebase, na conta do usuário
+* Falta colocar a parte em que ele carrega do firebase as datas já salvas!
+*
+* */
+
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -29,17 +35,17 @@ import projeto.app.sobral.R;
 public class Config_bimestre_activity extends AppCompatActivity {
 
     public TextView
-            dia_inicio_I, mes_inicio_I,
-            dia_termino_I, mes_termino_I,
-            dia_inicio_II, mes_inicio_II,
-            dia_termino_II, mes_termino_II,
-            dia_inicio_III, mes_inicio_III,
-            dia_termino_III, mes_termino_III,
-            dia_inicio_IV, mes_inicio_IV,
-            dia_termino_IV, mes_termino_IV;
+            dia_inicio_balao_1, mes_inicio_balao_1,
+            dia_termino_balao_1, mes_termino_balao_1,
+            dia_inicio_balao_2, mes_inicio_balao_2,
+            dia_termino_balao_2, mes_termino_balao_2,
+            dia_inicio_balao_3, mes_inicio_balao_3,
+            dia_termino_balao_3, mes_termino_balao_3,
+            dia_inicio_balao_4, mes_inicio_balao_4,
+            dia_termino_balao_4, mes_termino_balao_4;
 
 
-    //Para verificar qual botão foi clicado
+    //Para verificar qual botão foi clicado e atribuir as datas conforme a variável de cada um
     public int
             ver_inicio_I = 0 , ver_termino_I = 0,
             ver_inicio_II = 0 , ver_termino_II = 0,
@@ -49,11 +55,20 @@ public class Config_bimestre_activity extends AppCompatActivity {
 
     private Button btn_cancelar, btn_check;
 
-    public int ano, mes, dia;
+    public int dia, mes, ano;
+    public String mes_string, dia_string, ano_string, data;
 
     static final int DATE_DIALOG_ID = 0;
 
-    public String mes_final, dia_final;
+    //Dia/Mes/Ano que será enviado para o firebase
+    public int dia_inicio_fb_1, mes_inicio_fb_1, ano_inicio_fb_1,
+                dia_termino_fb_1, mes_termino_fb_1, ano_termino_fb_1,
+                dia_inicio_fb_2, mes_inicio_fb_2, ano_inicio_fb_2,
+                dia_termino_fb_2, mes_termino_fb_2, ano_termino_fb_2,
+                dia_inicio_fb_3, mes_inicio_fb_3, ano_inicio_fb_3,
+                dia_termino_fb_3, mes_termino_fb_3, ano_termino_fb_3,
+                dia_inicio_fb_4, mes_inicio_fb_4, ano_inicio_fb_4,
+                dia_termino_fb_4, mes_termino_fb_4, ano_termino_fb_4;
 
     private FirebaseAuth fbAuth;
     private DatabaseReference UserRef;
@@ -63,9 +78,44 @@ public class Config_bimestre_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.config_bimestre);
 
-
         fbAuth = FirebaseAuth.getInstance();
         UserRef = FirebaseDatabase.getInstance().getReference().child("users");
+
+        text_views();
+
+        baloes_datas();
+
+        botoes_toolbar();
+    }
+
+    private void text_views() {
+        dia_inicio_balao_1 = (TextView) findViewById(R.id.dia_inicio_I);
+        mes_inicio_balao_1 = (TextView) findViewById(R.id.mes_inicio_I);
+
+        dia_termino_balao_1 = (TextView) findViewById(R.id.dia_termino_I);
+        mes_termino_balao_1 = (TextView) findViewById(R.id.mes_termino_I);
+
+        dia_inicio_balao_2 = (TextView) findViewById(R.id.dia_inicio_II);
+        mes_inicio_balao_2 = (TextView) findViewById(R.id.mes_inicio_II);
+
+        dia_termino_balao_2 = (TextView) findViewById(R.id.dia_termino_II);
+        mes_termino_balao_2 = (TextView) findViewById(R.id.mes_termino_II);
+
+        dia_inicio_balao_3 = (TextView) findViewById(R.id.dia_inicio_III);
+        mes_inicio_balao_3 = (TextView) findViewById(R.id.mes_inicio_III);
+
+        dia_termino_balao_3 = (TextView) findViewById(R.id.dia_termino_III);
+        mes_termino_balao_3 = (TextView) findViewById(R.id.mes_termino_III);
+
+        dia_inicio_balao_4 = (TextView) findViewById(R.id.dia_inicio_IV);
+        mes_inicio_balao_4 = (TextView) findViewById(R.id.mes_inicio_IV);
+
+        dia_termino_balao_4 = (TextView) findViewById(R.id.dia_termino_IV);
+        mes_termino_balao_4 = (TextView) findViewById(R.id.mes_termino_IV);
+
+    }
+
+    private void baloes_datas() {
 
         final LinearLayout btn_inicio_I = (LinearLayout) findViewById(R.id.btn_inicio_I);
         final LinearLayout btn_inicio_II = (LinearLayout) findViewById(R.id.btn_inicio_II);
@@ -75,30 +125,6 @@ public class Config_bimestre_activity extends AppCompatActivity {
         final LinearLayout btn_termino_II = (LinearLayout) findViewById(R.id.btn_termino_II);
         final LinearLayout btn_termino_III = (LinearLayout) findViewById(R.id.btn_termino_III);
         final LinearLayout btn_termino_IV = (LinearLayout) findViewById(R.id.btn_termino_IV);
-
-        dia_inicio_I = (TextView) findViewById(R.id.dia_inicio_I);
-        mes_inicio_I = (TextView) findViewById(R.id.mes_inicio_I);
-
-        dia_termino_I = (TextView) findViewById(R.id.dia_termino_I);
-        mes_termino_I = (TextView) findViewById(R.id.mes_termino_I);
-
-        dia_inicio_II = (TextView) findViewById(R.id.dia_inicio_II);
-        mes_inicio_II = (TextView) findViewById(R.id.mes_inicio_II);
-
-        dia_termino_II = (TextView) findViewById(R.id.dia_termino_II);
-        mes_termino_II = (TextView) findViewById(R.id.mes_termino_II);
-
-        dia_inicio_III = (TextView) findViewById(R.id.dia_inicio_III);
-        mes_inicio_III = (TextView) findViewById(R.id.mes_inicio_III);
-
-        dia_termino_III = (TextView) findViewById(R.id.dia_termino_III);
-        mes_termino_III = (TextView) findViewById(R.id.mes_termino_III);
-
-        dia_inicio_IV = (TextView) findViewById(R.id.dia_inicio_IV);
-        mes_inicio_IV = (TextView) findViewById(R.id.mes_inicio_IV);
-
-        dia_termino_IV = (TextView) findViewById(R.id.dia_termino_IV);
-        mes_termino_IV = (TextView) findViewById(R.id.mes_termino_IV);
 
         btn_inicio_I.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,8 +213,9 @@ public class Config_bimestre_activity extends AppCompatActivity {
 
             }
         });
+    }
 
-
+    private void botoes_toolbar() {
         btn_cancelar = (Button) findViewById(R.id.btn_cancelar);
         btn_cancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -270,85 +297,84 @@ public class Config_bimestre_activity extends AppCompatActivity {
                               int dayOfMonth) {
 
             //Para tornar pública a data
-            //ano = year;
+            //Ano, mês e dia estão em int
+            ano = year;
             mes = monthOfYear+1;
             dia = dayOfMonth;
 
-            String data = String.valueOf(dayOfMonth) + " /"
-                    + String.valueOf(monthOfYear+1) + " /" + String.valueOf(year);
+            //Dia trasnformado em string
+            dia_string = String.valueOf(dayOfMonth);
+            ano_string = String.valueOf(year);
 
-            dia_final = String.valueOf(dayOfMonth);
-
-            //Toast.makeText(Config_bimestre_activity.this,"DATA = " + data, Toast.LENGTH_SHORT).show();
-            //Toast.makeText(Config_bimestre_activity.this,"Dia = " + dia, Toast.LENGTH_SHORT).show();
-            //Toast.makeText(Config_bimestre_activity.this,"Mes = " + mes, Toast.LENGTH_SHORT).show();
+            conversor_mes();
 
             ver_botoes();
 
         }
     };
 
+    //Aqui faço a atribuição de mês para nome do mês, por exemplo, 1 == JAN
     public void conversor_mes()
     {
         if (mes == 1)
         {
-            mes_final = "JAN";
+            mes_string = "JAN";
         }
         else if (mes == 2)
         {
-            mes_final = "FEV";
+            mes_string = "FEV";
         }
         else if (mes == 3)
         {
-            mes_final = "MAR";
+            mes_string = "MAR";
         }
         else if (mes == 4)
         {
-            mes_final = "ABR";
+            mes_string = "ABR";
         }
         else if (mes == 5)
         {
-            mes_final = "MAI";
+            mes_string = "MAI";
         }
         else if (mes == 6)
         {
-            mes_final = "JUN";
+            mes_string = "JUN";
         }
         else if (mes == 7)
         {
-            mes_final = "JUL";
+            mes_string = "JUL";
         }
         else if (mes == 8)
         {
-            mes_final = "AGO";
+            mes_string = "AGO";
         }
         else if (mes == 9)
         {
-            mes_final = "SET";
+            mes_string = "SET";
         }
         else if (mes == 10)
         {
-            mes_final = "OUT";
+            mes_string = "OUT";
         }
         else if (mes == 11)
         {
-            mes_final = "NOV";
+            mes_string = "NOV";
         }
         else if (mes == 12)
         {
-            mes_final = "DEZ";
+            mes_string = "DEZ";
         }
 
 
 
     }
 
-
+    //Aqui grava qual botão foi clicado, para chamar o método de cada um
     public void ver_botoes(){
 
         if (ver_inicio_I == 1){
 
-            setar_inicio_I();
+            setar_inicio_1();
 
             ver_inicio_I = 0;
 
@@ -356,7 +382,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
 
         if (ver_termino_I == 1){
 
-            setar_termino_I();
+            setar_termino_1();
 
             ver_termino_I = 0;
 
@@ -364,7 +390,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
 
         if (ver_inicio_II == 1){
 
-            setar_inicio_II();
+            setar_inicio_2();
 
             ver_inicio_II = 0;
 
@@ -372,7 +398,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
 
         if (ver_termino_II == 1){
 
-            setar_termino_II();
+            setar_termino_2();
 
             ver_termino_II = 0;
 
@@ -380,7 +406,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
 
         if (ver_inicio_III == 1){
 
-            setar_inicio_III();
+            setar_inicio_3();
 
             ver_inicio_III = 0;
 
@@ -388,7 +414,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
 
         if (ver_termino_III == 1){
 
-            setar_termino_III();
+            setar_termino_3();
 
             ver_termino_III = 0;
 
@@ -396,7 +422,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
 
         if (ver_inicio_IV == 1){
 
-            setar_inicio_IV();
+            setar_inicio_4();
 
             ver_inicio_IV = 0;
 
@@ -404,7 +430,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
 
         if (ver_termino_IV == 1){
 
-            setar_termino_IV();
+            setar_termino_4();
 
             ver_termino_IV = 0;
 
@@ -415,68 +441,86 @@ public class Config_bimestre_activity extends AppCompatActivity {
     }
 
 
-    public void setar_inicio_I(){
+    public void setar_inicio_1(){
 
-        conversor_mes();
+        //Dia e mês mostrados no balão do bimestre
+        dia_inicio_balao_1.setText(dia_string);
+        mes_inicio_balao_1.setText(mes_string);
 
-        dia_inicio_I.setText(dia_final);
-        mes_inicio_I.setText(mes_final);
+        //Dia, mês e ano que serão enviados para o Firebase
+        dia_inicio_fb_1 = dia;
+        mes_inicio_fb_1 = mes;
+        ano_inicio_fb_1 = ano;
     }
 
-    public void setar_termino_I() {
+    public void setar_termino_1() {
 
-        conversor_mes();
+        dia_termino_balao_1.setText(dia_string);
+        mes_termino_balao_1.setText(mes_string);
 
-        dia_termino_I.setText(dia_final);
-        mes_termino_I.setText(mes_final);
+        dia_termino_fb_1 = dia;
+        mes_termino_fb_1 = mes;
+        ano_termino_fb_1 = ano;
     }
 
-    public void setar_inicio_II(){
+    public void setar_inicio_2(){
 
-        conversor_mes();
+        dia_inicio_balao_2.setText(dia_string);
+        mes_inicio_balao_2.setText(mes_string);
 
-        dia_inicio_II.setText(dia_final);
-        mes_inicio_II.setText(mes_final);
+        dia_inicio_fb_2 = dia;
+        mes_inicio_fb_2 = mes;
+        ano_inicio_fb_2 = ano;
     }
 
-    public void setar_termino_II() {
+    public void setar_termino_2() {
 
-        conversor_mes();
+        dia_termino_balao_2.setText(dia_string);
+        mes_termino_balao_2.setText(mes_string);
 
-        dia_termino_II.setText(dia_final);
-        mes_termino_II.setText(mes_final);
+        dia_termino_fb_2 = dia;
+        mes_termino_fb_2 = mes;
+        ano_termino_fb_2 = ano;
     }
 
-    public void setar_inicio_III(){
+    public void setar_inicio_3(){
 
-        conversor_mes();
+        dia_inicio_balao_3.setText(dia_string);
+        mes_inicio_balao_3.setText(mes_string);
 
-        dia_inicio_III.setText(dia_final);
-        mes_inicio_III.setText(mes_final);
+        dia_inicio_fb_3 = dia;
+        mes_inicio_fb_3 = mes;
+        ano_inicio_fb_3 = ano;
     }
 
-    public void setar_termino_III() {
+    public void setar_termino_3() {
 
-        conversor_mes();
+        dia_termino_balao_3.setText(dia_string);
+        mes_termino_balao_3.setText(mes_string);
 
-        dia_termino_III.setText(dia_final);
-        mes_termino_III.setText(mes_final);
+        dia_termino_fb_3 = dia;
+        mes_termino_fb_3 = mes;
+        ano_termino_fb_3 = ano;
     }
 
-    public void setar_inicio_IV(){
+    public void setar_inicio_4(){
 
-        conversor_mes();
+        dia_inicio_balao_4.setText(dia_string);
+        mes_inicio_balao_4.setText(mes_string);
 
-        dia_inicio_IV.setText(dia_final);
-        mes_inicio_IV.setText(mes_final);
+        dia_inicio_fb_4 = dia;
+        mes_inicio_fb_4 = mes;
+        ano_inicio_fb_4 = ano;
     }
 
-    public void setar_termino_IV() {
+    public void setar_termino_4() {
 
-        conversor_mes();
+        dia_termino_balao_4.setText(dia_string);
+        mes_termino_balao_4.setText(mes_string);
 
-        dia_termino_IV.setText(dia_final);
-        mes_termino_IV.setText(mes_final);
+        dia_termino_fb_4 = dia;
+        mes_termino_fb_4 = mes;
+        ano_termino_fb_4 = ano;
     }
 
     //Salvando dados do usuário no Firebase
@@ -485,54 +529,33 @@ public class Config_bimestre_activity extends AppCompatActivity {
         //Captura dos dados do usuário
         final String user_id = fbAuth.getCurrentUser().getUid();
 
-        final String dia_inicio_1 = dia_inicio_I.getText().toString();
-        final String dia_termino_1 = dia_termino_I.getText().toString();
+        final String inicio_1 = (dia_inicio_fb_1+"/"+mes_inicio_fb_1+"/"+ano_inicio_fb_1);
+        final String termino_1 = (dia_termino_fb_1+"/"+mes_termino_fb_1+"/"+ano_termino_fb_1);
 
-        final String mes_inicio_1 = mes_inicio_I.getText().toString();
-        final String mes_termino_1 = mes_termino_I.getText().toString();
+        final String inicio_2 = (dia_inicio_fb_2+"/"+mes_inicio_fb_2+"/"+ano_inicio_fb_2);
+        final String termino_2 = (dia_termino_fb_2+"/"+mes_termino_fb_2+"/"+ano_termino_fb_2);;
 
-        final String dia_inicio_2 = dia_inicio_II.getText().toString();
-        final String dia_termino_2 = dia_termino_II.getText().toString();
+        final String inicio_3 = (dia_inicio_fb_3+"/"+mes_inicio_fb_3+"/"+ano_inicio_fb_3);
+        final String termino_3 = (dia_termino_fb_3+"/"+mes_termino_fb_3+"/"+ano_termino_fb_3);
 
-        final String mes_inicio_2 = mes_inicio_II.getText().toString();
-        final String mes_termino_2 = mes_termino_II.getText().toString();
+        final String inicio_4 = (dia_inicio_fb_4+"/"+mes_inicio_fb_4+"/"+ano_inicio_fb_4);
+        final String termino_4 = (dia_termino_fb_4+"/"+mes_termino_fb_4+"/"+ano_termino_fb_4);
 
-        final String dia_inicio_3 = dia_inicio_III.getText().toString();
-        final String dia_termino_3 = dia_termino_III.getText().toString();
-
-        final String mes_inicio_3 = mes_inicio_III.getText().toString();
-        final String mes_termino_3 = mes_termino_III.getText().toString();
-
-        final String dia_inicio_4 = dia_inicio_IV.getText().toString();
-        final String dia_termino_4 = dia_termino_IV.getText().toString();
-
-        final String mes_inicio_4 = mes_inicio_IV.getText().toString();
-        final String mes_termino_4 = mes_termino_IV.getText().toString();
 
         HashMap userMap = new HashMap();
-        userMap.put("dia_inicio_I", dia_inicio_1);
-        userMap.put("dia_termino_I", dia_termino_1);
 
-        userMap.put("mes_inicio_I", mes_inicio_1);
-        userMap.put("mes_termino_I", mes_termino_1);
+        userMap.put("inicio_1", inicio_1);
+        userMap.put("termino_1", termino_1);
 
-        userMap.put("dia_inicio_II", dia_inicio_2);
-        userMap.put("dia_termino_II", dia_termino_2);
+        userMap.put("inicio_2", inicio_2);
+        userMap.put("termino_2", termino_2);
 
-        userMap.put("mes_inicio_II", mes_inicio_2);
-        userMap.put("mes_termino_II", mes_termino_2);
+        userMap.put("inicio_3", inicio_3);
+        userMap.put("termino_3", termino_3);
 
-        userMap.put("dia_inicio_III", dia_inicio_3);
-        userMap.put("dia_termino_III", dia_termino_3);
+        userMap.put("inicio_4", inicio_4);
+        userMap.put("termino_4", termino_4);
 
-        userMap.put("mes_inicio_III", mes_inicio_3);
-        userMap.put("mes_termino_III", mes_termino_3);
-
-        userMap.put("dia_inicio_IV", dia_inicio_4);
-        userMap.put("dia_termino_IV", dia_termino_4);
-
-        userMap.put("mes_inicio_IV", mes_inicio_4);
-        userMap.put("mes_termino_IV", mes_termino_4);
 
         UserRef.child(user_id).child("datas").updateChildren(userMap).addOnCompleteListener(new OnCompleteListener() {
             @Override
@@ -544,8 +567,8 @@ public class Config_bimestre_activity extends AppCompatActivity {
                 }
                 else
                 {
-                    //String message =  task.getException().getMessage();
-                    //Toast.makeText(Main_activity.this, "Dados não salvos " + message, Toast.LENGTH_SHORT).show();
+                    String message =  task.getException().getMessage();
+                    Toast.makeText(Config_bimestre_activity.this, "Dados não salvos. Erro: " + message, Toast.LENGTH_SHORT).show();
                 }
             }
         });

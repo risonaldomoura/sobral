@@ -83,19 +83,19 @@ public class Tab_portugues_nono extends Fragment {
 
         //DIA INÍCIO
         SharedPreferences sharedPref_dia_inicio_I = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_dia_inicio_I = sharedPref_dia_inicio_I.getInt("dia_inicio_I", 15);
+        ID_salvo_dia_inicio_I = sharedPref_dia_inicio_I.getInt("dia_inicio_balao_1", 15);
 
         //DIA TÉRMINO
         SharedPreferences sharedPref_dia_termino_I = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_dia_termino_I = sharedPref_dia_termino_I.getInt("dia_termino_I", 15);
+        ID_salvo_dia_termino_I = sharedPref_dia_termino_I.getInt("dia_termino_balao_1", 15);
 
         //MÊS INÍCIO
         SharedPreferences sharedPref_mes_inicio_I = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_mes_inicio_I = sharedPref_mes_inicio_I.getInt("mes_inicio_I", 1);
+        ID_salvo_mes_inicio_I = sharedPref_mes_inicio_I.getInt("mes_inicio_balao_1", 1);
 
         //MÊS TÉRMINO
         SharedPreferences sharedPref_mes_termino_I = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_mes_termino_I = sharedPref_mes_termino_I.getInt("mes_termino_I", 3);
+        ID_salvo_mes_termino_I = sharedPref_mes_termino_I.getInt("mes_termino_balao_1", 3);
 
         //==========================================================================================
 
@@ -103,19 +103,19 @@ public class Tab_portugues_nono extends Fragment {
 
         //DIA INICIO
         SharedPreferences sharedPref_dia_inicio_II = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_dia_inicio_II = sharedPref_dia_inicio_II.getInt("dia_inicio_II", 16);
+        ID_salvo_dia_inicio_II = sharedPref_dia_inicio_II.getInt("dia_inicio_balao_2", 16);
 
         //DIA TÉRMINO
         SharedPreferences sharedPref_dia_termino_II = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_dia_termino_II = sharedPref_dia_termino_II.getInt("dia_termino_II", 16);
+        ID_salvo_dia_termino_II = sharedPref_dia_termino_II.getInt("dia_termino_balao_2", 16);
 
         //MES INÍCIO
         SharedPreferences sharedPref_mes_inicio_II = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_mes_inicio_II = sharedPref_mes_inicio_II.getInt("mes_inicio_II", 3);
+        ID_salvo_mes_inicio_II = sharedPref_mes_inicio_II.getInt("mes_inicio_balao_2", 3);
 
         //MÊS TÉRMINO
         SharedPreferences sharedPref_mes_termino_II = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_mes_termino_II = sharedPref_mes_termino_II.getInt("mes_termino_II", 5);
+        ID_salvo_mes_termino_II = sharedPref_mes_termino_II.getInt("mes_termino_balao_2", 5);
 
         //==========================================================================================
 
@@ -123,19 +123,19 @@ public class Tab_portugues_nono extends Fragment {
 
         //DIA INÍCIO
         SharedPreferences sharedPref_dia_inicio_III = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_dia_inicio_III = sharedPref_dia_inicio_III.getInt("dia_inicio_III", 5);
+        ID_salvo_dia_inicio_III = sharedPref_dia_inicio_III.getInt("dia_inicio_balao_3", 5);
 
         //DIA TÉRMINO
         SharedPreferences sharedPref_dia_termino_III = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_dia_termino_III = sharedPref_dia_termino_III.getInt("dia_termino_III", 5);
+        ID_salvo_dia_termino_III = sharedPref_dia_termino_III.getInt("dia_termino_balao_3", 5);
 
         //MES INÍCIO
         SharedPreferences sharedPref_mes_inicio_III = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_mes_inicio_III = sharedPref_mes_inicio_III.getInt("mes_inicio_III", 7);
+        ID_salvo_mes_inicio_III = sharedPref_mes_inicio_III.getInt("mes_inicio_balao_3", 7);
 
         //MÊS TÉRMINO
         SharedPreferences sharedPref_mes_termino_III = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_mes_termino_III = sharedPref_mes_termino_III.getInt("mes_termino_III", 9);
+        ID_salvo_mes_termino_III = sharedPref_mes_termino_III.getInt("mes_termino_balao_3", 9);
 
         //==========================================================================================
 
@@ -143,19 +143,19 @@ public class Tab_portugues_nono extends Fragment {
 
         //DIA INÍCIO
         SharedPreferences sharedPref_dia_inicio_IV = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_dia_inicio_IV = sharedPref_dia_inicio_IV.getInt("dia_inicio_IV", 6);
+        ID_salvo_dia_inicio_IV = sharedPref_dia_inicio_IV.getInt("dia_inicio_balao_4", 6);
 
         //DIA TÉRMINO
         SharedPreferences sharedPref_dia_termino_IV = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_dia_termino_IV = sharedPref_dia_termino_IV.getInt("dia_termino_IV", 6);
+        ID_salvo_dia_termino_IV = sharedPref_dia_termino_IV.getInt("dia_termino_balao_4", 6);
 
         //MES INÍCIO
         SharedPreferences sharedPref_mes_inicio_IV = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_mes_inicio_IV = sharedPref_mes_inicio_IV.getInt("mes_inicio_IV", 9);
+        ID_salvo_mes_inicio_IV = sharedPref_mes_inicio_IV.getInt("mes_inicio_balao_4", 9);
 
         //MÊS TÉRMINO
         SharedPreferences sharedPref_mes_termino_IV = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_mes_termino_IV = sharedPref_mes_termino_IV.getInt("mes_termino_IV", 11);
+        ID_salvo_mes_termino_IV = sharedPref_mes_termino_IV.getInt("mes_termino_balao_4", 11);
 
         //==========================================================================================
 
