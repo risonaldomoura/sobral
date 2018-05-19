@@ -64,10 +64,11 @@
                                     android:layout_height="70dp">
 
                                     <LinearLayout
+                                        android:id="@+id/balao_inicio_1"
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
-                                        android:background="@drawable/layout_gota_depois"
+                                        android:background="@drawable/layout_gota_antes"
                                         android:rotation="45"
                                         android:layout_marginTop="10dp"/>
 
@@ -82,19 +83,19 @@
                                         <TextView
                                             android:id="@+id/dia_inicio_I"
                                             android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
+                                            android:layout_height="match_parent"
                                             android:layout_gravity="center_horizontal"
-                                            android:text="15"
+                                            android:layout_marginBottom="-7dp"
+                                            android:text=" "
                                             android:textColor="@android:color/black"
-                                            android:textSize="22sp"
-                                            android:layout_marginBottom="-7dp"/>
+                                            android:textSize="22sp" />
 
                                         <TextView
                                             android:id="@+id/mes_inicio_I"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center_horizontal"
-                                            android:text="JAN"
+                                            android:text="  "
                                             android:textColor="@android:color/black"
                                             android:textSize="12sp" />
 
@@ -115,9 +116,11 @@
                                         android:layout_weight="1"/>
 
                                     <LinearLayout
+                                        android:id="@+id/barra_balao_1"
                                         android:layout_width="3.5dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/elementos_conteudo"/>
+                                        android:background="@color/colorPrimary"
+                                        android:orientation="vertical"/>
 
                                     <Space
                                         android:layout_width="wrap_content"
@@ -134,7 +137,7 @@
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
-                                        android:background="@drawable/layout_gota_depois"
+                                        android:background="@drawable/layout_gota_antes"
                                         android:rotation="225"
                                         android:layout_marginTop="10dp" />
 
@@ -149,19 +152,19 @@
                                         <TextView
                                             android:id="@+id/dia_termino_I"
                                             android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
+                                            android:layout_height="match_parent"
                                             android:layout_gravity="center_horizontal"
-                                            android:text="25"
+                                            android:layout_marginBottom="-7dp"
+                                            android:text=" "
                                             android:textColor="@android:color/black"
-                                            android:textSize="22sp"
-                                            android:layout_marginBottom="-7dp"/>
+                                            android:textSize="22sp" />
 
                                         <TextView
                                             android:id="@+id/mes_termino_I"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center_horizontal"
-                                            android:text="MAR"
+                                            android:text=" "
                                             android:textColor="@android:color/black"
                                             android:textSize="12sp" />
 
@@ -259,10 +262,11 @@
                                     android:layout_height="70dp">
 
                                     <LinearLayout
+                                        android:id="@+id/balao_inicio_2"
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
-                                        android:background="@drawable/layout_gota_agora"
+                                        android:background="@drawable/layout_gota_antes"
                                         android:rotation="45"
                                         android:layout_marginTop="10dp"/>
 
@@ -277,19 +281,19 @@
                                         <TextView
                                             android:id="@+id/dia_inicio_II"
                                             android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
+                                            android:layout_height="match_parent"
                                             android:layout_gravity="center_horizontal"
-                                            android:text="26"
+                                            android:layout_marginBottom="-7dp"
+                                            android:text="  "
                                             android:textColor="@android:color/black"
-                                            android:textSize="22sp"
-                                            android:layout_marginBottom="-7dp"/>
+                                            android:textSize="22sp" />
 
                                         <TextView
                                             android:id="@+id/mes_inicio_II"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center_horizontal"
-                                            android:text="MAR"
+                                            android:text=" "
                                             android:textColor="@android:color/black"
                                             android:textSize="12sp" />
 
@@ -310,9 +314,11 @@
                                         android:layout_weight="1"/>
 
                                     <LinearLayout
+                                        android:id="@+id/barra_balao_2"
                                         android:layout_width="3.5dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/colorPrimary"/>
+                                        android:background="@color/colorPrimary"
+                                        android:orientation="vertical"/>
 
                                     <Space
                                         android:layout_width="wrap_content"
@@ -326,10 +332,11 @@
                                     android:layout_marginTop="-2dp">
 
                                     <LinearLayout
+                                        android:id="@+id/balao_termino_2"
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
-                                        android:background="@drawable/layout_gota_agora"
+                                        android:background="@drawable/layout_gota_antes"
                                         android:rotation="225"
                                         android:layout_marginTop="10dp" />
 
@@ -346,7 +353,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center_horizontal"
-                                            android:text="18"
+                                            android:text=" "
                                             android:textColor="@android:color/black"
                                             android:textSize="22sp"
                                             android:layout_marginBottom="-7dp"/>
@@ -356,7 +363,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center_horizontal"
-                                            android:text="JUN"
+                                            android:text=" "
                                             android:textColor="@android:color/black"
                                             android:textSize="12sp" />
 
@@ -453,6 +460,7 @@
                                     android:layout_height="70dp">
 
                                     <LinearLayout
+                                        android:id="@+id/balao_inicio_3"
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
@@ -473,7 +481,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center_horizontal"
-                                            android:text="10"
+                                            android:text=" "
                                             android:textColor="@android:color/black"
                                             android:textSize="22sp"
                                             android:layout_marginBottom="-7dp"/>
@@ -483,7 +491,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center_horizontal"
-                                            android:text="AGO"
+                                            android:text=" "
                                             android:textColor="@android:color/black"
                                             android:textSize="12sp" />
 
@@ -504,9 +512,11 @@
                                         android:layout_weight="1"/>
 
                                     <LinearLayout
+                                        android:id="@+id/barra_balao_3"
                                         android:layout_width="3.5dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/colorPrimary"/>
+                                        android:background="@color/colorPrimary"
+                                        android:orientation="vertical"/>
 
                                     <Space
                                         android:layout_width="wrap_content"
@@ -520,6 +530,7 @@
                                     android:layout_marginTop="-2dp">
 
                                     <LinearLayout
+                                        android:id="@+id/balao_termino_3"
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
@@ -540,7 +551,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center_horizontal"
-                                            android:text="29"
+                                            android:text=" "
                                             android:textColor="@android:color/black"
                                             android:textSize="22sp"
                                             android:layout_marginBottom="-7dp"/>
@@ -550,7 +561,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center_horizontal"
-                                            android:text="SET"
+                                            android:text=" "
                                             android:textColor="@android:color/black"
                                             android:textSize="12sp" />
 
@@ -648,6 +659,7 @@
                                     android:layout_height="70dp">
 
                                     <LinearLayout
+                                        android:id="@+id/balao_inicio_4"
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
@@ -668,7 +680,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center_horizontal"
-                                            android:text="1"
+                                            android:text=" "
                                             android:textColor="@android:color/black"
                                             android:textSize="22sp"
                                             android:layout_marginBottom="-7dp"/>
@@ -678,7 +690,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center_horizontal"
-                                            android:text="OUT"
+                                            android:text=" "
                                             android:textColor="@android:color/black"
                                             android:textSize="12sp" />
 
@@ -699,9 +711,11 @@
                                         android:layout_weight="1"/>
 
                                     <LinearLayout
+                                        android:id="@+id/barra_balao_4"
                                         android:layout_width="3.5dp"
                                         android:layout_height="match_parent"
-                                        android:background="@color/colorPrimary"/>
+                                        android:background="@color/colorPrimary"
+                                        android:orientation="vertical"/>
 
                                     <Space
                                         android:layout_width="wrap_content"
@@ -715,6 +729,7 @@
                                     android:layout_marginTop="-2dp">
 
                                     <LinearLayout
+                                        android:id="@+id/balao_termino_4"
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
@@ -735,7 +750,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center_horizontal"
-                                            android:text="14"
+                                            android:text=" "
                                             android:textColor="@android:color/black"
                                             android:textSize="22sp"
                                             android:layout_marginBottom="-7dp"/>
@@ -745,7 +760,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center_horizontal"
-                                            android:text="DEZ"
+                                            android:text=" "
                                             android:textColor="@android:color/black"
                                             android:textSize="12sp" />
 

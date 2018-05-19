@@ -93,6 +93,7 @@ public class Main_activity extends AppCompatActivity
     private DatabaseReference UsersRef;
 
     private FirebaseDatabase FirebaseDatabase;
+    private DatabaseReference UserData;
 
     private Spinner spn_disciplina;
     public static int IDAtual;
@@ -542,6 +543,8 @@ public class Main_activity extends AppCompatActivity
         });
 
     }
+
+
     //==============================================================================================
 
 
@@ -989,7 +992,5 @@ public class Main_activity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
 
 }

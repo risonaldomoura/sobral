@@ -1,8 +1,8 @@
 package projeto.app.sobral.Utils;
 
 /*
-* Esta tela salva as datas configuradas nesta tela no firebase, na conta do usuário
-* Falta colocar a parte em que ele carrega do firebase as datas já salvas!
+* Esta tela salva as datas configuradas nesta tela no firebase, dentro da conta do usuário
+* E carrega as datas também e seta nos campos de data da tela conforme a conta do usuário.
 *
 * */
 
@@ -24,8 +24,11 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -52,16 +55,26 @@ public class Config_bimestre_activity extends AppCompatActivity {
             ver_inicio_III = 0 , ver_termino_III = 0,
             ver_inicio_IV = 0 , ver_termino_IV = 0;
 
+    public int
+            gravar_inicio_1=0, gravar_termino_1=0,
+            gravar_inicio_2=0, gravar_termino_2=0,
+            gravar_inicio_3=0, gravar_termino_3=0,
+            gravar_inicio_4=0, gravar_termino_4=0;
 
     private Button btn_cancelar, btn_check;
 
-    public int dia, mes, ano;
-    public String mes_string, dia_string, ano_string, data;
+    public String dia, mes, ano, mes_palavra, data;
+
+    //Dia e Mês carregado do firebase
+    public String dia_up_inicio_1, mes_up_inicio_1, dia_up_termino_1, mes_up_termino_1,
+            dia_up_inicio_2, mes_up_inicio_2, dia_up_termino_2, mes_up_termino_2,
+            dia_up_inicio_3, mes_up_inicio_3, dia_up_termino_3, mes_up_termino_3,
+            dia_up_inicio_4, mes_up_inicio_4, dia_up_termino_4, mes_up_termino_4;
 
     static final int DATE_DIALOG_ID = 0;
 
     //Dia/Mes/Ano que será enviado para o firebase
-    public int dia_inicio_fb_1, mes_inicio_fb_1, ano_inicio_fb_1,
+    public String dia_inicio_fb_1, mes_inicio_fb_1, ano_inicio_fb_1,
                 dia_termino_fb_1, mes_termino_fb_1, ano_termino_fb_1,
                 dia_inicio_fb_2, mes_inicio_fb_2, ano_inicio_fb_2,
                 dia_termino_fb_2, mes_termino_fb_2, ano_termino_fb_2,
@@ -72,6 +85,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
 
     private FirebaseAuth fbAuth;
     private DatabaseReference UserRef;
+    private DatabaseReference UserData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,11 +95,21 @@ public class Config_bimestre_activity extends AppCompatActivity {
         fbAuth = FirebaseAuth.getInstance();
         UserRef = FirebaseDatabase.getInstance().getReference().child("users");
 
+
         text_views();
 
         baloes_datas();
 
         botoes_toolbar();
+
+        carregar_data_inicio_1();
+        carregar_data_termino_1();
+        carregar_data_inicio_2();
+        carregar_data_termino_2();
+        carregar_data_inicio_3();
+        carregar_data_termino_3();
+        carregar_data_inicio_4();
+        carregar_data_termino_4();
     }
 
     private void text_views() {
@@ -131,6 +155,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
             public void onClick(View view) {
 
                 ver_inicio_I = 1;
+                gravar_inicio_1 = 1;
 
                 showDialog(DATE_DIALOG_ID);
 
@@ -142,7 +167,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
             public void onClick(View view) {
 
                 ver_termino_I = 1;
-
+                gravar_termino_1 = 1;
                 showDialog(DATE_DIALOG_ID);
 
             }
@@ -153,7 +178,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
             public void onClick(View view) {
 
                 ver_inicio_II = 1;
-
+                gravar_inicio_2 = 1;
                 showDialog(DATE_DIALOG_ID);
 
             }
@@ -164,7 +189,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
             public void onClick(View view) {
 
                 ver_termino_II = 1;
-
+                gravar_termino_2 = 1;
                 showDialog(DATE_DIALOG_ID);
 
             }
@@ -175,7 +200,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
             public void onClick(View view) {
 
                 ver_inicio_III = 1;
-
+                gravar_inicio_3 = 1;
                 showDialog(DATE_DIALOG_ID);
 
             }
@@ -186,7 +211,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
             public void onClick(View view) {
 
                 ver_termino_III = 1;
-
+                gravar_termino_3 = 1;
                 showDialog(DATE_DIALOG_ID);
 
             }
@@ -197,7 +222,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
             public void onClick(View view) {
 
                 ver_inicio_IV = 1;
-
+                gravar_inicio_4 = 1;
                 showDialog(DATE_DIALOG_ID);
 
             }
@@ -208,7 +233,7 @@ public class Config_bimestre_activity extends AppCompatActivity {
             public void onClick(View view) {
 
                 ver_termino_IV = 1;
-
+                gravar_termino_4 = 1;
                 showDialog(DATE_DIALOG_ID);
 
             }
@@ -260,9 +285,9 @@ public class Config_bimestre_activity extends AppCompatActivity {
                         .setPositiveButton("SIM", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
-                                SaveAccountSetupInformation();
+                                GravarDataFirebase();
 
-                                Intent intent = new Intent(getApplicationContext(), Config_activity.class);
+                                Intent intent = new Intent(Config_bimestre_activity.this, Config_activity.class);
                                 startActivity(intent);
 
                                 //Toast.makeText(getApplicationContext(), "Datas salvas", Toast.LENGTH_SHORT).show();
@@ -270,7 +295,6 @@ public class Config_bimestre_activity extends AppCompatActivity {
                             }
                         });
                 builder.show();
-
 
             }
         });
@@ -297,143 +321,721 @@ public class Config_bimestre_activity extends AppCompatActivity {
                               int dayOfMonth) {
 
             //Para tornar pública a data
-            //Ano, mês e dia estão em int
-            ano = year;
-            mes = monthOfYear+1;
-            dia = dayOfMonth;
+            //Ano, mês e dia estão em String
+            ano = String.valueOf(year);
+            mes = String.valueOf(monthOfYear+1);
+            dia = String.valueOf(dayOfMonth);
 
-            //Dia trasnformado em string
-            dia_string = String.valueOf(dayOfMonth);
-            ano_string = String.valueOf(year);
-
+            adicao_zero();
             conversor_mes();
-
             ver_botoes();
 
         }
     };
 
+    //Adição do Zero à frente do número
+    public void adicao_zero(){
+
+        if (dia.equals("1"))
+            dia = "01";
+        else if (dia.equals("2"))
+            dia = "02";
+        else if (dia.equals("3"))
+            dia = "03";
+        else if (dia.equals("4"))
+            dia = "04";
+        else if (dia.equals("5"))
+            dia = "05";
+        else if (dia.equals("6"))
+            dia = "06";
+        else if (dia.equals("7"))
+            dia = "07";
+        else if (dia.equals("8"))
+            dia = "08";
+        else if (dia.equals("9"))
+            dia = "09";
+
+
+        if (mes.equals("1"))
+            mes = "01";
+        else if (mes.equals("2"))
+            mes = "02";
+        else if (mes.equals("3"))
+            mes = "03";
+        else if (mes.equals("4"))
+            mes = "04";
+        else if (mes.equals("5"))
+            mes = "05";
+        else if (mes.equals("6"))
+            mes = "06";
+        else if (mes.equals("7"))
+            mes = "07";
+        else if (mes.equals("8"))
+            mes = "08";
+        else if (mes.equals("9"))
+            mes = "09";
+
+    }
+
     //Aqui faço a atribuição de mês para nome do mês, por exemplo, 1 == JAN
     public void conversor_mes()
     {
-        if (mes == 1)
+        if (mes.equals("01"))
         {
-            mes_string = "JAN";
+            mes_palavra = "JAN";
         }
-        else if (mes == 2)
+        else if (mes.equals("02"))
         {
-            mes_string = "FEV";
+            mes_palavra = "FEV";
         }
-        else if (mes == 3)
+        else if (mes.equals("03"))
         {
-            mes_string = "MAR";
+            mes_palavra = "MAR";
         }
-        else if (mes == 4)
+        else if (mes.equals("04"))
         {
-            mes_string = "ABR";
+            mes_palavra = "ABR";
         }
-        else if (mes == 5)
+        else if (mes.equals("05"))
         {
-            mes_string = "MAI";
+            mes_palavra = "MAI";
         }
-        else if (mes == 6)
+        else if (mes.equals("06"))
         {
-            mes_string = "JUN";
+            mes_palavra = "JUN";
         }
-        else if (mes == 7)
+        else if (mes.equals("07"))
         {
-            mes_string = "JUL";
+            mes_palavra = "JUL";
         }
-        else if (mes == 8)
+        else if (mes.equals("08"))
         {
-            mes_string = "AGO";
+            mes_palavra = "AGO";
         }
-        else if (mes == 9)
+        else if (mes.equals("09"))
         {
-            mes_string = "SET";
+            mes_palavra = "SET";
         }
-        else if (mes == 10)
+        else if (mes.equals("10"))
         {
-            mes_string = "OUT";
+            mes_palavra = "OUT";
         }
-        else if (mes == 11)
+        else if (mes.equals("11"))
         {
-            mes_string = "NOV";
+            mes_palavra = "NOV";
         }
-        else if (mes == 12)
+        else if (mes.equals("12"))
         {
-            mes_string = "DEZ";
+            mes_palavra = "DEZ";
         }
 
 
 
     }
 
-    //Aqui grava qual botão foi clicado, para chamar o método de cada um
+    public void conversor_mes_up_inicio_1(){
+
+        if (mes_up_inicio_1.equals("01"))
+        {
+            mes_up_inicio_1 = "JAN";
+
+        }
+        else if (mes_up_inicio_1.equals("02") )
+        {
+            mes_up_inicio_1 = "FEV";
+
+        }
+        else if (mes_up_inicio_1.equals("03"))
+        {
+            mes_up_inicio_1 = "MAR";
+
+        }
+        else if (mes_up_inicio_1.equals("04") )
+        {
+            mes_up_inicio_1 = "ABR";
+
+        }
+        else if (mes_up_inicio_1.equals("05"))
+        {
+            mes_up_inicio_1 = "MAI";
+
+        }
+        else if (mes_up_inicio_1.equals("06"))
+        {
+            mes_up_inicio_1 = "JUN";
+
+        }
+        else if (mes_up_inicio_1.equals("07"))
+        {
+            mes_up_inicio_1 = "JUL";
+
+        }
+
+        else if (mes_up_inicio_1.equals("08"))
+        {
+            mes_up_inicio_1 = "AGO";
+
+        }
+
+        else if (mes_up_inicio_1.equals("09"))
+        {
+            mes_up_inicio_1 = "SET";
+
+        }
+
+        else if (mes_up_inicio_1.equals("10"))
+        {
+            mes_up_inicio_1 = "OUT";
+
+        }
+
+        else if (mes_up_inicio_1.equals("11") )
+        {
+            mes_up_inicio_1 = "NOV";
+
+        }
+
+        else if (mes_up_inicio_1.equals("12") )
+        {
+            mes_up_inicio_1 = "DEZ";
+
+        }
+
+    }
+    public void conversor_mes_up_termino_1(){
+
+        if (mes_up_termino_1.equals("01"))
+        {
+            mes_up_termino_1 = "JAN";
+
+        }
+        else if (mes_up_termino_1.equals("02") )
+        {
+            mes_up_termino_1 = "FEV";
+
+        }
+        else if (mes_up_termino_1.equals("03"))
+        {
+            mes_up_termino_1 = "MAR";
+
+        }
+        else if (mes_up_termino_1.equals("04") )
+        {
+            mes_up_termino_1 = "ABR";
+
+        }
+        else if (mes_up_termino_1.equals("05"))
+        {
+            mes_up_termino_1 = "MAI";
+
+        }
+        else if (mes_up_termino_1.equals("06"))
+        {
+            mes_up_termino_1 = "JUN";
+
+        }
+        else if (mes_up_termino_1.equals("07"))
+        {
+            mes_up_termino_1 = "JUL";
+
+        }
+
+        else if (mes_up_termino_1.equals("08"))
+        {
+            mes_up_termino_1 = "AGO";
+
+        }
+
+        else if (mes_up_termino_1.equals("09"))
+        {
+            mes_up_termino_1 = "SET";
+
+        }
+
+        else if (mes_up_termino_1.equals("10"))
+        {
+            mes_up_termino_1 = "OUT";
+
+        }
+
+        else if (mes_up_termino_1.equals("11") )
+        {
+            mes_up_termino_1 = "NOV";
+
+        }
+
+        else if (mes_up_termino_1.equals("12") )
+        {
+            mes_up_termino_1 = "DEZ";
+
+        }
+
+    }
+    public void conversor_mes_up_inicio_2(){
+
+        if (mes_up_inicio_2.equals("01"))
+        {
+            mes_up_inicio_2 = "JAN";
+
+        }
+        else if (mes_up_inicio_2.equals("02") )
+        {
+            mes_up_inicio_2 = "FEV";
+
+        }
+        else if (mes_up_inicio_2.equals("03"))
+        {
+            mes_up_inicio_2 = "MAR";
+
+        }
+        else if (mes_up_inicio_2.equals("04") )
+        {
+            mes_up_inicio_2 = "ABR";
+
+        }
+        else if (mes_up_inicio_2.equals("05"))
+        {
+            mes_up_inicio_2 = "MAI";
+
+        }
+        else if (mes_up_inicio_2.equals("06"))
+        {
+            mes_up_inicio_2 = "JUN";
+
+        }
+        else if (mes_up_inicio_2.equals("07"))
+        {
+            mes_up_inicio_2 = "JUL";
+
+        }
+
+        else if (mes_up_inicio_2.equals("08"))
+        {
+            mes_up_inicio_2 = "AGO";
+
+        }
+
+        else if (mes_up_inicio_2.equals("09"))
+        {
+            mes_up_inicio_2 = "SET";
+
+        }
+
+        else if (mes_up_inicio_2.equals("10"))
+        {
+            mes_up_inicio_2 = "OUT";
+
+        }
+
+        else if (mes_up_inicio_2.equals("11") )
+        {
+            mes_up_inicio_2 = "NOV";
+
+        }
+
+        else if (mes_up_inicio_2.equals("12") )
+        {
+            mes_up_inicio_2 = "DEZ";
+
+        }
+
+    }
+    public void conversor_mes_up_termino_2(){
+
+        if (mes_up_termino_2.equals("01"))
+        {
+            mes_up_termino_2 = "JAN";
+
+        }
+        else if (mes_up_termino_2.equals("02") )
+        {
+            mes_up_termino_2 = "FEV";
+
+        }
+        else if (mes_up_termino_2.equals("03"))
+        {
+            mes_up_termino_2 = "MAR";
+
+        }
+        else if (mes_up_termino_2.equals("04") )
+        {
+            mes_up_termino_2 = "ABR";
+
+        }
+        else if (mes_up_termino_2.equals("05"))
+        {
+            mes_up_termino_2 = "MAI";
+
+        }
+        else if (mes_up_termino_2.equals("06"))
+        {
+            mes_up_termino_2 = "JUN";
+
+        }
+        else if (mes_up_termino_2.equals("07"))
+        {
+            mes_up_termino_2 = "JUL";
+
+        }
+
+        else if (mes_up_termino_2.equals("08"))
+        {
+            mes_up_termino_2 = "AGO";
+
+        }
+
+        else if (mes_up_termino_2.equals("09"))
+        {
+            mes_up_termino_2 = "SET";
+
+        }
+
+        else if (mes_up_termino_2.equals("10"))
+        {
+            mes_up_termino_2 = "OUT";
+
+        }
+
+        else if (mes_up_termino_2.equals("11") )
+        {
+            mes_up_termino_2 = "NOV";
+
+        }
+
+        else if (mes_up_termino_2.equals("12") )
+        {
+            mes_up_termino_2 = "DEZ";
+
+        }
+
+    }
+    public void conversor_mes_up_inicio_3(){
+
+        if (mes_up_inicio_3.equals("01"))
+        {
+            mes_up_inicio_3 = "JAN";
+
+        }
+        else if (mes_up_inicio_3.equals("02") )
+        {
+            mes_up_inicio_3 = "FEV";
+
+        }
+        else if (mes_up_inicio_3.equals("03"))
+        {
+            mes_up_inicio_3 = "MAR";
+
+        }
+        else if (mes_up_inicio_3.equals("04") )
+        {
+            mes_up_inicio_3 = "ABR";
+
+        }
+        else if (mes_up_inicio_3.equals("05"))
+        {
+            mes_up_inicio_3 = "MAI";
+
+        }
+        else if (mes_up_inicio_3.equals("06"))
+        {
+            mes_up_inicio_3 = "JUN";
+
+        }
+        else if (mes_up_inicio_3.equals("07"))
+        {
+            mes_up_inicio_3 = "JUL";
+
+        }
+
+        else if (mes_up_inicio_3.equals("08"))
+        {
+            mes_up_inicio_3 = "AGO";
+
+        }
+
+        else if (mes_up_inicio_3.equals("09"))
+        {
+            mes_up_inicio_3 = "SET";
+
+        }
+
+        else if (mes_up_inicio_3.equals("10"))
+        {
+            mes_up_inicio_3 = "OUT";
+
+        }
+
+        else if (mes_up_inicio_3.equals("11") )
+        {
+            mes_up_inicio_3 = "NOV";
+
+        }
+
+        else if (mes_up_inicio_3.equals("12") )
+        {
+            mes_up_inicio_3 = "DEZ";
+
+        }
+
+    }
+    public void conversor_mes_up_termino_3(){
+
+        if (mes_up_termino_3.equals("01"))
+        {
+            mes_up_termino_3 = "JAN";
+
+        }
+        else if (mes_up_termino_3.equals("02") )
+        {
+            mes_up_termino_3 = "FEV";
+
+        }
+        else if (mes_up_termino_3.equals("03"))
+        {
+            mes_up_termino_3 = "MAR";
+
+        }
+        else if (mes_up_termino_3.equals("04") )
+        {
+            mes_up_termino_3 = "ABR";
+
+        }
+        else if (mes_up_termino_3.equals("05"))
+        {
+            mes_up_termino_3 = "MAI";
+
+        }
+        else if (mes_up_termino_3.equals("06"))
+        {
+            mes_up_termino_3 = "JUN";
+
+        }
+        else if (mes_up_termino_3.equals("07"))
+        {
+            mes_up_termino_3 = "JUL";
+
+        }
+
+        else if (mes_up_termino_3.equals("08"))
+        {
+            mes_up_termino_3 = "AGO";
+
+        }
+
+        else if (mes_up_termino_3.equals("09"))
+        {
+            mes_up_termino_3 = "SET";
+
+        }
+
+        else if (mes_up_termino_3.equals("10"))
+        {
+            mes_up_termino_3 = "OUT";
+
+        }
+
+        else if (mes_up_termino_3.equals("11") )
+        {
+            mes_up_termino_3 = "NOV";
+
+        }
+
+        else if (mes_up_termino_3.equals("12") )
+        {
+            mes_up_termino_3 = "DEZ";
+
+        }
+
+    }
+    public void conversor_mes_up_inicio_4(){
+
+        if (mes_up_inicio_4.equals("01"))
+        {
+            mes_up_inicio_4 = "JAN";
+
+        }
+        else if (mes_up_inicio_4.equals("02") )
+        {
+            mes_up_inicio_4 = "FEV";
+
+        }
+        else if (mes_up_inicio_4.equals("03"))
+        {
+            mes_up_inicio_4 = "MAR";
+
+        }
+        else if (mes_up_inicio_4.equals("04") )
+        {
+            mes_up_inicio_4 = "ABR";
+
+        }
+        else if (mes_up_inicio_4.equals("05"))
+        {
+            mes_up_inicio_4 = "MAI";
+
+        }
+        else if (mes_up_inicio_4.equals("06"))
+        {
+            mes_up_inicio_4 = "JUN";
+
+        }
+        else if (mes_up_inicio_4.equals("07"))
+        {
+            mes_up_inicio_4 = "JUL";
+
+        }
+
+        else if (mes_up_inicio_4.equals("08"))
+        {
+            mes_up_inicio_4 = "AGO";
+
+        }
+
+        else if (mes_up_inicio_4.equals("09"))
+        {
+            mes_up_inicio_4 = "SET";
+
+        }
+
+        else if (mes_up_inicio_4.equals("10"))
+        {
+            mes_up_inicio_4 = "OUT";
+
+        }
+
+        else if (mes_up_inicio_4.equals("11") )
+        {
+            mes_up_inicio_4 = "NOV";
+
+        }
+
+        else if (mes_up_inicio_4.equals("12") )
+        {
+            mes_up_inicio_4 = "DEZ";
+
+        }
+
+    }
+    public void conversor_mes_up_termino_4(){
+
+        if (mes_up_termino_4.equals("01"))
+        {
+            mes_up_termino_4 = "JAN";
+
+        }
+        else if (mes_up_termino_4.equals("02") )
+        {
+            mes_up_termino_4 = "FEV";
+
+        }
+        else if (mes_up_termino_4.equals("03"))
+        {
+            mes_up_termino_4 = "MAR";
+
+        }
+        else if (mes_up_termino_4.equals("04") )
+        {
+            mes_up_termino_4 = "ABR";
+
+        }
+        else if (mes_up_termino_4.equals("05"))
+        {
+            mes_up_termino_4 = "MAI";
+
+        }
+        else if (mes_up_termino_4.equals("06"))
+        {
+            mes_up_termino_4 = "JUN";
+
+        }
+        else if (mes_up_termino_4.equals("07"))
+        {
+            mes_up_termino_4 = "JUL";
+
+        }
+
+        else if (mes_up_termino_4.equals("08"))
+        {
+            mes_up_termino_4 = "AGO";
+
+        }
+
+        else if (mes_up_termino_4.equals("09"))
+        {
+            mes_up_termino_4 = "SET";
+
+        }
+
+        else if (mes_up_termino_4.equals("10"))
+        {
+            mes_up_termino_4 = "OUT";
+
+        }
+
+        else if (mes_up_termino_4.equals("11") )
+        {
+            mes_up_termino_4 = "NOV";
+
+        }
+
+        else if (mes_up_termino_4.equals("12") )
+        {
+            mes_up_termino_4 = "DEZ";
+
+        }
+
+    }
+
+    //Aqui grava qual botão foi clicado, para chamar o método de cada um e gravar no firebase cada data separadamente
     public void ver_botoes(){
 
         if (ver_inicio_I == 1){
 
             setar_inicio_1();
 
-            ver_inicio_I = 0;
-
+            ver_inicio_I =0;
         }
 
         if (ver_termino_I == 1){
 
             setar_termino_1();
-
-            ver_termino_I = 0;
-
+            ver_termino_I =0;
         }
 
         if (ver_inicio_II == 1){
 
             setar_inicio_2();
-
-            ver_inicio_II = 0;
-
+            ver_inicio_II =0;
         }
 
         if (ver_termino_II == 1){
 
             setar_termino_2();
-
-            ver_termino_II = 0;
-
+            ver_termino_II =0;
         }
 
         if (ver_inicio_III == 1){
 
             setar_inicio_3();
-
-            ver_inicio_III = 0;
-
+            ver_inicio_III =0;
         }
 
         if (ver_termino_III == 1){
 
             setar_termino_3();
-
-            ver_termino_III = 0;
-
+            ver_termino_III =0;
         }
 
         if (ver_inicio_IV == 1){
 
             setar_inicio_4();
-
-            ver_inicio_IV = 0;
-
+            ver_inicio_IV =0;
         }
 
         if (ver_termino_IV == 1){
 
             setar_termino_4();
-
-            ver_termino_IV = 0;
-
+            ver_termino_IV =0;
         }
 
 
@@ -444,79 +1046,72 @@ public class Config_bimestre_activity extends AppCompatActivity {
     public void setar_inicio_1(){
 
         //Dia e mês mostrados no balão do bimestre
-        dia_inicio_balao_1.setText(dia_string);
-        mes_inicio_balao_1.setText(mes_string);
+        dia_inicio_balao_1.setText(dia);
+        mes_inicio_balao_1.setText(mes_palavra);
 
         //Dia, mês e ano que serão enviados para o Firebase
         dia_inicio_fb_1 = dia;
         mes_inicio_fb_1 = mes;
         ano_inicio_fb_1 = ano;
     }
-
     public void setar_termino_1() {
 
-        dia_termino_balao_1.setText(dia_string);
-        mes_termino_balao_1.setText(mes_string);
+        dia_termino_balao_1.setText(dia);
+        mes_termino_balao_1.setText(mes_palavra);
 
         dia_termino_fb_1 = dia;
         mes_termino_fb_1 = mes;
         ano_termino_fb_1 = ano;
     }
-
     public void setar_inicio_2(){
 
-        dia_inicio_balao_2.setText(dia_string);
-        mes_inicio_balao_2.setText(mes_string);
+        dia_inicio_balao_2.setText(dia);
+        mes_inicio_balao_2.setText(mes_palavra);
 
         dia_inicio_fb_2 = dia;
         mes_inicio_fb_2 = mes;
         ano_inicio_fb_2 = ano;
     }
-
     public void setar_termino_2() {
 
-        dia_termino_balao_2.setText(dia_string);
-        mes_termino_balao_2.setText(mes_string);
+        dia_termino_balao_2.setText(dia);
+        mes_termino_balao_2.setText(mes_palavra);
 
         dia_termino_fb_2 = dia;
         mes_termino_fb_2 = mes;
         ano_termino_fb_2 = ano;
     }
-
     public void setar_inicio_3(){
 
-        dia_inicio_balao_3.setText(dia_string);
-        mes_inicio_balao_3.setText(mes_string);
+        dia_inicio_balao_3.setText(dia);
+        mes_inicio_balao_3.setText(mes_palavra);
 
         dia_inicio_fb_3 = dia;
         mes_inicio_fb_3 = mes;
         ano_inicio_fb_3 = ano;
     }
-
     public void setar_termino_3() {
 
-        dia_termino_balao_3.setText(dia_string);
-        mes_termino_balao_3.setText(mes_string);
+        dia_termino_balao_3.setText(dia);
+        mes_termino_balao_3.setText(mes_palavra);
 
         dia_termino_fb_3 = dia;
         mes_termino_fb_3 = mes;
         ano_termino_fb_3 = ano;
     }
-
     public void setar_inicio_4(){
 
-        dia_inicio_balao_4.setText(dia_string);
-        mes_inicio_balao_4.setText(mes_string);
+        dia_inicio_balao_4.setText(dia);
+        mes_inicio_balao_4.setText(mes_palavra);
 
         dia_inicio_fb_4 = dia;
         mes_inicio_fb_4 = mes;
         ano_inicio_fb_4 = ano;
     }
-
     public void setar_termino_4() {
 
-        dia_termino_balao_4.setText(dia_string);
-        mes_termino_balao_4.setText(mes_string);
+        dia_termino_balao_4.setText(dia);
+        mes_termino_balao_4.setText(mes_palavra);
 
         dia_termino_fb_4 = dia;
         mes_termino_fb_4 = mes;
@@ -524,46 +1119,75 @@ public class Config_bimestre_activity extends AppCompatActivity {
     }
 
     //Salvando dados do usuário no Firebase
-    private void SaveAccountSetupInformation()
+    private void GravarDataFirebase()
     {
         //Captura dos dados do usuário
+
+        if (gravar_inicio_1 == 1){
+            GravarDataFirebase_inicio_1();
+            gravar_inicio_1 =0;
+        }
+
+        if (gravar_termino_1 == 1){
+
+            GravarDataFirebase_termino_1();
+            gravar_termino_1 =0;
+        }
+
+        if (gravar_inicio_2 == 1){
+            GravarDataFirebase_inicio_2();
+            gravar_inicio_2 =0;
+        }
+
+        if (gravar_termino_2 == 1){
+
+            GravarDataFirebase_termino_2();
+            gravar_termino_2 =0;
+        }
+
+        if (gravar_inicio_3 == 1){
+
+            GravarDataFirebase_inicio_3();
+            gravar_inicio_3 =0;
+        }
+
+        if (gravar_termino_3 == 1){
+
+            GravarDataFirebase_termino_3();
+            gravar_termino_3 =0;
+        }
+
+        if (gravar_inicio_4 == 1){
+
+            GravarDataFirebase_inicio_4();
+            gravar_inicio_4 =0;
+        }
+
+        if (gravar_termino_4 == 1){
+
+            GravarDataFirebase_termino_4();
+            gravar_termino_4 =0;
+        }
+
+    }
+
+
+    public void GravarDataFirebase_inicio_1(){
         final String user_id = fbAuth.getCurrentUser().getUid();
 
         final String inicio_1 = (dia_inicio_fb_1+"/"+mes_inicio_fb_1+"/"+ano_inicio_fb_1);
-        final String termino_1 = (dia_termino_fb_1+"/"+mes_termino_fb_1+"/"+ano_termino_fb_1);
 
-        final String inicio_2 = (dia_inicio_fb_2+"/"+mes_inicio_fb_2+"/"+ano_inicio_fb_2);
-        final String termino_2 = (dia_termino_fb_2+"/"+mes_termino_fb_2+"/"+ano_termino_fb_2);;
+        HashMap userMap_inicio_1 = new HashMap();
 
-        final String inicio_3 = (dia_inicio_fb_3+"/"+mes_inicio_fb_3+"/"+ano_inicio_fb_3);
-        final String termino_3 = (dia_termino_fb_3+"/"+mes_termino_fb_3+"/"+ano_termino_fb_3);
+        userMap_inicio_1.put("inicio_1", inicio_1);
 
-        final String inicio_4 = (dia_inicio_fb_4+"/"+mes_inicio_fb_4+"/"+ano_inicio_fb_4);
-        final String termino_4 = (dia_termino_fb_4+"/"+mes_termino_fb_4+"/"+ano_termino_fb_4);
-
-
-        HashMap userMap = new HashMap();
-
-        userMap.put("inicio_1", inicio_1);
-        userMap.put("termino_1", termino_1);
-
-        userMap.put("inicio_2", inicio_2);
-        userMap.put("termino_2", termino_2);
-
-        userMap.put("inicio_3", inicio_3);
-        userMap.put("termino_3", termino_3);
-
-        userMap.put("inicio_4", inicio_4);
-        userMap.put("termino_4", termino_4);
-
-
-        UserRef.child(user_id).child("datas").updateChildren(userMap).addOnCompleteListener(new OnCompleteListener() {
+        UserRef.child(user_id).child("datas").child("inicio_1").updateChildren(userMap_inicio_1).addOnCompleteListener(new OnCompleteListener() {
             @Override
             public void onComplete(@NonNull Task task)
             {
                 if(task.isSuccessful())
                 {
-                    Toast.makeText(Config_bimestre_activity.this, "Datas salvas", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Config_bimestre_activity.this, "Datas salvas com sucesso", Toast.LENGTH_LONG).show();
                 }
                 else
                 {
@@ -572,6 +1196,541 @@ public class Config_bimestre_activity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+    public void GravarDataFirebase_termino_1(){
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+        final String termino_1 = (dia_termino_fb_1+"/"+mes_termino_fb_1+"/"+ano_termino_fb_1);
+
+        HashMap userMap_termino_1 = new HashMap();
+
+        userMap_termino_1.put("termino_1", termino_1);
+
+        UserRef.child(user_id).child("datas").child("termino_1").updateChildren(userMap_termino_1).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task)
+            {
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(Config_bimestre_activity.this, "Datas salvas com sucesso", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    String message =  task.getException().getMessage();
+                    Toast.makeText(Config_bimestre_activity.this, "Dados não salvos. Erro: " + message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+    public void GravarDataFirebase_inicio_2(){
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+        final String inicio_2 = (dia_inicio_fb_2+"/"+mes_inicio_fb_2+"/"+ano_inicio_fb_2);
+
+        HashMap userMap_inicio_2 = new HashMap();
+
+        userMap_inicio_2.put("inicio_2", inicio_2);
+
+        UserRef.child(user_id).child("datas").child("inicio_2").updateChildren(userMap_inicio_2).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task)
+            {
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(Config_bimestre_activity.this, "Datas salvas com sucesso", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    String message =  task.getException().getMessage();
+                    Toast.makeText(Config_bimestre_activity.this, "Dados não salvos. Erro: " + message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+    public void GravarDataFirebase_termino_2(){
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+        final String termino_2 = (dia_termino_fb_2+"/"+mes_termino_fb_2+"/"+ano_termino_fb_2);
+
+        HashMap userMap_termino_2 = new HashMap();
+
+        userMap_termino_2.put("termino_2", termino_2);
+
+        UserRef.child(user_id).child("datas").child("termino_2").updateChildren(userMap_termino_2).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task)
+            {
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(Config_bimestre_activity.this, "Datas salvas com sucesso", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    String message =  task.getException().getMessage();
+                    Toast.makeText(Config_bimestre_activity.this, "Dados não salvos. Erro: " + message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+    public void GravarDataFirebase_inicio_3(){
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+        final String inicio_3 = (dia_inicio_fb_3+"/"+mes_inicio_fb_3+"/"+ano_inicio_fb_3);
+
+        HashMap userMap_inicio_3 = new HashMap();
+
+        userMap_inicio_3.put("inicio_3", inicio_3);
+
+        UserRef.child(user_id).child("datas").child("inicio_3").updateChildren(userMap_inicio_3).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task)
+            {
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(Config_bimestre_activity.this, "Datas salvas com sucesso", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    String message =  task.getException().getMessage();
+                    Toast.makeText(Config_bimestre_activity.this, "Dados não salvos. Erro: " + message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+    public void GravarDataFirebase_termino_3(){
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+        final String termino_3 = (dia_termino_fb_3+"/"+mes_termino_fb_3+"/"+ano_termino_fb_3);
+
+        HashMap userMap_termino_3 = new HashMap();
+
+        userMap_termino_3.put("termino_3", termino_3);
+
+        UserRef.child(user_id).child("datas").child("termino_3").updateChildren(userMap_termino_3).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task)
+            {
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(Config_bimestre_activity.this, "Datas salvas com sucesso", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    String message =  task.getException().getMessage();
+                    Toast.makeText(Config_bimestre_activity.this, "Dados não salvos. Erro: " + message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+    public void GravarDataFirebase_inicio_4(){
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+        final String inicio_4 = (dia_inicio_fb_4+"/"+mes_inicio_fb_4+"/"+ano_inicio_fb_4);
+
+        HashMap userMap_inicio_4 = new HashMap();
+
+        userMap_inicio_4.put("inicio_4", inicio_4);
+
+        UserRef.child(user_id).child("datas").child("inicio_4").updateChildren(userMap_inicio_4).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task)
+            {
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(Config_bimestre_activity.this, "Datas salvas com sucesso", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    String message =  task.getException().getMessage();
+                    Toast.makeText(Config_bimestre_activity.this, "Dados não salvos. Erro: " + message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+    }
+    public void GravarDataFirebase_termino_4(){
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+        final String termino_4 = (dia_termino_fb_4+"/"+mes_termino_fb_4+"/"+ano_termino_fb_4);
+
+        HashMap userMap_termino_4 = new HashMap();
+
+        userMap_termino_4.put("termino_4", termino_4);
+
+        UserRef.child(user_id).child("datas").child("termino_4").updateChildren(userMap_termino_4).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task)
+            {
+                if(task.isSuccessful())
+                {
+                    Toast.makeText(Config_bimestre_activity.this, "Datas salvas com sucesso", Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    String message =  task.getException().getMessage();
+                    Toast.makeText(Config_bimestre_activity.this, "Dados não salvos. Erro: " + message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+
+    public void carregar_data_inicio_1(){
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        UserData = database.getReference().child("users").child(user_id).child("datas").child("inicio_1");
+
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_inicio_1 = post.inicio_1;
+                    mes_up_inicio_1 = post.inicio_1;
+
+                    dia_up_inicio_1 = dia_up_inicio_1.substring(0, 2);
+                    mes_up_inicio_1 = mes_up_inicio_1.substring(3, 5);
+
+                    conversor_mes_up_inicio_1();
+
+                    dia_inicio_balao_1.setText(dia_up_inicio_1);
+                    mes_inicio_balao_1.setText(mes_up_inicio_1);
+
+                }
+                else {
+                    //Toast.makeText(Config_bimestre_activity.this, "Datas não configuradas", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(Config_bimestre_activity.this, "Falha na atualização das datas",
+                        Toast.LENGTH_SHORT).show();
+
+            }
+        };
+        UserData.addValueEventListener(postListener);
+
+    }
+    public void carregar_data_termino_1(){
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        UserData = database.getReference().child("users").child(user_id).child("datas").child("termino_1");
+
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_termino_1 = post.termino_1;
+                    mes_up_termino_1 = post.termino_1;
+
+                    dia_up_termino_1 = dia_up_termino_1.substring(0, 2);
+                    mes_up_termino_1 = mes_up_termino_1.substring(3, 5);
+
+                    conversor_mes_up_termino_1();
+
+                    dia_termino_balao_1.setText(dia_up_termino_1);
+                    mes_termino_balao_1.setText(mes_up_termino_1);
+
+                }
+                else {
+                    //Toast.makeText(Config_bimestre_activity.this, "Datas não configuradas", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(Config_bimestre_activity.this, "Falha na atualização das datas",
+                        Toast.LENGTH_SHORT).show();
+
+            }
+        };
+        UserData.addValueEventListener(postListener);
+
+    }
+    public void carregar_data_inicio_2(){
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        UserData = database.getReference().child("users").child(user_id).child("datas").child("inicio_2");
+
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_inicio_2 = post.inicio_2;
+                    mes_up_inicio_2 = post.inicio_2;
+
+                    dia_up_inicio_2 = dia_up_inicio_2.substring(0, 2);
+                    mes_up_inicio_2 = mes_up_inicio_2.substring(3, 5);
+
+                    conversor_mes_up_inicio_2();
+
+                    dia_inicio_balao_2.setText(dia_up_inicio_2);
+                    mes_inicio_balao_2.setText(mes_up_inicio_2);
+
+                }
+                else {
+                    //Toast.makeText(Config_bimestre_activity.this, "Datas não configuradas", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(Config_bimestre_activity.this, "Falha na atualização das datas",
+                        Toast.LENGTH_SHORT).show();
+
+            }
+        };
+        UserData.addValueEventListener(postListener);
+
+    }
+    public void carregar_data_termino_2(){
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        UserData = database.getReference().child("users").child(user_id).child("datas").child("termino_2");
+
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_termino_2 = post.termino_2;
+                    mes_up_termino_2 = post.termino_2;
+
+                    dia_up_termino_2 = dia_up_termino_2.substring(0, 2);
+                    mes_up_termino_2 = mes_up_termino_2.substring(3, 5);
+
+                    conversor_mes_up_termino_2();
+
+                    dia_termino_balao_2.setText(dia_up_termino_2);
+                    mes_termino_balao_2.setText(mes_up_termino_2);
+
+                }
+                else {
+                   // Toast.makeText(Config_bimestre_activity.this, "Datas não configuradas", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(Config_bimestre_activity.this, "Falha na atualização das datas",
+                        Toast.LENGTH_SHORT).show();
+
+            }
+        };
+        UserData.addValueEventListener(postListener);
+
+    }
+    public void carregar_data_inicio_3(){
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        UserData = database.getReference().child("users").child(user_id).child("datas").child("inicio_3");
+
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_inicio_3 = post.inicio_3;
+                    mes_up_inicio_3 = post.inicio_3;
+
+                    dia_up_inicio_3 = dia_up_inicio_3.substring(0, 2);
+                    mes_up_inicio_3 = mes_up_inicio_3.substring(3, 5);
+
+                    conversor_mes_up_inicio_3();
+
+                    dia_inicio_balao_3.setText(dia_up_inicio_3);
+                    mes_inicio_balao_3.setText(mes_up_inicio_3);
+
+                }
+                else {
+                    //Toast.makeText(Config_bimestre_activity.this, "Datas não configuradas", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(Config_bimestre_activity.this, "Falha na atualização das datas",
+                        Toast.LENGTH_SHORT).show();
+
+            }
+        };
+        UserData.addValueEventListener(postListener);
+
+    }
+    public void carregar_data_termino_3(){
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        UserData = database.getReference().child("users").child(user_id).child("datas").child("termino_3");
+
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_termino_3 = post.termino_3;
+                    mes_up_termino_3 = post.termino_3;
+
+                    dia_up_termino_3 = dia_up_termino_3.substring(0, 2);
+                    mes_up_termino_3 = mes_up_termino_3.substring(3, 5);
+
+                    conversor_mes_up_termino_3();
+
+                    dia_termino_balao_3.setText(dia_up_termino_3);
+                    mes_termino_balao_3.setText(mes_up_termino_3);
+
+                }
+                else {
+                    //Toast.makeText(Config_bimestre_activity.this, "Datas não configuradas", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(Config_bimestre_activity.this, "Falha na atualização das datas",
+                        Toast.LENGTH_SHORT).show();
+
+            }
+        };
+        UserData.addValueEventListener(postListener);
+
+    }
+    public void carregar_data_inicio_4(){
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        UserData = database.getReference().child("users").child(user_id).child("datas").child("inicio_4");
+
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_inicio_4 = post.inicio_4;
+                    mes_up_inicio_4 = post.inicio_4;
+
+                    dia_up_inicio_4 = dia_up_inicio_4.substring(0, 2);
+                    mes_up_inicio_4 = mes_up_inicio_4.substring(3, 5);
+
+                    conversor_mes_up_inicio_4();
+
+                    dia_inicio_balao_4.setText(dia_up_inicio_4);
+                    mes_inicio_balao_4.setText(mes_up_inicio_4);
+
+                }
+                else {
+                    //Toast.makeText(Config_bimestre_activity.this, "Datas não configuradas", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(Config_bimestre_activity.this, "Falha na atualização das datas",
+                        Toast.LENGTH_SHORT).show();
+
+            }
+        };
+        UserData.addValueEventListener(postListener);
+
+    }
+    public void carregar_data_termino_4(){
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        UserData = database.getReference().child("users").child(user_id).child("datas").child("termino_4");
+
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_termino_4 = post.termino_4;
+                    mes_up_termino_4 = post.termino_4;
+
+                    dia_up_termino_4 = dia_up_termino_4.substring(0, 2);
+                    mes_up_termino_4 = mes_up_termino_4.substring(3, 5);
+
+                    conversor_mes_up_termino_4();
+
+                    dia_termino_balao_4.setText(dia_up_termino_4);
+                    mes_termino_balao_4.setText(mes_up_termino_4);
+
+                }
+                else {
+                    //Toast.makeText(Config_bimestre_activity.this, "Datas não configuradas", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(Config_bimestre_activity.this, "Falha na atualização das datas",
+                        Toast.LENGTH_SHORT).show();
+
+            }
+        };
+        UserData.addValueEventListener(postListener);
+
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
 
     }
 }
