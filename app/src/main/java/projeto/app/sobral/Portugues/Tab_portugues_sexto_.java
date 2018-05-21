@@ -1248,7 +1248,7 @@ public class Tab_portugues_sexto_ extends Fragment{
     @Override
     public void onViewCreated (View view, Bundle savedInstanceState) {
         //((Main_activity) getActivity()).SombraBimestre(view);
-        ((Main_activity) getActivity()).tab_obj_port_sexto(view);
+        ((Main_activity) getActivity()).tab_obj_port_sexto_(view);
 
 
 

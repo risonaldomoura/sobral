@@ -70,7 +70,8 @@
                                         android:orientation="horizontal"
                                         android:background="@drawable/layout_gota_antes"
                                         android:rotation="45"
-                                        android:layout_marginTop="10dp"/>
+                                        android:layout_marginTop="10dp"
+                                        android:clickable="true"/>
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -134,12 +135,14 @@
                                     android:layout_marginTop="-2dp">
 
                                     <LinearLayout
+                                        android:id="@+id/balao_termino_1"
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
                                         android:orientation="horizontal"
                                         android:background="@drawable/layout_gota_antes"
                                         android:rotation="225"
-                                        android:layout_marginTop="10dp" />
+                                        android:layout_marginTop="10dp"
+                                        android:clickable="true"/>
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -268,7 +271,8 @@
                                         android:orientation="horizontal"
                                         android:background="@drawable/layout_gota_antes"
                                         android:rotation="45"
-                                        android:layout_marginTop="10dp"/>
+                                        android:layout_marginTop="10dp"
+                                        android:clickable="true"/>
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -338,7 +342,8 @@
                                         android:orientation="horizontal"
                                         android:background="@drawable/layout_gota_antes"
                                         android:rotation="225"
-                                        android:layout_marginTop="10dp" />
+                                        android:layout_marginTop="10dp"
+                                        android:clickable="true"/>
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -466,7 +471,8 @@
                                         android:orientation="horizontal"
                                         android:background="@drawable/layout_gota_antes"
                                         android:rotation="45"
-                                        android:layout_marginTop="10dp"/>
+                                        android:layout_marginTop="10dp"
+                                        android:clickable="true"/>
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -536,7 +542,8 @@
                                         android:orientation="horizontal"
                                         android:background="@drawable/layout_gota_antes"
                                         android:rotation="225"
-                                        android:layout_marginTop="10dp" />
+                                        android:layout_marginTop="10dp"
+                                        android:clickable="true"/>
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
@@ -665,7 +672,8 @@
                                         android:orientation="horizontal"
                                         android:background="@drawable/layout_gota_antes"
                                         android:rotation="45"
-                                        android:layout_marginTop="10dp"/>
+                                        android:layout_marginTop="10dp"
+                                        android:clickable="true"/>
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"

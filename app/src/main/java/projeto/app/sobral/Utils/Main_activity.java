@@ -2,7 +2,6 @@ package projeto.app.sobral.Utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -17,7 +16,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -214,7 +212,7 @@ public class Main_activity extends AppCompatActivity
         );
 
         //FrameLayout portugues
-        // ============== CONTEUDO============================
+        // ============== TEXTO DE APRESENTAÇÂO============================
         DatabaseReference DBR_FL_Portugues;
 
         FirebaseDatabase FDB1 = FirebaseDatabase.getInstance();
@@ -503,7 +501,7 @@ public class Main_activity extends AppCompatActivity
     }
 
     //=========================================BOTÃO OBJ PORT SEXTO===========================================
-    public void tab_obj_port_sexto(View view) {
+    public void tab_obj_port_sexto_(View view) {
         final FrameLayout fl_obj = (FrameLayout) findViewById(R.id.fl_obj);
         final FrameLayout fl_spinner = (FrameLayout) findViewById(R.id.fl_spinner);
         final Button btn1 = (Button) view.findViewById(R.id.btn_obj_I);

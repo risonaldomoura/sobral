@@ -5,7 +5,7 @@ package projeto.app.sobral.Utils;
  */
 
 public class MyDataGetSet {
-    private String x;
+    public String x;
 
     public MyDataGetSet(){
 
