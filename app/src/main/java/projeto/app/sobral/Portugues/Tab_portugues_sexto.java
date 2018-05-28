@@ -2728,7 +2728,7 @@ public class Tab_portugues_sexto extends Fragment {
         Mes_sistema = now.get(Calendar.MONTH); // Note: zero based!
         Mes_sistema++;
 
-        //Toast.makeText(getActivity().getApplicationContext()," "+ dia_atual + " / "+ mes_atual, Toast.LENGTH_LONG);
+        //Toast.makeText(getActivity().getApplicationContext()," "+ Dia_sistema + " / "+ Mes_sistema, Toast.LENGTH_LONG);
 
     }
     //==============================================================================================

@@ -7,6 +7,8 @@ package projeto.app.sobral.Utils;
 public class MyDataGetSet {
     public String x;
 
+    private boolean b;
+
     public MyDataGetSet(){
 
     }
@@ -24,5 +26,12 @@ public class MyDataGetSet {
         this.x = x;
     }
 
+    public boolean isB() {
+        return b;
+    }
+
+    public void setB(boolean b) {
+        this.b = b;
+    }
 }
 

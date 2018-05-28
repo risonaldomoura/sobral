@@ -1,1459 +1,1691 @@
 package projeto.app.sobral.Matematica;
 
-import android.os.AsyncTask;
-import android.support.v4.app.Fragment;
-//import android.app.Fragment;
+/**
+ * Created by Risonald0 on 04/05/2017.
+ */
+
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import java.util.Calendar;
 
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import javax.net.ssl.HttpsURLConnection;
-
-import projeto.app.sobral.R;
-import projeto.app.sobral.Utils.Adaptador_Disciplina_ano;
-import projeto.app.sobral.Utils.DatasFirebase;
 import projeto.app.sobral.Utils.Main_activity;
-import projeto.app.sobral.Utils.MyDataGetSet;
+import projeto.app.sobral.R;
 
-/**
- * Created by Daniel on 09/01/2018.
- */
+public class Tab_matematica_sexto extends Fragment {
 
-public class Tab_matematica_sexto extends Fragment{
+    public int ID_salvo_dia_inicio_I;
+    public int ID_salvo_dia_termino_I;
+    public int ID_salvo_mes_inicio_I;
+    public int ID_salvo_mes_termino_I;
 
-    RecyclerView rv_I_Bimestre_6_matematica;
-    RecyclerView rv_II_Bimestre_6_matematica;
-    RecyclerView rv_III_Bimestre_6_matematica;
-    RecyclerView rv_IV_Bimestre_6_matematica;
+    public int ID_salvo_dia_inicio_II;
+    public int ID_salvo_dia_termino_II;
+    public int ID_salvo_mes_inicio_II;
+    public int ID_salvo_mes_termino_II;
 
-    TextView tv_Titulo_I_Bimestre;
-    TextView tv_Titulo_II_Bimestre;
-    TextView tv_Titulo_III_Bimestre;
-    TextView tv_Titulo_IV_Bimestre;
+    public int ID_salvo_dia_inicio_III;
+    public int ID_salvo_dia_termino_III;
+    public int ID_salvo_mes_inicio_III;
+    public int ID_salvo_mes_termino_III;
 
+    public int ID_salvo_dia_inicio_IV;
+    public int ID_salvo_dia_termino_IV;
+    public int ID_salvo_mes_inicio_IV;
+    public int ID_salvo_mes_termino_IV;
 
+    public String mes_1 = "JAN";
+    public String mes_2 = "FEV";
+    public String mes_3 = "MAR";
+    public String mes_4 = "ABR";
+    public String mes_5 = "MAI";
+    public String mes_6 = "JUN";
+    public String mes_7 = "JUL";
+    public String mes_8 = "AGO";
+    public String mes_9 = "SET";
+    public String mes_10 = "OUT";
+    public String mes_11 = "NOV";
+    public String mes_12 = "DEZ";
 
-    List<MyDataGetSet> listData_1_bimestre;
-    List<MyDataGetSet> listData_2_bimestre;
-    List<MyDataGetSet> listData_3_bimestre;
-    List<MyDataGetSet> listData_4_bimestre;
+    public String nome_pref_checkbox = "pref_checkbox_matematica_sexto";
 
-    Adaptador_Disciplina_ano adp_matematica_sexto_1_bimestre;
-    Adaptador_Disciplina_ano adp_matematica_sexto_2_bimestre;
-    Adaptador_Disciplina_ano adp_matematica_sexto_3_bimestre;
-    Adaptador_Disciplina_ano adp_matematica_sexto_4_bimestre;
+    public int Dia_sistema;
+    public int Mes_sistema;
 
+    public int estadocb1, estadocb2, estadocb3, estadocb4, estadocb5, estadocb6, estadocb7, estadocb8
+            ,estadocb9, estadocb10, estadocb11, estadocb12, estadocb13, estadocb14, estadocb15
+            , estadocb16;
 
-
-    FirebaseDatabase FDB;
-    //
-    DatabaseReference DBR;
-    DatabaseReference DBR_Titulo_I_Bimestre;
-    DatabaseReference DBR_Titulo_II_Bimestre;
-    DatabaseReference DBR_Titulo_III_Bimestre;
-    DatabaseReference DBR_Titulo_IV_Bimestre;
-
-
-
-    //
-
-    String titulo;
-
-    Button botao_docs;
-
-
-    //Dia e Mês carregado do firebase
-    public String dia_up_inicio_1, mes_up_inicio_1, dia_up_termino_1, mes_up_termino_1,
-            dia_up_inicio_2, mes_up_inicio_2, dia_up_termino_2, mes_up_termino_2,
-            dia_up_inicio_3, mes_up_inicio_3, dia_up_termino_3, mes_up_termino_3,
-            dia_up_inicio_4, mes_up_inicio_4, dia_up_termino_4, mes_up_termino_4;
-
-    private FirebaseAuth fbAuth;
-    private DatabaseReference UserData_inicio_1, UserData_termino_1,
-            UserData_inicio_2, UserData_termino_2,
-            UserData_inicio_3, UserData_termino_3,
-            UserData_inicio_4, UserData_termino_4;
-
+    CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8, cb9, cb10, cb11, cb12, cb13, cb14, cb15, cb16;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.cont_matematica_sexto, container, false);
 
-
-
-        View rView = inflater.inflate(R.layout.layout_model_conteudo,container,false);
-
-        //=========== INÍCIO DO TRATAMENTO DOS ADPATADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS I BIMESTRE===============
-        //----------------------Dentro de onCreateView() -----------------------------------------------------------------
-
-        rv_I_Bimestre_6_matematica = (RecyclerView) rView.findViewById(R.id.recyclerView_I_Bimestre);
-        tv_Titulo_I_Bimestre = (TextView) rView.findViewById(R.id.Titulo_I_Bimestre);
-
-        rv_I_Bimestre_6_matematica.setHasFixedSize(true);
-        rv_I_Bimestre_6_matematica.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-
-
-
-        rv_I_Bimestre_6_matematica.setItemAnimator(new DefaultItemAnimator());
-        rv_I_Bimestre_6_matematica.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
-
-        listData_1_bimestre=  new ArrayList<>();
-        adp_matematica_sexto_1_bimestre = new Adaptador_Disciplina_ano(listData_1_bimestre);
-
-        //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS I BIMESTRE==================
-
-
-
-
-
-        //=========== INÍCIO DO TRATAMENTO DOS ADPATADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS II BIMESTRE===============
-        //----------------------Dentro de onCreateView() -----------------------------------------------------------------
-
-
-        rv_II_Bimestre_6_matematica = (RecyclerView) rView.findViewById(R.id.recyclerView_II_Bimestre);
-        tv_Titulo_II_Bimestre = (TextView) rView.findViewById(R.id.Titulo_II_Bimestre);
-
-        rv_II_Bimestre_6_matematica.setHasFixedSize(true);
-        rv_II_Bimestre_6_matematica.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        rv_II_Bimestre_6_matematica.setItemAnimator(new DefaultItemAnimator());
-        rv_II_Bimestre_6_matematica.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
-
-        listData_2_bimestre=  new ArrayList<>();
-        adp_matematica_sexto_2_bimestre = new Adaptador_Disciplina_ano(listData_2_bimestre);
-
-        //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS II BIMESTRE==================
-
-
-
-
-        //=========== INÍCIO DO TRATAMENTO DOS ADPATADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS III BIMESTRE===============
-        //----------------------Dentro de onCreateView() -----------------------------------------------------------------
-
-
-        rv_III_Bimestre_6_matematica = (RecyclerView) rView.findViewById(R.id.recyclerView_III_Bimestre);
-        tv_Titulo_III_Bimestre = (TextView) rView.findViewById(R.id.Titulo_III_Bimestre);
-
-        rv_III_Bimestre_6_matematica.setHasFixedSize(true);
-        rv_III_Bimestre_6_matematica.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        rv_III_Bimestre_6_matematica.setItemAnimator(new DefaultItemAnimator());
-        rv_III_Bimestre_6_matematica.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
-
-        listData_3_bimestre=  new ArrayList<>();
-        adp_matematica_sexto_3_bimestre = new Adaptador_Disciplina_ano(listData_3_bimestre);
-
-        //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS III BIMESTRE==================
-
-
-
-        //=========== INÍCIO DO TRATAMENTO DOS ADPATADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS IV BIMESTRE===============
-        //----------------------Dentro de onCreateView() -----------------------------------------------------------------
-
-
-        rv_IV_Bimestre_6_matematica = (RecyclerView) rView.findViewById(R.id.recyclerView_IV_Bimestre);
-        tv_Titulo_IV_Bimestre = (TextView) rView.findViewById(R.id.Titulo_IV_Bimestre);
-
-        rv_IV_Bimestre_6_matematica.setHasFixedSize(true);
-        rv_IV_Bimestre_6_matematica.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        rv_IV_Bimestre_6_matematica.setItemAnimator(new DefaultItemAnimator());
-        rv_IV_Bimestre_6_matematica.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
-
-        listData_4_bimestre=  new ArrayList<>();
-        adp_matematica_sexto_4_bimestre = new Adaptador_Disciplina_ano(listData_4_bimestre);
-
-        //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS IV BIMESTRE==================
-
-
-        rv_I_Bimestre_6_matematica.setNestedScrollingEnabled(false);
-        rv_II_Bimestre_6_matematica.setNestedScrollingEnabled(false);
-        rv_III_Bimestre_6_matematica.setNestedScrollingEnabled(false);
-        rv_IV_Bimestre_6_matematica.setNestedScrollingEnabled(false);
-
-
-
-
-
-        fbAuth = FirebaseAuth.getInstance();
-
-
-        //=============MÉTODO CARREGA DO FIREBASE E SETA AS DATAS NOS BALÕES DE BIMESTRES===========
-        final String user_id = fbAuth.getCurrentUser().getUid();
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //=============== CARREGAMENTO DAS DATAS DOS BIMESTRES =====================================
 
         //=================PRIMEIRO BIMESTRE========================================================
 
-        //INÍCIO
-        final TextView dia_inicio_I = (TextView) rView.findViewById(R.id.dia_inicio_I);
-        final TextView mes_inicio_I = (TextView) rView.findViewById(R.id.mes_inicio_I);
+        //DIA INÍCIO
+        SharedPreferences sharedPref_dia_inicio_I = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
+        ID_salvo_dia_inicio_I = sharedPref_dia_inicio_I.getInt("dia_inicio_balao_1", 15);
 
-        UserData_inicio_1 = database.getReference().child("users").child(user_id).child("datas").child("inicio_1");
+        //DIA TÉRMINO
+        SharedPreferences sharedPref_dia_termino_I = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
+        ID_salvo_dia_termino_I = sharedPref_dia_termino_I.getInt("dia_termino_balao_1", 15);
 
-        ValueEventListener post_inicio_1_Listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+        //MÊS INÍCIO
+        SharedPreferences sharedPref_mes_inicio_I = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
+        ID_salvo_mes_inicio_I = sharedPref_mes_inicio_I.getInt("mes_inicio_balao_1", 1);
 
-                if (dataSnapshot.exists()){
-
-                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
-
-                    dia_up_inicio_1 = post.inicio_1;
-                    mes_up_inicio_1 = post.inicio_1;
-
-                    dia_up_inicio_1 = dia_up_inicio_1.substring(0, 2);
-                    mes_up_inicio_1 = mes_up_inicio_1.substring(3, 5);
-
-                    conversor_mes_up_inicio_1();
-
-                    dia_inicio_I.setText(dia_up_inicio_1);
-                    mes_inicio_I.setText(mes_up_inicio_1);
-                }
-                else {}
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError){}
-        };
-        UserData_inicio_1.addValueEventListener(post_inicio_1_Listener);
-
-        //TÉRMINO
-        final TextView dia_termino_I = (TextView) rView.findViewById(R.id.dia_termino_I);
-        final TextView mes_termino_I = (TextView) rView.findViewById(R.id.mes_termino_I);
-
-        UserData_termino_1 = database.getReference().child("users").child(user_id).child("datas").child("termino_1");
-
-        ValueEventListener post_termino_1_Listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.exists()){
-
-                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
-
-                    dia_up_termino_1 = post.termino_1;
-                    mes_up_termino_1 = post.termino_1;
-
-                    dia_up_termino_1 = dia_up_termino_1.substring(0, 2);
-                    mes_up_termino_1 = mes_up_termino_1.substring(3, 5);
-
-                    conversor_mes_up_termino_1();
-
-                    dia_termino_I.setText(dia_up_termino_1);
-                    mes_termino_I.setText(mes_up_termino_1);
-
-                }
-                else {}
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError){}
-        };
-        UserData_termino_1.addValueEventListener(post_termino_1_Listener);
+        //MÊS TÉRMINO
+        SharedPreferences sharedPref_mes_termino_I = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
+        ID_salvo_mes_termino_I = sharedPref_mes_termino_I.getInt("mes_termino_balao_1", 3);
 
         //==========================================================================================
 
         //=================SEGUNDO BIMESTRE=========================================================
 
-        //INÍCIO
-        final TextView dia_inicio_II = (TextView) rView.findViewById(R.id.dia_inicio_II);
-        final TextView mes_inicio_II = (TextView) rView.findViewById(R.id.mes_inicio_II);
+        //DIA INICIO
+        SharedPreferences sharedPref_dia_inicio_II = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
+        ID_salvo_dia_inicio_II = sharedPref_dia_inicio_II.getInt("dia_inicio_balao_2", 16);
 
-        UserData_inicio_2 = database.getReference().child("users").child(user_id).child("datas").child("inicio_2");
+        //DIA TÉRMINO
+        SharedPreferences sharedPref_dia_termino_II = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
+        ID_salvo_dia_termino_II = sharedPref_dia_termino_II.getInt("dia_termino_balao_2", 16);
 
-        ValueEventListener post_inicio_2_Listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+        //MES INÍCIO
+        SharedPreferences sharedPref_mes_inicio_II = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
+        ID_salvo_mes_inicio_II = sharedPref_mes_inicio_II.getInt("mes_inicio_balao_2", 3);
 
-                if (dataSnapshot.exists()){
-
-                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
-
-                    dia_up_inicio_2 = post.inicio_2;
-                    mes_up_inicio_2 = post.inicio_2;
-
-                    dia_up_inicio_2 = dia_up_inicio_2.substring(0, 2);
-                    mes_up_inicio_2 = mes_up_inicio_2.substring(3, 5);
-
-                    conversor_mes_up_inicio_2();
-
-                    dia_inicio_II.setText(dia_up_inicio_2);
-                    mes_inicio_II.setText(mes_up_inicio_2);
-                }
-                else {}
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError){}
-        };
-        UserData_inicio_2.addValueEventListener(post_inicio_2_Listener);
-
-        //TÉRMINO
-        final TextView dia_termino_II = (TextView) rView.findViewById(R.id.dia_termino_II);
-        final TextView mes_termino_II = (TextView) rView.findViewById(R.id.mes_termino_II);
-
-        UserData_termino_2 = database.getReference().child("users").child(user_id).child("datas").child("termino_2");
-
-        ValueEventListener post_termino_2_Listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.exists()){
-
-                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
-
-                    dia_up_termino_2 = post.termino_2;
-                    mes_up_termino_2 = post.termino_2;
-
-                    dia_up_termino_2 = dia_up_termino_2.substring(0, 2);
-                    mes_up_termino_2 = mes_up_termino_2.substring(3, 5);
-
-                    conversor_mes_up_termino_2();
-
-                    dia_termino_II.setText(dia_up_termino_2);
-                    mes_termino_II.setText(mes_up_termino_2);
-
-                }
-                else {}
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError){}
-        };
-        UserData_termino_2.addValueEventListener(post_termino_2_Listener);
+        //MÊS TÉRMINO
+        SharedPreferences sharedPref_mes_termino_II = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
+        ID_salvo_mes_termino_II = sharedPref_mes_termino_II.getInt("mes_termino_balao_2", 5);
 
         //==========================================================================================
 
         //=================TERCEIRO BIMESTRE========================================================
 
-        //INÍCIO
-        final TextView dia_inicio_III = (TextView) rView.findViewById(R.id.dia_inicio_III);
-        final TextView mes_inicio_III = (TextView) rView.findViewById(R.id.mes_inicio_III);
+        //DIA INÍCIO
+        SharedPreferences sharedPref_dia_inicio_III = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
+        ID_salvo_dia_inicio_III = sharedPref_dia_inicio_III.getInt("dia_inicio_balao_3", 5);
 
-        UserData_inicio_3 = database.getReference().child("users").child(user_id).child("datas").child("inicio_3");
+        //DIA TÉRMINO
+        SharedPreferences sharedPref_dia_termino_III = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
+        ID_salvo_dia_termino_III = sharedPref_dia_termino_III.getInt("dia_termino_balao_3", 5);
 
-        ValueEventListener post_inicio_3_Listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+        //MES INÍCIO
+        SharedPreferences sharedPref_mes_inicio_III = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
+        ID_salvo_mes_inicio_III = sharedPref_mes_inicio_III.getInt("mes_inicio_balao_3", 7);
 
-                if (dataSnapshot.exists()){
+        //MÊS TÉRMINO
+        SharedPreferences sharedPref_mes_termino_III = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
+        ID_salvo_mes_termino_III = sharedPref_mes_termino_III.getInt("mes_termino_balao_3", 9);
 
-                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
-
-                    dia_up_inicio_3 = post.inicio_3;
-                    mes_up_inicio_3 = post.inicio_3;
-
-                    dia_up_inicio_3 = dia_up_inicio_3.substring(0, 2);
-                    mes_up_inicio_3 = mes_up_inicio_3.substring(3, 5);
-
-                    conversor_mes_up_inicio_3();
-
-                    dia_inicio_III.setText(dia_up_inicio_3);
-                    mes_inicio_III.setText(mes_up_inicio_3);
-                }
-                else {}
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError){}
-        };
-        UserData_inicio_3.addValueEventListener(post_inicio_3_Listener);
-
-        //TÉRMINO
-        final TextView dia_termino_III = (TextView) rView.findViewById(R.id.dia_termino_III);
-        final TextView mes_termino_III = (TextView) rView.findViewById(R.id.mes_termino_III);
-
-        UserData_termino_3 = database.getReference().child("users").child(user_id).child("datas").child("termino_3");
-
-        ValueEventListener post_termino_3_Listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.exists()){
-
-                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
-
-                    dia_up_termino_3 = post.termino_3;
-                    mes_up_termino_3 = post.termino_3;
-
-                    dia_up_termino_3 = dia_up_termino_3.substring(0, 2);
-                    mes_up_termino_3 = mes_up_termino_3.substring(3, 5);
-
-                    conversor_mes_up_termino_3();
-
-                    dia_termino_III.setText(dia_up_termino_3);
-                    mes_termino_III.setText(mes_up_termino_3);
-
-                }
-                else {}
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError){}
-        };
-        UserData_termino_3.addValueEventListener(post_termino_3_Listener);
         //==========================================================================================
 
         //=================QUARTO BIMESTRE==========================================================
 
-        //INÍCIO
-        final TextView dia_inicio_IV = (TextView) rView.findViewById(R.id.dia_inicio_IV);
-        final TextView mes_inicio_IV = (TextView) rView.findViewById(R.id.mes_inicio_IV);
+        //DIA INÍCIO
+        SharedPreferences sharedPref_dia_inicio_IV = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
+        ID_salvo_dia_inicio_IV = sharedPref_dia_inicio_IV.getInt("dia_inicio_balao_4", 6);
 
-        UserData_inicio_4 = database.getReference().child("users").child(user_id).child("datas").child("inicio_4");
+        //DIA TÉRMINO
+        SharedPreferences sharedPref_dia_termino_IV = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
+        ID_salvo_dia_termino_IV = sharedPref_dia_termino_IV.getInt("dia_termino_balao_4", 6);
 
-        ValueEventListener post_inicio_4_Listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+        //MES INÍCIO
+        SharedPreferences sharedPref_mes_inicio_IV = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
+        ID_salvo_mes_inicio_IV = sharedPref_mes_inicio_IV.getInt("mes_inicio_balao_4", 9);
 
-                if (dataSnapshot.exists()){
-
-                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
-
-                    dia_up_inicio_4 = post.inicio_4;
-                    mes_up_inicio_4 = post.inicio_4;
-
-                    dia_up_inicio_4 = dia_up_inicio_4.substring(0, 2);
-                    mes_up_inicio_4 = mes_up_inicio_4.substring(3, 5);
-
-                    conversor_mes_up_inicio_4();
-
-                    dia_inicio_IV.setText(dia_up_inicio_4);
-                    mes_inicio_IV.setText(mes_up_inicio_4);
-                }
-                else {}
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError){}
-        };
-        UserData_inicio_4.addValueEventListener(post_inicio_4_Listener);
-
-        //TÉRMINO
-        final TextView dia_termino_IV = (TextView) rView.findViewById(R.id.dia_termino_IV);
-        final TextView mes_termino_IV = (TextView) rView.findViewById(R.id.mes_termino_IV);
-
-        UserData_termino_4 = database.getReference().child("users").child(user_id).child("datas").child("termino_4");
-
-        ValueEventListener post_termino_4_Listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.exists()){
-
-                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
-
-                    dia_up_termino_4 = post.termino_4;
-                    mes_up_termino_4 = post.termino_4;
-
-                    dia_up_termino_4 = dia_up_termino_4.substring(0, 2);
-                    mes_up_termino_4 = mes_up_termino_4.substring(3, 5);
-
-                    conversor_mes_up_termino_4();
-
-                    dia_termino_IV.setText(dia_up_termino_4);
-                    mes_termino_IV.setText(mes_up_termino_4);
-
-                }
-                else {}
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError){}
-        };
-        UserData_termino_4.addValueEventListener(post_termino_4_Listener);
+        //MÊS TÉRMINO
+        SharedPreferences sharedPref_mes_termino_IV = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
+        ID_salvo_mes_termino_IV = sharedPref_mes_termino_IV.getInt("mes_termino_balao_4", 11);
 
         //==========================================================================================
 
 
-
-
-
-
-
-
-
-
-        FDB = FirebaseDatabase.getInstance();
-        //FirebaseDatabase.setPersistenceEnabled();
-
-        GetDataFirebase();
-
-
-
-
-
-        return rView;
-    }
-
-    public void conversor_mes_up_inicio_1(){
-
-        if (mes_up_inicio_1.equals("01"))
-        {
-            mes_up_inicio_1 = "JAN";
-
-        }
-        else if (mes_up_inicio_1.equals("02") )
-        {
-            mes_up_inicio_1 = "FEV";
-
-        }
-        else if (mes_up_inicio_1.equals("03"))
-        {
-            mes_up_inicio_1 = "MAR";
-
-        }
-        else if (mes_up_inicio_1.equals("04") )
-        {
-            mes_up_inicio_1 = "ABR";
-
-        }
-        else if (mes_up_inicio_1.equals("05"))
-        {
-            mes_up_inicio_1 = "MAI";
-
-        }
-        else if (mes_up_inicio_1.equals("06"))
-        {
-            mes_up_inicio_1 = "JUN";
-
-        }
-        else if (mes_up_inicio_1.equals("07"))
-        {
-            mes_up_inicio_1 = "JUL";
-
-        }
-
-        else if (mes_up_inicio_1.equals("08"))
-        {
-            mes_up_inicio_1 = "AGO";
-
-        }
-
-        else if (mes_up_inicio_1.equals("09"))
-        {
-            mes_up_inicio_1 = "SET";
-
-        }
-
-        else if (mes_up_inicio_1.equals("10"))
-        {
-            mes_up_inicio_1 = "OUT";
-
-        }
-
-        else if (mes_up_inicio_1.equals("11") )
-        {
-            mes_up_inicio_1 = "NOV";
-
-        }
-
-        else if (mes_up_inicio_1.equals("12") )
-        {
-            mes_up_inicio_1 = "DEZ";
-
-        }
-
-    }
-
-    public void conversor_mes_up_termino_1(){
-
-        if (mes_up_termino_1.equals("01"))
-        {
-            mes_up_termino_1 = "JAN";
-
-        }
-        else if (mes_up_termino_1.equals("02") )
-        {
-            mes_up_termino_1 = "FEV";
-
-        }
-        else if (mes_up_termino_1.equals("03"))
-        {
-            mes_up_termino_1 = "MAR";
-
-        }
-        else if (mes_up_termino_1.equals("04") )
-        {
-            mes_up_termino_1 = "ABR";
-
-        }
-        else if (mes_up_termino_1.equals("05"))
-        {
-            mes_up_termino_1 = "MAI";
-
-        }
-        else if (mes_up_termino_1.equals("06"))
-        {
-            mes_up_termino_1 = "JUN";
-
-        }
-        else if (mes_up_termino_1.equals("07"))
-        {
-            mes_up_termino_1 = "JUL";
-
-        }
-
-        else if (mes_up_termino_1.equals("08"))
-        {
-            mes_up_termino_1 = "AGO";
-
-        }
-
-        else if (mes_up_termino_1.equals("09"))
-        {
-            mes_up_termino_1 = "SET";
-
-        }
-
-        else if (mes_up_termino_1.equals("10"))
-        {
-            mes_up_termino_1 = "OUT";
-
-        }
-
-        else if (mes_up_termino_1.equals("11") )
-        {
-            mes_up_termino_1 = "NOV";
-
-        }
-
-        else if (mes_up_termino_1.equals("12") )
-        {
-            mes_up_termino_1 = "DEZ";
-
-        }
-
-    }
-
-    public void conversor_mes_up_inicio_2(){
-
-        if (mes_up_inicio_2.equals("01"))
-        {
-            mes_up_inicio_2 = "JAN";
-
-        }
-        else if (mes_up_inicio_2.equals("02") )
-        {
-            mes_up_inicio_2 = "FEV";
-
-        }
-        else if (mes_up_inicio_2.equals("03"))
-        {
-            mes_up_inicio_2 = "MAR";
-
-        }
-        else if (mes_up_inicio_2.equals("04") )
-        {
-            mes_up_inicio_2 = "ABR";
-
-        }
-        else if (mes_up_inicio_2.equals("05"))
-        {
-            mes_up_inicio_2 = "MAI";
-
-        }
-        else if (mes_up_inicio_2.equals("06"))
-        {
-            mes_up_inicio_2 = "JUN";
-
-        }
-        else if (mes_up_inicio_2.equals("07"))
-        {
-            mes_up_inicio_2 = "JUL";
-
-        }
-
-        else if (mes_up_inicio_2.equals("08"))
-        {
-            mes_up_inicio_2 = "AGO";
-
-        }
-
-        else if (mes_up_inicio_2.equals("09"))
-        {
-            mes_up_inicio_2 = "SET";
-
-        }
-
-        else if (mes_up_inicio_2.equals("10"))
-        {
-            mes_up_inicio_2 = "OUT";
-
-        }
-
-        else if (mes_up_inicio_2.equals("11") )
-        {
-            mes_up_inicio_2 = "NOV";
-
-        }
-
-        else if (mes_up_inicio_2.equals("12") )
-        {
-            mes_up_inicio_2 = "DEZ";
-
-        }
-
-    }
-
-    public void conversor_mes_up_termino_2(){
-
-        if (mes_up_termino_2.equals("01"))
-        {
-            mes_up_termino_2 = "JAN";
-
-        }
-        else if (mes_up_termino_2.equals("02") )
-        {
-            mes_up_termino_2 = "FEV";
-
-        }
-        else if (mes_up_termino_2.equals("03"))
-        {
-            mes_up_termino_2 = "MAR";
-
-        }
-        else if (mes_up_termino_2.equals("04") )
-        {
-            mes_up_termino_2 = "ABR";
-
-        }
-        else if (mes_up_termino_2.equals("05"))
-        {
-            mes_up_termino_2 = "MAI";
-
-        }
-        else if (mes_up_termino_2.equals("06"))
-        {
-            mes_up_termino_2 = "JUN";
-
-        }
-        else if (mes_up_termino_2.equals("07"))
-        {
-            mes_up_termino_2 = "JUL";
-
-        }
-
-        else if (mes_up_termino_2.equals("08"))
-        {
-            mes_up_termino_2 = "AGO";
-
-        }
-
-        else if (mes_up_termino_2.equals("09"))
-        {
-            mes_up_termino_2 = "SET";
-
-        }
-
-        else if (mes_up_termino_2.equals("10"))
-        {
-            mes_up_termino_2 = "OUT";
-
-        }
-
-        else if (mes_up_termino_2.equals("11") )
-        {
-            mes_up_termino_2 = "NOV";
-
-        }
-
-        else if (mes_up_termino_2.equals("12") )
-        {
-            mes_up_termino_2 = "DEZ";
-
-        }
-
-    }
-
-    public void conversor_mes_up_inicio_3(){
-
-        if (mes_up_inicio_3.equals("01"))
-        {
-            mes_up_inicio_3 = "JAN";
-
-        }
-        else if (mes_up_inicio_3.equals("02") )
-        {
-            mes_up_inicio_3 = "FEV";
-
-        }
-        else if (mes_up_inicio_3.equals("03"))
-        {
-            mes_up_inicio_3 = "MAR";
-
-        }
-        else if (mes_up_inicio_3.equals("04") )
-        {
-            mes_up_inicio_3 = "ABR";
-
-        }
-        else if (mes_up_inicio_3.equals("05"))
-        {
-            mes_up_inicio_3 = "MAI";
-
-        }
-        else if (mes_up_inicio_3.equals("06"))
-        {
-            mes_up_inicio_3 = "JUN";
-
-        }
-        else if (mes_up_inicio_3.equals("07"))
-        {
-            mes_up_inicio_3 = "JUL";
-
-        }
-
-        else if (mes_up_inicio_3.equals("08"))
-        {
-            mes_up_inicio_3 = "AGO";
-
-        }
-
-        else if (mes_up_inicio_3.equals("09"))
-        {
-            mes_up_inicio_3 = "SET";
-
-        }
-
-        else if (mes_up_inicio_3.equals("10"))
-        {
-            mes_up_inicio_3 = "OUT";
-
-        }
-
-        else if (mes_up_inicio_3.equals("11") )
-        {
-            mes_up_inicio_3 = "NOV";
-
-        }
-
-        else if (mes_up_inicio_3.equals("12") )
-        {
-            mes_up_inicio_3 = "DEZ";
-
-        }
-
-    }
-
-    public void conversor_mes_up_termino_3(){
-
-        if (mes_up_termino_3.equals("01"))
-        {
-            mes_up_termino_3 = "JAN";
-
-        }
-        else if (mes_up_termino_3.equals("02") )
-        {
-            mes_up_termino_3 = "FEV";
-
-        }
-        else if (mes_up_termino_3.equals("03"))
-        {
-            mes_up_termino_3 = "MAR";
-
-        }
-        else if (mes_up_termino_3.equals("04") )
-        {
-            mes_up_termino_3 = "ABR";
-
-        }
-        else if (mes_up_termino_3.equals("05"))
-        {
-            mes_up_termino_3 = "MAI";
-
-        }
-        else if (mes_up_termino_3.equals("06"))
-        {
-            mes_up_termino_3 = "JUN";
-
-        }
-        else if (mes_up_termino_3.equals("07"))
-        {
-            mes_up_termino_3 = "JUL";
-
-        }
-
-        else if (mes_up_termino_3.equals("08"))
-        {
-            mes_up_termino_3 = "AGO";
-
-        }
-
-        else if (mes_up_termino_3.equals("09"))
-        {
-            mes_up_termino_3 = "SET";
-
-        }
-
-        else if (mes_up_termino_3.equals("10"))
-        {
-            mes_up_termino_3 = "OUT";
-
-        }
-
-        else if (mes_up_termino_3.equals("11") )
-        {
-            mes_up_termino_3 = "NOV";
-
-        }
-
-        else if (mes_up_termino_3.equals("12") )
-        {
-            mes_up_termino_3 = "DEZ";
-
-        }
-
-    }
-
-    public void conversor_mes_up_inicio_4(){
-
-        if (mes_up_inicio_4.equals("01"))
-        {
-            mes_up_inicio_4 = "JAN";
-
-        }
-        else if (mes_up_inicio_4.equals("02") )
-        {
-            mes_up_inicio_4 = "FEV";
-
-        }
-        else if (mes_up_inicio_4.equals("03"))
-        {
-            mes_up_inicio_4 = "MAR";
-
-        }
-        else if (mes_up_inicio_4.equals("04") )
-        {
-            mes_up_inicio_4 = "ABR";
-
-        }
-        else if (mes_up_inicio_4.equals("05"))
-        {
-            mes_up_inicio_4 = "MAI";
-
-        }
-        else if (mes_up_inicio_4.equals("06"))
-        {
-            mes_up_inicio_4 = "JUN";
-
-        }
-        else if (mes_up_inicio_4.equals("07"))
-        {
-            mes_up_inicio_4 = "JUL";
-
-        }
-
-        else if (mes_up_inicio_4.equals("08"))
-        {
-            mes_up_inicio_4 = "AGO";
-
-        }
-
-        else if (mes_up_inicio_4.equals("09"))
-        {
-            mes_up_inicio_4 = "SET";
-
-        }
-
-        else if (mes_up_inicio_4.equals("10"))
-        {
-            mes_up_inicio_4 = "OUT";
-
-        }
-
-        else if (mes_up_inicio_4.equals("11") )
-        {
-            mes_up_inicio_4 = "NOV";
-
-        }
-
-        else if (mes_up_inicio_4.equals("12") )
-        {
-            mes_up_inicio_4 = "DEZ";
-
-        }
-
-    }
-
-    public void conversor_mes_up_termino_4(){
-
-        if (mes_up_termino_4.equals("01"))
-        {
-            mes_up_termino_4 = "JAN";
-
-        }
-        else if (mes_up_termino_4.equals("02") )
-        {
-            mes_up_termino_4 = "FEV";
-
-        }
-        else if (mes_up_termino_4.equals("03"))
-        {
-            mes_up_termino_4 = "MAR";
-
-        }
-        else if (mes_up_termino_4.equals("04") )
-        {
-            mes_up_termino_4 = "ABR";
-
-        }
-        else if (mes_up_termino_4.equals("05"))
-        {
-            mes_up_termino_4 = "MAI";
-
-        }
-        else if (mes_up_termino_4.equals("06"))
-        {
-            mes_up_termino_4 = "JUN";
-
-        }
-        else if (mes_up_termino_4.equals("07"))
-        {
-            mes_up_termino_4 = "JUL";
-
-        }
-
-        else if (mes_up_termino_4.equals("08"))
-        {
-            mes_up_termino_4 = "AGO";
-
-        }
-
-        else if (mes_up_termino_4.equals("09"))
-        {
-            mes_up_termino_4 = "SET";
-
-        }
-
-        else if (mes_up_termino_4.equals("10"))
-        {
-            mes_up_termino_4 = "OUT";
-
-        }
-
-        else if (mes_up_termino_4.equals("11") )
-        {
-            mes_up_termino_4 = "NOV";
-
-        }
-
-        else if (mes_up_termino_4.equals("12") )
-        {
-            mes_up_termino_4 = "DEZ";
-
-        }
-
-    }
-
-    public void carregar_data_inicio_1(){
-
-        final String user_id = fbAuth.getCurrentUser().getUid();
-
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        UserData_inicio_1 = database.getReference().child("users").child(user_id).child("datas").child("inicio_1");
-
-        ValueEventListener postListener = new ValueEventListener() {
+        //===================MÉTODO QUE SETA AS DATAS NOS BLOCOS DE BIMESTRES===========================
+        // Iniciar os campos buscando no layout do Fragment
+
+        //=========================I BIMESTRE=======================================================
+
+        //DIA INICIO
+        TextView dia_inicio_I = (TextView) view.findViewById(R.id.dia_inicio_I);
+        dia_inicio_I.setText("" + ID_salvo_dia_inicio_I);
+
+        //DIA TÉRMINO
+        TextView dia_termino_I = (TextView) view.findViewById(R.id.dia_termino_I);
+        dia_termino_I.setText("" + ID_salvo_dia_termino_I);
+
+        //MES INICIO
+        TextView mes_inicio_I = (TextView) view.findViewById(R.id.mes_inicio_I);
+
+        if (ID_salvo_mes_inicio_I == 1)
+            mes_inicio_I.setText(mes_1);
+        else if (ID_salvo_mes_inicio_I == 2)
+            mes_inicio_I.setText(mes_2);
+        else if (ID_salvo_mes_inicio_I == 3)
+            mes_inicio_I.setText(mes_3);
+        else if (ID_salvo_mes_inicio_I == 4)
+            mes_inicio_I.setText(mes_4);
+        else if (ID_salvo_mes_inicio_I == 5)
+            mes_inicio_I.setText(mes_5);
+        else if (ID_salvo_mes_inicio_I == 6)
+            mes_inicio_I.setText(mes_6);
+        else if (ID_salvo_mes_inicio_I == 7)
+            mes_inicio_I.setText(mes_7);
+        else if (ID_salvo_mes_inicio_I == 8)
+            mes_inicio_I.setText(mes_8);
+        else if (ID_salvo_mes_inicio_I == 9)
+            mes_inicio_I.setText(mes_9);
+        else if (ID_salvo_mes_inicio_I == 10)
+            mes_inicio_I.setText(mes_10);
+        else if (ID_salvo_mes_inicio_I == 11)
+            mes_inicio_I.setText(mes_11);
+        else if (ID_salvo_mes_inicio_I == 12)
+            mes_inicio_I.setText(mes_12);
+
+        //MES TERMINO
+        TextView mes_termino_I = (TextView) view.findViewById(R.id.mes_termino_I);
+
+        if (ID_salvo_mes_termino_I == 1)
+            mes_termino_I.setText(mes_1);
+        else if (ID_salvo_mes_termino_I == 2)
+            mes_termino_I.setText(mes_2);
+        else if (ID_salvo_mes_termino_I == 3)
+            mes_termino_I.setText(mes_3);
+        else if (ID_salvo_mes_termino_I == 4)
+            mes_termino_I.setText(mes_4);
+        else if (ID_salvo_mes_termino_I == 5)
+            mes_termino_I.setText(mes_5);
+        else if (ID_salvo_mes_termino_I == 6)
+            mes_termino_I.setText(mes_6);
+        else if (ID_salvo_mes_termino_I == 7)
+            mes_termino_I.setText(mes_7);
+        else if (ID_salvo_mes_termino_I == 8)
+            mes_termino_I.setText(mes_8);
+        else if (ID_salvo_mes_termino_I == 9)
+            mes_termino_I.setText(mes_9);
+        else if (ID_salvo_mes_termino_I == 10)
+            mes_termino_I.setText(mes_10);
+        else if (ID_salvo_mes_termino_I == 11)
+            mes_termino_I.setText(mes_11);
+        else if (ID_salvo_mes_termino_I == 12)
+            mes_termino_I.setText(mes_12);
+
+        //==========================================================================================
+
+        //=========================II BIMESTRE======================================================
+
+        //DIA INICIO
+        TextView dia_inicio_II = (TextView) view.findViewById(R.id.dia_inicio_II);
+        dia_inicio_II.setText("" + ID_salvo_dia_inicio_II);
+
+        //DIA TÉRMINO
+        TextView dia_termino_II = (TextView) view.findViewById(R.id.dia_termino_II);
+        dia_termino_II.setText("" + ID_salvo_dia_termino_II);
+
+        //MES INICIO
+        TextView mes_inicio_II = (TextView) view.findViewById(R.id.mes_inicio_II);
+
+        if (ID_salvo_mes_inicio_II == 1)
+            mes_inicio_II.setText(mes_1);
+        else if (ID_salvo_mes_inicio_II == 2)
+            mes_inicio_II.setText(mes_2);
+        else if (ID_salvo_mes_inicio_II == 3)
+            mes_inicio_II.setText(mes_3);
+        else if (ID_salvo_mes_inicio_II == 4)
+            mes_inicio_II.setText(mes_4);
+        else if (ID_salvo_mes_inicio_II == 5)
+            mes_inicio_II.setText(mes_5);
+        else if (ID_salvo_mes_inicio_II == 6)
+            mes_inicio_II.setText(mes_6);
+        else if (ID_salvo_mes_inicio_II == 7)
+            mes_inicio_II.setText(mes_7);
+        else if (ID_salvo_mes_inicio_II == 8)
+            mes_inicio_II.setText(mes_8);
+        else if (ID_salvo_mes_inicio_II == 9)
+            mes_inicio_II.setText(mes_9);
+        else if (ID_salvo_mes_inicio_II == 10)
+            mes_inicio_II.setText(mes_10);
+        else if (ID_salvo_mes_inicio_II == 11)
+            mes_inicio_II.setText(mes_11);
+        else if (ID_salvo_mes_inicio_II == 12)
+            mes_inicio_II.setText(mes_12);
+
+        //MES TERMINO
+        TextView mes_termino_II = (TextView) view.findViewById(R.id.mes_termino_II);
+
+        if (ID_salvo_mes_termino_II == 1)
+            mes_termino_II.setText(mes_1);
+        else if (ID_salvo_mes_termino_II == 2)
+            mes_termino_II.setText(mes_2);
+        else if (ID_salvo_mes_termino_II == 3)
+            mes_termino_II.setText(mes_3);
+        else if (ID_salvo_mes_termino_II == 4)
+            mes_termino_II.setText(mes_4);
+        else if (ID_salvo_mes_termino_II == 5)
+            mes_termino_II.setText(mes_5);
+        else if (ID_salvo_mes_termino_II == 6)
+            mes_termino_II.setText(mes_6);
+        else if (ID_salvo_mes_termino_II == 7)
+            mes_termino_II.setText(mes_7);
+        else if (ID_salvo_mes_termino_II == 8)
+            mes_termino_II.setText(mes_8);
+        else if (ID_salvo_mes_termino_II == 9)
+            mes_termino_II.setText(mes_9);
+        else if (ID_salvo_mes_termino_II == 10)
+            mes_termino_II.setText(mes_10);
+        else if (ID_salvo_mes_termino_II == 11)
+            mes_termino_II.setText(mes_11);
+        else if (ID_salvo_mes_termino_II == 12)
+            mes_termino_II.setText(mes_12);
+
+        //==========================================================================================
+
+        //=========================III BIMESTRE=====================================================
+
+        //DIA INICIO
+        TextView dia_inicio_III = (TextView) view.findViewById(R.id.dia_inicio_III);
+        dia_inicio_III.setText("" + ID_salvo_dia_inicio_III);
+
+        //DIA TÉRMINO
+        TextView dia_termino_III = (TextView) view.findViewById(R.id.dia_termino_III);
+        dia_termino_III.setText("" + ID_salvo_dia_termino_III);
+
+        //MES INICIO
+        TextView mes_inicio_III = (TextView) view.findViewById(R.id.mes_inicio_III);
+
+        if (ID_salvo_mes_inicio_III == 1)
+            mes_inicio_III.setText(mes_1);
+        else if (ID_salvo_mes_inicio_III == 2)
+            mes_inicio_III.setText(mes_2);
+        else if (ID_salvo_mes_inicio_III == 3)
+            mes_inicio_III.setText(mes_3);
+        else if (ID_salvo_mes_inicio_III == 4)
+            mes_inicio_III.setText(mes_4);
+        else if (ID_salvo_mes_inicio_III == 5)
+            mes_inicio_III.setText(mes_5);
+        else if (ID_salvo_mes_inicio_III == 6)
+            mes_inicio_III.setText(mes_6);
+        else if (ID_salvo_mes_inicio_III == 7)
+            mes_inicio_III.setText(mes_7);
+        else if (ID_salvo_mes_inicio_III == 8)
+            mes_inicio_III.setText(mes_8);
+        else if (ID_salvo_mes_inicio_III == 9)
+            mes_inicio_III.setText(mes_9);
+        else if (ID_salvo_mes_inicio_III == 10)
+            mes_inicio_III.setText(mes_10);
+        else if (ID_salvo_mes_inicio_III == 11)
+            mes_inicio_III.setText(mes_11);
+        else if (ID_salvo_mes_inicio_III == 12)
+            mes_inicio_III.setText(mes_12);
+
+        //MES TERMINO
+        TextView mes_termino_III = (TextView) view.findViewById(R.id.mes_termino_III);
+
+        if (ID_salvo_mes_termino_III == 1)
+            mes_termino_III.setText(mes_1);
+        else if (ID_salvo_mes_termino_III == 2)
+            mes_termino_III.setText(mes_2);
+        else if (ID_salvo_mes_termino_III == 3)
+            mes_termino_III.setText(mes_3);
+        else if (ID_salvo_mes_termino_III == 4)
+            mes_termino_III.setText(mes_4);
+        else if (ID_salvo_mes_termino_III == 5)
+            mes_termino_III.setText(mes_5);
+        else if (ID_salvo_mes_termino_III == 6)
+            mes_termino_III.setText(mes_6);
+        else if (ID_salvo_mes_termino_III == 7)
+            mes_termino_III.setText(mes_7);
+        else if (ID_salvo_mes_termino_III == 8)
+            mes_termino_III.setText(mes_8);
+        else if (ID_salvo_mes_termino_III == 9)
+            mes_termino_III.setText(mes_9);
+        else if (ID_salvo_mes_termino_III == 10)
+            mes_termino_III.setText(mes_10);
+        else if (ID_salvo_mes_termino_III == 11)
+            mes_termino_III.setText(mes_11);
+        else if (ID_salvo_mes_termino_III == 12)
+            mes_termino_III.setText(mes_12);
+
+        //==========================================================================================
+
+        //=========================IV BIMESTRE======================================================
+
+        //DIA INICIO
+        TextView dia_inicio_IV = (TextView) view.findViewById(R.id.dia_inicio_IV);
+        dia_inicio_IV.setText("" + ID_salvo_dia_inicio_IV);
+
+        //DIA TÉRMINO
+        TextView dia_termino_IV = (TextView) view.findViewById(R.id.dia_termino_IV);
+        dia_termino_IV.setText("" + ID_salvo_dia_termino_IV);
+
+        //MES INICIO
+        TextView mes_inicio_IV = (TextView) view.findViewById(R.id.mes_inicio_IV);
+
+        if (ID_salvo_mes_inicio_IV == 1)
+            mes_inicio_IV.setText(mes_1);
+        else if (ID_salvo_mes_inicio_IV == 2)
+            mes_inicio_IV.setText(mes_2);
+        else if (ID_salvo_mes_inicio_IV == 3)
+            mes_inicio_IV.setText(mes_3);
+        else if (ID_salvo_mes_inicio_IV == 4)
+            mes_inicio_IV.setText(mes_4);
+        else if (ID_salvo_mes_inicio_IV == 5)
+            mes_inicio_IV.setText(mes_5);
+        else if (ID_salvo_mes_inicio_IV == 6)
+            mes_inicio_IV.setText(mes_6);
+        else if (ID_salvo_mes_inicio_IV == 7)
+            mes_inicio_IV.setText(mes_7);
+        else if (ID_salvo_mes_inicio_IV == 8)
+            mes_inicio_IV.setText(mes_8);
+        else if (ID_salvo_mes_inicio_IV == 9)
+            mes_inicio_IV.setText(mes_9);
+        else if (ID_salvo_mes_inicio_IV == 10)
+            mes_inicio_IV.setText(mes_10);
+        else if (ID_salvo_mes_inicio_IV == 11)
+            mes_inicio_IV.setText(mes_11);
+        else if (ID_salvo_mes_inicio_IV == 12)
+            mes_inicio_IV.setText(mes_12);
+
+        //MES TERMINO
+        TextView mes_termino_IV = (TextView) view.findViewById(R.id.mes_termino_IV);
+
+        if (ID_salvo_mes_termino_IV == 1)
+            mes_termino_IV.setText(mes_1);
+        else if (ID_salvo_mes_termino_IV == 2)
+            mes_termino_IV.setText(mes_2);
+        else if (ID_salvo_mes_termino_IV == 3)
+            mes_termino_IV.setText(mes_3);
+        else if (ID_salvo_mes_termino_IV == 4)
+            mes_termino_IV.setText(mes_4);
+        else if (ID_salvo_mes_termino_IV == 5)
+            mes_termino_IV.setText(mes_5);
+        else if (ID_salvo_mes_termino_IV == 6)
+            mes_termino_IV.setText(mes_6);
+        else if (ID_salvo_mes_termino_IV == 7)
+            mes_termino_IV.setText(mes_7);
+        else if (ID_salvo_mes_termino_IV == 8)
+            mes_termino_IV.setText(mes_8);
+        else if (ID_salvo_mes_termino_IV == 9)
+            mes_termino_IV.setText(mes_9);
+        else if (ID_salvo_mes_termino_IV == 10)
+            mes_termino_IV.setText(mes_10);
+        else if (ID_salvo_mes_termino_IV == 11)
+            mes_termino_IV.setText(mes_11);
+        else if (ID_salvo_mes_termino_IV == 12)
+            mes_termino_IV.setText(mes_12);
+
+        //==========================================================================================
+        //FIM DO MÉTODO DE DATAS DOS BIMESTRES
+
+
+        //======================TRATAMENTO DO CHECKBOX 1============================================
+
+        cb1 = (CheckBox) view.findViewById(R.id.cb1);
+
+        SharedPreferences sharedPref_estadocb1 = this.getActivity().getSharedPreferences(nome_pref_checkbox, Context.MODE_PRIVATE);
+        estadocb1 = sharedPref_estadocb1.getInt("estadocb1", 0);
+
+        if (estadocb1 == 0)
+            cb1.setChecked(false);
+        else
+            cb1.setChecked(true);
+
+        cb1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
 
-                if (dataSnapshot.exists()){
+                if (cb1.isChecked()){
+                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_marcar);
 
-                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
 
-                    dia_up_inicio_1 = post.inicio_1;
-                    mes_up_inicio_1 = post.inicio_1;
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
 
-                    dia_up_inicio_1 = dia_up_inicio_1.substring(0, 2);
-                    mes_up_inicio_1 = mes_up_inicio_1.substring(3, 5);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
 
-                    conversor_mes_up_inicio_1();
+                            cb1.setChecked(true);
 
-                    //dia_inicio_I.setText(dia_salvo_inicio_1);
-                    //mes_inicio_I.setText(mes_salvo_inicio_1);
+                            //estadocb1 = 1;
+                            SharedPreferences sharedPref_estadocb1 = getActivity().getSharedPreferences(nome_pref_checkbox,0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb1.edit();
+                            prefEditor.putInt("estadocb1",1);
+                            prefEditor.commit();
 
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
                 }
                 else {
-                    //Toast.makeText(Config_bimestre_activity.this, "Datas não configuradas", Toast.LENGTH_SHORT).show();
+                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_desmarcar);
+
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb1.setChecked(false);
+
+                            SharedPreferences sharedPref_estadocb1 = getActivity().getSharedPreferences(nome_pref_checkbox, 0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb1.edit();
+                            prefEditor.putInt("estadocb1", 0);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    builder.show();
                 }
-
             }
+        });
 
+
+        //===================================FIM CHECKBOX 1=========================================
+
+
+        //======================TRATAMENTO DO CHECKBOX 2============================================
+
+        cb2 = (CheckBox) view.findViewById(R.id.cb2);
+
+        SharedPreferences sharedPref_estadocb2 = this.getActivity().getSharedPreferences(nome_pref_checkbox, Context.MODE_PRIVATE);
+        estadocb2 = sharedPref_estadocb2.getInt("estadocb2", 0);
+
+        if (estadocb2 == 0)
+            cb2.setChecked(false);
+        else
+            cb2.setChecked(true);
+
+        cb2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
 
-            }
-        };
-        UserData_inicio_1.addValueEventListener(postListener);
+                if (cb2.isChecked()){
+                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_marcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
 
-    }
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
 
+                            cb2.setChecked(true);
 
+                            //estadocb2 = 1;
+                            SharedPreferences sharedPref_estadocb2 = getActivity().getSharedPreferences(nome_pref_checkbox,0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb2.edit();
+                            prefEditor.putInt("estadocb2",1);
+                            prefEditor.commit();
 
-    //======================Enviar Conteudo I - Bimestre Google Script API============================
-
-    public class SendRequest extends AsyncTask<String,Void,String> {
-        protected void onPreExecute(){}
-
-        protected String doInBackground(String... arg0){
-            try{
-
-                URL url = new URL("https://script.google.com/a/gedu.demo.inteceleri.com.br/macros/s/AKfycbx-QDKkP0Ux7jD0lqbdyHDl2iVXTWkXgVIdLEGXSWCIqmVJamEe/exec");
-                //https://script.google.com/a/gedu.demo.inteceleri.com.br/macros/s/AKfycbx-QDKkP0Ux7jD0lqbdyHDl2iVXTWkXgVIdLEGXSWCIqmVJamEe/exec
-                JSONObject postDataParams = new JSONObject();
-
-                postDataParams.put("titulo",titulo);
-                postDataParams.put("text1", adp_matematica_sexto_1_bimestre.listArray.get(0).getX());
-                postDataParams.put("text2", adp_matematica_sexto_1_bimestre.listArray.get(1).getX());
-                postDataParams.put("text3", adp_matematica_sexto_1_bimestre.listArray.get(2).getX());
-                postDataParams.put("text4", adp_matematica_sexto_1_bimestre.listArray.get(3).getX());
-                postDataParams.put("text5", adp_matematica_sexto_1_bimestre.listArray.get(4).getX());
-
-
-                Log.e("params",postDataParams.toString());
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(15000 /* milliseconds */);
-                conn.setConnectTimeout(15000 /* milliseconds */);
-                conn.setRequestMethod("POST");
-                conn.setDoInput(true);
-                conn.setDoOutput(true);
-
-                OutputStream os = conn.getOutputStream();
-                BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(os, "UTF-8"));
-                writer.write(getPostDataString(postDataParams));
-
-                writer.flush();
-                writer.close();
-                os.close();
-
-                int responseCode=conn.getResponseCode();
-
-                if (responseCode == HttpsURLConnection.HTTP_OK) {
-
-                    BufferedReader in=new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    StringBuffer sb = new StringBuffer("");
-                    String line="";
-
-                    while((line = in.readLine()) != null) {
-
-                        sb.append(line);
-                        break;
-                    }
-
-                    in.close();
-                    return sb.toString();
-
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
                 }
                 else {
-                    return new String("false : "+responseCode);
+                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_desmarcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb2.setChecked(false);
+
+                            SharedPreferences sharedPref_estadocb2 = getActivity().getSharedPreferences(nome_pref_checkbox, 0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb2.edit();
+                            prefEditor.putInt("estadocb2", 0);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    builder.show();
                 }
-
-            }catch (Exception e){
-                return new String("Exception"+e.getMessage());
             }
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            Toast.makeText(getContext(), "I Bimestre - Portugues 6 ano exportado! ",
-                    Toast.LENGTH_LONG).show();
-
-        }
-    }
-
-    public String getPostDataString(JSONObject params) throws Exception {
-
-        StringBuilder result = new StringBuilder();
-        boolean first = true;
-
-        Iterator<String> itr = params.keys();
-
-        while(itr.hasNext()){
-
-            String key= itr.next();
-            Object value = params.get(key);
-
-            if (first)
-                first = false;
-            else
-                result.append("&");
-
-            result.append(URLEncoder.encode(key, "UTF-8"));
-            result.append("=");
-            result.append(URLEncoder.encode(value.toString(), "UTF-8"));
-
-        }
-        return result.toString();
-    }
-
-    //======================Fim ----Enviar Conteudo I - Bimestre Google Script API============================
+        });
+        //===================================FIM CHECKBOX 2=========================================
 
 
+        //======================TRATAMENTO DO CHECKBOX 3============================================
 
+        cb3 = (CheckBox) view.findViewById(R.id.cb3);
 
-    void GetDataFirebase(){
+        SharedPreferences sharedPref_estadocb3 = this.getActivity().getSharedPreferences(nome_pref_checkbox, Context.MODE_PRIVATE);
+        estadocb3 = sharedPref_estadocb3.getInt("estadocb3", 0);
 
-        //====================================================I_Bimestre======================================================//
+        if (estadocb3 == 0)
+            cb3.setChecked(false);
+        else
+            cb3.setChecked(true);
 
-        //-------------------------------Titulo_I_Bimestre-------------------------------------------------------------------//
-        DBR_Titulo_I_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/6_ano/1_bimestre/titulo/0/x");
-        DBR_Titulo_I_Bimestre.addValueEventListener(new ValueEventListener() {
+        cb3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String str_Titulo_I_Bimestre = dataSnapshot.getValue(String.class);
-                tv_Titulo_I_Bimestre.setText(str_Titulo_I_Bimestre);
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
+
+                if (cb3.isChecked()){
+                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_marcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb3.setChecked(true);
+
+                            //estadocb3 = 1;
+                            SharedPreferences sharedPref_estadocb3 = getActivity().getSharedPreferences(nome_pref_checkbox,0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb3.edit();
+                            prefEditor.putInt("estadocb3",1);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
+                }
+                else {
+                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_desmarcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb3.setChecked(false);
+
+                            SharedPreferences sharedPref_estadocb3 = getActivity().getSharedPreferences(nome_pref_checkbox, 0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb3.edit();
+                            prefEditor.putInt("estadocb3", 0);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    builder.show();
+                }
             }
+        });
+        //===================================FIM CHECKBOX 3=========================================
 
+        //======================TRATAMENTO DO CHECKBOX 4============================================
+
+        cb4 = (CheckBox) view.findViewById(R.id.cb4);
+
+        SharedPreferences sharedPref_estadocb4 = this.getActivity().getSharedPreferences(nome_pref_checkbox, Context.MODE_PRIVATE);
+        estadocb4 = sharedPref_estadocb4.getInt("estadocb4", 0);
+
+        if (estadocb4 == 0)
+            cb4.setChecked(false);
+        else
+            cb4.setChecked(true);
+
+        cb4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
 
+                if (cb4.isChecked()){
+                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_marcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb4.setChecked(true);
+
+                            //estadocb4 = 1;
+                            SharedPreferences sharedPref_estadocb4 = getActivity().getSharedPreferences(nome_pref_checkbox,0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb4.edit();
+                            prefEditor.putInt("estadocb4",1);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
+                }
+                else {
+                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_desmarcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb4.setChecked(false);
+
+                            SharedPreferences sharedPref_estadocb4 = getActivity().getSharedPreferences(nome_pref_checkbox, 0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb4.edit();
+                            prefEditor.putInt("estadocb4", 0);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    builder.show();
+                }
+            }
+        });
+        //===================================FIM CHECKBOX 4=========================================
+
+
+        //======================TRATAMENTO DO CHECKBOX 5============================================
+
+        cb5 = (CheckBox) view.findViewById(R.id.cb5);
+
+        SharedPreferences sharedPref_estadocb5 = this.getActivity().getSharedPreferences(nome_pref_checkbox, Context.MODE_PRIVATE);
+        estadocb5 = sharedPref_estadocb5.getInt("estadocb5", 0);
+
+        if (estadocb5 == 0)
+            cb5.setChecked(false);
+        else
+            cb5.setChecked(true);
+
+        cb5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
+
+                if (cb5.isChecked()){
+                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_marcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb5.setChecked(true);
+
+                            //estadocb5 = 1;
+                            SharedPreferences sharedPref_estadocb5 = getActivity().getSharedPreferences(nome_pref_checkbox,0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb5.edit();
+                            prefEditor.putInt("estadocb5",1);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
+                }
+                else {
+                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_desmarcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb5.setChecked(false);
+
+                            SharedPreferences sharedPref_estadocb5 = getActivity().getSharedPreferences(nome_pref_checkbox, 0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb5.edit();
+                            prefEditor.putInt("estadocb5", 0);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    builder.show();
+                }
+            }
+        });
+        //===================================FIM CHECKBOX 5=========================================
+
+        //======================TRATAMENTO DO CHECKBOX 6============================================
+
+        cb6 = (CheckBox) view.findViewById(R.id.cb6);
+
+        SharedPreferences sharedPref_estadocb6 = this.getActivity().getSharedPreferences(nome_pref_checkbox, Context.MODE_PRIVATE);
+        estadocb6 = sharedPref_estadocb6.getInt("estadocb6", 0);
+
+        if (estadocb6 == 0)
+            cb6.setChecked(false);
+        else
+            cb6.setChecked(true);
+
+        cb6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
+
+                if (cb6.isChecked()){
+                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_marcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb6.setChecked(true);
+
+                            //estadocb6 = 1;
+                            SharedPreferences sharedPref_estadocb6 = getActivity().getSharedPreferences(nome_pref_checkbox,0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb6.edit();
+                            prefEditor.putInt("estadocb6",1);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
+                }
+                else {
+                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_desmarcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb6.setChecked(false);
+
+                            SharedPreferences sharedPref_estadocb6 = getActivity().getSharedPreferences(nome_pref_checkbox, 0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb6.edit();
+                            prefEditor.putInt("estadocb6", 0);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    builder.show();
+                }
+            }
+        });
+        //===================================FIM CHECKBOX 6=========================================
+
+
+        //======================TRATAMENTO DO CHECKBOX 7============================================
+
+        cb7 = (CheckBox) view.findViewById(R.id.cb7);
+
+        SharedPreferences sharedPref_estadocb7 = this.getActivity().getSharedPreferences(nome_pref_checkbox, Context.MODE_PRIVATE);
+        estadocb7 = sharedPref_estadocb7.getInt("estadocb7", 0);
+
+        if (estadocb7 == 0)
+            cb7.setChecked(false);
+        else
+            cb7.setChecked(true);
+
+        cb7.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
+
+                if (cb7.isChecked()){
+                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_marcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb7.setChecked(true);
+
+                            //estadocb7 = 1;
+                            SharedPreferences sharedPref_estadocb7 = getActivity().getSharedPreferences(nome_pref_checkbox,0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb7.edit();
+                            prefEditor.putInt("estadocb7",1);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
+                }
+                else {
+                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_desmarcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb7.setChecked(false);
+
+                            SharedPreferences sharedPref_estadocb7 = getActivity().getSharedPreferences(nome_pref_checkbox, 0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb7.edit();
+                            prefEditor.putInt("estadocb7", 0);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    builder.show();
+                }
+            }
+        });
+        //===================================FIM CHECKBOX 7=========================================
+
+
+        //======================TRATAMENTO DO CHECKBOX 8============================================
+
+        cb8 = (CheckBox) view.findViewById(R.id.cb8);
+
+        SharedPreferences sharedPref_estadocb8 = this.getActivity().getSharedPreferences(nome_pref_checkbox, Context.MODE_PRIVATE);
+        estadocb8 = sharedPref_estadocb8.getInt("estadocb8", 0);
+
+        if (estadocb8 == 0)
+            cb8.setChecked(false);
+        else
+            cb8.setChecked(true);
+
+        cb8.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
+
+                if (cb8.isChecked()){
+                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_marcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb8.setChecked(true);
+
+                            //estadocb8 = 1;
+                            SharedPreferences sharedPref_estadocb8 = getActivity().getSharedPreferences(nome_pref_checkbox,0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb8.edit();
+                            prefEditor.putInt("estadocb8",1);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
+                }
+                else {
+                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_desmarcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb8.setChecked(false);
+
+                            SharedPreferences sharedPref_estadocb8 = getActivity().getSharedPreferences(nome_pref_checkbox, 0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb8.edit();
+                            prefEditor.putInt("estadocb8", 0);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    builder.show();
+                }
+            }
+        });
+        //===================================FIM CHECKBOX 8=========================================
+
+        //======================TRATAMENTO DO CHECKBOX 9============================================
+
+        cb9 = (CheckBox) view.findViewById(R.id.cb9);
+
+        SharedPreferences sharedPref_estadocb9 = this.getActivity().getSharedPreferences(nome_pref_checkbox, Context.MODE_PRIVATE);
+        estadocb9 = sharedPref_estadocb9.getInt("estadocb9", 0);
+
+        if (estadocb9 == 0)
+            cb9.setChecked(false);
+        else
+            cb9.setChecked(true);
+
+        cb9.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
+
+                if (cb9.isChecked()){
+                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_marcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb9.setChecked(true);
+
+                            //estadocb9 = 1;
+                            SharedPreferences sharedPref_estadocb9 = getActivity().getSharedPreferences(nome_pref_checkbox,0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb9.edit();
+                            prefEditor.putInt("estadocb9",1);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
+                }
+                else {
+                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_desmarcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb9.setChecked(false);
+
+                            SharedPreferences sharedPref_estadocb9 = getActivity().getSharedPreferences(nome_pref_checkbox, 0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb9.edit();
+                            prefEditor.putInt("estadocb9", 0);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    builder.show();
+                }
+            }
+        });
+        //===================================FIM CHECKBOX 9=========================================
+
+        //======================TRATAMENTO DO CHECKBOX 10===========================================
+
+        cb10 = (CheckBox) view.findViewById(R.id.cb10);
+
+        SharedPreferences sharedPref_estadocb10 = this.getActivity().getSharedPreferences(nome_pref_checkbox, Context.MODE_PRIVATE);
+        estadocb10 = sharedPref_estadocb10.getInt("estadocb10", 0);
+
+        if (estadocb10 == 0)
+            cb10.setChecked(false);
+        else
+            cb10.setChecked(true);
+
+        cb10.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
+
+                if (cb10.isChecked()){
+                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_marcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb10.setChecked(true);
+
+                            //estadocb10 = 1;
+                            SharedPreferences sharedPref_estadocb10 = getActivity().getSharedPreferences(nome_pref_checkbox,0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb10.edit();
+                            prefEditor.putInt("estadocb10",1);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
+                }
+                else {
+                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_desmarcar);
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb10.setChecked(false);
+
+                            SharedPreferences sharedPref_estadocb10 = getActivity().getSharedPreferences(nome_pref_checkbox, 0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb10.edit();
+                            prefEditor.putInt("estadocb10", 0);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    builder.show();
+                }
+            }
+        });
+        //===================================FIM CHECKBOX 10========================================
+
+        //======================TRATAMENTO DO CHECKBOX 11============================================
+
+        cb11 = (CheckBox) view.findViewById(R.id.cb11);
+
+        SharedPreferences sharedPref_estadocb11 = this.getActivity().getSharedPreferences(nome_pref_checkbox, Context.MODE_PRIVATE);
+        estadocb11 = sharedPref_estadocb11.getInt("estadocb11", 0);
+
+        if (estadocb11 == 0)
+            cb11.setChecked(false);
+        else
+            cb11.setChecked(true);
+
+        cb11.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
+
+                if (cb11.isChecked()){
+                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_marcar);
+
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb11.setChecked(true);
+
+                            //estadocb11 = 1;
+                            SharedPreferences sharedPref_estadocb11 = getActivity().getSharedPreferences(nome_pref_checkbox,0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb11.edit();
+                            prefEditor.putInt("estadocb11",1);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
+                }
+                else {
+                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_desmarcar);
+
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb11.setChecked(false);
+
+                            SharedPreferences sharedPref_estadocb11 = getActivity().getSharedPreferences(nome_pref_checkbox, 0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb11.edit();
+                            prefEditor.putInt("estadocb11", 0);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    builder.show();
+                }
             }
         });
 
-        //---------------------------------Conteudo_I_Bimestre---------------------------------------------------------------//
-        //---------------- Usar adaptador----------//
-        DBR = FDB.getReference("disciplinas").child("matematica").child("6_ano").child("1_bimestre").child("conteudo");
-        DBR.addChildEventListener(new ChildEventListener() {
+
+        //===================================FIM CHECKBOX 11========================================
+
+        //======================TRATAMENTO DO CHECKBOX 12===========================================
+
+        cb12 = (CheckBox) view.findViewById(R.id.cb12);
+
+        SharedPreferences sharedPref_estadocb12 = this.getActivity().getSharedPreferences(nome_pref_checkbox, Context.MODE_PRIVATE);
+        estadocb12 = sharedPref_estadocb12.getInt("estadocb12", 0);
+
+        if (estadocb12 == 0)
+            cb12.setChecked(false);
+        else
+            cb12.setChecked(true);
+
+        cb12.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
 
-                MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
+                if (cb12.isChecked()){
+                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_marcar);
 
-                listData_1_bimestre.add(x);
-                rv_I_Bimestre_6_matematica.setAdapter(adp_matematica_sexto_1_bimestre);
-            }
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
 
-            }
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
 
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                            cb12.setChecked(true);
 
-            }
+                            //estadocb12 = 1;
+                            SharedPreferences sharedPref_estadocb12 = getActivity().getSharedPreferences(nome_pref_checkbox,0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb12.edit();
+                            prefEditor.putInt("estadocb12",1);
+                            prefEditor.commit();
 
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
+                }
+                else {
+                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_desmarcar);
 
-            }
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
 
-            }
-        });
+                            cb12.setChecked(false);
 
-        //====================================================Fim _ I Bimestre======================================================//
+                            SharedPreferences sharedPref_estadocb12 = getActivity().getSharedPreferences(nome_pref_checkbox, 0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb12.edit();
+                            prefEditor.putInt("estadocb12", 0);
+                            prefEditor.commit();
 
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
 
-
-
-        //====================================================II_Bimestre======================================================//
-
-        //-------------------------------Titulo_II_Bimestre-------------------------------------------------------------------//
-        DBR_Titulo_II_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/6_ano/2_bimestre/titulo/0/x");
-        DBR_Titulo_II_Bimestre.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String str_Titulo_II_Bimestre = dataSnapshot.getValue(String.class);
-                tv_Titulo_II_Bimestre.setText(str_Titulo_II_Bimestre);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        //---------------------------------Conteudo_II_Bimestre---------------------------------------------------------------//
-        //---------------- Usar adaptador----------//
-        DBR = FDB.getReference("disciplinas").child("matematica").child("6_ano").child("2_bimestre").child("conteudo");
-        DBR.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
-
-                listData_2_bimestre.add(x);
-                rv_II_Bimestre_6_matematica.setAdapter(adp_matematica_sexto_2_bimestre);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
+                        }
+                    });
+                    builder.show();
+                }
             }
         });
 
-        //====================================================Fim _ II Bimestre======================================================//
 
+        //===================================FIM CHECKBOX 12========================================
 
+        //======================TRATAMENTO DO CHECKBOX 13============================================
 
-        //====================================================III_Bimestre======================================================//
+        cb13 = (CheckBox) view.findViewById(R.id.cb13);
 
-        //-------------------------------Titulo_III_Bimestre-------------------------------------------------------------------//
-        DBR_Titulo_III_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/6_ano/3_bimestre/titulo/0/x");
-        DBR_Titulo_III_Bimestre.addValueEventListener(new ValueEventListener() {
+        SharedPreferences sharedPref_estadocb13 = this.getActivity().getSharedPreferences(nome_pref_checkbox, Context.MODE_PRIVATE);
+        estadocb13 = sharedPref_estadocb13.getInt("estadocb13", 0);
+
+        if (estadocb13 == 0)
+            cb13.setChecked(false);
+        else
+            cb13.setChecked(true);
+
+        cb13.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String str_Titulo_III_Bimestre = dataSnapshot.getValue(String.class);
-                tv_Titulo_III_Bimestre.setText(str_Titulo_III_Bimestre);
-            }
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                if (cb13.isChecked()){
+                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_marcar);
 
-            }
-        });
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
 
-        //---------------------------------Conteudo_III_Bimestre---------------------------------------------------------------//
-        //---------------- Usar adaptador----------//
-        DBR = FDB.getReference("disciplinas").child("matematica").child("6_ano").child("3_bimestre").child("conteudo");
-        DBR.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
 
-                MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
 
-                listData_3_bimestre.add(x);
-                rv_III_Bimestre_6_matematica.setAdapter(adp_matematica_sexto_3_bimestre);
-            }
+                            cb13.setChecked(true);
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                            //estadocb13 = 1;
+                            SharedPreferences sharedPref_estadocb13 = getActivity().getSharedPreferences(nome_pref_checkbox,0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb13.edit();
+                            prefEditor.putInt("estadocb13",1);
+                            prefEditor.commit();
 
-            }
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
+                }
+                else {
+                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_desmarcar);
 
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
 
-            }
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
 
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                            cb13.setChecked(false);
 
-            }
+                            SharedPreferences sharedPref_estadocb13 = getActivity().getSharedPreferences(nome_pref_checkbox, 0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb13.edit();
+                            prefEditor.putInt("estadocb13", 0);
+                            prefEditor.commit();
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
 
-            }
-        });
-
-        //====================================================Fim _ III Bimestre======================================================//
-
-
-
-        //====================================================IV_Bimestre======================================================//
-
-        //-------------------------------Titulo_IV_Bimestre-------------------------------------------------------------------//
-        DBR_Titulo_IV_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/6_ano/4_bimestre/titulo/0/x");
-        DBR_Titulo_IV_Bimestre.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String str_Titulo_IV_Bimestre = dataSnapshot.getValue(String.class);
-                tv_Titulo_IV_Bimestre.setText(str_Titulo_IV_Bimestre);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        //---------------------------------Conteudo_III_Bimestre---------------------------------------------------------------//
-        //---------------- Usar adaptador----------//
-        DBR = FDB.getReference("disciplinas").child("matematica").child("6_ano").child("4_bimestre").child("conteudo");
-        DBR.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
-
-                listData_4_bimestre.add(x);
-                rv_IV_Bimestre_6_matematica.setAdapter(adp_matematica_sexto_4_bimestre);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
+                        }
+                    });
+                    builder.show();
+                }
             }
         });
 
-        //====================================================Fim _ IV Bimestre======================================================//
+
+        //===================================FIM CHECKBOX 13========================================
+
+        //======================TRATAMENTO DO CHECKBOX 14===========================================
+
+        cb14 = (CheckBox) view.findViewById(R.id.cb14);
+
+        SharedPreferences sharedPref_estadocb14 = this.getActivity().getSharedPreferences(nome_pref_checkbox, Context.MODE_PRIVATE);
+        estadocb14 = sharedPref_estadocb14.getInt("estadocb14", 0);
+
+        if (estadocb14 == 0)
+            cb14.setChecked(false);
+        else
+            cb14.setChecked(true);
+
+        cb14.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
+
+                if (cb14.isChecked()){
+                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_marcar);
+
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb14.setChecked(true);
+
+                            //estadocb14 = 1;
+                            SharedPreferences sharedPref_estadocb14 = getActivity().getSharedPreferences(nome_pref_checkbox,0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb14.edit();
+                            prefEditor.putInt("estadocb14",1);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
+                }
+                else {
+                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_desmarcar);
+
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb14.setChecked(false);
+
+                            SharedPreferences sharedPref_estadocb14 = getActivity().getSharedPreferences(nome_pref_checkbox, 0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb14.edit();
+                            prefEditor.putInt("estadocb14", 0);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    builder.show();
+                }
+            }
+        });
 
 
+        //===================================FIM CHECKBOX 14========================================
+
+        //======================TRATAMENTO DO CHECKBOX 15============================================
+
+        cb15 = (CheckBox) view.findViewById(R.id.cb15);
+
+        SharedPreferences sharedPref_estadocb15 = this.getActivity().getSharedPreferences(nome_pref_checkbox, Context.MODE_PRIVATE);
+        estadocb15 = sharedPref_estadocb15.getInt("estadocb15", 0);
+
+        if (estadocb15 == 0)
+            cb15.setChecked(false);
+        else
+            cb15.setChecked(true);
+
+        cb15.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
+
+                if (cb15.isChecked()){
+                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_marcar);
+
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb15.setChecked(true);
+
+                            //estadocb15 = 1;
+                            SharedPreferences sharedPref_estadocb15 = getActivity().getSharedPreferences(nome_pref_checkbox,0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb15.edit();
+                            prefEditor.putInt("estadocb15",1);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
+                }
+                else {
+                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_desmarcar);
+
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb15.setChecked(false);
+
+                            SharedPreferences sharedPref_estadocb15 = getActivity().getSharedPreferences(nome_pref_checkbox, 0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb15.edit();
+                            prefEditor.putInt("estadocb15", 0);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    builder.show();
+                }
+            }
+        });
 
 
+        //===================================FIM CHECKBOX 15========================================
 
-    }
+        //======================TRATAMENTO DO CHECKBOX 16============================================
+
+        cb16 = (CheckBox) view.findViewById(R.id.cb16);
+
+        SharedPreferences sharedPref_estadocb16 = this.getActivity().getSharedPreferences(nome_pref_checkbox, Context.MODE_PRIVATE);
+        estadocb16 = sharedPref_estadocb16.getInt("estadocb16", 0);
+
+        if (estadocb16 == 0)
+            cb16.setChecked(false);
+        else
+            cb16.setChecked(true);
+
+        cb16.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
+
+                if (cb16.isChecked()){
+                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_marcar);
+
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb16.setChecked(true);
+
+                            //estadocb16 = 1;
+                            SharedPreferences sharedPref_estadocb16 = getActivity().getSharedPreferences(nome_pref_checkbox,0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb16.edit();
+                            prefEditor.putInt("estadocb16",1);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
+                }
+                else {
+                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage(mensagem_desmarcar);
+
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(getActivity(), Main_activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            cb16.setChecked(false);
+
+                            SharedPreferences sharedPref_estadocb16 = getActivity().getSharedPreferences(nome_pref_checkbox, 0);
+                            SharedPreferences.Editor prefEditor = sharedPref_estadocb16.edit();
+                            prefEditor.putInt("estadocb16", 0);
+                            prefEditor.commit();
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+                    builder.show();
+                }
+            }
+        });
 
 
+        //===================================FIM CHECKBOX 16========================================
 
+        DataSistema();
 
+        return view;
 
-    //===========================MÉTODO QUE RECEBE AS SOMBRAS DOS BIMESTRES===========================
-    @Override
-    public void onViewCreated (View view, Bundle savedInstanceState) {
-        ((Main_activity) getActivity()).SombraBimestre(view);
-        ((Main_activity) getActivity()).tab_obj_mat_sexto_(view);
+    }//end OnCreate
 
+    //=============================FUNÇÃO DE LEITURA DA DATA DO SISTEMA=============================
+    public void DataSistema(){
 
+        //Leitor de data do sistema
+        Calendar now = Calendar.getInstance();
+        Dia_sistema = now.get(Calendar.DAY_OF_MONTH);
+        Mes_sistema = now.get(Calendar.MONTH); // Note: zero based!
+        Mes_sistema++;
+
+        //Toast.makeText(getActivity().getApplicationContext()," "+ Dia_sistema + " / "+ Mes_sistema, Toast.LENGTH_LONG);
 
     }
     //==============================================================================================
 
+
+    //===========================MÉTODO QUE RECEBE AS SOMBRAS DOS BIMESTRES=========================
+    @Override
+    public void onViewCreated (View view, Bundle savedInstanceState) {
+        ((Main_activity) getActivity()).SombraBimestre(view);
+
+    }
+    //==============================================================================================
 }

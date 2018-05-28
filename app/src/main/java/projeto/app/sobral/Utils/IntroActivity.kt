@@ -25,7 +25,7 @@ class IntroActivity : MaterialIntroActivity() {
                         .buttonsColor( R.color.slide_button )
                         .title( resources.getString(R.string.slide_1_title) )
                         .description( resources.getString(R.string.slide_1_description) )
-                        .image( R.mipmap.slide_1 )
+                        .image( R.drawable.main_sobral_low_bimestre_icones )
                         .build()
         )
 
@@ -36,7 +36,7 @@ class IntroActivity : MaterialIntroActivity() {
                         .buttonsColor( R.color.slide_button )
                         .title( resources.getString(R.string.slide_2_title) )
                         .description( resources.getString(R.string.slide_2_description) )
-                        .image( R.mipmap.slide_2 )
+                        .image( R.drawable.main_sobral_linha_tempo )
                         .build()
         )
 
@@ -47,7 +47,7 @@ class IntroActivity : MaterialIntroActivity() {
                         .buttonsColor( R.color.slide_button )
                         .title( resources.getString(R.string.slide_3_title) )
                         .description( resources.getString(R.string.slide_3_description) )
-                        .image( R.mipmap.slide_3 )
+                        .image( R.drawable.main_sobral_marcacoes_anotacoes)
                         .build()
         )
 
@@ -57,7 +57,7 @@ class IntroActivity : MaterialIntroActivity() {
                         .buttonsColor( R.color.slide_button )
                         .title( resources.getString(R.string.slide_4_1_title) )
                         .description( resources.getString(R.string.slide_4_1_description) )
-                        .image( R.mipmap.slide_4 )
+                        .image( R.drawable.main_sobral_escolhas_datas)
                         .build()
         )
 

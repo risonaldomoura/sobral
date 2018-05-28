@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,7 +51,7 @@ import projeto.app.sobral.Utils.MyDataGetSet;
  * Created by Daniel on 09/01/2018.
  */
 
-public class Tab_portugues_sexto_ extends Fragment{
+public class Tab_portugues_oitavo_ extends Fragment{
     public int ID_salvo_dia_inicio_I;
     public int ID_salvo_dia_termino_I;
     public int ID_salvo_mes_inicio_I;
@@ -92,10 +91,10 @@ public class Tab_portugues_sexto_ extends Fragment{
     public int estadocb1;
     CheckBox cb1;
 
-    RecyclerView rv_I_Bimestre_6_portugues;
-    RecyclerView rv_II_Bimestre_6_portugues;
-    RecyclerView rv_III_Bimestre_6_portugues;
-    RecyclerView rv_IV_Bimestre_6_portugues;
+    RecyclerView rv_I_Bimestre_8_portugues;
+    RecyclerView rv_II_Bimestre_8_portugue;
+    RecyclerView rv_III_Bimestre_8_portugues;
+    RecyclerView rv_IV_Bimestre_8_portugues;
 
     TextView tv_Titulo_I_Bimestre;
     TextView tv_Titulo_II_Bimestre;
@@ -109,10 +108,10 @@ public class Tab_portugues_sexto_ extends Fragment{
     List<MyDataGetSet> listData_3_bimestre;
     List<MyDataGetSet> listData_4_bimestre;
 
-    Adaptador_Disciplina_ano adp_portugues_sexto_1_bimestre;
-    Adaptador_Disciplina_ano adp_portugues_sexto_2_bimestre;
-    Adaptador_Disciplina_ano adp_portugues_sexto_3_bimestre;
-    Adaptador_Disciplina_ano adp_portugues_sexto_4_bimestre;
+    Adaptador_Disciplina_ano adp_portugues_oitavo_1_bimestre;
+    Adaptador_Disciplina_ano adp_portugues_oitavo_2_bimestre;
+    Adaptador_Disciplina_ano adp_portugues_oitavo_3_bimestre;
+    Adaptador_Disciplina_ano adp_portugues_oitavo_4_bimestre;
 
 
 
@@ -141,9 +140,9 @@ public class Tab_portugues_sexto_ extends Fragment{
 
     private FirebaseAuth fbAuth;
     private DatabaseReference UserData_inicio_1, UserData_termino_1,
-                                UserData_inicio_2, UserData_termino_2,
-                                UserData_inicio_3, UserData_termino_3,
-                                UserData_inicio_4, UserData_termino_4;
+            UserData_inicio_2, UserData_termino_2,
+            UserData_inicio_3, UserData_termino_3,
+            UserData_inicio_4, UserData_termino_4;
 
 
 
@@ -158,24 +157,19 @@ public class Tab_portugues_sexto_ extends Fragment{
         //=========== INÍCIO DO TRATAMENTO DOS ADPATADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS I BIMESTRE===============
         //----------------------Dentro de onCreateView() -----------------------------------------------------------------
 
-        rv_I_Bimestre_6_portugues = (RecyclerView) rView.findViewById(R.id.recyclerView_I_Bimestre);
+        rv_I_Bimestre_8_portugues = (RecyclerView) rView.findViewById(R.id.recyclerView_I_Bimestre);
         tv_Titulo_I_Bimestre = (TextView) rView.findViewById(R.id.Titulo_I_Bimestre);
 
-        rv_I_Bimestre_6_portugues.setHasFixedSize(true);
-        rv_I_Bimestre_6_portugues.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        rv_I_Bimestre_8_portugues.setHasFixedSize(true);
+        rv_I_Bimestre_8_portugues.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
 
 
-        rv_I_Bimestre_6_portugues.setItemAnimator(new DefaultItemAnimator());
-        rv_I_Bimestre_6_portugues.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
+        rv_I_Bimestre_8_portugues.setItemAnimator(new DefaultItemAnimator());
+        rv_I_Bimestre_8_portugues.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
 
         listData_1_bimestre=  new ArrayList<>();
-        adp_portugues_sexto_1_bimestre = new Adaptador_Disciplina_ano(listData_1_bimestre);
-
-
-
-
-
+        adp_portugues_oitavo_1_bimestre = new Adaptador_Disciplina_ano(listData_1_bimestre);
 
         //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS I BIMESTRE==================
 
@@ -187,16 +181,16 @@ public class Tab_portugues_sexto_ extends Fragment{
         //----------------------Dentro de onCreateView() -----------------------------------------------------------------
 
 
-        rv_II_Bimestre_6_portugues = (RecyclerView) rView.findViewById(R.id.recyclerView_II_Bimestre);
+        rv_II_Bimestre_8_portugue = (RecyclerView) rView.findViewById(R.id.recyclerView_II_Bimestre);
         tv_Titulo_II_Bimestre = (TextView) rView.findViewById(R.id.Titulo_II_Bimestre);
 
-        rv_II_Bimestre_6_portugues.setHasFixedSize(true);
-        rv_II_Bimestre_6_portugues.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        rv_II_Bimestre_6_portugues.setItemAnimator(new DefaultItemAnimator());
-        rv_II_Bimestre_6_portugues.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
+        rv_II_Bimestre_8_portugue.setHasFixedSize(true);
+        rv_II_Bimestre_8_portugue.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        rv_II_Bimestre_8_portugue.setItemAnimator(new DefaultItemAnimator());
+        rv_II_Bimestre_8_portugue.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
 
         listData_2_bimestre=  new ArrayList<>();
-        adp_portugues_sexto_2_bimestre = new Adaptador_Disciplina_ano(listData_2_bimestre);
+        adp_portugues_oitavo_2_bimestre = new Adaptador_Disciplina_ano(listData_2_bimestre);
 
         //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS II BIMESTRE==================
 
@@ -207,16 +201,16 @@ public class Tab_portugues_sexto_ extends Fragment{
         //----------------------Dentro de onCreateView() -----------------------------------------------------------------
 
 
-        rv_III_Bimestre_6_portugues = (RecyclerView) rView.findViewById(R.id.recyclerView_III_Bimestre);
+        rv_III_Bimestre_8_portugues = (RecyclerView) rView.findViewById(R.id.recyclerView_III_Bimestre);
         tv_Titulo_III_Bimestre = (TextView) rView.findViewById(R.id.Titulo_III_Bimestre);
 
-        rv_III_Bimestre_6_portugues.setHasFixedSize(true);
-        rv_III_Bimestre_6_portugues.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        rv_III_Bimestre_6_portugues.setItemAnimator(new DefaultItemAnimator());
-        rv_III_Bimestre_6_portugues.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
+        rv_III_Bimestre_8_portugues.setHasFixedSize(true);
+        rv_III_Bimestre_8_portugues.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        rv_III_Bimestre_8_portugues.setItemAnimator(new DefaultItemAnimator());
+        rv_III_Bimestre_8_portugues.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
 
         listData_3_bimestre=  new ArrayList<>();
-        adp_portugues_sexto_3_bimestre = new Adaptador_Disciplina_ano(listData_3_bimestre);
+        adp_portugues_oitavo_3_bimestre = new Adaptador_Disciplina_ano(listData_3_bimestre);
 
         //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS III BIMESTRE==================
 
@@ -226,24 +220,24 @@ public class Tab_portugues_sexto_ extends Fragment{
         //----------------------Dentro de onCreateView() -----------------------------------------------------------------
 
 
-        rv_IV_Bimestre_6_portugues = (RecyclerView) rView.findViewById(R.id.recyclerView_IV_Bimestre);
+        rv_IV_Bimestre_8_portugues = (RecyclerView) rView.findViewById(R.id.recyclerView_IV_Bimestre);
         tv_Titulo_IV_Bimestre = (TextView) rView.findViewById(R.id.Titulo_IV_Bimestre);
 
-        rv_IV_Bimestre_6_portugues.setHasFixedSize(true);
-        rv_IV_Bimestre_6_portugues.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        rv_IV_Bimestre_6_portugues.setItemAnimator(new DefaultItemAnimator());
-        rv_IV_Bimestre_6_portugues.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
+        rv_IV_Bimestre_8_portugues.setHasFixedSize(true);
+        rv_IV_Bimestre_8_portugues.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        rv_IV_Bimestre_8_portugues.setItemAnimator(new DefaultItemAnimator());
+        rv_IV_Bimestre_8_portugues.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
 
         listData_4_bimestre=  new ArrayList<>();
-        adp_portugues_sexto_4_bimestre = new Adaptador_Disciplina_ano(listData_4_bimestre);
+        adp_portugues_oitavo_4_bimestre = new Adaptador_Disciplina_ano(listData_4_bimestre);
 
         //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS III BIMESTRE==================
 
 
-        rv_I_Bimestre_6_portugues.setNestedScrollingEnabled(false);
-        rv_II_Bimestre_6_portugues.setNestedScrollingEnabled(false);
-        rv_III_Bimestre_6_portugues.setNestedScrollingEnabled(false);
-        rv_IV_Bimestre_6_portugues.setNestedScrollingEnabled(false);
+        rv_I_Bimestre_8_portugues.setNestedScrollingEnabled(false);
+        rv_II_Bimestre_8_portugue.setNestedScrollingEnabled(false);
+        rv_III_Bimestre_8_portugues.setNestedScrollingEnabled(false);
+        rv_IV_Bimestre_8_portugues.setNestedScrollingEnabled(false);
 
 
 
@@ -538,6 +532,8 @@ public class Tab_portugues_sexto_ extends Fragment{
 
 
 
+
+
         FDB = FirebaseDatabase.getInstance();
         //FirebaseDatabase.setPersistenceEnabled();
 
@@ -545,24 +541,6 @@ public class Tab_portugues_sexto_ extends Fragment{
 
 
 
-       /*
-        rv_I_Bimestre_6_portugues.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(getActivity().getApplicationContext(),"rv_I_Bimestre_6_portugues",Toast.LENGTH_SHORT).show();
-                for (int cont =0; cont <=adp_portugues_sexto_1_bimestre.listArray.size(); cont++) {
-                    final int cont_ = cont;
-                    if (adp_portugues_sexto_1_bimestre.listArray.get(cont_).isB()) {
-                        adp_portugues_sexto_1_bimestre.mCB.setChecked(false);
-                    } else {
-                        adp_portugues_sexto_1_bimestre.mCB.setChecked(true);
-
-                        //adp_portugues_sexto_1_bimestre.listArray.get(cont_).setB(true);
-                    }
-                }
-            }
-        });*/
 
 
         return rView;
@@ -1172,7 +1150,7 @@ public class Tab_portugues_sexto_ extends Fragment{
 
 
 
-     //======================Enviar Conteudo I - Bimestre Google Script API============================
+    //======================Enviar Conteudo I - Bimestre Google Script API============================
 
     public class SendRequest extends AsyncTask<String,Void,String> {
         protected void onPreExecute(){}
@@ -1185,11 +1163,11 @@ public class Tab_portugues_sexto_ extends Fragment{
                 JSONObject postDataParams = new JSONObject();
 
                 postDataParams.put("titulo",titulo);
-                postDataParams.put("text1",adp_portugues_sexto_1_bimestre.listArray.get(0).getX());
-                postDataParams.put("text2",adp_portugues_sexto_1_bimestre.listArray.get(1).getX());
-                postDataParams.put("text3",adp_portugues_sexto_1_bimestre.listArray.get(2).getX());
-                postDataParams.put("text4",adp_portugues_sexto_1_bimestre.listArray.get(3).getX());
-                postDataParams.put("text5",adp_portugues_sexto_1_bimestre.listArray.get(4).getX());
+                postDataParams.put("text1", adp_portugues_oitavo_1_bimestre.listArray.get(0).getX());
+                postDataParams.put("text2", adp_portugues_oitavo_1_bimestre.listArray.get(1).getX());
+                postDataParams.put("text3", adp_portugues_oitavo_1_bimestre.listArray.get(2).getX());
+                postDataParams.put("text4", adp_portugues_oitavo_1_bimestre.listArray.get(3).getX());
+                postDataParams.put("text5", adp_portugues_oitavo_1_bimestre.listArray.get(4).getX());
 
 
                 Log.e("params",postDataParams.toString());
@@ -1274,230 +1252,226 @@ public class Tab_portugues_sexto_ extends Fragment{
 
 
 
-        void GetDataFirebase(){
+    void GetDataFirebase(){
 
-            //====================================================I_Bimestre======================================================//
+        //====================================================I_Bimestre======================================================//
 
-            //-------------------------------Titulo_I_Bimestre-------------------------------------------------------------------//
-            DBR_Titulo_I_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/6_ano/1_bimestre/titulo/0/x");
-            DBR_Titulo_I_Bimestre.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    String str_Titulo_I_Bimestre = dataSnapshot.getValue(String.class);
-                    tv_Titulo_I_Bimestre.setText(str_Titulo_I_Bimestre);
-                }
+        //-------------------------------Titulo_I_Bimestre-------------------------------------------------------------------//
+        DBR_Titulo_I_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/8_ano/1_bimestre/titulo/0/x");
+        DBR_Titulo_I_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String str_Titulo_I_Bimestre = dataSnapshot.getValue(String.class);
+                tv_Titulo_I_Bimestre.setText(str_Titulo_I_Bimestre);
+            }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                }
-            });
+            }
+        });
 
-            //---------------------------------Conteudo_I_Bimestre---------------------------------------------------------------//
-            //---------------- Usar adaptador----------//
-            DBR = FDB.getReference("disciplinas").child("portugues").child("6_ano").child("1_bimestre").child("conteudo");
-            DBR.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(final DataSnapshot dataSnapshot, String s) {
+        //---------------------------------Conteudo_I_Bimestre---------------------------------------------------------------//
+        //---------------- Usar adaptador----------//
+        DBR = FDB.getReference("disciplinas").child("portugues").child("8_ano").child("1_bimestre").child("conteudo");
+        DBR.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                    MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
+                MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
 
-                    listData_1_bimestre.add(x);
-                    rv_I_Bimestre_6_portugues.setAdapter(adp_portugues_sexto_1_bimestre);
+                listData_1_bimestre.add(x);
+                rv_I_Bimestre_8_portugues.setAdapter(adp_portugues_oitavo_1_bimestre);
+            }
 
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
+            }
 
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                }
+            }
 
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                }
+            }
 
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                }
+            }
+        });
 
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+        //====================================================Fim _ I Bimestre======================================================//
 
-                }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
 
-                }
-            });
 
-            //====================================================Fim _ I Bimestre======================================================//
+        //====================================================II_Bimestre======================================================//
 
+        //-------------------------------Titulo_II_Bimestre-------------------------------------------------------------------//
+        DBR_Titulo_II_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/8_ano/2_bimestre/titulo/0/x");
+        DBR_Titulo_II_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String str_Titulo_II_Bimestre = dataSnapshot.getValue(String.class);
+                tv_Titulo_II_Bimestre.setText(str_Titulo_II_Bimestre);
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
 
-            //====================================================II_Bimestre======================================================//
+        //---------------------------------Conteudo_II_Bimestre---------------------------------------------------------------//
+        //---------------- Usar adaptador----------//
+        DBR = FDB.getReference("disciplinas").child("portugues").child("8_ano").child("2_bimestre").child("conteudo");
+        DBR.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-            //-------------------------------Titulo_II_Bimestre-------------------------------------------------------------------//
-            DBR_Titulo_II_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/6_ano/2_bimestre/titulo/0/x");
-            DBR_Titulo_II_Bimestre.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    String str_Titulo_II_Bimestre = dataSnapshot.getValue(String.class);
-                    tv_Titulo_II_Bimestre.setText(str_Titulo_II_Bimestre);
-                }
+                MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+                listData_2_bimestre.add(x);
+                rv_II_Bimestre_8_portugue.setAdapter(adp_portugues_oitavo_2_bimestre);
+            }
 
-                }
-            });
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-            //---------------------------------Conteudo_II_Bimestre---------------------------------------------------------------//
-            //---------------- Usar adaptador----------//
-            DBR = FDB.getReference("disciplinas").child("portugues").child("6_ano").child("2_bimestre").child("conteudo");
-            DBR.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            }
 
-                    MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                    listData_2_bimestre.add(x);
-                    rv_II_Bimestre_6_portugues.setAdapter(adp_portugues_sexto_2_bimestre);
-                }
+            }
 
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                }
+            }
 
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                }
+            }
+        });
 
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+        //====================================================Fim _ II Bimestre======================================================//
 
-                }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
 
-                }
-            });
+        //====================================================III_Bimestre======================================================//
 
-            //====================================================Fim _ II Bimestre======================================================//
+        //-------------------------------Titulo_III_Bimestre-------------------------------------------------------------------//
+        DBR_Titulo_III_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/8_ano/3_bimestre/titulo/0/x");
+        DBR_Titulo_III_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String str_Titulo_III_Bimestre = dataSnapshot.getValue(String.class);
+                tv_Titulo_III_Bimestre.setText(str_Titulo_III_Bimestre);
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
 
-            //====================================================III_Bimestre======================================================//
+        //---------------------------------Conteudo_III_Bimestre---------------------------------------------------------------//
+        //---------------- Usar adaptador----------//
+        DBR = FDB.getReference("disciplinas").child("portugues").child("8_ano").child("3_bimestre").child("conteudo");
+        DBR.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-            //-------------------------------Titulo_III_Bimestre-------------------------------------------------------------------//
-            DBR_Titulo_III_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/6_ano/3_bimestre/titulo/0/x");
-            DBR_Titulo_III_Bimestre.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    String str_Titulo_III_Bimestre = dataSnapshot.getValue(String.class);
-                    tv_Titulo_III_Bimestre.setText(str_Titulo_III_Bimestre);
-                }
+                MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+                listData_3_bimestre.add(x);
+                rv_III_Bimestre_8_portugues.setAdapter(adp_portugues_oitavo_3_bimestre);
+            }
 
-                }
-            });
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-            //---------------------------------Conteudo_III_Bimestre---------------------------------------------------------------//
-            //---------------- Usar adaptador----------//
-            DBR = FDB.getReference("disciplinas").child("portugues").child("6_ano").child("3_bimestre").child("conteudo");
-            DBR.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            }
 
-                    MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                    listData_3_bimestre.add(x);
-                    rv_III_Bimestre_6_portugues.setAdapter(adp_portugues_sexto_3_bimestre);
-                }
+            }
 
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                }
+            }
 
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                }
+            }
+        });
 
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+        //====================================================Fim _ III Bimestre======================================================//
 
-                }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
 
-                }
-            });
+        //====================================================IV_Bimestre======================================================//
 
-            //====================================================Fim _ III Bimestre======================================================//
+        //-------------------------------Titulo_IV_Bimestre-------------------------------------------------------------------//
+        DBR_Titulo_IV_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/8_ano/4_bimestre/titulo/0/x");
+        DBR_Titulo_IV_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String str_Titulo_IV_Bimestre = dataSnapshot.getValue(String.class);
+                tv_Titulo_IV_Bimestre.setText(str_Titulo_IV_Bimestre);
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
 
-            //====================================================IV_Bimestre======================================================//
+        //---------------------------------Conteudo_III_Bimestre---------------------------------------------------------------//
+        //---------------- Usar adaptador----------//
+        DBR = FDB.getReference("disciplinas").child("portugues").child("8_ano").child("4_bimestre").child("conteudo");
+        DBR.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-            //-------------------------------Titulo_IV_Bimestre-------------------------------------------------------------------//
-            DBR_Titulo_IV_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/6_ano/4_bimestre/titulo/0/x");
-            DBR_Titulo_IV_Bimestre.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    String str_Titulo_IV_Bimestre = dataSnapshot.getValue(String.class);
-                    tv_Titulo_IV_Bimestre.setText(str_Titulo_IV_Bimestre);
-                }
+                MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+                listData_4_bimestre.add(x);
+                rv_IV_Bimestre_8_portugues.setAdapter(adp_portugues_oitavo_4_bimestre);
+            }
 
-                }
-            });
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-            //---------------------------------Conteudo_III_Bimestre---------------------------------------------------------------//
-            //---------------- Usar adaptador----------//
-            DBR = FDB.getReference("disciplinas").child("portugues").child("6_ano").child("4_bimestre").child("conteudo");
-            DBR.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            }
 
-                    MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                    listData_4_bimestre.add(x);
-                    rv_IV_Bimestre_6_portugues.setAdapter(adp_portugues_sexto_4_bimestre);
-                }
+            }
 
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                }
+            }
 
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                }
+            }
+        });
 
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-            //====================================================Fim _ IV Bimestre======================================================//
+        //====================================================Fim _ IV Bimestre======================================================//
 
 
 
@@ -1507,12 +1481,64 @@ public class Tab_portugues_sexto_ extends Fragment{
 
 
 
+    /*
+    public class Adaptador_Portugues_sexto extends RecyclerView.Adapter<Adaptador_Portugues_sexto.ViewholderPortugues_sexto>{
+
+        List<MyDataGetSet> listArray;
+
+        public  Adaptador_Portugues_sexto(List<MyDataGetSet> List){
+            this.listArray = List;
+
+        }
+
+        @Override
+        public ViewholderPortugues_sexto onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_,parent,false);
+
+            return new ViewholderPortugues_sexto(view);
+        }
+
+        @Override
+        public void onBindViewHolder(Adaptador_Portugues_sexto.ViewholderPortugues_sexto holder, int position) {
+            MyDataGetSet x = listArray.get(position);
+
+            holder.myText.setText(x.getX());
+
+        }
+
+
+        public class ViewholderPortugues_sexto extends RecyclerView.ViewHolder{
+            TextView myText;
+            CheckBox mCB;
+
+            public int estadocb1;
+            CheckBox cb1;
+
+            public ViewholderPortugues_sexto(View itemView) {
+                super(itemView);
+
+                mCB = (CheckBox) itemView.findViewById(R.id.cb_itemView_);
+                myText = (TextView) itemView.findViewById(R.id.textView_);
+            }
+
+
+        }
+
+
+        @Override
+        public int getItemCount() {
+            return listArray.size();
+        }
+
+
+    }
+    */
 
     //===========================MÉTODO QUE RECEBE AS SOMBRAS DOS BIMESTRES===========================
     @Override
     public void onViewCreated (View view, Bundle savedInstanceState) {
         //((Main_activity) getActivity()).SombraBimestre(view);
-        ((Main_activity) getActivity()).tab_obj_port_sexto_(view);
+        ((Main_activity) getActivity()).tab_obj_port_oitavo_(view);
 
 
 
