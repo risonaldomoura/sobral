@@ -1042,7 +1042,6 @@ public class Config_bimestre_activity extends AppCompatActivity {
 
     }
 
-
     public void setar_inicio_1(){
 
         //Dia e mês mostrados no balão do bimestre

@@ -1,2748 +1,1536 @@
 package projeto.app.sobral.Portugues;
 
-/**
- * Created by Risonald0 on 04/05/2017.
- */
-
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
+import android.app.Dialog;
+import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
+//import android.app.Fragment;
+import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Calendar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import projeto.app.sobral.Utils.Main_activity;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.net.ssl.HttpsURLConnection;
+
 import projeto.app.sobral.R;
+import projeto.app.sobral.Utils.Adaptador_Disciplina_ano;
+import projeto.app.sobral.Utils.DatasFirebase;
+import projeto.app.sobral.Utils.Main_activity;
+import projeto.app.sobral.Utils.MyDataGetSet;
 
-public class Tab_portugues_setimo extends Fragment {
+/**
+ * Created by Daniel on 09/01/2018.
+ */
 
-    public int ID_salvo_dia_inicio_I;
-    public int ID_salvo_dia_termino_I;
-    public int ID_salvo_mes_inicio_I;
-    public int ID_salvo_mes_termino_I;
+public class Tab_portugues_setimo extends Fragment{
 
-    public int ID_salvo_dia_inicio_II;
-    public int ID_salvo_dia_termino_II;
-    public int ID_salvo_mes_inicio_II;
-    public int ID_salvo_mes_termino_II;
+    RecyclerView rv_I_Bimestre_7_portugues;
+    RecyclerView rv_II_Bimestre_7_portugues;
+    RecyclerView rv_III_Bimestre_7_portugues;
+    RecyclerView rv_IV_Bimestre_7_portugues;
 
-    public int ID_salvo_dia_inicio_III;
-    public int ID_salvo_dia_termino_III;
-    public int ID_salvo_mes_inicio_III;
-    public int ID_salvo_mes_termino_III;
+    TextView tv_Titulo_I_Bimestre;
+    TextView tv_Titulo_II_Bimestre;
+    TextView tv_Titulo_III_Bimestre;
+    TextView tv_Titulo_IV_Bimestre;
 
-    public int ID_salvo_dia_inicio_IV;
-    public int ID_salvo_dia_termino_IV;
-    public int ID_salvo_mes_inicio_IV;
-    public int ID_salvo_mes_termino_IV;
 
-    public String mes_1 = "JAN";
-    public String mes_2 = "FEV";
-    public String mes_3 = "MAR";
-    public String mes_4 = "ABR";
-    public String mes_5 = "MAI";
-    public String mes_6 = "JUN";
-    public String mes_7 = "JUL";
-    public String mes_8 = "AGO";
-    public String mes_9 = "SET";
-    public String mes_10 = "OUT";
-    public String mes_11 = "NOV";
-    public String mes_12 = "DEZ";
 
-    public int Dia_sistema;
-    public int Mes_sistema;
+    List<MyDataGetSet> listData_1_bimestre;
+    List<MyDataGetSet> listData_2_bimestre;
+    List<MyDataGetSet> listData_3_bimestre;
+    List<MyDataGetSet> listData_4_bimestre;
 
-    public int estadocb1, estadocb2, estadocb3, estadocb4, estadocb5, estadocb6, estadocb7, estadocb8
-            ,estadocb9, estadocb10, estadocb11, estadocb12, estadocb13, estadocb14, estadocb15
-            , estadocb16, estadocb17, estadocb18, estadocb19, estadocb20, estadocb21, estadocb22
-            , estadocb23, estadocb24, estadocb25, estadocb26, estadocb27, estadocb28, estadocb29
-            , estadocb30;
+    Adaptador_Disciplina_ano adp_portugues_setimo_1_bimestre;
+    Adaptador_Disciplina_ano adp_portugues_setimo_2_bimestre;
+    Adaptador_Disciplina_ano adp_portugues_setimo_3_bimestre;
+    Adaptador_Disciplina_ano adp_portugues_setimo_4_bimestre;
 
-    CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7, cb8, cb9, cb10, cb11, cb12, cb13, cb14, cb15, cb16
-            , cb17, cb18, cb19, cb20, cb21, cb22, cb23, cb24, cb25, cb26, cb27, cb28, cb29, cb30;
+
+
+    FirebaseDatabase FDB;
+    //
+    DatabaseReference DBR;
+    DatabaseReference DBR_Titulo_I_Bimestre;
+    DatabaseReference DBR_Titulo_II_Bimestre;
+    DatabaseReference DBR_Titulo_III_Bimestre;
+    DatabaseReference DBR_Titulo_IV_Bimestre;
+
+
+
+    //
+
+    String titulo;
+
+    Button botao_docs;
+
+
+    //Dia e Mês carregado do firebase
+    public String dia_up_inicio_1, mes_up_inicio_1, dia_up_termino_1, mes_up_termino_1,
+            dia_up_inicio_2, mes_up_inicio_2, dia_up_termino_2, mes_up_termino_2,
+            dia_up_inicio_3, mes_up_inicio_3, dia_up_termino_3, mes_up_termino_3,
+            dia_up_inicio_4, mes_up_inicio_4, dia_up_termino_4, mes_up_termino_4;
+
+    private FirebaseAuth fbAuth;
+    private DatabaseReference UserData_inicio_1, UserData_termino_1,
+            UserData_inicio_2, UserData_termino_2,
+            UserData_inicio_3, UserData_termino_3,
+            UserData_inicio_4, UserData_termino_4;
+
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.cont_portugues_setimo, container, false);
 
-        //=============== CARREGAMENTO DAS DATAS DOS BIMESTRES =====================================
+
+
+        View rView = inflater.inflate(R.layout.layout_model_conteudo,container,false);
+
+        //=========== INÍCIO DO TRATAMENTO DOS ADPATADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS I BIMESTRE===============
+        //----------------------Dentro de onCreateView() -----------------------------------------------------------------
+
+        rv_I_Bimestre_7_portugues = (RecyclerView) rView.findViewById(R.id.recyclerView_I_Bimestre);
+        tv_Titulo_I_Bimestre = (TextView) rView.findViewById(R.id.Titulo_I_Bimestre);
+
+        rv_I_Bimestre_7_portugues.setHasFixedSize(true);
+        rv_I_Bimestre_7_portugues.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+
+
+
+        rv_I_Bimestre_7_portugues.setItemAnimator(new DefaultItemAnimator());
+        rv_I_Bimestre_7_portugues.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
+
+        listData_1_bimestre=  new ArrayList<>();
+        adp_portugues_setimo_1_bimestre = new Adaptador_Disciplina_ano(listData_1_bimestre);
+
+        //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS I BIMESTRE==================
+
+
+
+
+
+        //=========== INÍCIO DO TRATAMENTO DOS ADPATADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS II BIMESTRE===============
+        //----------------------Dentro de onCreateView() -----------------------------------------------------------------
+
+
+        rv_II_Bimestre_7_portugues = (RecyclerView) rView.findViewById(R.id.recyclerView_II_Bimestre);
+        tv_Titulo_II_Bimestre = (TextView) rView.findViewById(R.id.Titulo_II_Bimestre);
+
+        rv_II_Bimestre_7_portugues.setHasFixedSize(true);
+        rv_II_Bimestre_7_portugues.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        rv_II_Bimestre_7_portugues.setItemAnimator(new DefaultItemAnimator());
+        rv_II_Bimestre_7_portugues.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
+
+        listData_2_bimestre=  new ArrayList<>();
+        adp_portugues_setimo_2_bimestre = new Adaptador_Disciplina_ano(listData_2_bimestre);
+
+        //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS II BIMESTRE==================
+
+
+
+
+        //=========== INÍCIO DO TRATAMENTO DOS ADPATADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS III BIMESTRE===============
+        //----------------------Dentro de onCreateView() -----------------------------------------------------------------
+
+
+        rv_III_Bimestre_7_portugues = (RecyclerView) rView.findViewById(R.id.recyclerView_III_Bimestre);
+        tv_Titulo_III_Bimestre = (TextView) rView.findViewById(R.id.Titulo_III_Bimestre);
+
+        rv_III_Bimestre_7_portugues.setHasFixedSize(true);
+        rv_III_Bimestre_7_portugues.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        rv_III_Bimestre_7_portugues.setItemAnimator(new DefaultItemAnimator());
+        rv_III_Bimestre_7_portugues.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
+
+        listData_3_bimestre=  new ArrayList<>();
+        adp_portugues_setimo_3_bimestre = new Adaptador_Disciplina_ano(listData_3_bimestre);
+
+        //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS III BIMESTRE==================
+
+
+
+        //=========== INÍCIO DO TRATAMENTO DOS ADPATADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS IV BIMESTRE===============
+        //----------------------Dentro de onCreateView() -----------------------------------------------------------------
+
+
+        rv_IV_Bimestre_7_portugues = (RecyclerView) rView.findViewById(R.id.recyclerView_IV_Bimestre);
+        tv_Titulo_IV_Bimestre = (TextView) rView.findViewById(R.id.Titulo_IV_Bimestre);
+
+        rv_IV_Bimestre_7_portugues.setHasFixedSize(true);
+        rv_IV_Bimestre_7_portugues.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        rv_IV_Bimestre_7_portugues.setItemAnimator(new DefaultItemAnimator());
+        rv_IV_Bimestre_7_portugues.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
+
+        listData_4_bimestre=  new ArrayList<>();
+        adp_portugues_setimo_4_bimestre = new Adaptador_Disciplina_ano(listData_4_bimestre);
+
+        //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS III BIMESTRE==================
+
+
+        rv_I_Bimestre_7_portugues.setNestedScrollingEnabled(false);
+        rv_II_Bimestre_7_portugues.setNestedScrollingEnabled(false);
+        rv_III_Bimestre_7_portugues.setNestedScrollingEnabled(false);
+        rv_IV_Bimestre_7_portugues.setNestedScrollingEnabled(false);
+
+
+
+
+
+        fbAuth = FirebaseAuth.getInstance();
+
+
+        //=============MÉTODO CARREGA DO FIREBASE E SETA AS DATAS NOS BALÕES DE BIMESTRES===========
+        final String user_id = fbAuth.getCurrentUser().getUid();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         //=================PRIMEIRO BIMESTRE========================================================
 
-        //DIA INÍCIO
-        SharedPreferences sharedPref_dia_inicio_I = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_dia_inicio_I = sharedPref_dia_inicio_I.getInt("dia_inicio_balao_1", 15);
+        //INÍCIO
+        final TextView dia_inicio_I = (TextView) rView.findViewById(R.id.dia_inicio_I);
+        final TextView mes_inicio_I = (TextView) rView.findViewById(R.id.mes_inicio_I);
 
-        //DIA TÉRMINO
-        SharedPreferences sharedPref_dia_termino_I = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_dia_termino_I = sharedPref_dia_termino_I.getInt("dia_termino_balao_1", 15);
+        UserData_inicio_1 = database.getReference().child("users").child(user_id).child("datas").child("inicio_1");
 
-        //MÊS INÍCIO
-        SharedPreferences sharedPref_mes_inicio_I = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_mes_inicio_I = sharedPref_mes_inicio_I.getInt("mes_inicio_balao_1", 1);
+        ValueEventListener post_inicio_1_Listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-        //MÊS TÉRMINO
-        SharedPreferences sharedPref_mes_termino_I = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_mes_termino_I = sharedPref_mes_termino_I.getInt("mes_termino_balao_1", 3);
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_inicio_1 = post.inicio_1;
+                    mes_up_inicio_1 = post.inicio_1;
+
+                    dia_up_inicio_1 = dia_up_inicio_1.substring(0, 2);
+                    mes_up_inicio_1 = mes_up_inicio_1.substring(3, 5);
+
+                    conversor_mes_up_inicio_1();
+
+                    dia_inicio_I.setText(dia_up_inicio_1);
+                    mes_inicio_I.setText(mes_up_inicio_1);
+                }
+                else {}
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){}
+        };
+        UserData_inicio_1.addValueEventListener(post_inicio_1_Listener);
+
+        //TÉRMINO
+        final TextView dia_termino_I = (TextView) rView.findViewById(R.id.dia_termino_I);
+        final TextView mes_termino_I = (TextView) rView.findViewById(R.id.mes_termino_I);
+
+        UserData_termino_1 = database.getReference().child("users").child(user_id).child("datas").child("termino_1");
+
+        ValueEventListener post_termino_1_Listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_termino_1 = post.termino_1;
+                    mes_up_termino_1 = post.termino_1;
+
+                    dia_up_termino_1 = dia_up_termino_1.substring(0, 2);
+                    mes_up_termino_1 = mes_up_termino_1.substring(3, 5);
+
+                    conversor_mes_up_termino_1();
+
+                    dia_termino_I.setText(dia_up_termino_1);
+                    mes_termino_I.setText(mes_up_termino_1);
+
+                }
+                else {}
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){}
+        };
+        UserData_termino_1.addValueEventListener(post_termino_1_Listener);
 
         //==========================================================================================
 
         //=================SEGUNDO BIMESTRE=========================================================
 
-        //DIA INICIO
-        SharedPreferences sharedPref_dia_inicio_II = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_dia_inicio_II = sharedPref_dia_inicio_II.getInt("dia_inicio_balao_2", 16);
+        //INÍCIO
+        final TextView dia_inicio_II = (TextView) rView.findViewById(R.id.dia_inicio_II);
+        final TextView mes_inicio_II = (TextView) rView.findViewById(R.id.mes_inicio_II);
 
-        //DIA TÉRMINO
-        SharedPreferences sharedPref_dia_termino_II = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_dia_termino_II = sharedPref_dia_termino_II.getInt("dia_termino_balao_2", 16);
+        UserData_inicio_2 = database.getReference().child("users").child(user_id).child("datas").child("inicio_2");
 
-        //MES INÍCIO
-        SharedPreferences sharedPref_mes_inicio_II = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_mes_inicio_II = sharedPref_mes_inicio_II.getInt("mes_inicio_balao_2", 3);
+        ValueEventListener post_inicio_2_Listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-        //MÊS TÉRMINO
-        SharedPreferences sharedPref_mes_termino_II = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_mes_termino_II = sharedPref_mes_termino_II.getInt("mes_termino_balao_2", 5);
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_inicio_2 = post.inicio_2;
+                    mes_up_inicio_2 = post.inicio_2;
+
+                    dia_up_inicio_2 = dia_up_inicio_2.substring(0, 2);
+                    mes_up_inicio_2 = mes_up_inicio_2.substring(3, 5);
+
+                    conversor_mes_up_inicio_2();
+
+                    dia_inicio_II.setText(dia_up_inicio_2);
+                    mes_inicio_II.setText(mes_up_inicio_2);
+                }
+                else {}
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){}
+        };
+        UserData_inicio_2.addValueEventListener(post_inicio_2_Listener);
+
+        //TÉRMINO
+        final TextView dia_termino_II = (TextView) rView.findViewById(R.id.dia_termino_II);
+        final TextView mes_termino_II = (TextView) rView.findViewById(R.id.mes_termino_II);
+
+        UserData_termino_2 = database.getReference().child("users").child(user_id).child("datas").child("termino_2");
+
+        ValueEventListener post_termino_2_Listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_termino_2 = post.termino_2;
+                    mes_up_termino_2 = post.termino_2;
+
+                    dia_up_termino_2 = dia_up_termino_2.substring(0, 2);
+                    mes_up_termino_2 = mes_up_termino_2.substring(3, 5);
+
+                    conversor_mes_up_termino_2();
+
+                    dia_termino_II.setText(dia_up_termino_2);
+                    mes_termino_II.setText(mes_up_termino_2);
+
+                }
+                else {}
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){}
+        };
+        UserData_termino_2.addValueEventListener(post_termino_2_Listener);
 
         //==========================================================================================
 
         //=================TERCEIRO BIMESTRE========================================================
 
-        //DIA INÍCIO
-        SharedPreferences sharedPref_dia_inicio_III = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_dia_inicio_III = sharedPref_dia_inicio_III.getInt("dia_inicio_balao_3", 5);
+        //INÍCIO
+        final TextView dia_inicio_III = (TextView) rView.findViewById(R.id.dia_inicio_III);
+        final TextView mes_inicio_III = (TextView) rView.findViewById(R.id.mes_inicio_III);
 
-        //DIA TÉRMINO
-        SharedPreferences sharedPref_dia_termino_III = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_dia_termino_III = sharedPref_dia_termino_III.getInt("dia_termino_balao_3", 5);
+        UserData_inicio_3 = database.getReference().child("users").child(user_id).child("datas").child("inicio_3");
 
-        //MES INÍCIO
-        SharedPreferences sharedPref_mes_inicio_III = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_mes_inicio_III = sharedPref_mes_inicio_III.getInt("mes_inicio_balao_3", 7);
+        ValueEventListener post_inicio_3_Listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-        //MÊS TÉRMINO
-        SharedPreferences sharedPref_mes_termino_III = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_mes_termino_III = sharedPref_mes_termino_III.getInt("mes_termino_balao_3", 9);
+                if (dataSnapshot.exists()){
 
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_inicio_3 = post.inicio_3;
+                    mes_up_inicio_3 = post.inicio_3;
+
+                    dia_up_inicio_3 = dia_up_inicio_3.substring(0, 2);
+                    mes_up_inicio_3 = mes_up_inicio_3.substring(3, 5);
+
+                    conversor_mes_up_inicio_3();
+
+                    dia_inicio_III.setText(dia_up_inicio_3);
+                    mes_inicio_III.setText(mes_up_inicio_3);
+                }
+                else {}
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){}
+        };
+        UserData_inicio_3.addValueEventListener(post_inicio_3_Listener);
+
+        //TÉRMINO
+        final TextView dia_termino_III = (TextView) rView.findViewById(R.id.dia_termino_III);
+        final TextView mes_termino_III = (TextView) rView.findViewById(R.id.mes_termino_III);
+
+        UserData_termino_3 = database.getReference().child("users").child(user_id).child("datas").child("termino_3");
+
+        ValueEventListener post_termino_3_Listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_termino_3 = post.termino_3;
+                    mes_up_termino_3 = post.termino_3;
+
+                    dia_up_termino_3 = dia_up_termino_3.substring(0, 2);
+                    mes_up_termino_3 = mes_up_termino_3.substring(3, 5);
+
+                    conversor_mes_up_termino_3();
+
+                    dia_termino_III.setText(dia_up_termino_3);
+                    mes_termino_III.setText(mes_up_termino_3);
+
+                }
+                else {}
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){}
+        };
+        UserData_termino_3.addValueEventListener(post_termino_3_Listener);
         //==========================================================================================
 
         //=================QUARTO BIMESTRE==========================================================
 
-        //DIA INÍCIO
-        SharedPreferences sharedPref_dia_inicio_IV = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_dia_inicio_IV = sharedPref_dia_inicio_IV.getInt("dia_inicio_balao_4", 6);
+        //INÍCIO
+        final TextView dia_inicio_IV = (TextView) rView.findViewById(R.id.dia_inicio_IV);
+        final TextView mes_inicio_IV = (TextView) rView.findViewById(R.id.mes_inicio_IV);
 
-        //DIA TÉRMINO
-        SharedPreferences sharedPref_dia_termino_IV = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_dia_termino_IV = sharedPref_dia_termino_IV.getInt("dia_termino_balao_4", 6);
+        UserData_inicio_4 = database.getReference().child("users").child(user_id).child("datas").child("inicio_4");
 
-        //MES INÍCIO
-        SharedPreferences sharedPref_mes_inicio_IV = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_mes_inicio_IV = sharedPref_mes_inicio_IV.getInt("mes_inicio_balao_4", 9);
+        ValueEventListener post_inicio_4_Listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-        //MÊS TÉRMINO
-        SharedPreferences sharedPref_mes_termino_IV = this.getActivity().getSharedPreferences("pref_bimestre", Context.MODE_PRIVATE);
-        ID_salvo_mes_termino_IV = sharedPref_mes_termino_IV.getInt("mes_termino_balao_4", 11);
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_inicio_4 = post.inicio_4;
+                    mes_up_inicio_4 = post.inicio_4;
+
+                    dia_up_inicio_4 = dia_up_inicio_4.substring(0, 2);
+                    mes_up_inicio_4 = mes_up_inicio_4.substring(3, 5);
+
+                    conversor_mes_up_inicio_4();
+
+                    dia_inicio_IV.setText(dia_up_inicio_4);
+                    mes_inicio_IV.setText(mes_up_inicio_4);
+                }
+                else {}
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){}
+        };
+        UserData_inicio_4.addValueEventListener(post_inicio_4_Listener);
+
+        //TÉRMINO
+        final TextView dia_termino_IV = (TextView) rView.findViewById(R.id.dia_termino_IV);
+        final TextView mes_termino_IV = (TextView) rView.findViewById(R.id.mes_termino_IV);
+
+        UserData_termino_4 = database.getReference().child("users").child(user_id).child("datas").child("termino_4");
+
+        ValueEventListener post_termino_4_Listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_termino_4 = post.termino_4;
+                    mes_up_termino_4 = post.termino_4;
+
+                    dia_up_termino_4 = dia_up_termino_4.substring(0, 2);
+                    mes_up_termino_4 = mes_up_termino_4.substring(3, 5);
+
+                    conversor_mes_up_termino_4();
+
+                    dia_termino_IV.setText(dia_up_termino_4);
+                    mes_termino_IV.setText(mes_up_termino_4);
+
+                }
+                else {}
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){}
+        };
+        UserData_termino_4.addValueEventListener(post_termino_4_Listener);
 
         //==========================================================================================
 
 
-        //===================MÉTODO QUE SETA AS DATAS NOS BLOCOS DE BIMESTRES===========================
-        // Iniciar os campos buscando no layout do Fragment
 
-        //=========================I BIMESTRE=======================================================
 
-        //DIA INICIO
-        TextView dia_inicio_I = (TextView) view.findViewById(R.id.dia_inicio_I);
-        dia_inicio_I.setText("" + ID_salvo_dia_inicio_I);
 
-        //DIA TÉRMINO
-        TextView dia_termino_I = (TextView) view.findViewById(R.id.dia_termino_I);
-        dia_termino_I.setText("" + ID_salvo_dia_termino_I);
 
-        //MES INICIO
-        TextView mes_inicio_I = (TextView) view.findViewById(R.id.mes_inicio_I);
 
-        if (ID_salvo_mes_inicio_I == 1)
-            mes_inicio_I.setText(mes_1);
-        else if (ID_salvo_mes_inicio_I == 2)
-            mes_inicio_I.setText(mes_2);
-        else if (ID_salvo_mes_inicio_I == 3)
-            mes_inicio_I.setText(mes_3);
-        else if (ID_salvo_mes_inicio_I == 4)
-            mes_inicio_I.setText(mes_4);
-        else if (ID_salvo_mes_inicio_I == 5)
-            mes_inicio_I.setText(mes_5);
-        else if (ID_salvo_mes_inicio_I == 6)
-            mes_inicio_I.setText(mes_6);
-        else if (ID_salvo_mes_inicio_I == 7)
-            mes_inicio_I.setText(mes_7);
-        else if (ID_salvo_mes_inicio_I == 8)
-            mes_inicio_I.setText(mes_8);
-        else if (ID_salvo_mes_inicio_I == 9)
-            mes_inicio_I.setText(mes_9);
-        else if (ID_salvo_mes_inicio_I == 10)
-            mes_inicio_I.setText(mes_10);
-        else if (ID_salvo_mes_inicio_I == 11)
-            mes_inicio_I.setText(mes_11);
-        else if (ID_salvo_mes_inicio_I == 12)
-            mes_inicio_I.setText(mes_12);
 
-        //MES TERMINO
-        TextView mes_termino_I = (TextView) view.findViewById(R.id.mes_termino_I);
 
-        if (ID_salvo_mes_termino_I == 1)
-            mes_termino_I.setText(mes_1);
-        else if (ID_salvo_mes_termino_I == 2)
-            mes_termino_I.setText(mes_2);
-        else if (ID_salvo_mes_termino_I == 3)
-            mes_termino_I.setText(mes_3);
-        else if (ID_salvo_mes_termino_I == 4)
-            mes_termino_I.setText(mes_4);
-        else if (ID_salvo_mes_termino_I == 5)
-            mes_termino_I.setText(mes_5);
-        else if (ID_salvo_mes_termino_I == 6)
-            mes_termino_I.setText(mes_6);
-        else if (ID_salvo_mes_termino_I == 7)
-            mes_termino_I.setText(mes_7);
-        else if (ID_salvo_mes_termino_I == 8)
-            mes_termino_I.setText(mes_8);
-        else if (ID_salvo_mes_termino_I == 9)
-            mes_termino_I.setText(mes_9);
-        else if (ID_salvo_mes_termino_I == 10)
-            mes_termino_I.setText(mes_10);
-        else if (ID_salvo_mes_termino_I == 11)
-            mes_termino_I.setText(mes_11);
-        else if (ID_salvo_mes_termino_I == 12)
-            mes_termino_I.setText(mes_12);
 
-        //==========================================================================================
+        FDB = FirebaseDatabase.getInstance();
+        //FirebaseDatabase.setPersistenceEnabled();
 
-        //=========================II BIMESTRE======================================================
+        GetDataFirebase();
 
-        //DIA INICIO
-        TextView dia_inicio_II = (TextView) view.findViewById(R.id.dia_inicio_II);
-        dia_inicio_II.setText("" + ID_salvo_dia_inicio_II);
 
-        //DIA TÉRMINO
-        TextView dia_termino_II = (TextView) view.findViewById(R.id.dia_termino_II);
-        dia_termino_II.setText("" + ID_salvo_dia_termino_II);
 
-        //MES INICIO
-        TextView mes_inicio_II = (TextView) view.findViewById(R.id.mes_inicio_II);
 
-        if (ID_salvo_mes_inicio_II == 1)
-            mes_inicio_II.setText(mes_1);
-        else if (ID_salvo_mes_inicio_II == 2)
-            mes_inicio_II.setText(mes_2);
-        else if (ID_salvo_mes_inicio_II == 3)
-            mes_inicio_II.setText(mes_3);
-        else if (ID_salvo_mes_inicio_II == 4)
-            mes_inicio_II.setText(mes_4);
-        else if (ID_salvo_mes_inicio_II == 5)
-            mes_inicio_II.setText(mes_5);
-        else if (ID_salvo_mes_inicio_II == 6)
-            mes_inicio_II.setText(mes_6);
-        else if (ID_salvo_mes_inicio_II == 7)
-            mes_inicio_II.setText(mes_7);
-        else if (ID_salvo_mes_inicio_II == 8)
-            mes_inicio_II.setText(mes_8);
-        else if (ID_salvo_mes_inicio_II == 9)
-            mes_inicio_II.setText(mes_9);
-        else if (ID_salvo_mes_inicio_II == 10)
-            mes_inicio_II.setText(mes_10);
-        else if (ID_salvo_mes_inicio_II == 11)
-            mes_inicio_II.setText(mes_11);
-        else if (ID_salvo_mes_inicio_II == 12)
-            mes_inicio_II.setText(mes_12);
 
-        //MES TERMINO
-        TextView mes_termino_II = (TextView) view.findViewById(R.id.mes_termino_II);
+        return rView;
+    }
 
-        if (ID_salvo_mes_termino_II == 1)
-            mes_termino_II.setText(mes_1);
-        else if (ID_salvo_mes_termino_II == 2)
-            mes_termino_II.setText(mes_2);
-        else if (ID_salvo_mes_termino_II == 3)
-            mes_termino_II.setText(mes_3);
-        else if (ID_salvo_mes_termino_II == 4)
-            mes_termino_II.setText(mes_4);
-        else if (ID_salvo_mes_termino_II == 5)
-            mes_termino_II.setText(mes_5);
-        else if (ID_salvo_mes_termino_II == 6)
-            mes_termino_II.setText(mes_6);
-        else if (ID_salvo_mes_termino_II == 7)
-            mes_termino_II.setText(mes_7);
-        else if (ID_salvo_mes_termino_II == 8)
-            mes_termino_II.setText(mes_8);
-        else if (ID_salvo_mes_termino_II == 9)
-            mes_termino_II.setText(mes_9);
-        else if (ID_salvo_mes_termino_II == 10)
-            mes_termino_II.setText(mes_10);
-        else if (ID_salvo_mes_termino_II == 11)
-            mes_termino_II.setText(mes_11);
-        else if (ID_salvo_mes_termino_II == 12)
-            mes_termino_II.setText(mes_12);
+    public void conversor_mes_up_inicio_1(){
 
-        //==========================================================================================
+        if (mes_up_inicio_1.equals("01"))
+        {
+            mes_up_inicio_1 = "JAN";
 
-        //=========================III BIMESTRE=====================================================
+        }
+        else if (mes_up_inicio_1.equals("02") )
+        {
+            mes_up_inicio_1 = "FEV";
 
-        //DIA INICIO
-        TextView dia_inicio_III = (TextView) view.findViewById(R.id.dia_inicio_III);
-        dia_inicio_III.setText("" + ID_salvo_dia_inicio_III);
+        }
+        else if (mes_up_inicio_1.equals("03"))
+        {
+            mes_up_inicio_1 = "MAR";
 
-        //DIA TÉRMINO
-        TextView dia_termino_III = (TextView) view.findViewById(R.id.dia_termino_III);
-        dia_termino_III.setText("" + ID_salvo_dia_termino_III);
+        }
+        else if (mes_up_inicio_1.equals("04") )
+        {
+            mes_up_inicio_1 = "ABR";
 
-        //MES INICIO
-        TextView mes_inicio_III = (TextView) view.findViewById(R.id.mes_inicio_III);
+        }
+        else if (mes_up_inicio_1.equals("05"))
+        {
+            mes_up_inicio_1 = "MAI";
 
-        if (ID_salvo_mes_inicio_III == 1)
-            mes_inicio_III.setText(mes_1);
-        else if (ID_salvo_mes_inicio_III == 2)
-            mes_inicio_III.setText(mes_2);
-        else if (ID_salvo_mes_inicio_III == 3)
-            mes_inicio_III.setText(mes_3);
-        else if (ID_salvo_mes_inicio_III == 4)
-            mes_inicio_III.setText(mes_4);
-        else if (ID_salvo_mes_inicio_III == 5)
-            mes_inicio_III.setText(mes_5);
-        else if (ID_salvo_mes_inicio_III == 6)
-            mes_inicio_III.setText(mes_6);
-        else if (ID_salvo_mes_inicio_III == 7)
-            mes_inicio_III.setText(mes_7);
-        else if (ID_salvo_mes_inicio_III == 8)
-            mes_inicio_III.setText(mes_8);
-        else if (ID_salvo_mes_inicio_III == 9)
-            mes_inicio_III.setText(mes_9);
-        else if (ID_salvo_mes_inicio_III == 10)
-            mes_inicio_III.setText(mes_10);
-        else if (ID_salvo_mes_inicio_III == 11)
-            mes_inicio_III.setText(mes_11);
-        else if (ID_salvo_mes_inicio_III == 12)
-            mes_inicio_III.setText(mes_12);
+        }
+        else if (mes_up_inicio_1.equals("06"))
+        {
+            mes_up_inicio_1 = "JUN";
 
-        //MES TERMINO
-        TextView mes_termino_III = (TextView) view.findViewById(R.id.mes_termino_III);
+        }
+        else if (mes_up_inicio_1.equals("07"))
+        {
+            mes_up_inicio_1 = "JUL";
 
-        if (ID_salvo_mes_termino_III == 1)
-            mes_termino_III.setText(mes_1);
-        else if (ID_salvo_mes_termino_III == 2)
-            mes_termino_III.setText(mes_2);
-        else if (ID_salvo_mes_termino_III == 3)
-            mes_termino_III.setText(mes_3);
-        else if (ID_salvo_mes_termino_III == 4)
-            mes_termino_III.setText(mes_4);
-        else if (ID_salvo_mes_termino_III == 5)
-            mes_termino_III.setText(mes_5);
-        else if (ID_salvo_mes_termino_III == 6)
-            mes_termino_III.setText(mes_6);
-        else if (ID_salvo_mes_termino_III == 7)
-            mes_termino_III.setText(mes_7);
-        else if (ID_salvo_mes_termino_III == 8)
-            mes_termino_III.setText(mes_8);
-        else if (ID_salvo_mes_termino_III == 9)
-            mes_termino_III.setText(mes_9);
-        else if (ID_salvo_mes_termino_III == 10)
-            mes_termino_III.setText(mes_10);
-        else if (ID_salvo_mes_termino_III == 11)
-            mes_termino_III.setText(mes_11);
-        else if (ID_salvo_mes_termino_III == 12)
-            mes_termino_III.setText(mes_12);
+        }
 
-        //==========================================================================================
+        else if (mes_up_inicio_1.equals("08"))
+        {
+            mes_up_inicio_1 = "AGO";
 
-        //=========================IV BIMESTRE======================================================
+        }
 
-        //DIA INICIO
-        TextView dia_inicio_IV = (TextView) view.findViewById(R.id.dia_inicio_IV);
-        dia_inicio_IV.setText("" + ID_salvo_dia_inicio_IV);
+        else if (mes_up_inicio_1.equals("09"))
+        {
+            mes_up_inicio_1 = "SET";
 
-        //DIA TÉRMINO
-        TextView dia_termino_IV = (TextView) view.findViewById(R.id.dia_termino_IV);
-        dia_termino_IV.setText("" + ID_salvo_dia_termino_IV);
+        }
 
-        //MES INICIO
-        TextView mes_inicio_IV = (TextView) view.findViewById(R.id.mes_inicio_IV);
+        else if (mes_up_inicio_1.equals("10"))
+        {
+            mes_up_inicio_1 = "OUT";
 
-        if (ID_salvo_mes_inicio_IV == 1)
-            mes_inicio_IV.setText(mes_1);
-        else if (ID_salvo_mes_inicio_IV == 2)
-            mes_inicio_IV.setText(mes_2);
-        else if (ID_salvo_mes_inicio_IV == 3)
-            mes_inicio_IV.setText(mes_3);
-        else if (ID_salvo_mes_inicio_IV == 4)
-            mes_inicio_IV.setText(mes_4);
-        else if (ID_salvo_mes_inicio_IV == 5)
-            mes_inicio_IV.setText(mes_5);
-        else if (ID_salvo_mes_inicio_IV == 6)
-            mes_inicio_IV.setText(mes_6);
-        else if (ID_salvo_mes_inicio_IV == 7)
-            mes_inicio_IV.setText(mes_7);
-        else if (ID_salvo_mes_inicio_IV == 8)
-            mes_inicio_IV.setText(mes_8);
-        else if (ID_salvo_mes_inicio_IV == 9)
-            mes_inicio_IV.setText(mes_9);
-        else if (ID_salvo_mes_inicio_IV == 10)
-            mes_inicio_IV.setText(mes_10);
-        else if (ID_salvo_mes_inicio_IV == 11)
-            mes_inicio_IV.setText(mes_11);
-        else if (ID_salvo_mes_inicio_IV == 12)
-            mes_inicio_IV.setText(mes_12);
+        }
 
-        //MES TERMINO
-        TextView mes_termino_IV = (TextView) view.findViewById(R.id.mes_termino_IV);
+        else if (mes_up_inicio_1.equals("11") )
+        {
+            mes_up_inicio_1 = "NOV";
 
-        if (ID_salvo_mes_termino_IV == 1)
-            mes_termino_IV.setText(mes_1);
-        else if (ID_salvo_mes_termino_IV == 2)
-            mes_termino_IV.setText(mes_2);
-        else if (ID_salvo_mes_termino_IV == 3)
-            mes_termino_IV.setText(mes_3);
-        else if (ID_salvo_mes_termino_IV == 4)
-            mes_termino_IV.setText(mes_4);
-        else if (ID_salvo_mes_termino_IV == 5)
-            mes_termino_IV.setText(mes_5);
-        else if (ID_salvo_mes_termino_IV == 6)
-            mes_termino_IV.setText(mes_6);
-        else if (ID_salvo_mes_termino_IV == 7)
-            mes_termino_IV.setText(mes_7);
-        else if (ID_salvo_mes_termino_IV == 8)
-            mes_termino_IV.setText(mes_8);
-        else if (ID_salvo_mes_termino_IV == 9)
-            mes_termino_IV.setText(mes_9);
-        else if (ID_salvo_mes_termino_IV == 10)
-            mes_termino_IV.setText(mes_10);
-        else if (ID_salvo_mes_termino_IV == 11)
-            mes_termino_IV.setText(mes_11);
-        else if (ID_salvo_mes_termino_IV == 12)
-            mes_termino_IV.setText(mes_12);
+        }
 
-        //==========================================================================================
-        //FIM DO MÉTODO DE DATAS DOS BIMESTRES
+        else if (mes_up_inicio_1.equals("12") )
+        {
+            mes_up_inicio_1 = "DEZ";
 
-
-        //======================TRATAMENTO DO CHECKBOX 1============================================
-
-        cb1 = (CheckBox) view.findViewById(R.id.cb1);
-
-        SharedPreferences sharedPref_estadocb1 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb1 = sharedPref_estadocb1.getInt("estadocb1", 0);
-
-        if (estadocb1 == 0)
-            cb1.setChecked(false);
-        else
-            cb1.setChecked(true);
-
-        cb1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb1.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                    //Solução para dar um refresh no Checkbox 1
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb1.setChecked(true);
-
-                            //estadocb1 = 1;
-                            SharedPreferences sharedPref_estadocb1 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb1.edit();
-                            prefEditor.putInt("estadocb1",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb1.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb1 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb1.edit();
-                            prefEditor.putInt("estadocb1", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-
-
-        //===================================FIM CHECKBOX 1=========================================
-
-
-
-
-
-        //======================TRATAMENTO DO CHECKBOX 2============================================
-
-        cb2 = (CheckBox) view.findViewById(R.id.cb2);
-
-        SharedPreferences sharedPref_estadocb2 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb2 = sharedPref_estadocb2.getInt("estadocb2", 0);
-
-        if (estadocb2 == 0)
-            cb2.setChecked(false);
-        else
-            cb2.setChecked(true);
-
-        cb2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb2.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb2.setChecked(true);
-
-                            //estadocb2 = 1;
-                            SharedPreferences sharedPref_estadocb2 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb2.edit();
-                            prefEditor.putInt("estadocb2",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb2.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb2 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb2.edit();
-                            prefEditor.putInt("estadocb2", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 2=========================================
-
-
-        //======================TRATAMENTO DO CHECKBOX 3============================================
-
-        cb3 = (CheckBox) view.findViewById(R.id.cb3);
-
-        SharedPreferences sharedPref_estadocb3 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb3 = sharedPref_estadocb3.getInt("estadocb3", 0);
-
-        if (estadocb3 == 0)
-            cb3.setChecked(false);
-        else
-            cb3.setChecked(true);
-
-        cb3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb3.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb3.setChecked(true);
-
-                            //estadocb3 = 1;
-                            SharedPreferences sharedPref_estadocb3 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb3.edit();
-                            prefEditor.putInt("estadocb3",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb3.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb3 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb3.edit();
-                            prefEditor.putInt("estadocb3", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 3=========================================
-
-        //======================TRATAMENTO DO CHECKBOX 4============================================
-
-        cb4 = (CheckBox) view.findViewById(R.id.cb4);
-
-        SharedPreferences sharedPref_estadocb4 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb4 = sharedPref_estadocb4.getInt("estadocb4", 0);
-
-        if (estadocb4 == 0)
-            cb4.setChecked(false);
-        else
-            cb4.setChecked(true);
-
-        cb4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb4.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb4.setChecked(true);
-
-                            //estadocb4 = 1;
-                            SharedPreferences sharedPref_estadocb4 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb4.edit();
-                            prefEditor.putInt("estadocb4",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb4.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb4 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb4.edit();
-                            prefEditor.putInt("estadocb4", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 4=========================================
-
-
-        //======================TRATAMENTO DO CHECKBOX 5============================================
-
-        cb5 = (CheckBox) view.findViewById(R.id.cb5);
-
-        SharedPreferences sharedPref_estadocb5 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb5 = sharedPref_estadocb5.getInt("estadocb5", 0);
-
-        if (estadocb5 == 0)
-            cb5.setChecked(false);
-        else
-            cb5.setChecked(true);
-
-        cb5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb5.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb5.setChecked(true);
-
-                            //estadocb5 = 1;
-                            SharedPreferences sharedPref_estadocb5 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb5.edit();
-                            prefEditor.putInt("estadocb5",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb5.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb5 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb5.edit();
-                            prefEditor.putInt("estadocb5", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 5=========================================
-
-        //======================TRATAMENTO DO CHECKBOX 6============================================
-
-        cb6 = (CheckBox) view.findViewById(R.id.cb6);
-
-        SharedPreferences sharedPref_estadocb6 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb6 = sharedPref_estadocb6.getInt("estadocb6", 0);
-
-        if (estadocb6 == 0)
-            cb6.setChecked(false);
-        else
-            cb6.setChecked(true);
-
-        cb6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb6.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb6.setChecked(true);
-
-                            //estadocb6 = 1;
-                            SharedPreferences sharedPref_estadocb6 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb6.edit();
-                            prefEditor.putInt("estadocb6",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb6.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb6 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb6.edit();
-                            prefEditor.putInt("estadocb6", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 6=========================================
-
-
-        //======================TRATAMENTO DO CHECKBOX 7============================================
-
-        cb7 = (CheckBox) view.findViewById(R.id.cb7);
-
-        SharedPreferences sharedPref_estadocb7 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb7 = sharedPref_estadocb7.getInt("estadocb7", 0);
-
-        if (estadocb7 == 0)
-            cb7.setChecked(false);
-        else
-            cb7.setChecked(true);
-
-        cb7.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb7.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb7.setChecked(true);
-
-                            //estadocb7 = 1;
-                            SharedPreferences sharedPref_estadocb7 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb7.edit();
-                            prefEditor.putInt("estadocb7",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb7.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb7 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb7.edit();
-                            prefEditor.putInt("estadocb7", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 7=========================================
-
-
-        //======================TRATAMENTO DO CHECKBOX 8============================================
-
-        cb8 = (CheckBox) view.findViewById(R.id.cb8);
-
-        SharedPreferences sharedPref_estadocb8 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb8 = sharedPref_estadocb8.getInt("estadocb8", 0);
-
-        if (estadocb8 == 0)
-            cb8.setChecked(false);
-        else
-            cb8.setChecked(true);
-
-        cb8.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb8.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb8.setChecked(true);
-
-                            //estadocb8 = 1;
-                            SharedPreferences sharedPref_estadocb8 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb8.edit();
-                            prefEditor.putInt("estadocb8",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb8.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb8 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb8.edit();
-                            prefEditor.putInt("estadocb8", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 8=========================================
-
-        //======================TRATAMENTO DO CHECKBOX 9============================================
-
-        cb9 = (CheckBox) view.findViewById(R.id.cb9);
-
-        SharedPreferences sharedPref_estadocb9 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb9 = sharedPref_estadocb9.getInt("estadocb9", 0);
-
-        if (estadocb9 == 0)
-            cb9.setChecked(false);
-        else
-            cb9.setChecked(true);
-
-        cb9.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb9.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb9.setChecked(true);
-
-                            //estadocb9 = 1;
-                            SharedPreferences sharedPref_estadocb9 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb9.edit();
-                            prefEditor.putInt("estadocb9",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb9.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb9 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb9.edit();
-                            prefEditor.putInt("estadocb9", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 9=========================================
-
-        //======================TRATAMENTO DO CHECKBOX 10===========================================
-
-        cb10 = (CheckBox) view.findViewById(R.id.cb10);
-
-        SharedPreferences sharedPref_estadocb10 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb10 = sharedPref_estadocb10.getInt("estadocb10", 0);
-
-        if (estadocb10 == 0)
-            cb10.setChecked(false);
-        else
-            cb10.setChecked(true);
-
-        cb10.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb10.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb10.setChecked(true);
-
-                            //estadocb10 = 1;
-                            SharedPreferences sharedPref_estadocb10 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb10.edit();
-                            prefEditor.putInt("estadocb10",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb10.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb10 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb10.edit();
-                            prefEditor.putInt("estadocb10", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 10========================================
-
-        //======================TRATAMENTO DO CHECKBOX 11============================================
-
-        cb11 = (CheckBox) view.findViewById(R.id.cb11);
-
-        SharedPreferences sharedPref_estadocb11 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb11 = sharedPref_estadocb11.getInt("estadocb11", 0);
-
-        if (estadocb11 == 0)
-            cb11.setChecked(false);
-        else
-            cb11.setChecked(true);
-
-        cb11.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb11.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb11.setChecked(true);
-
-                            //estadocb11 = 1;
-                            SharedPreferences sharedPref_estadocb11 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb11.edit();
-                            prefEditor.putInt("estadocb11",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb11.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb11 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb11.edit();
-                            prefEditor.putInt("estadocb11", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-
-
-        //===================================FIM CHECKBOX 11========================================
-
-        //======================TRATAMENTO DO CHECKBOX 12===========================================
-
-        cb12 = (CheckBox) view.findViewById(R.id.cb12);
-
-        SharedPreferences sharedPref_estadocb12 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb12 = sharedPref_estadocb12.getInt("estadocb12", 0);
-
-        if (estadocb12 == 0)
-            cb12.setChecked(false);
-        else
-            cb12.setChecked(true);
-
-        cb12.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb12.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb12.setChecked(true);
-
-                            //estadocb12 = 1;
-                            SharedPreferences sharedPref_estadocb12 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb12.edit();
-                            prefEditor.putInt("estadocb12",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb12.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb12 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb12.edit();
-                            prefEditor.putInt("estadocb12", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-
-
-        //===================================FIM CHECKBOX 12========================================
-
-        //======================TRATAMENTO DO CHECKBOX 13============================================
-
-        cb13 = (CheckBox) view.findViewById(R.id.cb13);
-
-        SharedPreferences sharedPref_estadocb13 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb13 = sharedPref_estadocb13.getInt("estadocb13", 0);
-
-        if (estadocb13 == 0)
-            cb13.setChecked(false);
-        else
-            cb13.setChecked(true);
-
-        cb13.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb13.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb13.setChecked(true);
-
-                            //estadocb13 = 1;
-                            SharedPreferences sharedPref_estadocb13 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb13.edit();
-                            prefEditor.putInt("estadocb13",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb13.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb13 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb13.edit();
-                            prefEditor.putInt("estadocb13", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-
-
-        //===================================FIM CHECKBOX 13========================================
-
-        //======================TRATAMENTO DO CHECKBOX 14===========================================
-
-        cb14 = (CheckBox) view.findViewById(R.id.cb14);
-
-        SharedPreferences sharedPref_estadocb14 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb14 = sharedPref_estadocb14.getInt("estadocb14", 0);
-
-        if (estadocb14 == 0)
-            cb14.setChecked(false);
-        else
-            cb14.setChecked(true);
-
-        cb14.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb14.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb14.setChecked(true);
-
-                            //estadocb14 = 1;
-                            SharedPreferences sharedPref_estadocb14 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb14.edit();
-                            prefEditor.putInt("estadocb14",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb14.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb14 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb14.edit();
-                            prefEditor.putInt("estadocb14", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-
-
-        //===================================FIM CHECKBOX 14========================================
-
-        //======================TRATAMENTO DO CHECKBOX 15============================================
-
-        cb15 = (CheckBox) view.findViewById(R.id.cb15);
-
-        SharedPreferences sharedPref_estadocb15 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb15 = sharedPref_estadocb15.getInt("estadocb15", 0);
-
-        if (estadocb15 == 0)
-            cb15.setChecked(false);
-        else
-            cb15.setChecked(true);
-
-        cb15.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb15.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb15.setChecked(true);
-
-                            //estadocb15 = 1;
-                            SharedPreferences sharedPref_estadocb15 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb15.edit();
-                            prefEditor.putInt("estadocb15",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb15.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb15 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb15.edit();
-                            prefEditor.putInt("estadocb15", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-
-
-        //===================================FIM CHECKBOX 15========================================
-
-        //======================TRATAMENTO DO CHECKBOX 16============================================
-
-        cb16 = (CheckBox) view.findViewById(R.id.cb16);
-
-        SharedPreferences sharedPref_estadocb16 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb16 = sharedPref_estadocb16.getInt("estadocb16", 0);
-
-        if (estadocb16 == 0)
-            cb16.setChecked(false);
-        else
-            cb16.setChecked(true);
-
-        cb16.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb16.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb16.setChecked(true);
-
-                            //estadocb16 = 1;
-                            SharedPreferences sharedPref_estadocb16 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb16.edit();
-                            prefEditor.putInt("estadocb16",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb16.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb16 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb16.edit();
-                            prefEditor.putInt("estadocb16", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-
-
-        //===================================FIM CHECKBOX 16========================================
-
-        //======================TRATAMENTO DO CHECKBOX 17===========================================
-
-        cb17 = (CheckBox) view.findViewById(R.id.cb17);
-
-        SharedPreferences sharedPref_estadocb17 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb17 = sharedPref_estadocb17.getInt("estadocb17", 0);
-
-        if (estadocb17 == 0)
-            cb17.setChecked(false);
-        else
-            cb17.setChecked(true);
-
-        cb17.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb17.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb17.setChecked(true);
-
-                            //estadocb17 = 1;
-                            SharedPreferences sharedPref_estadocb17 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb17.edit();
-                            prefEditor.putInt("estadocb17",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb17.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb17 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb17.edit();
-                            prefEditor.putInt("estadocb17", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-
-
-        //===================================FIM CHECKBOX 17========================================
-
-        //======================TRATAMENTO DO CHECKBOX 18============================================
-
-        cb18 = (CheckBox) view.findViewById(R.id.cb18);
-
-        SharedPreferences sharedPref_estadocb18 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb18 = sharedPref_estadocb18.getInt("estadocb18", 0);
-
-        if (estadocb18 == 0)
-            cb18.setChecked(false);
-        else
-            cb18.setChecked(true);
-
-        cb18.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb18.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb18.setChecked(true);
-
-                            //estadocb18 = 1;
-                            SharedPreferences sharedPref_estadocb18 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb18.edit();
-                            prefEditor.putInt("estadocb18",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb18.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb18 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb18.edit();
-                            prefEditor.putInt("estadocb18", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-
-
-        //===================================FIM CHECKBOX 18========================================
-
-        //======================TRATAMENTO DO CHECKBOX 19============================================
-
-        cb19 = (CheckBox) view.findViewById(R.id.cb19);
-
-        SharedPreferences sharedPref_estadocb19 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb19 = sharedPref_estadocb19.getInt("estadocb19", 0);
-
-        if (estadocb19 == 0)
-            cb19.setChecked(false);
-        else
-            cb19.setChecked(true);
-
-        cb19.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb19.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb19.setChecked(true);
-
-                            //estadocb19 = 1;
-                            SharedPreferences sharedPref_estadocb19 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb19.edit();
-                            prefEditor.putInt("estadocb19",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb19.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb19 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb19.edit();
-                            prefEditor.putInt("estadocb19", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-
-
-        //===================================FIM CHECKBOX 19========================================
-
-        //======================TRATAMENTO DO CHECKBOX 20============================================
-
-        cb20 = (CheckBox) view.findViewById(R.id.cb20);
-
-        SharedPreferences sharedPref_estadocb20 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb20 = sharedPref_estadocb20.getInt("estadocb20", 0);
-
-        if (estadocb20 == 0)
-            cb20.setChecked(false);
-        else
-            cb20.setChecked(true);
-
-        cb20.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb20.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb20.setChecked(true);
-
-                            //estadocb20 = 1;
-                            SharedPreferences sharedPref_estadocb20 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb20.edit();
-                            prefEditor.putInt("estadocb20",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb20.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb20 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb20.edit();
-                            prefEditor.putInt("estadocb20", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 20========================================
-
-        //======================TRATAMENTO DO CHECKBOX 21============================================
-
-        cb21 = (CheckBox) view.findViewById(R.id.cb21);
-
-        SharedPreferences sharedPref_estadocb21 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb21 = sharedPref_estadocb21.getInt("estadocb21", 0);
-
-        if (estadocb21 == 0)
-            cb21.setChecked(false);
-        else
-            cb21.setChecked(true);
-
-        cb21.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb21.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb21.setChecked(true);
-
-                            //estadocb21 = 1;
-                            SharedPreferences sharedPref_estadocb21 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb21.edit();
-                            prefEditor.putInt("estadocb21",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb21.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb21 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb21.edit();
-                            prefEditor.putInt("estadocb21", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 21========================================
-
-        //======================TRATAMENTO DO CHECKBOX 22============================================
-
-        cb22 = (CheckBox) view.findViewById(R.id.cb22);
-
-        SharedPreferences sharedPref_estadocb22 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb22 = sharedPref_estadocb22.getInt("estadocb22", 0);
-
-        if (estadocb22 == 0)
-            cb22.setChecked(false);
-        else
-            cb22.setChecked(true);
-
-        cb22.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb22.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb22.setChecked(true);
-
-                            //estadocb22 = 1;
-                            SharedPreferences sharedPref_estadocb22 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb22.edit();
-                            prefEditor.putInt("estadocb22",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb22.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb22 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb22.edit();
-                            prefEditor.putInt("estadocb22", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 22========================================
-
-        //======================TRATAMENTO DO CHECKBOX 23===========================================
-
-        cb23 = (CheckBox) view.findViewById(R.id.cb23);
-
-        SharedPreferences sharedPref_estadocb23 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb23 = sharedPref_estadocb23.getInt("estadocb23", 0);
-
-        if (estadocb23 == 0)
-            cb23.setChecked(false);
-        else
-            cb23.setChecked(true);
-
-        cb23.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb23.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb23.setChecked(true);
-
-                            //estadocb23 = 1;
-                            SharedPreferences sharedPref_estadocb23 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb23.edit();
-                            prefEditor.putInt("estadocb23",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb23.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb23 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb23.edit();
-                            prefEditor.putInt("estadocb23", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 23========================================
-
-        //======================TRATAMENTO DO CHECKBOX 24============================================
-
-        cb24 = (CheckBox) view.findViewById(R.id.cb24);
-
-        SharedPreferences sharedPref_estadocb24 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb24 = sharedPref_estadocb24.getInt("estadocb24", 0);
-
-        if (estadocb24 == 0)
-            cb24.setChecked(false);
-        else
-            cb24.setChecked(true);
-
-        cb24.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb24.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb24.setChecked(true);
-
-                            //estadocb24 = 1;
-                            SharedPreferences sharedPref_estadocb24 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb24.edit();
-                            prefEditor.putInt("estadocb24",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb24.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb24 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb24.edit();
-                            prefEditor.putInt("estadocb24", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 24========================================
-
-        //======================TRATAMENTO DO CHECKBOX 25============================================
-
-        cb25 = (CheckBox) view.findViewById(R.id.cb25);
-
-        SharedPreferences sharedPref_estadocb25 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb25 = sharedPref_estadocb25.getInt("estadocb25", 0);
-
-        if (estadocb25 == 0)
-            cb25.setChecked(false);
-        else
-            cb25.setChecked(true);
-
-        cb25.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb25.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb25.setChecked(true);
-
-                            //estadocb2 = 1;
-                            SharedPreferences sharedPref_estadocb25 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb25.edit();
-                            prefEditor.putInt("estadocb25",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb25.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb25 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb25.edit();
-                            prefEditor.putInt("estadocb25", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 25========================================
-
-
-        //======================TRATAMENTO DO CHECKBOX 26============================================
-
-        cb26 = (CheckBox) view.findViewById(R.id.cb26);
-
-        SharedPreferences sharedPref_estadocb26 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb26 = sharedPref_estadocb26.getInt("estadocb26", 0);
-
-        if (estadocb26 == 0)
-            cb26.setChecked(false);
-        else
-            cb26.setChecked(true);
-
-        cb26.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb26.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb26.setChecked(true);
-
-                            //estadocb26 = 1;
-                            SharedPreferences sharedPref_estadocb26 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb26.edit();
-                            prefEditor.putInt("estadocb26",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb26.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb26 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb26.edit();
-                            prefEditor.putInt("estadocb26", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 26========================================
-
-        //======================TRATAMENTO DO CHECKBOX 27============================================
-
-        cb27 = (CheckBox) view.findViewById(R.id.cb27);
-
-        SharedPreferences sharedPref_estadocb27 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb27 = sharedPref_estadocb27.getInt("estadocb27", 0);
-
-        if (estadocb27 == 0)
-            cb27.setChecked(false);
-        else
-            cb27.setChecked(true);
-
-        cb27.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb27.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb27.setChecked(true);
-
-                            //estadocb27 = 1;
-                            SharedPreferences sharedPref_estadocb27 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb27.edit();
-                            prefEditor.putInt("estadocb27",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb27.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb27 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb27.edit();
-                            prefEditor.putInt("estadocb27", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 27========================================
-
-        //======================TRATAMENTO DO CHECKBOX 28============================================
-
-        cb28 = (CheckBox) view.findViewById(R.id.cb28);
-
-        SharedPreferences sharedPref_estadocb28 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb28 = sharedPref_estadocb28.getInt("estadocb28", 0);
-
-        if (estadocb28 == 0)
-            cb28.setChecked(false);
-        else
-            cb28.setChecked(true);
-
-        cb28.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb28.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb28.setChecked(true);
-
-                            //estadocb28 = 1;
-                            SharedPreferences sharedPref_estadocb28 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb28.edit();
-                            prefEditor.putInt("estadocb28",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb28.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb28 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb28.edit();
-                            prefEditor.putInt("estadocb28", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 28========================================
-
-        //======================TRATAMENTO DO CHECKBOX 29============================================
-
-        cb29 = (CheckBox) view.findViewById(R.id.cb29);
-
-        SharedPreferences sharedPref_estadocb29 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb29 = sharedPref_estadocb29.getInt("estadocb29", 0);
-
-        if (estadocb29 == 0)
-            cb29.setChecked(false);
-        else
-            cb29.setChecked(true);
-
-        cb29.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb29.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb29.setChecked(true);
-
-                            //estadocb29 = 1;
-                            SharedPreferences sharedPref_estadocb29 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb29.edit();
-                            prefEditor.putInt("estadocb29",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb29.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb29 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb29.edit();
-                            prefEditor.putInt("estadocb29", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 29========================================
-
-        //======================TRATAMENTO DO CHECKBOX 30============================================
-
-        cb30 = (CheckBox) view.findViewById(R.id.cb30);
-
-        SharedPreferences sharedPref_estadocb30 = this.getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", Context.MODE_PRIVATE);
-        estadocb30 = sharedPref_estadocb30.getInt("estadocb30", 0);
-
-        if (estadocb30 == 0)
-            cb30.setChecked(false);
-        else
-            cb30.setChecked(true);
-
-        cb30.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean b) {
-
-                if (cb30.isChecked()){
-                    String mensagem_marcar = getString(R.string.confirmacao_marcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_marcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb30.setChecked(true);
-
-                            //estadocb30 = 1;
-                            SharedPreferences sharedPref_estadocb30 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo",0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb30.edit();
-                            prefEditor.putInt("estadocb30",1);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    builder.show();
-                }
-                else {
-                    String mensagem_desmarcar = getString(R.string.confirmacao_desmarcar);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(mensagem_desmarcar);
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(getActivity(), Main_activity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            cb30.setChecked(false);
-
-                            SharedPreferences sharedPref_estadocb30 = getActivity().getSharedPreferences("pref_checkbox_portugues_setimo", 0);
-                            SharedPreferences.Editor prefEditor = sharedPref_estadocb30.edit();
-                            prefEditor.putInt("estadocb30", 0);
-                            prefEditor.commit();
-
-                            Toast.makeText(getActivity().getApplicationContext(), "Salvo", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                    builder.show();
-                }
-            }
-        });
-        //===================================FIM CHECKBOX 30========================================
-
-
-        DataSistema();
-
-        return view;
-
-    }//end OnCreate
-
-    //=============================FUNÇÃO DE LEITURA DA DATA DO SISTEMA============================
-    public void DataSistema(){
-
-        //Leitor de data do sistema
-        Calendar now = Calendar.getInstance();
-        Dia_sistema = now.get(Calendar.DAY_OF_MONTH);
-        Mes_sistema = now.get(Calendar.MONTH); // Note: zero based!
-        Mes_sistema++;
-
-        //Toast.makeText(getActivity().getApplicationContext()," "+ Dia_sistema + " / "+ Mes_sistema, Toast.LENGTH_LONG);
+        }
 
     }
-    //==============================================================================================
 
+    public void conversor_mes_up_termino_1(){
+
+        if (mes_up_termino_1.equals("01"))
+        {
+            mes_up_termino_1 = "JAN";
+
+        }
+        else if (mes_up_termino_1.equals("02") )
+        {
+            mes_up_termino_1 = "FEV";
+
+        }
+        else if (mes_up_termino_1.equals("03"))
+        {
+            mes_up_termino_1 = "MAR";
+
+        }
+        else if (mes_up_termino_1.equals("04") )
+        {
+            mes_up_termino_1 = "ABR";
+
+        }
+        else if (mes_up_termino_1.equals("05"))
+        {
+            mes_up_termino_1 = "MAI";
+
+        }
+        else if (mes_up_termino_1.equals("06"))
+        {
+            mes_up_termino_1 = "JUN";
+
+        }
+        else if (mes_up_termino_1.equals("07"))
+        {
+            mes_up_termino_1 = "JUL";
+
+        }
+
+        else if (mes_up_termino_1.equals("08"))
+        {
+            mes_up_termino_1 = "AGO";
+
+        }
+
+        else if (mes_up_termino_1.equals("09"))
+        {
+            mes_up_termino_1 = "SET";
+
+        }
+
+        else if (mes_up_termino_1.equals("10"))
+        {
+            mes_up_termino_1 = "OUT";
+
+        }
+
+        else if (mes_up_termino_1.equals("11") )
+        {
+            mes_up_termino_1 = "NOV";
+
+        }
+
+        else if (mes_up_termino_1.equals("12") )
+        {
+            mes_up_termino_1 = "DEZ";
+
+        }
+
+    }
+
+    public void conversor_mes_up_inicio_2(){
+
+        if (mes_up_inicio_2.equals("01"))
+        {
+            mes_up_inicio_2 = "JAN";
+
+        }
+        else if (mes_up_inicio_2.equals("02") )
+        {
+            mes_up_inicio_2 = "FEV";
+
+        }
+        else if (mes_up_inicio_2.equals("03"))
+        {
+            mes_up_inicio_2 = "MAR";
+
+        }
+        else if (mes_up_inicio_2.equals("04") )
+        {
+            mes_up_inicio_2 = "ABR";
+
+        }
+        else if (mes_up_inicio_2.equals("05"))
+        {
+            mes_up_inicio_2 = "MAI";
+
+        }
+        else if (mes_up_inicio_2.equals("06"))
+        {
+            mes_up_inicio_2 = "JUN";
+
+        }
+        else if (mes_up_inicio_2.equals("07"))
+        {
+            mes_up_inicio_2 = "JUL";
+
+        }
+
+        else if (mes_up_inicio_2.equals("08"))
+        {
+            mes_up_inicio_2 = "AGO";
+
+        }
+
+        else if (mes_up_inicio_2.equals("09"))
+        {
+            mes_up_inicio_2 = "SET";
+
+        }
+
+        else if (mes_up_inicio_2.equals("10"))
+        {
+            mes_up_inicio_2 = "OUT";
+
+        }
+
+        else if (mes_up_inicio_2.equals("11") )
+        {
+            mes_up_inicio_2 = "NOV";
+
+        }
+
+        else if (mes_up_inicio_2.equals("12") )
+        {
+            mes_up_inicio_2 = "DEZ";
+
+        }
+
+    }
+
+    public void conversor_mes_up_termino_2(){
+
+        if (mes_up_termino_2.equals("01"))
+        {
+            mes_up_termino_2 = "JAN";
+
+        }
+        else if (mes_up_termino_2.equals("02") )
+        {
+            mes_up_termino_2 = "FEV";
+
+        }
+        else if (mes_up_termino_2.equals("03"))
+        {
+            mes_up_termino_2 = "MAR";
+
+        }
+        else if (mes_up_termino_2.equals("04") )
+        {
+            mes_up_termino_2 = "ABR";
+
+        }
+        else if (mes_up_termino_2.equals("05"))
+        {
+            mes_up_termino_2 = "MAI";
+
+        }
+        else if (mes_up_termino_2.equals("06"))
+        {
+            mes_up_termino_2 = "JUN";
+
+        }
+        else if (mes_up_termino_2.equals("07"))
+        {
+            mes_up_termino_2 = "JUL";
+
+        }
+
+        else if (mes_up_termino_2.equals("08"))
+        {
+            mes_up_termino_2 = "AGO";
+
+        }
+
+        else if (mes_up_termino_2.equals("09"))
+        {
+            mes_up_termino_2 = "SET";
+
+        }
+
+        else if (mes_up_termino_2.equals("10"))
+        {
+            mes_up_termino_2 = "OUT";
+
+        }
+
+        else if (mes_up_termino_2.equals("11") )
+        {
+            mes_up_termino_2 = "NOV";
+
+        }
+
+        else if (mes_up_termino_2.equals("12") )
+        {
+            mes_up_termino_2 = "DEZ";
+
+        }
+
+    }
+
+    public void conversor_mes_up_inicio_3(){
+
+        if (mes_up_inicio_3.equals("01"))
+        {
+            mes_up_inicio_3 = "JAN";
+
+        }
+        else if (mes_up_inicio_3.equals("02") )
+        {
+            mes_up_inicio_3 = "FEV";
+
+        }
+        else if (mes_up_inicio_3.equals("03"))
+        {
+            mes_up_inicio_3 = "MAR";
+
+        }
+        else if (mes_up_inicio_3.equals("04") )
+        {
+            mes_up_inicio_3 = "ABR";
+
+        }
+        else if (mes_up_inicio_3.equals("05"))
+        {
+            mes_up_inicio_3 = "MAI";
+
+        }
+        else if (mes_up_inicio_3.equals("06"))
+        {
+            mes_up_inicio_3 = "JUN";
+
+        }
+        else if (mes_up_inicio_3.equals("07"))
+        {
+            mes_up_inicio_3 = "JUL";
+
+        }
+
+        else if (mes_up_inicio_3.equals("08"))
+        {
+            mes_up_inicio_3 = "AGO";
+
+        }
+
+        else if (mes_up_inicio_3.equals("09"))
+        {
+            mes_up_inicio_3 = "SET";
+
+        }
+
+        else if (mes_up_inicio_3.equals("10"))
+        {
+            mes_up_inicio_3 = "OUT";
+
+        }
+
+        else if (mes_up_inicio_3.equals("11") )
+        {
+            mes_up_inicio_3 = "NOV";
+
+        }
+
+        else if (mes_up_inicio_3.equals("12") )
+        {
+            mes_up_inicio_3 = "DEZ";
+
+        }
+
+    }
+
+    public void conversor_mes_up_termino_3(){
+
+        if (mes_up_termino_3.equals("01"))
+        {
+            mes_up_termino_3 = "JAN";
+
+        }
+        else if (mes_up_termino_3.equals("02") )
+        {
+            mes_up_termino_3 = "FEV";
+
+        }
+        else if (mes_up_termino_3.equals("03"))
+        {
+            mes_up_termino_3 = "MAR";
+
+        }
+        else if (mes_up_termino_3.equals("04") )
+        {
+            mes_up_termino_3 = "ABR";
+
+        }
+        else if (mes_up_termino_3.equals("05"))
+        {
+            mes_up_termino_3 = "MAI";
+
+        }
+        else if (mes_up_termino_3.equals("06"))
+        {
+            mes_up_termino_3 = "JUN";
+
+        }
+        else if (mes_up_termino_3.equals("07"))
+        {
+            mes_up_termino_3 = "JUL";
+
+        }
+
+        else if (mes_up_termino_3.equals("08"))
+        {
+            mes_up_termino_3 = "AGO";
+
+        }
+
+        else if (mes_up_termino_3.equals("09"))
+        {
+            mes_up_termino_3 = "SET";
+
+        }
+
+        else if (mes_up_termino_3.equals("10"))
+        {
+            mes_up_termino_3 = "OUT";
+
+        }
+
+        else if (mes_up_termino_3.equals("11") )
+        {
+            mes_up_termino_3 = "NOV";
+
+        }
+
+        else if (mes_up_termino_3.equals("12") )
+        {
+            mes_up_termino_3 = "DEZ";
+
+        }
+
+    }
+
+    public void conversor_mes_up_inicio_4(){
+
+        if (mes_up_inicio_4.equals("01"))
+        {
+            mes_up_inicio_4 = "JAN";
+
+        }
+        else if (mes_up_inicio_4.equals("02") )
+        {
+            mes_up_inicio_4 = "FEV";
+
+        }
+        else if (mes_up_inicio_4.equals("03"))
+        {
+            mes_up_inicio_4 = "MAR";
+
+        }
+        else if (mes_up_inicio_4.equals("04") )
+        {
+            mes_up_inicio_4 = "ABR";
+
+        }
+        else if (mes_up_inicio_4.equals("05"))
+        {
+            mes_up_inicio_4 = "MAI";
+
+        }
+        else if (mes_up_inicio_4.equals("06"))
+        {
+            mes_up_inicio_4 = "JUN";
+
+        }
+        else if (mes_up_inicio_4.equals("07"))
+        {
+            mes_up_inicio_4 = "JUL";
+
+        }
+
+        else if (mes_up_inicio_4.equals("08"))
+        {
+            mes_up_inicio_4 = "AGO";
+
+        }
+
+        else if (mes_up_inicio_4.equals("09"))
+        {
+            mes_up_inicio_4 = "SET";
+
+        }
+
+        else if (mes_up_inicio_4.equals("10"))
+        {
+            mes_up_inicio_4 = "OUT";
+
+        }
+
+        else if (mes_up_inicio_4.equals("11") )
+        {
+            mes_up_inicio_4 = "NOV";
+
+        }
+
+        else if (mes_up_inicio_4.equals("12") )
+        {
+            mes_up_inicio_4 = "DEZ";
+
+        }
+
+    }
+
+    public void conversor_mes_up_termino_4(){
+
+        if (mes_up_termino_4.equals("01"))
+        {
+            mes_up_termino_4 = "JAN";
+
+        }
+        else if (mes_up_termino_4.equals("02") )
+        {
+            mes_up_termino_4 = "FEV";
+
+        }
+        else if (mes_up_termino_4.equals("03"))
+        {
+            mes_up_termino_4 = "MAR";
+
+        }
+        else if (mes_up_termino_4.equals("04") )
+        {
+            mes_up_termino_4 = "ABR";
+
+        }
+        else if (mes_up_termino_4.equals("05"))
+        {
+            mes_up_termino_4 = "MAI";
+
+        }
+        else if (mes_up_termino_4.equals("06"))
+        {
+            mes_up_termino_4 = "JUN";
+
+        }
+        else if (mes_up_termino_4.equals("07"))
+        {
+            mes_up_termino_4 = "JUL";
+
+        }
+
+        else if (mes_up_termino_4.equals("08"))
+        {
+            mes_up_termino_4 = "AGO";
+
+        }
+
+        else if (mes_up_termino_4.equals("09"))
+        {
+            mes_up_termino_4 = "SET";
+
+        }
+
+        else if (mes_up_termino_4.equals("10"))
+        {
+            mes_up_termino_4 = "OUT";
+
+        }
+
+        else if (mes_up_termino_4.equals("11") )
+        {
+            mes_up_termino_4 = "NOV";
+
+        }
+
+        else if (mes_up_termino_4.equals("12") )
+        {
+            mes_up_termino_4 = "DEZ";
+
+        }
+
+    }
+
+    public void carregar_data_inicio_1(){
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        UserData_inicio_1 = database.getReference().child("users").child(user_id).child("datas").child("inicio_1");
+
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_up_inicio_1 = post.inicio_1;
+                    mes_up_inicio_1 = post.inicio_1;
+
+                    dia_up_inicio_1 = dia_up_inicio_1.substring(0, 2);
+                    mes_up_inicio_1 = mes_up_inicio_1.substring(3, 5);
+
+                    conversor_mes_up_inicio_1();
+
+                    //dia_inicio_I.setText(dia_salvo_inicio_1);
+                    //mes_inicio_I.setText(mes_salvo_inicio_1);
+
+                }
+                else {
+                    //Toast.makeText(Config_bimestre_activity.this, "Datas não configuradas", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        UserData_inicio_1.addValueEventListener(postListener);
+
+    }
+
+
+
+    //======================Enviar Conteudo I - Bimestre Google Script API============================
+
+    public class SendRequest extends AsyncTask<String,Void,String> {
+        protected void onPreExecute(){}
+
+        protected String doInBackground(String... arg0){
+            try{
+
+                URL url = new URL("https://script.google.com/a/gedu.demo.inteceleri.com.br/macros/s/AKfycbx-QDKkP0Ux7jD0lqbdyHDl2iVXTWkXgVIdLEGXSWCIqmVJamEe/exec");
+                //https://script.google.com/a/gedu.demo.inteceleri.com.br/macros/s/AKfycbx-QDKkP0Ux7jD0lqbdyHDl2iVXTWkXgVIdLEGXSWCIqmVJamEe/exec
+                JSONObject postDataParams = new JSONObject();
+
+                postDataParams.put("titulo",titulo);
+                postDataParams.put("text1", adp_portugues_setimo_1_bimestre.listArray.get(0).getX());
+                postDataParams.put("text2", adp_portugues_setimo_1_bimestre.listArray.get(1).getX());
+                postDataParams.put("text3", adp_portugues_setimo_1_bimestre.listArray.get(2).getX());
+                postDataParams.put("text4", adp_portugues_setimo_1_bimestre.listArray.get(3).getX());
+                postDataParams.put("text5", adp_portugues_setimo_1_bimestre.listArray.get(4).getX());
+
+
+                Log.e("params",postDataParams.toString());
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(15000 /* milliseconds */);
+                conn.setConnectTimeout(15000 /* milliseconds */);
+                conn.setRequestMethod("POST");
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(os, "UTF-8"));
+                writer.write(getPostDataString(postDataParams));
+
+                writer.flush();
+                writer.close();
+                os.close();
+
+                int responseCode=conn.getResponseCode();
+
+                if (responseCode == HttpsURLConnection.HTTP_OK) {
+
+                    BufferedReader in=new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    StringBuffer sb = new StringBuffer("");
+                    String line="";
+
+                    while((line = in.readLine()) != null) {
+
+                        sb.append(line);
+                        break;
+                    }
+
+                    in.close();
+                    return sb.toString();
+
+                }
+                else {
+                    return new String("false : "+responseCode);
+                }
+
+            }catch (Exception e){
+                return new String("Exception"+e.getMessage());
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Toast.makeText(getContext(), "I Bimestre - Portugues 6 ano exportado! ",
+                    Toast.LENGTH_LONG).show();
+
+        }
+    }
+
+    public String getPostDataString(JSONObject params) throws Exception {
+
+        StringBuilder result = new StringBuilder();
+        boolean first = true;
+
+        Iterator<String> itr = params.keys();
+
+        while(itr.hasNext()){
+
+            String key= itr.next();
+            Object value = params.get(key);
+
+            if (first)
+                first = false;
+            else
+                result.append("&");
+
+            result.append(URLEncoder.encode(key, "UTF-8"));
+            result.append("=");
+            result.append(URLEncoder.encode(value.toString(), "UTF-8"));
+
+        }
+        return result.toString();
+    }
+
+    //======================Fim ----Enviar Conteudo I - Bimestre Google Script API============================
+
+
+
+
+    void GetDataFirebase(){
+
+        //====================================================I_Bimestre======================================================//
+
+        //-------------------------------Titulo_I_Bimestre-------------------------------------------------------------------//
+        DBR_Titulo_I_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/7_ano/1_bimestre/titulo/0/x");
+        DBR_Titulo_I_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String str_Titulo_I_Bimestre = dataSnapshot.getValue(String.class);
+                tv_Titulo_I_Bimestre.setText(str_Titulo_I_Bimestre);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        //---------------------------------Conteudo_I_Bimestre---------------------------------------------------------------//
+        //---------------- Usar adaptador----------//
+        DBR = FDB.getReference("disciplinas").child("portugues").child("7_ano").child("1_bimestre").child("conteudo");
+        DBR.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
+
+                listData_1_bimestre.add(x);
+                rv_I_Bimestre_7_portugues.setAdapter(adp_portugues_setimo_1_bimestre);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        //====================================================Fim _ I Bimestre======================================================//
+
+
+
+
+        //====================================================II_Bimestre======================================================//
+
+        //-------------------------------Titulo_II_Bimestre-------------------------------------------------------------------//
+        DBR_Titulo_II_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/7_ano/2_bimestre/titulo/0/x");
+        DBR_Titulo_II_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String str_Titulo_II_Bimestre = dataSnapshot.getValue(String.class);
+                tv_Titulo_II_Bimestre.setText(str_Titulo_II_Bimestre);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        //---------------------------------Conteudo_II_Bimestre---------------------------------------------------------------//
+        //---------------- Usar adaptador----------//
+        DBR = FDB.getReference("disciplinas").child("portugues").child("7_ano").child("2_bimestre").child("conteudo");
+        DBR.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
+
+                listData_2_bimestre.add(x);
+                rv_II_Bimestre_7_portugues.setAdapter(adp_portugues_setimo_2_bimestre);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        //====================================================Fim _ II Bimestre======================================================//
+
+
+
+        //====================================================III_Bimestre======================================================//
+
+        //-------------------------------Titulo_III_Bimestre-------------------------------------------------------------------//
+        DBR_Titulo_III_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/7_ano/3_bimestre/titulo/0/x");
+        DBR_Titulo_III_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String str_Titulo_III_Bimestre = dataSnapshot.getValue(String.class);
+                tv_Titulo_III_Bimestre.setText(str_Titulo_III_Bimestre);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        //---------------------------------Conteudo_III_Bimestre---------------------------------------------------------------//
+        //---------------- Usar adaptador----------//
+        DBR = FDB.getReference("disciplinas").child("portugues").child("7_ano").child("3_bimestre").child("conteudo");
+        DBR.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
+
+                listData_3_bimestre.add(x);
+                rv_III_Bimestre_7_portugues.setAdapter(adp_portugues_setimo_3_bimestre);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        //====================================================Fim _ III Bimestre======================================================//
+
+
+
+        //====================================================IV_Bimestre======================================================//
+
+        //-------------------------------Titulo_IV_Bimestre-------------------------------------------------------------------//
+        DBR_Titulo_IV_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/7_ano/4_bimestre/titulo/0/x");
+        DBR_Titulo_IV_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String str_Titulo_IV_Bimestre = dataSnapshot.getValue(String.class);
+                tv_Titulo_IV_Bimestre.setText(str_Titulo_IV_Bimestre);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        //---------------------------------Conteudo_III_Bimestre---------------------------------------------------------------//
+        //---------------- Usar adaptador----------//
+        DBR = FDB.getReference("disciplinas").child("portugues").child("7_ano").child("4_bimestre").child("conteudo");
+        DBR.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
+
+                listData_4_bimestre.add(x);
+                rv_IV_Bimestre_7_portugues.setAdapter(adp_portugues_setimo_4_bimestre);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        //====================================================Fim _ IV Bimestre======================================================//
+
+
+
+
+
+    }
+
+
+
+    /*
+    public class Adaptador_Portugues_sexto extends RecyclerView.Adapter<Adaptador_Portugues_sexto.ViewholderPortugues_sexto>{
+        List<MyDataGetSet> listArray;
+        public  Adaptador_Portugues_sexto(List<MyDataGetSet> List){
+            this.listArray = List;
+        }
+        @Override
+        public ViewholderPortugues_sexto onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_,parent,false);
+            return new ViewholderPortugues_sexto(view);
+        }
+        @Override
+        public void onBindViewHolder(Adaptador_Portugues_sexto.ViewholderPortugues_sexto holder, int position) {
+            MyDataGetSet x = listArray.get(position);
+            holder.myText.setText(x.getX());
+        }
+        public class ViewholderPortugues_sexto extends RecyclerView.ViewHolder{
+            TextView myText;
+            CheckBox mCB;
+            public int estadocb1;
+            CheckBox cb1;
+            public ViewholderPortugues_sexto(View itemView) {
+                super(itemView);
+                mCB = (CheckBox) itemView.findViewById(R.id.cb_itemView_);
+                myText = (TextView) itemView.findViewById(R.id.textView_);
+            }
+        }
+        @Override
+        public int getItemCount() {
+            return listArray.size();
+        }
+    }
+    */
+
+    public void ExibeDialogOpcoes(){
+        final Dialog dialog = new Dialog(getContext());
+
+        dialog.setContentView(R.layout.layout_opcoes_click_itemview);
+
+        //instancia os objetos que estão no layout customdialog.xml
+        final TextView btn_marcar_conteudo = (TextView) dialog.findViewById(R.id.btn_marcar_conteudo);
+        final TextView btn_desmarcar_conteudo = (TextView) dialog.findViewById(R.id.btn_desmarcar_conteúdo);
+        final TextView btn_abrir_anotacoes = (TextView) dialog.findViewById(R.id.btn_abrir_anotacoes);
+
+        //Aqui marca o conteúdo
+        btn_marcar_conteudo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getContext(), "Conteúdo marcado ", Toast.LENGTH_SHORT).show();
+                //MarcaConteudoFirebase();
+                dialog.dismiss();
+            }
+        });
+
+        //Aqui desmarca o conteúdo
+        btn_desmarcar_conteudo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getContext(), "Conteúdo desmarcado ", Toast.LENGTH_SHORT).show();
+                //DesmarcaConteudoFirebase();
+                dialog.dismiss();
+            }
+        });
+
+        //Aqui deve abrir o documento desse conteúdo no docs.
+        btn_abrir_anotacoes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        //exibe na tela o dialog
+        dialog.show();
+
+    }
 
     //===========================MÉTODO QUE RECEBE AS SOMBRAS DOS BIMESTRES===========================
     @Override
     public void onViewCreated (View view, Bundle savedInstanceState) {
         ((Main_activity) getActivity()).SombraBimestre(view);
+        ((Main_activity) getActivity()).tab_obj_port_setimo_(view);
+
+
 
     }
     //==============================================================================================
+
 }

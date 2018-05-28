@@ -16,6 +16,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -30,6 +31,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.support.design.widget.TabLayout;
@@ -58,6 +60,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import projeto.app.sobral.R;
 import projeto.app.sobral.Matematica.Tab_matematica_nono;
 import projeto.app.sobral.Matematica.Tab_matematica_oitavo;
@@ -69,6 +72,7 @@ import projeto.app.sobral.Portugues.Tab_portugues_setimo;
 
 import projeto.app.sobral.Portugues.Tab_portugues_sexto_;
 
+
 public class Main_activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -79,19 +83,12 @@ public class Main_activity extends AppCompatActivity
     private GoogleApiClient googleApiClient;
     private ImageView photoID;
     private TextView nomeID;
-    private RoundedBitmapDrawable roundedBitmapDrawable;
-    private Intent data;
-
-    private GoogleSignInAccount GoogleSignInAccount;
 
     //Firebase
     private FirebaseAuth fbAuth;
     private FirebaseAuth.AuthStateListener fbAuthListener;
 
     private DatabaseReference UsersRef;
-
-    private FirebaseDatabase FirebaseDatabase;
-    private DatabaseReference UserData;
 
     private Spinner spn_disciplina;
     public static int IDAtual;
@@ -101,28 +98,19 @@ public class Main_activity extends AppCompatActivity
     public int execucao = 1;
     public int configurar;
 
-    public int Dia_sistema;
-    public int Mes_sistema;
+    public int dia_atual;
+    public int mes_atual;
 
-    public int ID_salvo_dia_inicio_I;
-    public int ID_salvo_dia_termino_I;
-    public int ID_salvo_mes_inicio_I;
-    public int ID_salvo_mes_termino_I;
+    //Dia e Mês carregado do firebase
+    public int dia_salvo_inicio_1, mes_salvo_inicio_1, dia_salvo_termino_1, mes_salvo_termino_1,
+            dia_salvo_inicio_2, mes_salvo_inicio_2, dia_salvo_termino_2, mes_salvo_termino_2,
+            dia_salvo_inicio_3, mes_salvo_inicio_3, dia_salvo_termino_3, mes_salvo_termino_3,
+            dia_salvo_inicio_4, mes_salvo_inicio_4, dia_salvo_termino_4, mes_salvo_termino_4;
 
-    public int ID_salvo_dia_inicio_II;
-    public int ID_salvo_dia_termino_II;
-    public int ID_salvo_mes_inicio_II;
-    public int ID_salvo_mes_termino_II;
-
-    public int ID_salvo_dia_inicio_III;
-    public int ID_salvo_dia_termino_III;
-    public int ID_salvo_mes_inicio_III;
-    public int ID_salvo_mes_termino_III;
-
-    public int ID_salvo_dia_inicio_IV;
-    public int ID_salvo_dia_termino_IV;
-    public int ID_salvo_mes_inicio_IV;
-    public int ID_salvo_mes_termino_IV;
+    private DatabaseReference   UserData_inicio_1, UserData_termino_1,
+                                UserData_inicio_2, UserData_termino_2,
+                                UserData_inicio_3, UserData_termino_3,
+                                UserData_inicio_4, UserData_termino_4;
 
     private ArrayAdapter<String> adp_disciplina;
 
@@ -190,12 +178,12 @@ public class Main_activity extends AppCompatActivity
         Button btn_ok_contato;
         btn_ok_contato = (Button) findViewById(R.id.btn_ok_contato);
         btn_ok_contato.setOnClickListener(new View.OnClickListener() {
-                                                 @Override
-                                                 public void onClick(View v) {
-                                                     fl_contato.setVisibility(View.GONE);
-                                                     fl_spinner.setVisibility(View.VISIBLE);
-                                                 }
-                                             }
+                                              @Override
+                                              public void onClick(View v) {
+                                                  fl_contato.setVisibility(View.GONE);
+                                                  fl_spinner.setVisibility(View.VISIBLE);
+                                              }
+                                          }
         );
 
         //FrameLayout matematica
@@ -211,13 +199,13 @@ public class Main_activity extends AppCompatActivity
                                              }
         );
 
-        //FrameLayout portugues
-        // ============== TEXTO DE APRESENTAÇÂO============================
+        //========================FrameLayout PORTUGUEs=====================================================================================
+        // -------------------- TEXTO DE APRESENTAÇÂO------------------------------------------
         DatabaseReference DBR_FL_Portugues;
 
         FirebaseDatabase FDB1 = FirebaseDatabase.getInstance();
 
-        DBR_FL_Portugues = FDB1.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/6_ano/portugues/I_bimestre/apresentacao/x");
+        DBR_FL_Portugues = FDB1.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/apresentacao/1/x");
         DBR_FL_Portugues.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
@@ -252,12 +240,12 @@ public class Main_activity extends AppCompatActivity
             }
         });
 
-        // =============== TÍTULO ============================
+        // ------------------------------------- TÍTULO ----------------------------------------
         DatabaseReference DBR_titulo_FL_Portugues;
 
         FirebaseDatabase FDB2 = FirebaseDatabase.getInstance();
 
-        DBR_titulo_FL_Portugues = FDB2.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/6_ano/portugues/I_bimestre/titulo/x");
+        DBR_titulo_FL_Portugues = FDB2.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/apresentacao/0/x");
         DBR_titulo_FL_Portugues.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(final DataSnapshot dataSnapshot) {
@@ -292,6 +280,95 @@ public class Main_activity extends AppCompatActivity
 
             }
         });
+        //======================== FIM FrameLayout PORTUGUES=====================================================================================
+
+
+
+
+
+
+        //========================FrameLayout MATEMATICA=====================================================================================
+        // -------------------- TEXTO DE APRESENTAÇÂO------------------------------------------
+        DatabaseReference DBR_FL_Matematica;
+
+        FirebaseDatabase FDB3 = FirebaseDatabase.getInstance();
+
+        DBR_FL_Matematica = FDB3.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/apresentacao/1/x");
+        DBR_FL_Matematica.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(final DataSnapshot dataSnapshot) {
+                //FrameLayout matematica ------ Conteudo
+                final String str_dbr_fl_matematica = dataSnapshot.getValue(String.class);
+                final TextView apresentacao_fl_matematica = (TextView) findViewById(R.id.txt_apresentacao_matematica);
+                apresentacao_fl_matematica.setText(str_dbr_fl_matematica);
+                final FrameLayout fl_matematica = (FrameLayout) findViewById(R.id.fl_matematica);
+
+                Button btn_ok_matematica;
+                btn_ok_matematica = (Button) findViewById(R.id.btn_ok_matematica);
+                btn_ok_matematica.setOnClickListener(new View.OnClickListener() {
+                                                         @Override
+                                                         public void onClick(View v) {
+                                                             fl_matematica.setVisibility(View.GONE);
+                                                             fl_spinner.setVisibility(View.VISIBLE);
+
+
+
+                                                             String apr_mat = str_dbr_fl_matematica;
+                                                             TextView txt_apr_mat = (TextView) findViewById(R.id.txt_apresentacao_portugues);
+                                                             txt_apr_mat.setText(apr_mat);
+                                                         }
+                                                     }
+                );
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        // ------------------------------------- TÍTULO ----------------------------------------
+        DatabaseReference DBR_titulo_FL_Matematica;
+
+        FirebaseDatabase FDB4 = FirebaseDatabase.getInstance();
+
+        DBR_titulo_FL_Matematica = FDB4.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/apresentacao/0/x");
+        DBR_titulo_FL_Matematica.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(final DataSnapshot dataSnapshot) {
+                //FrameLayout matematica ------ Titulo
+                final String str_dbr_fl_titulo_matematica = dataSnapshot.getValue(String.class);
+                final TextView apresentacao_fl_titulo_matematica = (TextView) findViewById(R.id.titulo_apresentacao_matematica);
+                apresentacao_fl_titulo_matematica.setText(str_dbr_fl_titulo_matematica);
+
+                final FrameLayout fl_titulo_matematica = (FrameLayout) findViewById(R.id.fl_matematica);
+                Button btn_ok_matematica;
+                btn_ok_matematica = (Button) findViewById(R.id.btn_ok_matematica);
+                btn_ok_matematica.setOnClickListener(new View.OnClickListener() {
+                                                         @Override
+                                                         public void onClick(View v) {
+                                                             fl_titulo_matematica.setVisibility(View.GONE);
+                                                             fl_spinner.setVisibility(View.VISIBLE);
+
+
+
+                                                             String tit_mat = str_dbr_fl_titulo_matematica;
+                                                             TextView txt_apr_tit_mat = (TextView) findViewById(R.id.titulo_apresentacao_matematica);
+                                                             txt_apr_tit_mat.setText(tit_mat);
+                                                         }
+                                                     }
+                );
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //========================FIM FrameLayout MATEMATICA=====================================================================================
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -326,7 +403,6 @@ public class Main_activity extends AppCompatActivity
             }
         };
 
-        data_bimestre_shared_pref();
         //==========================SPINNER DISCIPLINA==============================================
         //load do ID da spinner do arquivo sharedPreferences
         SharedPreferences sharedPref = getSharedPreferences("disciplina",MODE_PRIVATE);
@@ -377,7 +453,7 @@ public class Main_activity extends AppCompatActivity
         //==========================================================================================
 
         DataSistema();
-
+        carrega_datas_firebase();
 
     }//end OnCreate
 
@@ -415,109 +491,27 @@ public class Main_activity extends AppCompatActivity
         }
     }
 
-    public void data_bimestre_shared_pref()
-    {
-        //=================PRIMEIRO BIMESTRE========================================================
-
-        //DIA INÍCIO
-        SharedPreferences sharedPref_dia_inicio_I = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_dia_inicio_I = sharedPref_dia_inicio_I.getInt("dia_inicio_balao_1", 15);
-
-
-        //DIA TÉRMINO
-        SharedPreferences sharedPref_dia_termino_I = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_dia_termino_I = sharedPref_dia_termino_I.getInt("dia_termino_balao_1",15);
-
-        //MÊS INÍCIO
-        SharedPreferences sharedPref_mes_inicio_I = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_mes_inicio_I = sharedPref_mes_inicio_I.getInt("mes_inicio_balao_1",1);
-
-        //MÊS TÉRMINO
-        SharedPreferences sharedPref_mes_termino_I = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_mes_termino_I = sharedPref_mes_termino_I.getInt("mes_termino_balao_1",3);
-
-        //==========================================================================================
-
-        //=================SEGUNDO BIMESTRE=========================================================
-
-        //DIA INICIO
-        SharedPreferences sharedPref_dia_inicio_II = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_dia_inicio_II = sharedPref_dia_inicio_II.getInt("dia_inicio_balao_2",16);
-
-        //DIA TÉRMINO
-        SharedPreferences sharedPref_dia_termino_II = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_dia_termino_II = sharedPref_dia_termino_II.getInt("dia_termino_balao_2",16);
-
-        //MES INÍCIO
-        SharedPreferences sharedPref_mes_inicio_II = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_mes_inicio_II = sharedPref_mes_inicio_II.getInt("mes_inicio_balao_2",3);
-
-        //MÊS TÉRMINO
-        SharedPreferences sharedPref_mes_termino_II = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_mes_termino_II = sharedPref_mes_termino_II.getInt("mes_termino_balao_2",5);
-
-        //==========================================================================================
-
-        //=================TERCEIRO BIMESTRE========================================================
-
-        //DIA INÍCIO
-        SharedPreferences sharedPref_dia_inicio_III = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_dia_inicio_III = sharedPref_dia_inicio_III.getInt("dia_inicio_balao_3",5);
-
-        //DIA TÉRMINO
-        SharedPreferences sharedPref_dia_termino_III = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_dia_termino_III = sharedPref_dia_termino_III.getInt("dia_termino_balao_3",5);
-
-        //MES INÍCIO
-        SharedPreferences sharedPref_mes_inicio_III = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_mes_inicio_III = sharedPref_mes_inicio_III.getInt("mes_inicio_balao_3",7);
-
-        //MÊS TÉRMINO
-        SharedPreferences sharedPref_mes_termino_III = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_mes_termino_III = sharedPref_mes_termino_III.getInt("mes_termino_balao_3",9);
-
-        //==========================================================================================
-
-        //=================QUARTO BIMESTRE==========================================================
-
-        //DIA INÍCIO
-        SharedPreferences sharedPref_dia_inicio_IV = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_dia_inicio_IV = sharedPref_dia_inicio_IV.getInt("dia_inicio_balao_4",6);
-
-        //DIA TÉRMINO
-        SharedPreferences sharedPref_dia_termino_IV = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_dia_termino_IV = sharedPref_dia_termino_IV.getInt("dia_termino_balao_4",6);
-
-        //MES INÍCIO
-        SharedPreferences sharedPref_mes_inicio_IV = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_mes_inicio_IV = sharedPref_mes_inicio_IV.getInt("mes_inicio_balao_4",9);
-
-        //MÊS TÉRMINO
-        SharedPreferences sharedPref_mes_termino_IV = getSharedPreferences("pref_bimestre",MODE_PRIVATE);
-        ID_salvo_mes_termino_IV = sharedPref_mes_termino_IV.getInt("mes_termino_balao_4",11);
-
-        //==========================================================================================
-
-    }
-
-    //=========================================BOTÃO OBJ PORT SEXTO===========================================
+    //===================Tab OBJETIVO PORTUGUES=================================================
     public void tab_obj_port_sexto_(View view) {
         final FrameLayout fl_obj = (FrameLayout) findViewById(R.id.fl_obj);
         final FrameLayout fl_spinner = (FrameLayout) findViewById(R.id.fl_spinner);
+
+        //=========================================BOTÃO OBJ PORT SEXTO 1-Bimestre===========================================
         final Button btn1 = (Button) view.findViewById(R.id.btn_obj_I);
 
         //========== Texto Botão Objetivo Portugues Sexto ========================================
         DatabaseReference DBR_Obj_I_Bimestre;
         FirebaseDatabase FDB3 = FirebaseDatabase.getInstance();
 
-        DBR_Obj_I_Bimestre = FDB3.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/6_ano/portugues/I_bimestre/objetivo/x");
+        DBR_Obj_I_Bimestre = FDB3.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/6_ano/1_bimestre/objetivo/0/x");
         DBR_Obj_I_Bimestre.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final String str_dbr_obj_i_bimestre = dataSnapshot.getValue(String.class);
-                TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
 
-                obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
 
                 btn1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -526,9 +520,13 @@ public class Main_activity extends AppCompatActivity
                         fl_obj.setVisibility(View.VISIBLE);
                         fl_spinner.setVisibility(View.GONE);
 
+
+
+
                         String obj = str_dbr_obj_i_bimestre;
-                        TextView txt_obj = (TextView) findViewById(R.id.txt_obj);
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
                         txt_obj.setText(obj);
+
                     }
                 });
 
@@ -539,11 +537,1461 @@ public class Main_activity extends AppCompatActivity
 
             }
         });
+        //=========================================BOTÃO OBJ PORT SEXTO 1-Bimestre===========================================
+
+
+
+
+
+        //=========================================BOTÃO OBJ PORT SEXTO 2-Bimestre===========================================
+        final Button btn2 = (Button) view.findViewById(R.id.btn_obj_II);
+
+        //========== Texto Botão Objetivo Portugues Sexto ========================================
+        DatabaseReference DBR_Obj_II_Bimestre;
+        FirebaseDatabase FDB4 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_II_Bimestre = FDB4.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/6_ano/2_bimestre/objetivo/0/x");
+        DBR_Obj_II_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_ii_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_ii_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ PORT SEXTO 2-Bimestre===========================================
+
+
+
+
+        //=========================================BOTÃO OBJ PORT SEXTO 3-Bimestre===========================================
+        final Button btn3 = (Button) view.findViewById(R.id.btn_obj_III);
+
+        //========== Texto Botão Objetivo Portugues Sexto ========================================
+        DatabaseReference DBR_Obj_III_Bimestre;
+        FirebaseDatabase FDB5 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_III_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/6_ano/3_bimestre/objetivo/0/x");
+        DBR_Obj_III_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_iii_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_iii_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ PORT SEXTO 3-Bimestre===========================================
+
+
+
+        //=========================================BOTÃO OBJ PORT SEXTO 4-Bimestre===========================================
+        final Button btn4 = (Button) view.findViewById(R.id.btn_obj_IV);
+
+        //========== Texto Botão Objetivo Portugues Sexto ========================================
+        DatabaseReference DBR_Obj_IV_Bimestre;
+        FirebaseDatabase FDB6 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_IV_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/6_ano/4_bimestre/objetivo/0/x");
+        DBR_Obj_IV_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_iv_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_iv_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ PORT SEXTO 3-Bimestre===========================================
 
     }
 
+    public void tab_obj_port_setimo_(View view) {
+        final FrameLayout fl_obj = (FrameLayout) findViewById(R.id.fl_obj);
+        final FrameLayout fl_spinner = (FrameLayout) findViewById(R.id.fl_spinner);
 
-    //==============================================================================================
+        //=========================================BOTÃO OBJ PORT SETIMO 1-Bimestre===========================================
+        final Button btn1 = (Button) view.findViewById(R.id.btn_obj_I);
+
+        //========== Texto Botão Objetivo Portugues Setimo ========================================
+        DatabaseReference DBR_Obj_I_Bimestre;
+        FirebaseDatabase FDB3 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_I_Bimestre = FDB3.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/7_ano/1_bimestre/objetivo/0/x");
+        DBR_Obj_I_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_i_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_i_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ PORT SETIMO 1-Bimestre===========================================
+
+
+
+
+
+        //=========================================BOTÃO OBJ PORT SETIMO 2-Bimestre===========================================
+        final Button btn2 = (Button) view.findViewById(R.id.btn_obj_II);
+
+        //========== Texto Botão Objetivo Portugues Setimo ========================================
+        DatabaseReference DBR_Obj_II_Bimestre;
+        FirebaseDatabase FDB4 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_II_Bimestre = FDB4.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/7_ano/2_bimestre/objetivo/0/x");
+        DBR_Obj_II_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_ii_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_ii_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ PORT SETIMO 2-Bimestre===========================================
+
+
+
+
+        //=========================================BOTÃO OBJ PORT SETIMO 3-Bimestre===========================================
+        final Button btn3 = (Button) view.findViewById(R.id.btn_obj_III);
+
+        //========== Texto Botão Objetivo Portugues Setimo ========================================
+        DatabaseReference DBR_Obj_III_Bimestre;
+        FirebaseDatabase FDB5 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_III_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/7_ano/3_bimestre/objetivo/0/x");
+        DBR_Obj_III_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_iii_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_iii_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ PORT SETIMO 3-Bimestre===========================================
+
+
+
+        //=========================================BOTÃO OBJ PORT SETIMO 4-Bimestre===========================================
+        final Button btn4 = (Button) view.findViewById(R.id.btn_obj_IV);
+
+        //========== Texto Botão Objetivo Portugues Setimo ========================================
+        DatabaseReference DBR_Obj_IV_Bimestre;
+        FirebaseDatabase FDB6 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_IV_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/7_ano/4_bimestre/objetivo/0/x");
+        DBR_Obj_IV_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_iv_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_iv_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ PORT SETIMO 3-Bimestre===========================================
+
+    }
+
+    public void tab_obj_port_oitavo_(View view) {
+        final FrameLayout fl_obj = (FrameLayout) findViewById(R.id.fl_obj);
+        final FrameLayout fl_spinner = (FrameLayout) findViewById(R.id.fl_spinner);
+
+        //=========================================BOTÃO OBJ PORT OITAVO 1-Bimestre===========================================
+        final Button btn1 = (Button) view.findViewById(R.id.btn_obj_I);
+
+        //========== Texto Botão Objetivo Portugues Oitavo ========================================
+        DatabaseReference DBR_Obj_I_Bimestre;
+        FirebaseDatabase FDB3 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_I_Bimestre = FDB3.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/8_ano/1_bimestre/objetivo/0/x");
+        DBR_Obj_I_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_i_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_i_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ PORT OITAVO 1-Bimestre===========================================
+
+
+
+
+
+        //=========================================BOTÃO OBJ PORT OITAVO 2-Bimestre===========================================
+        final Button btn2 = (Button) view.findViewById(R.id.btn_obj_II);
+
+        //========== Texto Botão Objetivo Portugues Oitavo ========================================
+        DatabaseReference DBR_Obj_II_Bimestre;
+        FirebaseDatabase FDB4 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_II_Bimestre = FDB4.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/8_ano/2_bimestre/objetivo/0/x");
+        DBR_Obj_II_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_ii_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_ii_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ PORT OITAVO 2-Bimestre===========================================
+
+
+
+
+        //=========================================BOTÃO OBJ PORT OITAVO 3-Bimestre===========================================
+        final Button btn3 = (Button) view.findViewById(R.id.btn_obj_III);
+
+        //========== Texto Botão Objetivo Portugues Oitavo ========================================
+        DatabaseReference DBR_Obj_III_Bimestre;
+        FirebaseDatabase FDB5 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_III_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/8_ano/3_bimestre/objetivo/0/x");
+        DBR_Obj_III_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_iii_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_iii_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ PORT OITAVO 3-Bimestre===========================================
+
+
+
+        //=========================================BOTÃO OBJ PORT OITAVO 4-Bimestre===========================================
+        final Button btn4 = (Button) view.findViewById(R.id.btn_obj_IV);
+
+        //========== Texto Botão Objetivo Portugues Oitavo ========================================
+        DatabaseReference DBR_Obj_IV_Bimestre;
+        FirebaseDatabase FDB6 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_IV_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/8_ano/4_bimestre/objetivo/0/x");
+        DBR_Obj_IV_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_iv_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_iv_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ PORT OITAVO 3-Bimestre===========================================
+
+    }
+
+    public void tab_obj_port_nono_(View view) {
+        final FrameLayout fl_obj = (FrameLayout) findViewById(R.id.fl_obj);
+        final FrameLayout fl_spinner = (FrameLayout) findViewById(R.id.fl_spinner);
+
+        //=========================================BOTÃO OBJ PORT NONO 1-Bimestre===========================================
+        final Button btn1 = (Button) view.findViewById(R.id.btn_obj_I);
+
+        //========== Texto Botão Objetivo Portugues Nono ========================================
+        DatabaseReference DBR_Obj_I_Bimestre;
+        FirebaseDatabase FDB3 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_I_Bimestre = FDB3.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/9_ano/1_bimestre/objetivo/0/x");
+        DBR_Obj_I_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_i_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_i_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ PORT NONO 1-Bimestre===========================================
+
+
+
+
+
+        //=========================================BOTÃO OBJ PORT NONO 2-Bimestre===========================================
+        final Button btn2 = (Button) view.findViewById(R.id.btn_obj_II);
+
+        //========== Texto Botão Objetivo Portugues Nono ========================================
+        DatabaseReference DBR_Obj_II_Bimestre;
+        FirebaseDatabase FDB4 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_II_Bimestre = FDB4.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/9_ano/2_bimestre/objetivo/0/x");
+        DBR_Obj_II_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_ii_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_ii_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ PORT NONO 2-Bimestre===========================================
+
+
+
+
+        //=========================================BOTÃO OBJ PORT NONO 3-Bimestre===========================================
+        final Button btn3 = (Button) view.findViewById(R.id.btn_obj_III);
+
+        //========== Texto Botão Objetivo Portugues Nono ========================================
+        DatabaseReference DBR_Obj_III_Bimestre;
+        FirebaseDatabase FDB5 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_III_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/9_ano/3_bimestre/objetivo/0/x");
+        DBR_Obj_III_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_iii_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_iii_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ PORT NONO 3-Bimestre===========================================
+
+
+
+        //=========================================BOTÃO OBJ PORT NONO 4-Bimestre===========================================
+        final Button btn4 = (Button) view.findViewById(R.id.btn_obj_IV);
+
+        //========== Texto Botão Objetivo Portugues Nono ========================================
+        DatabaseReference DBR_Obj_IV_Bimestre;
+        FirebaseDatabase FDB6 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_IV_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/9_ano/4_bimestre/objetivo/0/x");
+        DBR_Obj_IV_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_iv_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_iv_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ PORT NONO 4-Bimestre===========================================
+
+    }
+
+    //===================FIM Tab OBJETIVO PORTUGUES=================================================
+
+    //===================Tab OBJETIVO MATEMATICA=================================================
+    public void tab_obj_mat_sexto_(View view) {
+        final FrameLayout fl_obj = (FrameLayout) findViewById(R.id.fl_obj);
+        final FrameLayout fl_spinner = (FrameLayout) findViewById(R.id.fl_spinner);
+
+        //=========================================BOTÃO OBJ MAT SEXTO 1-Bimestre===========================================
+        final Button btn1 = (Button) view.findViewById(R.id.btn_obj_I);
+
+        //========== Texto Botão Objetivo Matematica Sexto ========================================
+        DatabaseReference DBR_Obj_I_Bimestre;
+        FirebaseDatabase FDB3 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_I_Bimestre = FDB3.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/6_ano/1_bimestre/objetivo/0/x");
+        DBR_Obj_I_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_i_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_i_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ MAT SEXTO 1-Bimestre===========================================
+
+
+
+
+
+        //=========================================BOTÃO OBJ MAT SEXTO 2-Bimestre===========================================
+        final Button btn2 = (Button) view.findViewById(R.id.btn_obj_II);
+
+        //========== Texto Botão Objetivo Matematica Sexto ========================================
+        DatabaseReference DBR_Obj_II_Bimestre;
+        FirebaseDatabase FDB4 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_II_Bimestre = FDB4.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/6_ano/2_bimestre/objetivo/0/x");
+        DBR_Obj_II_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_ii_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_ii_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ MAT SEXTO 2-Bimestre===========================================
+
+
+
+
+        //=========================================BOTÃO OBJ MAT SEXTO 3-Bimestre===========================================
+        final Button btn3 = (Button) view.findViewById(R.id.btn_obj_III);
+
+        //========== Texto Botão Objetivo Matematica Sexto ========================================
+        DatabaseReference DBR_Obj_III_Bimestre;
+        FirebaseDatabase FDB5 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_III_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/6_ano/3_bimestre/objetivo/0/x");
+        DBR_Obj_III_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_iii_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_iii_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ MAT SEXTO 3-Bimestre===========================================
+
+
+
+        //=========================================BOTÃO OBJ MAT SEXTO 4-Bimestre===========================================
+        final Button btn4 = (Button) view.findViewById(R.id.btn_obj_IV);
+
+        //========== Texto Botão Objetivo Matematica Sexto ========================================
+        DatabaseReference DBR_Obj_IV_Bimestre;
+        FirebaseDatabase FDB6 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_IV_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/6_ano/4_bimestre/objetivo/0/x");
+        DBR_Obj_IV_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_iv_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_iv_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ MAT SEXTO 3-Bimestre===========================================
+
+    }
+
+    public void tab_obj_mat_setimo_(View view) {
+        final FrameLayout fl_obj = (FrameLayout) findViewById(R.id.fl_obj);
+        final FrameLayout fl_spinner = (FrameLayout) findViewById(R.id.fl_spinner);
+
+        //=========================================BOTÃO OBJ MAT SETIMO 1-Bimestre===========================================
+        final Button btn1 = (Button) view.findViewById(R.id.btn_obj_I);
+
+        //========== Texto Botão Objetivo Matematica Setimo ========================================
+        DatabaseReference DBR_Obj_I_Bimestre;
+        FirebaseDatabase FDB3 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_I_Bimestre = FDB3.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/7_ano/1_bimestre/objetivo/0/x");
+        DBR_Obj_I_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_i_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_i_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ MAT SETIMO 1-Bimestre===========================================
+
+
+
+
+
+        //=========================================BOTÃO OBJ MAT SETIMO 2-Bimestre===========================================
+        final Button btn2 = (Button) view.findViewById(R.id.btn_obj_II);
+
+        //========== Texto Botão Objetivo Matematica Setimo ========================================
+        DatabaseReference DBR_Obj_II_Bimestre;
+        FirebaseDatabase FDB4 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_II_Bimestre = FDB4.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/7_ano/2_bimestre/objetivo/0/x");
+        DBR_Obj_II_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_ii_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_ii_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ MAT SETIMO 2-Bimestre===========================================
+
+
+
+
+        //=========================================BOTÃO OBJ MAT SETIMO 3-Bimestre===========================================
+        final Button btn3 = (Button) view.findViewById(R.id.btn_obj_III);
+
+        //========== Texto Botão Objetivo Matematica Setimo ========================================
+        DatabaseReference DBR_Obj_III_Bimestre;
+        FirebaseDatabase FDB5 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_III_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/7_ano/3_bimestre/objetivo/0/x");
+        DBR_Obj_III_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_iii_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_iii_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ MAT SETIMO 3-Bimestre===========================================
+
+
+
+        //=========================================BOTÃO OBJ MAT SETIMO 4-Bimestre===========================================
+        final Button btn4 = (Button) view.findViewById(R.id.btn_obj_IV);
+
+        //========== Texto Botão Objetivo Matematica Setimo ========================================
+        DatabaseReference DBR_Obj_IV_Bimestre;
+        FirebaseDatabase FDB6 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_IV_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/7_ano/4_bimestre/objetivo/0/x");
+        DBR_Obj_IV_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_iv_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_iv_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ MAT SETIMO 4-Bimestre===========================================
+
+    }
+
+    public void tab_obj_mat_oitavo_(View view) {
+        final FrameLayout fl_obj = (FrameLayout) findViewById(R.id.fl_obj);
+        final FrameLayout fl_spinner = (FrameLayout) findViewById(R.id.fl_spinner);
+
+        //=========================================BOTÃO OBJ MAT OITAVO 1-Bimestre===========================================
+        final Button btn1 = (Button) view.findViewById(R.id.btn_obj_I);
+
+        //========== Texto Botão Objetivo Matematica Oitavo ========================================
+        DatabaseReference DBR_Obj_I_Bimestre;
+        FirebaseDatabase FDB3 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_I_Bimestre = FDB3.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/8_ano/1_bimestre/objetivo/0/x");
+        DBR_Obj_I_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_i_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_i_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ MAT OITAVO 1-Bimestre===========================================
+
+
+
+
+
+        //=========================================BOTÃO OBJ MAT OITAVO 2-Bimestre===========================================
+        final Button btn2 = (Button) view.findViewById(R.id.btn_obj_II);
+
+        //========== Texto Botão Objetivo Matematica Oitavo ========================================
+        DatabaseReference DBR_Obj_II_Bimestre;
+        FirebaseDatabase FDB4 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_II_Bimestre = FDB4.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/8_ano/2_bimestre/objetivo/0/x");
+        DBR_Obj_II_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_ii_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_ii_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ MAT OITAVO 2-Bimestre===========================================
+
+
+
+
+        //=========================================BOTÃO OBJ MAT OITAVO 3-Bimestre===========================================
+        final Button btn3 = (Button) view.findViewById(R.id.btn_obj_III);
+
+        //========== Texto Botão Objetivo Matematica Oitavo ========================================
+        DatabaseReference DBR_Obj_III_Bimestre;
+        FirebaseDatabase FDB5 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_III_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/8_ano/3_bimestre/objetivo/0/x");
+        DBR_Obj_III_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_iii_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_iii_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ MAT OITAVO 3-Bimestre===========================================
+
+
+
+        //=========================================BOTÃO OBJ MAT OITAVO 4-Bimestre===========================================
+        final Button btn4 = (Button) view.findViewById(R.id.btn_obj_IV);
+
+        //========== Texto Botão Objetivo Matematica Oitavo ========================================
+        DatabaseReference DBR_Obj_IV_Bimestre;
+        FirebaseDatabase FDB6 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_IV_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/8_ano/4_bimestre/objetivo/0/x");
+        DBR_Obj_IV_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_iv_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_iv_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ MAT OITAVO 3-Bimestre===========================================
+
+    }
+
+    public void tab_obj_mat_nono_(View view) {
+        final FrameLayout fl_obj = (FrameLayout) findViewById(R.id.fl_obj);
+        final FrameLayout fl_spinner = (FrameLayout) findViewById(R.id.fl_spinner);
+
+        //=========================================BOTÃO OBJ MAT NONO 1-Bimestre===========================================
+        final Button btn1 = (Button) view.findViewById(R.id.btn_obj_I);
+
+        //========== Texto Botão Objetivo Matematica Nono ========================================
+        DatabaseReference DBR_Obj_I_Bimestre;
+        FirebaseDatabase FDB3 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_I_Bimestre = FDB3.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/9_ano/1_bimestre/objetivo/0/x");
+        DBR_Obj_I_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_i_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_i_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ MAT NONO 1-Bimestre===========================================
+
+
+
+
+
+        //=========================================BOTÃO OBJ MAT NONO 2-Bimestre===========================================
+        final Button btn2 = (Button) view.findViewById(R.id.btn_obj_II);
+
+        //========== Texto Botão Objetivo Matematica Nono ========================================
+        DatabaseReference DBR_Obj_II_Bimestre;
+        FirebaseDatabase FDB4 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_II_Bimestre = FDB4.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/9_ano/2_bimestre/objetivo/0/x");
+        DBR_Obj_II_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_ii_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_ii_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ MAT NONO 2-Bimestre===========================================
+
+
+
+
+        //=========================================BOTÃO OBJ MAT NONO 3-Bimestre===========================================
+        final Button btn3 = (Button) view.findViewById(R.id.btn_obj_III);
+
+        //========== Texto Botão Objetivo Matematica Nono ========================================
+        DatabaseReference DBR_Obj_III_Bimestre;
+        FirebaseDatabase FDB5 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_III_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/9_ano/3_bimestre/objetivo/0/x");
+        DBR_Obj_III_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_iii_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_iii_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ MAT NONO 3-Bimestre===========================================
+
+
+
+        //=========================================BOTÃO OBJ MAT NONO 4-Bimestre===========================================
+        final Button btn4 = (Button) view.findViewById(R.id.btn_obj_IV);
+
+        //========== Texto Botão Objetivo Matematica Nono ========================================
+        DatabaseReference DBR_Obj_IV_Bimestre;
+        FirebaseDatabase FDB6 = FirebaseDatabase.getInstance();
+
+        DBR_Obj_IV_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/9_ano/4_bimestre/objetivo/0/x");
+        DBR_Obj_IV_Bimestre.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String str_dbr_obj_iv_bimestre = dataSnapshot.getValue(String.class);
+
+                //TextView obj_conteudo_i_bimestre = (TextView) findViewById(R.id.txt_obj);
+
+                //obj_conteudo_i_bimestre.setText(str_dbr_obj_i_bimestre);
+
+                btn4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        fl_obj.setVisibility(View.VISIBLE);
+                        fl_spinner.setVisibility(View.GONE);
+
+
+
+
+                        String obj = str_dbr_obj_iv_bimestre;
+                        TextView txt_obj = (TextView) findViewById(R.id.txt_objetivo);
+                        txt_obj.setText(obj);
+
+                    }
+                });
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //=========================================BOTÃO OBJ MAT NONO 4-Bimestre===========================================
+
+    }
+
+    //===================FIM Tab OBJETIVO MATEMATICA=================================================
 
 
     //=============================FUNÇÃO DE LEITURA DA DATA DO SISTEMA============================
@@ -551,11 +1999,11 @@ public class Main_activity extends AppCompatActivity
 
         //Leitor de data do sistema
         Calendar now = Calendar.getInstance();
-        Dia_sistema = now.get(Calendar.DAY_OF_MONTH);
-        Mes_sistema = now.get(Calendar.MONTH); // Note: zero based!
-        Mes_sistema++;
+        dia_atual = now.get(Calendar.DAY_OF_MONTH);
+        mes_atual = now.get(Calendar.MONTH); // Note: zero based!
+        mes_atual++;
 
-       //Toast.makeText(Main_activity.this, "Dia: "+ Dia_sistema + " Mês: "+ Mes_sistema,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(Main_activity.this, "Dia: "+ dia_atual + " Mês: "+ mes_atual,Toast.LENGTH_SHORT).show();
     }
     //==============================================================================================
 
@@ -580,7 +2028,8 @@ public class Main_activity extends AppCompatActivity
 
         FirebaseUser currentUser = fbAuth.getCurrentUser();
         fbAuth.addAuthStateListener(fbAuthListener);
-        
+
+
         if (currentUser == null)
         {
             SendUserToLoginActivity();
@@ -617,31 +2066,31 @@ public class Main_activity extends AppCompatActivity
         final String username = fbAuth.getCurrentUser().getDisplayName();
         final String email = fbAuth.getCurrentUser().getEmail();
 
-            HashMap userMap = new HashMap();
-            userMap.put("nome", username);
-            userMap.put("uid", user_id);
-            userMap.put("email", email);
+        HashMap userMap = new HashMap();
+        userMap.put("nome", username);
+        userMap.put("uid", user_id);
+        userMap.put("email", email);
 
-            UsersRef.child(user_id).child("dados").updateChildren(userMap).addOnCompleteListener(new OnCompleteListener() {
-                @Override
-                public void onComplete(@NonNull Task task)
+        UsersRef.child(user_id).child("dados").updateChildren(userMap).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task)
+            {
+                if(task.isSuccessful())
                 {
-                    if(task.isSuccessful())
-                    {
-                        //Toast.makeText(Main_activity.this, "Dados salvos", Toast.LENGTH_LONG).show();
-                    }
-                    else
-                    {
-                        //String message =  task.getException().getMessage();
-                        //Toast.makeText(Main_activity.this, "Dados não salvos " + message, Toast.LENGTH_SHORT).show();
-                    }
+                    //Toast.makeText(Main_activity.this, "Dados salvos", Toast.LENGTH_LONG).show();
                 }
-            });
+                else
+                {
+                    //String message =  task.getException().getMessage();
+                    //Toast.makeText(Main_activity.this, "Dados não salvos " + message, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
 
 
-    private void SendUserToLoginActivity() 
+    private void SendUserToLoginActivity()
     {
         //Intent loginIntent = new Intent(Main_activity.this, Login_activity.class);
         Intent IntroIntent = new Intent(Main_activity.this, IntroActivity.class);
@@ -662,93 +2111,259 @@ public class Main_activity extends AppCompatActivity
 
     public void SombraBimestre(View view) {
 
-        FrameLayout fl_1 = (FrameLayout) view.findViewById(R.id.fl_1);
-        FrameLayout fl_2 = (FrameLayout) view.findViewById(R.id.fl_2);
-        FrameLayout fl_3 = (FrameLayout) view.findViewById(R.id.fl_3);
-        FrameLayout fl_4 = (FrameLayout) view.findViewById(R.id.fl_4);
+        //Carrega as datas salvas pelos métodos que carregam as datas do firebase
+        SharedPreferences sharedPref = getSharedPreferences("save_datas",MODE_PRIVATE);
+        dia_salvo_inicio_1 = sharedPref.getInt("dia_salvo_inicio_1",0);
+        mes_salvo_inicio_1 = sharedPref.getInt("mes_salvo_inicio_1",0);
+        dia_salvo_termino_1 = sharedPref.getInt("dia_salvo_termino_1",0);
+        mes_salvo_termino_1 = sharedPref.getInt("mes_salvo_termino_1",0);
+
+        dia_salvo_inicio_2 = sharedPref.getInt("dia_salvo_inicio_2",0);
+        mes_salvo_inicio_2 = sharedPref.getInt("mes_salvo_inicio_2",0);
+        dia_salvo_termino_2 = sharedPref.getInt("dia_salvo_termino_2",0);
+        mes_salvo_termino_2 = sharedPref.getInt("mes_salvo_termino_2",0);
+
+        dia_salvo_inicio_3 = sharedPref.getInt("dia_salvo_inicio_3",0);
+        mes_salvo_inicio_3 = sharedPref.getInt("mes_salvo_inicio_3",0);
+        dia_salvo_termino_3 = sharedPref.getInt("dia_salvo_termino_3",0);
+        mes_salvo_termino_3 = sharedPref.getInt("mes_salvo_termino_3",0);
+
+        dia_salvo_inicio_4 = sharedPref.getInt("dia_salvo_inicio_4",0);
+        mes_salvo_inicio_4 = sharedPref.getInt("mes_salvo_inicio_4",0);
+        dia_salvo_termino_4 = sharedPref.getInt("dia_salvo_termino_4",0);
+        mes_salvo_termino_4 = sharedPref.getInt("mes_salvo_termino_4",0);
+
+        LinearLayout balao_inicio_1 = (LinearLayout) view.findViewById(R.id.balao_inicio_1);
+        LinearLayout balao_inicio_2 = (LinearLayout) view.findViewById(R.id.balao_inicio_2);
+        LinearLayout balao_inicio_3 = (LinearLayout) view.findViewById(R.id.balao_inicio_3);
+        LinearLayout balao_inicio_4 = (LinearLayout) view.findViewById(R.id.balao_inicio_4);
+
+        LinearLayout balao_termino_1 = (LinearLayout) view.findViewById(R.id.balao_termino_1);
+        LinearLayout balao_termino_2 = (LinearLayout) view.findViewById(R.id.balao_termino_2);
+        LinearLayout balao_termino_3 = (LinearLayout) view.findViewById(R.id.balao_termino_3);
+        LinearLayout balao_termino_4 = (LinearLayout) view.findViewById(R.id.balao_termino_4);
+
+        LinearLayout barra_balao_1 = (LinearLayout) view.findViewById(R.id.barra_balao_1);
+        LinearLayout barra_balao_2 = (LinearLayout) view.findViewById(R.id.barra_balao_2);
+        LinearLayout barra_balao_3 = (LinearLayout) view.findViewById(R.id.barra_balao_3);
+        LinearLayout barra_balao_4 = (LinearLayout) view.findViewById(R.id.barra_balao_4);
 
         //====================================I BIMESTRE========================================
 
-        if (Mes_sistema == ID_salvo_mes_termino_I) {
+        //Identifica que o mês atual é o mês início configurado
+        if(mes_atual == mes_salvo_inicio_1){
 
-            if (Dia_sistema > ID_salvo_dia_termino_I) {
+            //Identifica que o dia configurado já passou
+            if (dia_atual >= dia_salvo_inicio_1){
+                //Aplica amarelo
+                balao_inicio_1.setBackgroundResource(R.drawable.layout_gota_agora);
+                balao_termino_1.setBackgroundResource(R.drawable.layout_gota_agora);
+            }
 
-                // Toast.makeText(Main_activity.this, "Sombra Bim_I ", Toast.LENGTH_SHORT).show();
-
-                fl_1.setVisibility(View.VISIBLE);
-
-            } else
-                fl_1.setVisibility(View.GONE);
-        } else if (Mes_sistema > ID_salvo_mes_termino_I) {
-
-            fl_1.setVisibility(View.VISIBLE);
-
-        } else if (Mes_sistema < ID_salvo_mes_termino_I) {
-
-            fl_1.setVisibility(View.GONE);
         }
+
+        //Identifica que o mês atual é o mês término configurado
+        else if (mes_atual == mes_salvo_termino_1) {
+
+            //identifica que o dia configurado já passou
+            if (dia_atual > dia_salvo_termino_1) {
+
+                //Aplica cinza
+                balao_inicio_1.setBackgroundResource(R.drawable.layout_gota_depois);
+                balao_termino_1.setBackgroundResource(R.drawable.layout_gota_depois);
+                barra_balao_1.setBackgroundResource(R.color.elementos_conteudo);
+
+            } else{//Identifica que o dia atual ainda não passou
+
+                //Aplica amarelo
+                balao_inicio_1.setBackgroundResource(R.drawable.layout_gota_agora);
+                balao_termino_1.setBackgroundResource(R.drawable.layout_gota_agora);
+            }
+
+        }
+        //Identifica que o mês atual é maior que o último mês do bimestre
+        else if (mes_atual > mes_salvo_termino_1) {
+
+            //Aplica cinza
+            balao_inicio_1.setBackgroundResource(R.drawable.layout_gota_depois);
+            balao_termino_1.setBackgroundResource(R.drawable.layout_gota_depois);
+            barra_balao_1.setBackgroundResource(R.color.elementos_conteudo);
+
+        }
+
+        //Identifica que o mês atual está entre o mês início e o mês final
+        else if (mes_atual > mes_salvo_inicio_1 && mes_atual < mes_salvo_termino_1) {
+
+            //Aplica amarelo
+            balao_inicio_1.setBackgroundResource(R.drawable.layout_gota_agora);
+            balao_termino_1.setBackgroundResource(R.drawable.layout_gota_agora);
+
+        }
+
+
+
         //======================================================================================
 
         //===================================II BIMESTRE========================================
-        if (Mes_sistema == ID_salvo_mes_termino_II) {
+        //Identifica que o mês atual é o mês início configurado
+        if(mes_atual == mes_salvo_inicio_2){
 
-            if (Dia_sistema > ID_salvo_dia_termino_II) {
+            //Identifica que o dia configurado já passou
+            if (dia_atual >= dia_salvo_inicio_2){
+                //Aplica amarelo
+                balao_inicio_2.setBackgroundResource(R.drawable.layout_gota_agora);
+                balao_termino_2.setBackgroundResource(R.drawable.layout_gota_agora);
+            }
 
-                //Toast.makeText(Main_activity.this, "Sombra Bim_I ", Toast.LENGTH_SHORT).show();
+        }
 
-                fl_2.setVisibility(View.VISIBLE);
+        //Identifica que o mês atual é o mês término configurado
+        else if (mes_atual == mes_salvo_termino_2) {
 
-            } else
-                fl_2.setVisibility(View.GONE);
-        } else if (Mes_sistema > ID_salvo_mes_termino_II) {
+            //identifica que o dia configurado já passou
+            if (dia_atual > dia_salvo_termino_2) {
 
-            fl_2.setVisibility(View.VISIBLE);
+                //Aplica cinza
+                balao_inicio_2.setBackgroundResource(R.drawable.layout_gota_depois);
+                balao_termino_2.setBackgroundResource(R.drawable.layout_gota_depois);
+                barra_balao_2.setBackgroundResource(R.color.elementos_conteudo);
 
-        } else if (Mes_sistema < ID_salvo_mes_termino_II) {
+            } else{//Identifica que o dia atual ainda não passou
 
-            fl_2.setVisibility(View.GONE);
+                //Aplica amarelo
+                balao_inicio_2.setBackgroundResource(R.drawable.layout_gota_agora);
+                balao_termino_2.setBackgroundResource(R.drawable.layout_gota_agora);
+            }
+
+        }
+        //Identifica que o mês atual é maior que o último mês do bimestre
+        else if (mes_atual > mes_salvo_termino_2) {
+
+            //Aplica cinza
+            balao_inicio_2.setBackgroundResource(R.drawable.layout_gota_depois);
+            balao_termino_2.setBackgroundResource(R.drawable.layout_gota_depois);
+            barra_balao_2.setBackgroundResource(R.color.elementos_conteudo);
+
+        }
+
+        //Identifica que o mês atual está entre o mês início e o mês final
+        else if (mes_atual < mes_salvo_termino_2 && mes_atual > mes_salvo_inicio_2) {
+
+            //Aplica amarelo
+            balao_inicio_2.setBackgroundResource(R.drawable.layout_gota_agora);
+            balao_termino_2.setBackgroundResource(R.drawable.layout_gota_agora);
+
         }
         //======================================================================================
 
         //==================================III BIMESTRE========================================
-        if (Mes_sistema == ID_salvo_mes_termino_III) {
+        //Identifica que o mês atual é o mês início configurado
+        if(mes_atual == mes_salvo_inicio_3){
 
-            if (Dia_sistema > ID_salvo_dia_termino_III) {
+            //Identifica que o dia configurado já passou
+            if (dia_atual >= dia_salvo_inicio_3){
+                //Aplica amarelo
+                balao_inicio_3.setBackgroundResource(R.drawable.layout_gota_agora);
+                balao_termino_3.setBackgroundResource(R.drawable.layout_gota_agora);
+            }
 
-                //Toast.makeText(Main_activity.this, "Sombra Bim_I ", Toast.LENGTH_SHORT).show();
+        }
 
-                fl_3.setVisibility(View.VISIBLE);
+        //Identifica que o mês atual é o mês término configurado
+        else if (mes_atual == mes_salvo_termino_3) {
 
-            } else
-                fl_3.setVisibility(View.GONE);
-        } else if (Mes_sistema > ID_salvo_mes_termino_III) {
+            //identifica que o dia configurado já passou
+            if (dia_atual > dia_salvo_termino_3) {
 
-            fl_3.setVisibility(View.VISIBLE);
+                //Aplica cinza
+                balao_inicio_3.setBackgroundResource(R.drawable.layout_gota_depois);
+                balao_termino_3.setBackgroundResource(R.drawable.layout_gota_depois);
+                barra_balao_3.setBackgroundResource(R.color.elementos_conteudo);
 
-        } else if (Mes_sistema < ID_salvo_mes_termino_III) {
+            } else{//Identifica que o dia atual ainda não passou
 
-            fl_3.setVisibility(View.GONE);
+                //Aplica amarelo
+                balao_inicio_3.setBackgroundResource(R.drawable.layout_gota_agora);
+                balao_termino_3.setBackgroundResource(R.drawable.layout_gota_agora);
+            }
+
+        }
+        //Identifica que o mês atual é maior que o último mês do bimestre
+        else if (mes_atual > mes_salvo_termino_3) {
+
+            //Aplica cinza
+            balao_inicio_3.setBackgroundResource(R.drawable.layout_gota_depois);
+            balao_termino_3.setBackgroundResource(R.drawable.layout_gota_depois);
+            barra_balao_3.setBackgroundResource(R.color.elementos_conteudo);
+
+        }
+
+        //Identifica que o mês atual está entre o mês início e o mês final
+        else if (mes_atual < mes_salvo_termino_3 && mes_atual > mes_salvo_inicio_3) {
+
+            //Aplica amarelo
+            balao_inicio_3.setBackgroundResource(R.drawable.layout_gota_agora);
+            balao_termino_3.setBackgroundResource(R.drawable.layout_gota_agora);
+
         }
         //======================================================================================
 
         //===================================IV BIMESTRE========================================
-        if (Mes_sistema == ID_salvo_mes_termino_IV) {
+        mes_salvo_inicio_4 = 6;
+        //Identifica que o mês atual é o mês início configurado
+        if (mes_atual == mes_salvo_inicio_4){
 
-            if (Dia_sistema > ID_salvo_dia_termino_IV) {
+            //Identifica que o dia configurado já passou
+            if (dia_atual >= dia_salvo_inicio_4){
+                //Aplica amarelo
+                balao_inicio_4.setBackgroundResource(R.drawable.layout_gota_agora);
+                balao_termino_4.setBackgroundResource(R.drawable.layout_gota_agora);
+            }
 
-                //Toast.makeText(Main_activity.this, "Sombra Bim_I ", Toast.LENGTH_SHORT).show();
+        }
 
-                fl_4.setVisibility(View.VISIBLE);
+        //Identifica que o mês atual é o mês término configurado
+        else if (mes_atual == mes_salvo_termino_4) {
 
-            } else
-                fl_4.setVisibility(View.GONE);
-        } else if (Mes_sistema > ID_salvo_mes_termino_IV) {
+            //identifica que o dia configurado já passou
+            if (dia_atual > dia_salvo_termino_4) {
 
-            fl_4.setVisibility(View.VISIBLE);
+                //Aplica cinza
+                balao_inicio_4.setBackgroundResource(R.drawable.layout_gota_depois);
+                balao_termino_4.setBackgroundResource(R.drawable.layout_gota_depois);
+                barra_balao_4.setBackgroundResource(R.color.elementos_conteudo);
 
-        } else if (Mes_sistema < ID_salvo_mes_termino_IV) {
+            } else if (dia_atual <= dia_salvo_termino_1){//Identifica que o dia atual ainda não passou
 
-            fl_4.setVisibility(View.GONE);
+                //Aplica amarelo
+                balao_inicio_4.setBackgroundResource(R.drawable.layout_gota_agora);
+                balao_termino_4.setBackgroundResource(R.drawable.layout_gota_agora);
+            }
+
+        }
+        //Identifica que o mês atual é maior que o último mês do bimestre
+        else if (mes_atual > mes_salvo_termino_4) {
+
+            //Aplica cinza
+            balao_inicio_4.setBackgroundResource(R.drawable.layout_gota_depois);
+            balao_termino_4.setBackgroundResource(R.drawable.layout_gota_depois);
+            barra_balao_4.setBackgroundResource(R.color.elementos_conteudo);
+
+        }
+
+        //Identifica que o mês atual está entre o mês início e o mês final
+        else if (mes_atual < mes_salvo_termino_4 && mes_atual > mes_salvo_inicio_4) {
+
+            //Aplica amarelo
+            balao_inicio_4.setBackgroundResource(R.drawable.layout_gota_agora);
+            balao_termino_4.setBackgroundResource(R.drawable.layout_gota_agora);
+
+        }
+
+        else if (mes_atual < mes_salvo_inicio_4) {
+            balao_inicio_4.setBackgroundResource(R.drawable.layout_gota_antes);
+            balao_termino_4.setBackgroundResource(R.drawable.layout_gota_antes);
+
         }
         //======================================================================================
     }
@@ -775,9 +2390,7 @@ public class Main_activity extends AppCompatActivity
                 switch (position) {
 
                     case 0:
-
                         return new Tab_portugues_sexto_();
-
 
                     case 1:
 
@@ -989,6 +2602,285 @@ public class Main_activity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void carrega_datas_firebase(){
+
+        //=============MÉTODO CARREGA AS DATAS DE TÉRMINO DO FIREBASE ===========
+
+        final String user_id = fbAuth.getCurrentUser().getUid();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        //=================PRIMEIRO BIMESTRE========================================================
+
+        //INÍCIO
+
+        UserData_inicio_1 = database.getReference().child("users").child(user_id).child("datas").child("inicio_1");
+
+        ValueEventListener post_inicio_1_Listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_salvo_inicio_1 = Integer.parseInt(post.inicio_1.substring(0, 2));
+                    mes_salvo_inicio_1 = Integer.parseInt(post.inicio_1.substring(3, 5));
+
+                    SharedPreferences sharedPref = getSharedPreferences("save_datas",0);
+                    SharedPreferences.Editor prefEditor = sharedPref.edit();
+                    prefEditor.putInt("dia_salvo_inicio_1",dia_salvo_inicio_1);
+                    prefEditor.commit();
+
+                    SharedPreferences.Editor prefEditor2 = sharedPref.edit();
+                    prefEditor2.putInt("mes_salvo_inicio_1",mes_salvo_inicio_1);
+                    prefEditor2.commit();
+                }
+                else {}
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){}
+        };
+        UserData_inicio_1.addValueEventListener(post_inicio_1_Listener);
+
+        //TÉRMINO
+
+        UserData_termino_1 = database.getReference().child("users").child(user_id).child("datas").child("termino_1");
+
+        ValueEventListener post_termino_1_Listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_salvo_termino_1 = Integer.parseInt(post.termino_1.substring(0, 2));
+                    mes_salvo_termino_1 = Integer.parseInt(post.termino_1.substring(3, 5));
+
+                    //Salva a data lida para que possa ser acessada pelo outro método
+                    SharedPreferences sharedPref = getSharedPreferences("save_datas",0);
+                    SharedPreferences.Editor prefEditor = sharedPref.edit();
+                    prefEditor.putInt("dia_salvo_termino_1",dia_salvo_termino_1);
+                    prefEditor.commit();
+
+                    SharedPreferences.Editor prefEditor2 = sharedPref.edit();
+                    prefEditor2.putInt("mes_salvo_termino_1",mes_salvo_termino_1);
+                    prefEditor2.commit();
+
+                }
+                else {}
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){}
+        };
+        UserData_termino_1.addValueEventListener(post_termino_1_Listener);
+
+        //==========================================================================================
+
+        //=================SEGUNDO BIMESTRE=========================================================
+
+        //INÍCIO
+
+        UserData_inicio_2 = database.getReference().child("users").child(user_id).child("datas").child("inicio_2");
+
+        ValueEventListener post_inicio_2_Listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_salvo_inicio_2 = Integer.parseInt(post.inicio_2.substring(0, 2));
+                    mes_salvo_inicio_2 = Integer.parseInt(post.inicio_2.substring(3, 5));
+
+                    SharedPreferences sharedPref = getSharedPreferences("save_datas",0);
+                    SharedPreferences.Editor prefEditor = sharedPref.edit();
+                    prefEditor.putInt("dia_salvo_inicio_2",dia_salvo_inicio_2);
+                    prefEditor.commit();
+
+                    SharedPreferences.Editor prefEditor2 = sharedPref.edit();
+                    prefEditor2.putInt("mes_salvo_inicio_2",mes_salvo_inicio_2);
+                    prefEditor2.commit();
+
+                }
+                else {}
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){}
+        };
+        UserData_inicio_2.addValueEventListener(post_inicio_2_Listener);
+
+        //TÉRMINO
+
+        UserData_termino_2 = database.getReference().child("users").child(user_id).child("datas").child("termino_2");
+
+        ValueEventListener post_termino_2_Listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_salvo_termino_2 = Integer.parseInt(post.termino_2.substring(0, 2));
+                    mes_salvo_termino_2 = Integer.parseInt(post.termino_2.substring(3, 5));
+
+                    SharedPreferences sharedPref = getSharedPreferences("save_datas",0);
+                    SharedPreferences.Editor prefEditor = sharedPref.edit();
+                    prefEditor.putInt("dia_salvo_termino_2",dia_salvo_termino_2);
+                    prefEditor.commit();
+
+                    SharedPreferences.Editor prefEditor2 = sharedPref.edit();
+                    prefEditor2.putInt("mes_salvo_termino_2",mes_salvo_termino_2);
+                    prefEditor2.commit();
+
+                }
+                else {}
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){}
+        };
+        UserData_termino_2.addValueEventListener(post_termino_2_Listener);
+
+        //==========================================================================================
+
+        //=================TERCEIRO BIMESTRE========================================================
+
+        //INÍCIO
+
+        UserData_inicio_3 = database.getReference().child("users").child(user_id).child("datas").child("inicio_3");
+
+        ValueEventListener post_inicio_3_Listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_salvo_inicio_3 = Integer.parseInt(post.inicio_3.substring(0, 2));
+                    mes_salvo_inicio_3 = Integer.parseInt(post.inicio_3.substring(3, 5));
+
+                    SharedPreferences sharedPref = getSharedPreferences("save_datas",0);
+                    SharedPreferences.Editor prefEditor = sharedPref.edit();
+                    prefEditor.putInt("dia_salvo_inicio_3",dia_salvo_inicio_3);
+                    prefEditor.commit();
+
+                    SharedPreferences.Editor prefEditor2 = sharedPref.edit();
+                    prefEditor2.putInt("mes_salvo_inicio_3",mes_salvo_inicio_3);
+                    prefEditor2.commit();
+
+                }
+                else {}
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){}
+        };
+        UserData_inicio_3.addValueEventListener(post_inicio_3_Listener);
+
+        //TÉRMINO
+
+        UserData_termino_3 = database.getReference().child("users").child(user_id).child("datas").child("termino_3");
+
+        ValueEventListener post_termino_3_Listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_salvo_termino_3 = Integer.parseInt(post.termino_3.substring(0, 2));
+                    mes_salvo_termino_3 = Integer.parseInt(post.termino_3.substring(3, 5));
+
+                    SharedPreferences sharedPref = getSharedPreferences("save_datas",0);
+                    SharedPreferences.Editor prefEditor = sharedPref.edit();
+                    prefEditor.putInt("dia_salvo_termino_3",dia_salvo_termino_3);
+                    prefEditor.commit();
+
+                    SharedPreferences.Editor prefEditor2 = sharedPref.edit();
+                    prefEditor2.putInt("mes_salvo_termino_3",mes_salvo_termino_3);
+                    prefEditor2.commit();
+                }
+                else {}
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){}
+        };
+        UserData_termino_3.addValueEventListener(post_termino_3_Listener);
+        //==========================================================================================
+
+        //=================QUARTO BIMESTRE==========================================================
+
+        //INÍCIO
+
+        UserData_inicio_4 = database.getReference().child("users").child(user_id).child("datas").child("inicio_4");
+
+        ValueEventListener post_inicio_4_Listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_salvo_inicio_4 = Integer.parseInt(post.inicio_4.substring(0, 2));
+                    mes_salvo_inicio_4 = Integer.parseInt(post.inicio_4.substring(3, 5));
+
+                    SharedPreferences sharedPref = getSharedPreferences("save_datas",0);
+                    SharedPreferences.Editor prefEditor = sharedPref.edit();
+                    prefEditor.putInt("dia_salvo_inicio_4",dia_salvo_inicio_4);
+                    prefEditor.commit();
+
+                    SharedPreferences.Editor prefEditor2 = sharedPref.edit();
+                    prefEditor2.putInt("mes_salvo_inicio_4",mes_salvo_inicio_4);
+                    prefEditor2.commit();
+
+                }
+                else {}
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){}
+        };
+        UserData_inicio_4.addValueEventListener(post_inicio_4_Listener);
+
+        //TÉRMINO
+
+
+        UserData_termino_4 = database.getReference().child("users").child(user_id).child("datas").child("termino_4");
+
+        ValueEventListener post_termino_4_Listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()){
+
+                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
+
+                    dia_salvo_termino_4 = Integer.parseInt(post.termino_4.substring(0, 2));
+                    mes_salvo_termino_4 = Integer.parseInt(post.termino_4.substring(3, 5));
+
+                    SharedPreferences sharedPref = getSharedPreferences("save_datas",0);
+                    SharedPreferences.Editor prefEditor = sharedPref.edit();
+                    prefEditor.putInt("dia_salvo_termino_4",dia_salvo_termino_4);
+                    prefEditor.commit();
+
+                    SharedPreferences.Editor prefEditor2 = sharedPref.edit();
+                    prefEditor2.putInt("mes_salvo_termino_4",mes_salvo_termino_4);
+                    prefEditor2.commit();
+
+                }
+                else {}
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){}
+        };
+        UserData_termino_4.addValueEventListener(post_termino_4_Listener);
+
+        //==========================================================================================
     }
 
 }

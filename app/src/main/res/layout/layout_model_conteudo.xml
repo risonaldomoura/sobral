@@ -61,7 +61,8 @@
 
                                 <FrameLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="70dp">
+                                    android:layout_height="70dp"
+                                    android:clickable="true">
 
                                     <LinearLayout
                                         android:id="@+id/balao_inicio_1"
@@ -71,7 +72,7 @@
                                         android:background="@drawable/layout_gota_antes"
                                         android:rotation="45"
                                         android:layout_marginTop="10dp"
-                                        android:clickable="true"/>
+                                        />
 
                                     <LinearLayout
                                         android:layout_width="wrap_content"
