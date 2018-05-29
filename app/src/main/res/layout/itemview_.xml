@@ -6,12 +6,12 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-
+        android:id="@+id/layout_item_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@drawable/selector_item_view"
-        android:clickable="true">
+        android:clickable="false">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -42,14 +42,14 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:id="@+id/textView_"
+            android:id="@+id/text_itemview"
             android:layout_marginBottom="10dp"
             android:text="Matriz curricular Sobral"
             android:textColor="@color/texto_cinza"
             android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

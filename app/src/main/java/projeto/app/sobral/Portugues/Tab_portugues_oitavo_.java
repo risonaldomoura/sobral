@@ -1,6 +1,8 @@
 package projeto.app.sobral.Portugues;
 
+import android.app.Dialog;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 //import android.app.Fragment;
 import android.os.Bundle;
@@ -14,9 +16,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -36,6 +41,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -52,85 +58,39 @@ import projeto.app.sobral.Utils.MyDataGetSet;
  */
 
 public class Tab_portugues_oitavo_ extends Fragment{
-    public int ID_salvo_dia_inicio_I;
-    public int ID_salvo_dia_termino_I;
-    public int ID_salvo_mes_inicio_I;
-    public int ID_salvo_mes_termino_I;
 
-    public int ID_salvo_dia_inicio_II;
-    public int ID_salvo_dia_termino_II;
-    public int ID_salvo_mes_inicio_II;
-    public int ID_salvo_mes_termino_II;
-
-    public int ID_salvo_dia_inicio_III;
-    public int ID_salvo_dia_termino_III;
-    public int ID_salvo_mes_inicio_III;
-    public int ID_salvo_mes_termino_III;
-
-    public int ID_salvo_dia_inicio_IV;
-    public int ID_salvo_dia_termino_IV;
-    public int ID_salvo_mes_inicio_IV;
-    public int ID_salvo_mes_termino_IV;
-
-    public String mes_1 = "JAN";
-    public String mes_2 = "FEV";
-    public String mes_3 = "MAR";
-    public String mes_4 = "ABR";
-    public String mes_5 = "MAI";
-    public String mes_6 = "JUN";
-    public String mes_7 = "JUL";
-    public String mes_8 = "AGO";
-    public String mes_9 = "SET";
-    public String mes_10 = "OUT";
-    public String mes_11 = "NOV";
-    public String mes_12 = "DEZ";
-
-    public int Dia_sistema;
-    public int Mes_sistema;
-
-    public int estadocb1;
-    CheckBox cb1;
-
-    RecyclerView rv_I_Bimestre_8_portugues;
-    RecyclerView rv_II_Bimestre_8_portugue;
-    RecyclerView rv_III_Bimestre_8_portugues;
-    RecyclerView rv_IV_Bimestre_8_portugues;
-
+    RecyclerView rv_I_Bimestre;
     TextView tv_Titulo_I_Bimestre;
-    TextView tv_Titulo_II_Bimestre;
-    TextView tv_Titulo_III_Bimestre;
-    TextView tv_Titulo_IV_Bimestre;
-
-
-
-    List<MyDataGetSet> listData_1_bimestre;
-    List<MyDataGetSet> listData_2_bimestre;
-    List<MyDataGetSet> listData_3_bimestre;
-    List<MyDataGetSet> listData_4_bimestre;
-
-    Adaptador_Disciplina_ano adp_portugues_oitavo_1_bimestre;
-    Adaptador_Disciplina_ano adp_portugues_oitavo_2_bimestre;
-    Adaptador_Disciplina_ano adp_portugues_oitavo_3_bimestre;
-    Adaptador_Disciplina_ano adp_portugues_oitavo_4_bimestre;
-
-
-
-    FirebaseDatabase FDB;
-    //
-    DatabaseReference DBR;
+    Adaptador_Portugues_oitavo_I_Bimestre adp_portugues_oitavo_I;
+    List<MyDataGetSet> listData_I_Bimestre;
     DatabaseReference DBR_Titulo_I_Bimestre;
+
+    RecyclerView rv_II_Bimestre;
+    TextView tv_Titulo_II_Bimestre;
+    Adaptador_Portugues_oitavo_II_Bimestre adp_portugues_oitavo_II;
+    List<MyDataGetSet> listData_II_Bimestre;
     DatabaseReference DBR_Titulo_II_Bimestre;
+
+    RecyclerView rv_III_Bimestre;
+    TextView tv_Titulo_III_Bimestre;
+    Adaptador_Portugues_oitavo_III_Bimestre adp_portugues_oitavo_III;
+    List<MyDataGetSet> listData_III_Bimestre;
     DatabaseReference DBR_Titulo_III_Bimestre;
+
+    RecyclerView rv_IV_Bimestre;
+    TextView tv_Titulo_IV_Bimestre;
+    Adaptador_Portugues_oitavo_IV_Bimestre adp_portugues_oitavo_IV;
+    List<MyDataGetSet> listData_IV_Bimestre;
     DatabaseReference DBR_Titulo_IV_Bimestre;
 
 
+    FirebaseDatabase FDB;
+    DatabaseReference DBR;
+    DatabaseReference DiscRefFirebase;
 
-    //
+    public int position_check;
 
-    String titulo;
-
-    Button botao_docs;
-
+    String titulo, uid;
 
     //Dia e Mês carregado do firebase
     public String dia_up_inicio_1, mes_up_inicio_1, dia_up_termino_1, mes_up_termino_1,
@@ -145,6 +105,11 @@ public class Tab_portugues_oitavo_ extends Fragment{
             UserData_inicio_4, UserData_termino_4;
 
 
+    //Essas variáveis vão variar na referência do database Firebase para salvar e deletar a ID do usuário
+    //utilizada para marcar e desmarcar o conteúdo
+    public String disciplina = "portugues", ano = "8_ano", bimestre, position_firebase;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -154,96 +119,64 @@ public class Tab_portugues_oitavo_ extends Fragment{
 
         View rView = inflater.inflate(R.layout.layout_model_conteudo,container,false);
 
-        //=========== INÍCIO DO TRATAMENTO DOS ADPATADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS I BIMESTRE===============
-        //----------------------Dentro de onCreateView() -----------------------------------------------------------------
-
-        rv_I_Bimestre_8_portugues = (RecyclerView) rView.findViewById(R.id.recyclerView_I_Bimestre);
-        tv_Titulo_I_Bimestre = (TextView) rView.findViewById(R.id.Titulo_I_Bimestre);
-
-        rv_I_Bimestre_8_portugues.setHasFixedSize(true);
-        rv_I_Bimestre_8_portugues.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-
-
-
-        rv_I_Bimestre_8_portugues.setItemAnimator(new DefaultItemAnimator());
-        rv_I_Bimestre_8_portugues.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
-
-        listData_1_bimestre=  new ArrayList<>();
-        adp_portugues_oitavo_1_bimestre = new Adaptador_Disciplina_ano(listData_1_bimestre);
-
-        //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS I BIMESTRE==================
-
-
-
-
-
-        //=========== INÍCIO DO TRATAMENTO DOS ADPATADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS II BIMESTRE===============
-        //----------------------Dentro de onCreateView() -----------------------------------------------------------------
-
-
-        rv_II_Bimestre_8_portugue = (RecyclerView) rView.findViewById(R.id.recyclerView_II_Bimestre);
-        tv_Titulo_II_Bimestre = (TextView) rView.findViewById(R.id.Titulo_II_Bimestre);
-
-        rv_II_Bimestre_8_portugue.setHasFixedSize(true);
-        rv_II_Bimestre_8_portugue.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        rv_II_Bimestre_8_portugue.setItemAnimator(new DefaultItemAnimator());
-        rv_II_Bimestre_8_portugue.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
-
-        listData_2_bimestre=  new ArrayList<>();
-        adp_portugues_oitavo_2_bimestre = new Adaptador_Disciplina_ano(listData_2_bimestre);
-
-        //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS II BIMESTRE==================
-
-
-
-
-        //=========== INÍCIO DO TRATAMENTO DOS ADPATADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS III BIMESTRE===============
-        //----------------------Dentro de onCreateView() -----------------------------------------------------------------
-
-
-        rv_III_Bimestre_8_portugues = (RecyclerView) rView.findViewById(R.id.recyclerView_III_Bimestre);
-        tv_Titulo_III_Bimestre = (TextView) rView.findViewById(R.id.Titulo_III_Bimestre);
-
-        rv_III_Bimestre_8_portugues.setHasFixedSize(true);
-        rv_III_Bimestre_8_portugues.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        rv_III_Bimestre_8_portugues.setItemAnimator(new DefaultItemAnimator());
-        rv_III_Bimestre_8_portugues.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
-
-        listData_3_bimestre=  new ArrayList<>();
-        adp_portugues_oitavo_3_bimestre = new Adaptador_Disciplina_ano(listData_3_bimestre);
-
-        //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS III BIMESTRE==================
-
-
-
-        //=========== INÍCIO DO TRATAMENTO DOS ADPATADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS IV BIMESTRE===============
-        //----------------------Dentro de onCreateView() -----------------------------------------------------------------
-
-
-        rv_IV_Bimestre_8_portugues = (RecyclerView) rView.findViewById(R.id.recyclerView_IV_Bimestre);
-        tv_Titulo_IV_Bimestre = (TextView) rView.findViewById(R.id.Titulo_IV_Bimestre);
-
-        rv_IV_Bimestre_8_portugues.setHasFixedSize(true);
-        rv_IV_Bimestre_8_portugues.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
-        rv_IV_Bimestre_8_portugues.setItemAnimator(new DefaultItemAnimator());
-        rv_IV_Bimestre_8_portugues.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(),LinearLayoutManager.VERTICAL));
-
-        listData_4_bimestre=  new ArrayList<>();
-        adp_portugues_oitavo_4_bimestre = new Adaptador_Disciplina_ano(listData_4_bimestre);
-
-        //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS III BIMESTRE==================
-
-
-        rv_I_Bimestre_8_portugues.setNestedScrollingEnabled(false);
-        rv_II_Bimestre_8_portugue.setNestedScrollingEnabled(false);
-        rv_III_Bimestre_8_portugues.setNestedScrollingEnabled(false);
-        rv_IV_Bimestre_8_portugues.setNestedScrollingEnabled(false);
-
-
-
-
-
         fbAuth = FirebaseAuth.getInstance();
+        DiscRefFirebase = FirebaseDatabase.getInstance().getReference().child("disciplinas");
+
+        //=========== INÍCIO DO TRATAMENTO DOS ADPATADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS BIMESTRES===============
+
+        FDB = FirebaseDatabase.getInstance();
+
+
+        RecyclerView.LayoutManager LM_I = new LinearLayoutManager(getActivity().getApplicationContext());
+        rv_I_Bimestre = (RecyclerView) rView.findViewById(R.id.recyclerView_I_Bimestre);
+        tv_Titulo_I_Bimestre = (TextView) rView.findViewById(R.id.Titulo_I_Bimestre);
+        rv_I_Bimestre.setHasFixedSize(true);
+        rv_I_Bimestre.setLayoutManager(LM_I);
+        rv_I_Bimestre.setItemAnimator(new DefaultItemAnimator());
+        rv_I_Bimestre.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL));
+        listData_I_Bimestre = new ArrayList<>();
+        adp_portugues_oitavo_I = new Adaptador_Portugues_oitavo_I_Bimestre(listData_I_Bimestre);
+
+
+        RecyclerView.LayoutManager LM_II = new LinearLayoutManager(getActivity().getApplicationContext());
+        rv_II_Bimestre = (RecyclerView) rView.findViewById(R.id.recyclerView_II_Bimestre);
+        tv_Titulo_II_Bimestre = (TextView) rView.findViewById(R.id.Titulo_II_Bimestre);
+        rv_II_Bimestre.setHasFixedSize(true);
+        rv_II_Bimestre.setLayoutManager(LM_II);
+        rv_II_Bimestre.setItemAnimator(new DefaultItemAnimator());
+        rv_II_Bimestre.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL));
+        listData_II_Bimestre = new ArrayList<>();
+        adp_portugues_oitavo_II = new Adaptador_Portugues_oitavo_II_Bimestre(listData_II_Bimestre);
+
+
+        RecyclerView.LayoutManager LM_III = new LinearLayoutManager(getActivity().getApplicationContext());
+        rv_III_Bimestre = (RecyclerView) rView.findViewById(R.id.recyclerView_III_Bimestre);
+        tv_Titulo_III_Bimestre = (TextView) rView.findViewById(R.id.Titulo_III_Bimestre);
+        rv_III_Bimestre.setHasFixedSize(true);
+        rv_III_Bimestre.setLayoutManager(LM_III);
+        rv_III_Bimestre.setItemAnimator(new DefaultItemAnimator());
+        rv_III_Bimestre.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL));
+        listData_III_Bimestre = new ArrayList<>();
+        adp_portugues_oitavo_III = new Adaptador_Portugues_oitavo_III_Bimestre(listData_III_Bimestre);
+
+
+        RecyclerView.LayoutManager LM_IV = new LinearLayoutManager(getActivity().getApplicationContext());
+        rv_IV_Bimestre = (RecyclerView) rView.findViewById(R.id.recyclerView_IV_Bimestre);
+        tv_Titulo_IV_Bimestre = (TextView) rView.findViewById(R.id.Titulo_IV_Bimestre);
+        rv_IV_Bimestre.setHasFixedSize(true);
+        rv_IV_Bimestre.setLayoutManager(LM_IV);
+        rv_IV_Bimestre.setItemAnimator(new DefaultItemAnimator());
+        rv_IV_Bimestre.addItemDecoration(new DividerItemDecoration(getActivity().getApplicationContext(), LinearLayoutManager.VERTICAL));
+        listData_IV_Bimestre = new ArrayList<>();
+        adp_portugues_oitavo_IV = new Adaptador_Portugues_oitavo_IV_Bimestre(listData_IV_Bimestre);
+
+
+        rv_I_Bimestre.setNestedScrollingEnabled(false);
+        rv_II_Bimestre.setNestedScrollingEnabled(false);
+        rv_III_Bimestre.setNestedScrollingEnabled(false);
+        rv_IV_Bimestre.setNestedScrollingEnabled(false);
+
+        //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS BIMESTRES==================
 
 
         //=============MÉTODO CARREGA DO FIREBASE E SETA AS DATAS NOS BALÕES DE BIMESTRES===========
@@ -524,24 +457,6 @@ public class Tab_portugues_oitavo_ extends Fragment{
         UserData_termino_4.addValueEventListener(post_termino_4_Listener);
 
         //==========================================================================================
-
-
-
-
-
-
-
-
-
-
-        FDB = FirebaseDatabase.getInstance();
-        //FirebaseDatabase.setPersistenceEnabled();
-
-        GetDataFirebase();
-
-
-
-
 
         return rView;
     }
@@ -1106,47 +1021,7 @@ public class Tab_portugues_oitavo_ extends Fragment{
 
     }
 
-    public void carregar_data_inicio_1(){
 
-        final String user_id = fbAuth.getCurrentUser().getUid();
-
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        UserData_inicio_1 = database.getReference().child("users").child(user_id).child("datas").child("inicio_1");
-
-        ValueEventListener postListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.exists()){
-
-                    DatasFirebase post = dataSnapshot.getValue(DatasFirebase.class);
-
-                    dia_up_inicio_1 = post.inicio_1;
-                    mes_up_inicio_1 = post.inicio_1;
-
-                    dia_up_inicio_1 = dia_up_inicio_1.substring(0, 2);
-                    mes_up_inicio_1 = mes_up_inicio_1.substring(3, 5);
-
-                    conversor_mes_up_inicio_1();
-
-                    //dia_inicio_I.setText(dia_up_inicio_1);
-                    //mes_inicio_I.setText(mes_up_inicio_1);
-
-                }
-                else {
-                    //Toast.makeText(Config_bimestre_activity.this, "Datas não configuradas", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-        UserData_inicio_1.addValueEventListener(postListener);
-
-    }
 
 
 
@@ -1163,11 +1038,11 @@ public class Tab_portugues_oitavo_ extends Fragment{
                 JSONObject postDataParams = new JSONObject();
 
                 postDataParams.put("titulo",titulo);
-                postDataParams.put("text1", adp_portugues_oitavo_1_bimestre.listArray.get(0).getX());
-                postDataParams.put("text2", adp_portugues_oitavo_1_bimestre.listArray.get(1).getX());
-                postDataParams.put("text3", adp_portugues_oitavo_1_bimestre.listArray.get(2).getX());
-                postDataParams.put("text4", adp_portugues_oitavo_1_bimestre.listArray.get(3).getX());
-                postDataParams.put("text5", adp_portugues_oitavo_1_bimestre.listArray.get(4).getX());
+               //postDataParams.put("text1", adp_portugues_oitavo_1_bimestre.listArray.get(0).getX());
+                //postDataParams.put("text2", adp_portugues_oitavo_1_bimestre.listArray.get(1).getX());
+                //postDataParams.put("text3", adp_portugues_oitavo_1_bimestre.listArray.get(2).getX());
+                //postDataParams.put("text4", adp_portugues_oitavo_1_bimestre.listArray.get(3).getX());
+               // postDataParams.put("text5", adp_portugues_oitavo_1_bimestre.listArray.get(4).getX());
 
 
                 Log.e("params",postDataParams.toString());
@@ -1249,14 +1124,11 @@ public class Tab_portugues_oitavo_ extends Fragment{
 
     //======================Fim ----Enviar Conteudo I - Bimestre Google Script API============================
 
+    public void GetDataFirebase_I_Bimestre() {
 
+        //--------I_Bimestre-----------//
 
-
-    void GetDataFirebase(){
-
-        //====================================================I_Bimestre======================================================//
-
-        //-------------------------------Titulo_I_Bimestre-------------------------------------------------------------------//
+        //------Titulo_I_Bimestre------//
         DBR_Titulo_I_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/8_ano/1_bimestre/titulo/0/x");
         DBR_Titulo_I_Bimestre.addValueEventListener(new ValueEventListener() {
             @Override
@@ -1271,17 +1143,17 @@ public class Tab_portugues_oitavo_ extends Fragment{
             }
         });
 
-        //---------------------------------Conteudo_I_Bimestre---------------------------------------------------------------//
-        //---------------- Usar adaptador----------//
+        //------Conteudo_I_Bimestre------//
         DBR = FDB.getReference("disciplinas").child("portugues").child("8_ano").child("1_bimestre").child("conteudo");
         DBR.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
+                MyDataGetSet x = dataSnapshot.getValue(MyDataGetSet.class);
 
-                listData_1_bimestre.add(x);
-                rv_I_Bimestre_8_portugues.setAdapter(adp_portugues_oitavo_1_bimestre);
+                listData_I_Bimestre.add(x);
+                rv_I_Bimestre.setAdapter(adp_portugues_oitavo_I);
+
             }
 
             @Override
@@ -1304,15 +1176,222 @@ public class Tab_portugues_oitavo_ extends Fragment{
 
             }
         });
+    }
 
-        //====================================================Fim _ I Bimestre======================================================//
+    public class Adaptador_Portugues_oitavo_I_Bimestre extends RecyclerView.Adapter<Adaptador_Portugues_oitavo_I_Bimestre.ViewholderPortugues_oitavo_I_Bimestre> {
+
+        List<MyDataGetSet> listArray_I;
+
+        public Adaptador_Portugues_oitavo_I_Bimestre(List<MyDataGetSet> List) {
+            this.listArray_I = List;
+        }
+
+        @Override
+        public ViewholderPortugues_oitavo_I_Bimestre onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_, parent, false);
+
+            return new ViewholderPortugues_oitavo_I_Bimestre(view);
+        }
+
+        //Aqui instancia a textview e a checkbox
+        public class ViewholderPortugues_oitavo_I_Bimestre extends RecyclerView.ViewHolder {
+            TextView myText;
+            CheckBox mCB;
+            LinearLayout layout_item_view;
+            View mView;
+
+            public ViewholderPortugues_oitavo_I_Bimestre(View itemView) {
+                super(itemView);
+                mView = itemView;
+
+                myText = (TextView) itemView.findViewById(R.id.text_itemview);
+                mCB = (CheckBox) itemView.findViewById(R.id.cb_itemView_);
+                layout_item_view = (LinearLayout) itemView.findViewById(R.id.layout_item_view);
+
+            }
+        }
+
+        @Override
+        public void onBindViewHolder(final ViewholderPortugues_oitavo_I_Bimestre holder, final int position) {
+            MyDataGetSet x = listArray_I.get(position);
+            holder.myText.setText(x.getX());
+            holder.mCB.setChecked(x.isB());
+            holder.setIsRecyclable(true);
+
+            bimestre = "1_bimestre";
+
+            //Método que faz a captura do LongClick na Lista de Conteúdos.
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+                    position_check = position;
+                    position_firebase = Integer.toString(position);
+                    ExibeDialogOpcoes();
+                    return true;
+                }
+            });
+
+        }
+
+        @Override
+        public int getItemCount() {
+
+            if (listArray_I != null)
+                return listArray_I.size();
+            else
+                return 0;
+
+        }
 
 
 
+        /*
+            for (int cont =0; cont <=3; cont++) {
+                final int cont_ = cont;
+                final String posicao_lista = Integer.toString(cont_);
 
-        //====================================================II_Bimestre======================================================//
+                DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
+                        child("conteudo").child(posicao_lista).child(user_id).child("uid");
 
-        //-------------------------------Titulo_II_Bimestre-------------------------------------------------------------------//
+                ValueEventListener postListener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                       // if (dataSnapshot.exists()){
+
+                            MyDataGetSet post = dataSnapshot.getValue(MyDataGetSet.class);
+
+                            uid = post.uid;
+
+                            if(uid != null){
+                                Toast.makeText(getContext(), "Sim"+ uid, Toast.LENGTH_LONG).show();
+                                listData_I_Bimestre.get(cont_).setB(false);
+                                notifyDataSetChanged();
+                            }
+                            else if (uid == null){
+                                Toast.makeText(getContext(), "Não " +posicao_lista+ " "+ uid, Toast.LENGTH_LONG).show();
+                                listData_I_Bimestre.get(cont_).setB(true);
+                                notifyDataSetChanged();
+                            }
+
+                        //}
+                        //else {}
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                };
+                DiscRefFirebase.addValueEventListener(postListener);
+
+            }*/
+
+        //MÉTODO A SER USADO EM TODAS AS RECYCLERVIEWS
+        //Dialog que mostra as opções a serem escolhidas após o Long Click no itemView.
+        // É chamado dentro de onLongClick(View v) que está dentro de onBindViewHolder
+        public void ExibeDialogOpcoes() {
+            final Dialog dialog = new Dialog(getActivity());
+
+            dialog.setContentView(R.layout.layout_opcoes_click_itemview);
+
+            //instancia os objetos que estão no layout customdialog.xml
+            final TextView btn_marcar_conteudo = (TextView) dialog.findViewById(R.id.btn_marcar_conteudo);
+            final TextView btn_desmarcar_conteudo = (TextView) dialog.findViewById(R.id.btn_desmarcar_conteúdo);
+            final TextView btn_abrir_anotacoes = (TextView) dialog.findViewById(R.id.btn_abrir_anotacoes);
+
+            //Aqui marca o conteúdo
+            btn_marcar_conteudo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Toast.makeText(getContext(), "Conteúdo marcado ", Toast.LENGTH_SHORT).show();
+
+                    MarcaConteudoFirebase();
+                    notifyDataSetChanged();
+                    dialog.dismiss();
+                }
+            });
+
+            //Aqui desmarca o conteúdo
+            btn_desmarcar_conteudo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Toast.makeText(getContext(), "Conteúdo desmarcado ", Toast.LENGTH_SHORT).show();
+                    DesmarcaConteudoFirebase();
+                    notifyDataSetChanged();
+                    dialog.dismiss();
+                }
+            });
+
+            //Aqui deve abrir o documento desse conteúdo no docs.
+            btn_abrir_anotacoes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            });
+
+            //exibe na tela o dialog
+            dialog.show();
+
+        }
+
+        //Método para Marcar o conteúdo, escrevendo a ID do usuário que estará gravada dentro do
+        //child do item do conteúdo no Firebase. Ele é chamado dentro do btn_marcar_conteudo que
+        //está dentro do ExibeDialogOpcoes.
+        private void MarcaConteudoFirebase() {
+            final String user_id = fbAuth.getCurrentUser().getUid();
+
+            HashMap userMap_inicio_1 = new HashMap();
+
+            userMap_inicio_1.put("uid", user_id);
+
+            DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
+                    child("conteudo").child(position_firebase).child(user_id).
+                    updateChildren(userMap_inicio_1).addOnCompleteListener(new OnCompleteListener() {
+                @Override
+                public void onComplete(@NonNull Task task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getContext(), "Salvo", Toast.LENGTH_LONG).show();
+                        listData_I_Bimestre.get(position_check).setB(true);
+                        notifyDataSetChanged();
+                    } else {
+                        String message = task.getException().getMessage();
+                        Toast.makeText(getContext(), "Não salvo. Erro: " + message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+        //Método para desmarcar o conteúdo, apagando a ID do usuário que estará gravada dentro do
+        //child do item do conteúdo no Firebase. Ele é chamado dentro do btn_desmarcar_conteudo que
+        //está dentro do ExibeDialogOpcoes.
+        private void DesmarcaConteudoFirebase() {
+
+            final String user_id = fbAuth.getCurrentUser().getUid();
+
+            DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
+                    child("conteudo").child(position_firebase).child(user_id).removeValue();
+
+            listData_I_Bimestre.get(position_check).setB(false);
+
+            notifyDataSetChanged();
+            Toast.makeText(getContext(), "Salvo" , Toast.LENGTH_SHORT).show();
+
+        }
+
+    }
+
+
+
+    public void GetDataFirebase_II_Bimestre() {
+
+        //--------II_Bimestre-----------//
+
+        //------Titulo_II_Bimestre------//
         DBR_Titulo_II_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/8_ano/2_bimestre/titulo/0/x");
         DBR_Titulo_II_Bimestre.addValueEventListener(new ValueEventListener() {
             @Override
@@ -1327,17 +1406,17 @@ public class Tab_portugues_oitavo_ extends Fragment{
             }
         });
 
-        //---------------------------------Conteudo_II_Bimestre---------------------------------------------------------------//
-        //---------------- Usar adaptador----------//
+        //------Conteudo_II_Bimestre------//
         DBR = FDB.getReference("disciplinas").child("portugues").child("8_ano").child("2_bimestre").child("conteudo");
         DBR.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
+                MyDataGetSet x = dataSnapshot.getValue(MyDataGetSet.class);
 
-                listData_2_bimestre.add(x);
-                rv_II_Bimestre_8_portugue.setAdapter(adp_portugues_oitavo_2_bimestre);
+                listData_II_Bimestre.add(x);
+                rv_II_Bimestre.setAdapter(adp_portugues_oitavo_II);
+
             }
 
             @Override
@@ -1360,14 +1439,176 @@ public class Tab_portugues_oitavo_ extends Fragment{
 
             }
         });
+    }
 
-        //====================================================Fim _ II Bimestre======================================================//
+    public class Adaptador_Portugues_oitavo_II_Bimestre extends RecyclerView.Adapter<Adaptador_Portugues_oitavo_II_Bimestre.ViewholderPortugues_oitavo_II_Bimestre> {
+
+        List<MyDataGetSet> listArray_II;
+
+        public Adaptador_Portugues_oitavo_II_Bimestre(List<MyDataGetSet> List) {
+            this.listArray_II = List;
+        }
+
+        @Override
+        public ViewholderPortugues_oitavo_II_Bimestre onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_, parent, false);
+
+            return new ViewholderPortugues_oitavo_II_Bimestre(view);
+        }
+
+        @Override
+        public void onBindViewHolder(final Adaptador_Portugues_oitavo_II_Bimestre.ViewholderPortugues_oitavo_II_Bimestre holder, final int position) {
+            MyDataGetSet x = listArray_II.get(position);
+            holder.myText.setText(x.getX());
+            holder.mCB.setChecked(x.isB());
+            holder.setIsRecyclable(true);
+
+            bimestre = "2_bimestre";
+
+            //Método que faz a captura do LongClick na Lista de Conteúdos.
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+                    position_check = position;
+                    position_firebase = Integer.toString(position);
+                    ExibeDialogOpcoes();
+                    return true;
+                }
+            });
+        }
+
+        //Aqui instancia a textview e a checkbox
+        public class ViewholderPortugues_oitavo_II_Bimestre extends RecyclerView.ViewHolder {
+            TextView myText;
+            CheckBox mCB;
+            LinearLayout layout_item_view;
+            View mView;
+
+            public ViewholderPortugues_oitavo_II_Bimestre(View itemView) {
+                super(itemView);
+                mView = itemView;
+
+                myText = (TextView) itemView.findViewById(R.id.text_itemview);
+                mCB = (CheckBox) itemView.findViewById(R.id.cb_itemView_);
+                layout_item_view = (LinearLayout) itemView.findViewById(R.id.layout_item_view);
+
+            }
+        }
+
+        @Override
+        public int getItemCount() {
+
+            if (listArray_II != null)
+                return listArray_II.size();
+            else
+                return 0;
+
+        }
+
+        //MÉTODO A SER USADO EM TODAS AS RECYCLERVIEWS
+        //Dialog que mostra as opções a serem escolhidas após o Long Click no itemView.
+        // É chamado dentro de onLongClick(View v) que está dentro de onBindViewHolder
+        public void ExibeDialogOpcoes() {
+            final Dialog dialog = new Dialog(getActivity());
+
+            dialog.setContentView(R.layout.layout_opcoes_click_itemview);
+
+            //instancia os objetos que estão no layout customdialog.xml
+            final TextView btn_marcar_conteudo = (TextView) dialog.findViewById(R.id.btn_marcar_conteudo);
+            final TextView btn_desmarcar_conteudo = (TextView) dialog.findViewById(R.id.btn_desmarcar_conteúdo);
+            final TextView btn_abrir_anotacoes = (TextView) dialog.findViewById(R.id.btn_abrir_anotacoes);
+
+            //Aqui marca o conteúdo
+            btn_marcar_conteudo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Toast.makeText(getContext(), "Conteúdo marcado ", Toast.LENGTH_SHORT).show();
+
+                    MarcaConteudoFirebase();
+                    notifyDataSetChanged();
+                    dialog.dismiss();
+                }
+            });
+
+            //Aqui desmarca o conteúdo
+            btn_desmarcar_conteudo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Toast.makeText(getContext(), "Conteúdo desmarcado ", Toast.LENGTH_SHORT).show();
+                    DesmarcaConteudoFirebase();
+                    notifyDataSetChanged();
+                    dialog.dismiss();
+                }
+            });
+
+            //Aqui deve abrir o documento desse conteúdo no docs.
+            btn_abrir_anotacoes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            });
+
+            //exibe na tela o dialog
+            dialog.show();
+
+        }
+
+        //Método para Marcar o conteúdo, escrevendo a ID do usuário que estará gravada dentro do
+        //child do item do conteúdo no Firebase. Ele é chamado dentro do btn_marcar_conteudo que
+        //está dentro do ExibeDialogOpcoes.
+        private void MarcaConteudoFirebase() {
+            final String user_id = fbAuth.getCurrentUser().getUid();
+
+            HashMap userMap_inicio_1 = new HashMap();
+
+            userMap_inicio_1.put("uid", user_id);
+
+            DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
+                    child("conteudo").child(position_firebase).child(user_id).
+                    updateChildren(userMap_inicio_1).addOnCompleteListener(new OnCompleteListener() {
+                @Override
+                public void onComplete(@NonNull Task task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getContext(), "Salvo", Toast.LENGTH_LONG).show();
+                        listData_II_Bimestre.get(position_check).setB(true);
+                        notifyDataSetChanged();
+                    } else {
+                        String message = task.getException().getMessage();
+                        Toast.makeText(getContext(), "Não salvo. Erro: " + message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+        //Método para desmarcar o conteúdo, apagando a ID do usuário que estará gravada dentro do
+        //child do item do conteúdo no Firebase. Ele é chamado dentro do btn_desmarcar_conteudo que
+        //está dentro do ExibeDialogOpcoes.
+        private void DesmarcaConteudoFirebase() {
+
+            final String user_id = fbAuth.getCurrentUser().getUid();
+
+            DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
+                    child("conteudo").child(position_firebase).child(user_id).removeValue();
+
+            listData_II_Bimestre.get(position_check).setB(false);
+
+            notifyDataSetChanged();
+            Toast.makeText(getContext(), "Salvo" , Toast.LENGTH_SHORT).show();
+
+        }
+
+    }
 
 
 
-        //====================================================III_Bimestre======================================================//
+    public void GetDataFirebase_III_Bimestre() {
 
-        //-------------------------------Titulo_III_Bimestre-------------------------------------------------------------------//
+        //--------III_Bimestre-----------//
+
+        //------Titulo_III_Bimestre------//
         DBR_Titulo_III_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/8_ano/3_bimestre/titulo/0/x");
         DBR_Titulo_III_Bimestre.addValueEventListener(new ValueEventListener() {
             @Override
@@ -1382,17 +1623,17 @@ public class Tab_portugues_oitavo_ extends Fragment{
             }
         });
 
-        //---------------------------------Conteudo_III_Bimestre---------------------------------------------------------------//
-        //---------------- Usar adaptador----------//
+        //------Conteudo_III_Bimestre------//
         DBR = FDB.getReference("disciplinas").child("portugues").child("8_ano").child("3_bimestre").child("conteudo");
         DBR.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
+                MyDataGetSet x = dataSnapshot.getValue(MyDataGetSet.class);
 
-                listData_3_bimestre.add(x);
-                rv_III_Bimestre_8_portugues.setAdapter(adp_portugues_oitavo_3_bimestre);
+                listData_III_Bimestre.add(x);
+                rv_III_Bimestre.setAdapter(adp_portugues_oitavo_III);
+
             }
 
             @Override
@@ -1415,20 +1656,181 @@ public class Tab_portugues_oitavo_ extends Fragment{
 
             }
         });
+    }
 
-        //====================================================Fim _ III Bimestre======================================================//
+    public class Adaptador_Portugues_oitavo_III_Bimestre extends RecyclerView.Adapter<Adaptador_Portugues_oitavo_III_Bimestre.ViewholderPortugues_oitavo_III_Bimestre> {
+
+        List<MyDataGetSet> listArray_III;
+
+        public Adaptador_Portugues_oitavo_III_Bimestre(List<MyDataGetSet> List) {
+            this.listArray_III = List;
+        }
+
+        @Override
+        public ViewholderPortugues_oitavo_III_Bimestre onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_, parent, false);
+
+            return new ViewholderPortugues_oitavo_III_Bimestre(view);
+        }
+
+        @Override
+        public void onBindViewHolder(final Adaptador_Portugues_oitavo_III_Bimestre.ViewholderPortugues_oitavo_III_Bimestre holder, final int position) {
+            MyDataGetSet x = listArray_III.get(position);
+            holder.myText.setText(x.getX());
+            holder.mCB.setChecked(x.isB());
+            holder.setIsRecyclable(true);
+
+            bimestre = "3_bimestre";
+
+            //Método que faz a captura do LongClick na Lista de Conteúdos.
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+                    position_check = position;
+                    position_firebase = Integer.toString(position);
+                    ExibeDialogOpcoes();
+                    return true;
+                }
+            });
+        }
+
+        //Aqui instancia a textview e a checkbox
+        public class ViewholderPortugues_oitavo_III_Bimestre extends RecyclerView.ViewHolder {
+            TextView myText;
+            CheckBox mCB;
+            LinearLayout layout_item_view;
+            View mView;
+
+            public ViewholderPortugues_oitavo_III_Bimestre(View itemView) {
+                super(itemView);
+                mView = itemView;
+
+                myText = (TextView) itemView.findViewById(R.id.text_itemview);
+                mCB = (CheckBox) itemView.findViewById(R.id.cb_itemView_);
+                layout_item_view = (LinearLayout) itemView.findViewById(R.id.layout_item_view);
+
+            }
+        }
+
+        @Override
+        public int getItemCount() {
+
+            if (listArray_III != null)
+                return listArray_III.size();
+            else
+                return 0;
+
+        }
+
+        //MÉTODO A SER USADO EM TODAS AS RECYCLERVIEWS
+        //Dialog que mostra as opções a serem escolhidas após o Long Click no itemView.
+        // É chamado dentro de onLongClick(View v) que está dentro de onBindViewHolder
+        public void ExibeDialogOpcoes() {
+            final Dialog dialog = new Dialog(getActivity());
+
+            dialog.setContentView(R.layout.layout_opcoes_click_itemview);
+
+            //instancia os objetos que estão no layout customdialog.xml
+            final TextView btn_marcar_conteudo = (TextView) dialog.findViewById(R.id.btn_marcar_conteudo);
+            final TextView btn_desmarcar_conteudo = (TextView) dialog.findViewById(R.id.btn_desmarcar_conteúdo);
+            final TextView btn_abrir_anotacoes = (TextView) dialog.findViewById(R.id.btn_abrir_anotacoes);
+
+            //Aqui marca o conteúdo
+            btn_marcar_conteudo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Toast.makeText(getContext(), "Conteúdo marcado ", Toast.LENGTH_SHORT).show();
+
+                    MarcaConteudoFirebase();
+                    notifyDataSetChanged();
+                    dialog.dismiss();
+                }
+            });
+
+            //Aqui desmarca o conteúdo
+            btn_desmarcar_conteudo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Toast.makeText(getContext(), "Conteúdo desmarcado ", Toast.LENGTH_SHORT).show();
+                    DesmarcaConteudoFirebase();
+                    notifyDataSetChanged();
+                    dialog.dismiss();
+                }
+            });
+
+            //Aqui deve abrir o documento desse conteúdo no docs.
+            btn_abrir_anotacoes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            });
+
+            //exibe na tela o dialog
+            dialog.show();
+
+        }
+
+        //Método para Marcar o conteúdo, escrevendo a ID do usuário que estará gravada dentro do
+        //child do item do conteúdo no Firebase. Ele é chamado dentro do btn_marcar_conteudo que
+        //está dentro do ExibeDialogOpcoes.
+        private void MarcaConteudoFirebase() {
+            final String user_id = fbAuth.getCurrentUser().getUid();
+
+            HashMap userMap_inicio_1 = new HashMap();
+
+            userMap_inicio_1.put("uid", user_id);
+
+            DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
+                    child("conteudo").child(position_firebase).child(user_id).
+                    updateChildren(userMap_inicio_1).addOnCompleteListener(new OnCompleteListener() {
+                @Override
+                public void onComplete(@NonNull Task task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getContext(), "Salvo", Toast.LENGTH_LONG).show();
+                        listData_III_Bimestre.get(position_check).setB(true);
+                        notifyDataSetChanged();
+                    } else {
+                        String message = task.getException().getMessage();
+                        Toast.makeText(getContext(), "Não salvo. Erro: " + message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+        //Método para desmarcar o conteúdo, apagando a ID do usuário que estará gravada dentro do
+        //child do item do conteúdo no Firebase. Ele é chamado dentro do btn_desmarcar_conteudo que
+        //está dentro do ExibeDialogOpcoes.
+        private void DesmarcaConteudoFirebase() {
+
+            final String user_id = fbAuth.getCurrentUser().getUid();
+
+            DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
+                    child("conteudo").child(position_firebase).child(user_id).removeValue();
+
+            listData_III_Bimestre.get(position_check).setB(false);
+
+            notifyDataSetChanged();
+            Toast.makeText(getContext(), "Salvo" , Toast.LENGTH_SHORT).show();
+
+        }
+
+    }
 
 
+    public void GetDataFirebase_IV_Bimestre() {
 
-        //====================================================IV_Bimestre======================================================//
+        //--------IV_Bimestre-----------//
 
-        //-------------------------------Titulo_IV_Bimestre-------------------------------------------------------------------//
+        //------Titulo_IV_Bimestre------//
         DBR_Titulo_IV_Bimestre = FDB.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/8_ano/4_bimestre/titulo/0/x");
         DBR_Titulo_IV_Bimestre.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String str_Titulo_IV_Bimestre = dataSnapshot.getValue(String.class);
-                tv_Titulo_IV_Bimestre.setText(str_Titulo_IV_Bimestre);
+                String str_Titulo_I_Bimestre = dataSnapshot.getValue(String.class);
+                tv_Titulo_I_Bimestre.setText(str_Titulo_I_Bimestre);
             }
 
             @Override
@@ -1437,17 +1839,17 @@ public class Tab_portugues_oitavo_ extends Fragment{
             }
         });
 
-        //---------------------------------Conteudo_III_Bimestre---------------------------------------------------------------//
-        //---------------- Usar adaptador----------//
+        //------Conteudo_I_Bimestre------//
         DBR = FDB.getReference("disciplinas").child("portugues").child("8_ano").child("4_bimestre").child("conteudo");
         DBR.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                MyDataGetSet x =  dataSnapshot.getValue(MyDataGetSet.class) ;
+                MyDataGetSet x = dataSnapshot.getValue(MyDataGetSet.class);
 
-                listData_4_bimestre.add(x);
-                rv_IV_Bimestre_8_portugues.setAdapter(adp_portugues_oitavo_4_bimestre);
+                listData_IV_Bimestre.add(x);
+                rv_IV_Bimestre.setAdapter(adp_portugues_oitavo_IV);
+
             }
 
             @Override
@@ -1470,74 +1872,187 @@ public class Tab_portugues_oitavo_ extends Fragment{
 
             }
         });
-
-        //====================================================Fim _ IV Bimestre======================================================//
-
-
-
-
-
     }
 
+    public class Adaptador_Portugues_oitavo_IV_Bimestre extends RecyclerView.Adapter<Adaptador_Portugues_oitavo_IV_Bimestre.ViewholderPortugues_oitavo_IV_Bimestre> {
 
+        List<MyDataGetSet> listArray_IV;
 
-    /*
-    public class Adaptador_Portugues_sexto extends RecyclerView.Adapter<Adaptador_Portugues_sexto.ViewholderPortugues_sexto>{
-
-        List<MyDataGetSet> listArray;
-
-        public  Adaptador_Portugues_sexto(List<MyDataGetSet> List){
-            this.listArray = List;
-
+        public Adaptador_Portugues_oitavo_IV_Bimestre(List<MyDataGetSet> List) {
+            this.listArray_IV = List;
         }
 
         @Override
-        public ViewholderPortugues_sexto onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_,parent,false);
+        public ViewholderPortugues_oitavo_IV_Bimestre onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_, parent, false);
 
-            return new ViewholderPortugues_sexto(view);
+            return new ViewholderPortugues_oitavo_IV_Bimestre(view);
         }
 
-        @Override
-        public void onBindViewHolder(Adaptador_Portugues_sexto.ViewholderPortugues_sexto holder, int position) {
-            MyDataGetSet x = listArray.get(position);
-
-            holder.myText.setText(x.getX());
-
-        }
-
-
-        public class ViewholderPortugues_sexto extends RecyclerView.ViewHolder{
+        //Aqui instancia a textview e a checkbox
+        public class ViewholderPortugues_oitavo_IV_Bimestre extends RecyclerView.ViewHolder {
             TextView myText;
             CheckBox mCB;
+            LinearLayout layout_item_view;
+            View mView;
 
-            public int estadocb1;
-            CheckBox cb1;
-
-            public ViewholderPortugues_sexto(View itemView) {
+            public ViewholderPortugues_oitavo_IV_Bimestre(View itemView) {
                 super(itemView);
+                mView = itemView;
 
+                myText = (TextView) itemView.findViewById(R.id.text_itemview);
                 mCB = (CheckBox) itemView.findViewById(R.id.cb_itemView_);
-                myText = (TextView) itemView.findViewById(R.id.textView_);
+                layout_item_view = (LinearLayout) itemView.findViewById(R.id.layout_item_view);
+
             }
-
-
         }
 
+        @Override
+        public void onBindViewHolder(final ViewholderPortugues_oitavo_IV_Bimestre holder, final int position) {
+            MyDataGetSet x = listArray_IV.get(position);
+            holder.myText.setText(x.getX());
+            holder.mCB.setChecked(x.isB());
+            holder.setIsRecyclable(true);
+
+            bimestre = "4_bimestre";
+
+            //Método que faz a captura do LongClick na Lista de Conteúdos.
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+                    position_check = position;
+                    position_firebase = Integer.toString(position);
+                    ExibeDialogOpcoes();
+                    return true;
+                }
+            });
+
+        }
 
         @Override
         public int getItemCount() {
-            return listArray.size();
+
+            if (listArray_IV != null)
+                return listArray_IV.size();
+            else
+                return 0;
+
         }
 
+        //MÉTODO A SER USADO EM TODAS AS RECYCLERVIEWS
+        //Dialog que mostra as opções a serem escolhidas após o Long Click no itemView.
+        // É chamado dentro de onLongClick(View v) que está dentro de onBindViewHolder
+        public void ExibeDialogOpcoes() {
+            final Dialog dialog = new Dialog(getActivity());
+
+            dialog.setContentView(R.layout.layout_opcoes_click_itemview);
+
+            //instancia os objetos que estão no layout customdialog.xml
+            final TextView btn_marcar_conteudo = (TextView) dialog.findViewById(R.id.btn_marcar_conteudo);
+            final TextView btn_desmarcar_conteudo = (TextView) dialog.findViewById(R.id.btn_desmarcar_conteúdo);
+            final TextView btn_abrir_anotacoes = (TextView) dialog.findViewById(R.id.btn_abrir_anotacoes);
+
+            //Aqui marca o conteúdo
+            btn_marcar_conteudo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Toast.makeText(getContext(), "Conteúdo marcado ", Toast.LENGTH_SHORT).show();
+
+                    MarcaConteudoFirebase();
+                    notifyDataSetChanged();
+                    dialog.dismiss();
+                }
+            });
+
+            //Aqui desmarca o conteúdo
+            btn_desmarcar_conteudo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Toast.makeText(getContext(), "Conteúdo desmarcado ", Toast.LENGTH_SHORT).show();
+                    DesmarcaConteudoFirebase();
+                    notifyDataSetChanged();
+                    dialog.dismiss();
+                }
+            });
+
+            //Aqui deve abrir o documento desse conteúdo no docs.
+            btn_abrir_anotacoes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            });
+
+            //exibe na tela o dialog
+            dialog.show();
+
+        }
+
+        //Método para Marcar o conteúdo, escrevendo a ID do usuário que estará gravada dentro do
+        //child do item do conteúdo no Firebase. Ele é chamado dentro do btn_marcar_conteudo que
+        //está dentro do ExibeDialogOpcoes.
+        private void MarcaConteudoFirebase() {
+            final String user_id = fbAuth.getCurrentUser().getUid();
+
+            HashMap userMap_inicio_1 = new HashMap();
+
+            userMap_inicio_1.put("uid", user_id);
+
+            DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
+                    child("conteudo").child(position_firebase).child(user_id).
+                    updateChildren(userMap_inicio_1).addOnCompleteListener(new OnCompleteListener() {
+                @Override
+                public void onComplete(@NonNull Task task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getContext(), "Salvo", Toast.LENGTH_LONG).show();
+                        listData_IV_Bimestre.get(position_check).setB(true);
+                        notifyDataSetChanged();
+                    } else {
+                        String message = task.getException().getMessage();
+                        Toast.makeText(getContext(), "Não salvo. Erro: " + message, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+        //Método para desmarcar o conteúdo, apagando a ID do usuário que estará gravada dentro do
+        //child do item do conteúdo no Firebase. Ele é chamado dentro do btn_desmarcar_conteudo que
+        //está dentro do ExibeDialogOpcoes.
+        private void DesmarcaConteudoFirebase() {
+
+            final String user_id = fbAuth.getCurrentUser().getUid();
+
+            DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
+                    child("conteudo").child(position_firebase).child(user_id).removeValue();
+
+            listData_IV_Bimestre.get(position_check).setB(false);
+
+            notifyDataSetChanged();
+            Toast.makeText(getContext(), "Salvo" , Toast.LENGTH_SHORT).show();
+
+        }
 
     }
-    */
+
+
+    @Override
+    public void onStart() {
+
+        super.onStart();
+        GetDataFirebase_I_Bimestre();
+        GetDataFirebase_II_Bimestre();
+        GetDataFirebase_III_Bimestre();
+        GetDataFirebase_IV_Bimestre();
+    }
+
+
 
     //===========================MÉTODO QUE RECEBE AS SOMBRAS DOS BIMESTRES===========================
     @Override
     public void onViewCreated (View view, Bundle savedInstanceState) {
-        //((Main_activity) getActivity()).SombraBimestre(view);
+        ((Main_activity) getActivity()).SombraBimestre(view);
         ((Main_activity) getActivity()).tab_obj_port_oitavo_(view);
 
 

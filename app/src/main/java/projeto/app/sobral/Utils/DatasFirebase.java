@@ -11,7 +11,6 @@ public class DatasFirebase {
     public DatasFirebase(){
 
     }
-
     public DatasFirebase(String inicio_1, String termino_1, String inicio_2, String termino_2,
                          String inicio_3, String termino_3, String inicio_4, String termino_4)
     {
@@ -27,5 +26,4 @@ public class DatasFirebase {
         this.inicio_1=inicio_4;
         this.termino_1=termino_4;
     }
-
 }

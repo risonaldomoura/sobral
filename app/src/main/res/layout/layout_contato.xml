@@ -107,7 +107,7 @@
                 android:textSize="18sp"
                 android:text="OK"
                 android:textColor="@color/white"
-                android:background="@color/colorAccent"/>
+                android:background="@drawable/botao_ok_obj"/>
 
         </LinearLayout>
 
