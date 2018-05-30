@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="xingu.inteceleri.xingu.sobral.inteceleri.sobral.Main_activity">
+    tools:context=".Utils.Main_activity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"

@@ -174,11 +174,13 @@ public class Config_bimestre_activity extends AppCompatActivity implements EasyP
         mOutputText = new TextView(this);
         mProgress = new ProgressDialog(this);
 
+        //================================Google Script API: Iniciar Credenciais=========================================
         // Initialize credentials and service object.
         mCredential = GoogleAccountCredential.usingOAuth2(
                 this, Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
 
+        //================================Fim: Google Script API: Iniciar Credenciais=========================================
 
 
     }

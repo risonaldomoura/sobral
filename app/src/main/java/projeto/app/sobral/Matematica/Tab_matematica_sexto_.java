@@ -88,7 +88,8 @@ public class Tab_matematica_sexto_ extends Fragment{
     DatabaseReference DBR;
     DatabaseReference DiscRefFirebase;
 
-    public int position_check;
+    //cont_act é um contador para que o carregamento de saves do firebase ocorra somente uma vez por execução do fragment (Tab)
+    public int position_check, cont_act_1 = 1, cont_act_2 = 1, cont_act_3 = 1, cont_act_4 = 1;
 
     String titulo, uid;
 
@@ -1259,13 +1260,13 @@ public class Tab_matematica_sexto_ extends Fragment{
             holder.mCB.setChecked(x.isB());
             holder.setIsRecyclable(true);
 
-            bimestre = "1_bimestre";
+
 
             //Método que faz a captura do LongClick na Lista de Conteúdos.
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-
+                    bimestre = "1_bimestre";
                     position_check = position;
                     position_firebase = Integer.toString(position);
                     ExibeDialogOpcoes();
@@ -1277,59 +1278,53 @@ public class Tab_matematica_sexto_ extends Fragment{
 
         @Override
         public int getItemCount() {
-
-            if (listArray_I != null)
+            if (listArray_I != null){
+                if (cont_act_1 == 1){
+                    carrega_saves();
+                    cont_act_1 = 0;
+                }
                 return listArray_I.size();
+            }
             else
                 return 0;
-
         }
 
+        private void carrega_saves(){
 
+            DiscRefFirebase = FirebaseDatabase.getInstance().getReference().child("disciplinas");
+            final String user_id = fbAuth.getCurrentUser().getUid();
+            bimestre = "1_bimestre";
 
-        /*
-            for (int cont =0; cont <=3; cont++) {
+            for(int cont =0; cont<= listArray_I.size(); cont ++){
                 final int cont_ = cont;
                 final String posicao_lista = Integer.toString(cont_);
 
                 DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
-                        child("conteudo").child(posicao_lista).child(user_id).child("uid");
+                        child("conteudo").child(posicao_lista).child(user_id).child(user_id).
+                        addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.exists()){
+                                    String isSave = (String) dataSnapshot.getValue();
+                                    if (isSave.equals("true")){
+                                        listData_I_Bimestre.get(cont_).setB(true);
+                                        notifyItemChanged(cont_);
+                                    } else{
+                                        listData_I_Bimestre.get(cont_).setB(false);
+                                        notifyItemChanged(cont_);
+                                    }
 
-                ValueEventListener postListener = new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                       // if (dataSnapshot.exists()){
-
-                            MyDataGetSet post = dataSnapshot.getValue(MyDataGetSet.class);
-
-                            uid = post.uid;
-
-                            if(uid != null){
-                                Toast.makeText(getContext(), "Sim"+ uid, Toast.LENGTH_LONG).show();
-                                listData_I_Bimestre.get(cont_).setB(false);
-                                notifyDataSetChanged();
-                            }
-                            else if (uid == null){
-                                Toast.makeText(getContext(), "Não " +posicao_lista+ " "+ uid, Toast.LENGTH_LONG).show();
-                                listData_I_Bimestre.get(cont_).setB(true);
-                                notifyDataSetChanged();
+                                }
                             }
 
-                        //}
-                        //else {}
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
 
-                    }
+                            }
+                        });
+            }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                };
-                DiscRefFirebase.addValueEventListener(postListener);
-
-            }*/
-
+        }
         //MÉTODO A SER USADO EM TODAS AS RECYCLERVIEWS
         //Dialog que mostra as opções a serem escolhidas após o Long Click no itemView.
         // É chamado dentro de onLongClick(View v) que está dentro de onBindViewHolder
@@ -1350,7 +1345,6 @@ public class Tab_matematica_sexto_ extends Fragment{
                     //Toast.makeText(getContext(), "Conteúdo marcado ", Toast.LENGTH_SHORT).show();
 
                     MarcaConteudoFirebase();
-                    notifyDataSetChanged();
                     dialog.dismiss();
                 }
             });
@@ -1361,7 +1355,6 @@ public class Tab_matematica_sexto_ extends Fragment{
                 public void onClick(View v) {
                     //Toast.makeText(getContext(), "Conteúdo desmarcado ", Toast.LENGTH_SHORT).show();
                     DesmarcaConteudoFirebase();
-                    notifyDataSetChanged();
                     dialog.dismiss();
                 }
             });
@@ -1370,7 +1363,10 @@ public class Tab_matematica_sexto_ extends Fragment{
             btn_abrir_anotacoes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
+                    ((Main_activity) getActivity()).titulo = "Matemática_1_Bimestre_6ano";
+                    ((Main_activity) getActivity()).text1 = listData_I_Bimestre.get(position_check).getX();
+                    ((Main_activity) getActivity()).getResultsFromApi();
                     dialog.dismiss();
                 }
             });
@@ -1388,7 +1384,7 @@ public class Tab_matematica_sexto_ extends Fragment{
 
             HashMap userMap_inicio_1 = new HashMap();
 
-            userMap_inicio_1.put("uid", user_id);
+            userMap_inicio_1.put(user_id, "true");
 
             DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
                     child("conteudo").child(position_firebase).child(user_id).
@@ -1398,7 +1394,7 @@ public class Tab_matematica_sexto_ extends Fragment{
                     if (task.isSuccessful()) {
                         Toast.makeText(getContext(), "Salvo", Toast.LENGTH_LONG).show();
                         listData_I_Bimestre.get(position_check).setB(true);
-                        notifyDataSetChanged();
+                        notifyItemChanged(position_check);
                     } else {
                         String message = task.getException().getMessage();
                         Toast.makeText(getContext(), "Não salvo. Erro: " + message, Toast.LENGTH_SHORT).show();
@@ -1419,7 +1415,7 @@ public class Tab_matematica_sexto_ extends Fragment{
 
             listData_I_Bimestre.get(position_check).setB(false);
 
-            notifyDataSetChanged();
+            notifyItemChanged(position_check);
             Toast.makeText(getContext(), "Salvo" , Toast.LENGTH_SHORT).show();
 
         }
@@ -1504,13 +1500,13 @@ public class Tab_matematica_sexto_ extends Fragment{
             holder.mCB.setChecked(x.isB());
             holder.setIsRecyclable(true);
 
-            bimestre = "2_bimestre";
+
 
             //Método que faz a captura do LongClick na Lista de Conteúdos.
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-
+                    bimestre = "2_bimestre";
                     position_check = position;
                     position_firebase = Integer.toString(position);
                     ExibeDialogOpcoes();
@@ -1539,11 +1535,51 @@ public class Tab_matematica_sexto_ extends Fragment{
 
         @Override
         public int getItemCount() {
-
-            if (listArray_II != null)
+            if (listArray_II != null){
+                if (cont_act_2 == 1){
+                    carrega_saves();
+                    cont_act_2 = 0;
+                }
                 return listArray_II.size();
+            }
             else
                 return 0;
+        }
+
+        private void carrega_saves(){
+
+            DiscRefFirebase = FirebaseDatabase.getInstance().getReference().child("disciplinas");
+            final String user_id = fbAuth.getCurrentUser().getUid();
+            bimestre = "2_bimestre";
+
+            for(int cont =0; cont<= listArray_II.size(); cont ++){
+                final int cont_ = cont;
+                final String posicao_lista = Integer.toString(cont_);
+
+                DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
+                        child("conteudo").child(posicao_lista).child(user_id).child(user_id).
+                        addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.exists()){
+                                    String isSave = (String) dataSnapshot.getValue();
+                                    if (isSave.equals("true")){
+                                        listData_II_Bimestre.get(cont_).setB(true);
+                                        notifyItemChanged(cont_);
+                                    } else{
+                                        listData_II_Bimestre.get(cont_).setB(false);
+                                        notifyItemChanged(cont_);
+                                    }
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+            }
 
         }
 
@@ -1567,7 +1603,6 @@ public class Tab_matematica_sexto_ extends Fragment{
                     //Toast.makeText(getContext(), "Conteúdo marcado ", Toast.LENGTH_SHORT).show();
 
                     MarcaConteudoFirebase();
-                    notifyDataSetChanged();
                     dialog.dismiss();
                 }
             });
@@ -1578,7 +1613,6 @@ public class Tab_matematica_sexto_ extends Fragment{
                 public void onClick(View v) {
                     //Toast.makeText(getContext(), "Conteúdo desmarcado ", Toast.LENGTH_SHORT).show();
                     DesmarcaConteudoFirebase();
-                    notifyDataSetChanged();
                     dialog.dismiss();
                 }
             });
@@ -1587,7 +1621,10 @@ public class Tab_matematica_sexto_ extends Fragment{
             btn_abrir_anotacoes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
+                    ((Main_activity) getActivity()).titulo = "Matemática_2_Bimestre_6ano";
+                    ((Main_activity) getActivity()).text1 = listData_II_Bimestre.get(position_check).getX();
+                    ((Main_activity) getActivity()).getResultsFromApi();
                     dialog.dismiss();
                 }
             });
@@ -1605,7 +1642,7 @@ public class Tab_matematica_sexto_ extends Fragment{
 
             HashMap userMap_inicio_1 = new HashMap();
 
-            userMap_inicio_1.put("uid", user_id);
+            userMap_inicio_1.put(user_id, "true");
 
             DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
                     child("conteudo").child(position_firebase).child(user_id).
@@ -1615,7 +1652,7 @@ public class Tab_matematica_sexto_ extends Fragment{
                     if (task.isSuccessful()) {
                         Toast.makeText(getContext(), "Salvo", Toast.LENGTH_LONG).show();
                         listData_II_Bimestre.get(position_check).setB(true);
-                        notifyDataSetChanged();
+                        notifyItemChanged(position_check);
                     } else {
                         String message = task.getException().getMessage();
                         Toast.makeText(getContext(), "Não salvo. Erro: " + message, Toast.LENGTH_SHORT).show();
@@ -1636,7 +1673,7 @@ public class Tab_matematica_sexto_ extends Fragment{
 
             listData_II_Bimestre.get(position_check).setB(false);
 
-            notifyDataSetChanged();
+            notifyItemChanged(position_check);
             Toast.makeText(getContext(), "Salvo" , Toast.LENGTH_SHORT).show();
 
         }
@@ -1721,13 +1758,13 @@ public class Tab_matematica_sexto_ extends Fragment{
             holder.mCB.setChecked(x.isB());
             holder.setIsRecyclable(true);
 
-            bimestre = "3_bimestre";
+
 
             //Método que faz a captura do LongClick na Lista de Conteúdos.
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-
+                    bimestre = "3_bimestre";
                     position_check = position;
                     position_firebase = Integer.toString(position);
                     ExibeDialogOpcoes();
@@ -1756,11 +1793,51 @@ public class Tab_matematica_sexto_ extends Fragment{
 
         @Override
         public int getItemCount() {
-
-            if (listArray_III != null)
+            if (listArray_III != null){
+                if (cont_act_3 == 1){
+                    carrega_saves();
+                    cont_act_3 = 0;
+                }
                 return listArray_III.size();
+            }
             else
                 return 0;
+        }
+
+        private void carrega_saves(){
+
+            DiscRefFirebase = FirebaseDatabase.getInstance().getReference().child("disciplinas");
+            final String user_id = fbAuth.getCurrentUser().getUid();
+            bimestre = "3_bimestre";
+
+            for(int cont =0; cont<= listArray_III.size(); cont ++){
+                final int cont_ = cont;
+                final String posicao_lista = Integer.toString(cont_);
+
+                DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
+                        child("conteudo").child(posicao_lista).child(user_id).child(user_id).
+                        addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.exists()){
+                                    String isSave = (String) dataSnapshot.getValue();
+                                    if (isSave.equals("true")){
+                                        listData_III_Bimestre.get(cont_).setB(true);
+                                        notifyItemChanged(cont_);
+                                    } else{
+                                        listData_III_Bimestre.get(cont_).setB(false);
+                                        notifyItemChanged(cont_);
+                                    }
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+            }
 
         }
 
@@ -1784,7 +1861,6 @@ public class Tab_matematica_sexto_ extends Fragment{
                     //Toast.makeText(getContext(), "Conteúdo marcado ", Toast.LENGTH_SHORT).show();
 
                     MarcaConteudoFirebase();
-                    notifyDataSetChanged();
                     dialog.dismiss();
                 }
             });
@@ -1795,7 +1871,6 @@ public class Tab_matematica_sexto_ extends Fragment{
                 public void onClick(View v) {
                     //Toast.makeText(getContext(), "Conteúdo desmarcado ", Toast.LENGTH_SHORT).show();
                     DesmarcaConteudoFirebase();
-                    notifyDataSetChanged();
                     dialog.dismiss();
                 }
             });
@@ -1804,7 +1879,10 @@ public class Tab_matematica_sexto_ extends Fragment{
             btn_abrir_anotacoes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
+                    ((Main_activity) getActivity()).titulo = "Matemática_3_Bimestre_6ano";
+                    ((Main_activity) getActivity()).text1 = listData_III_Bimestre.get(position_check).getX();
+                    ((Main_activity) getActivity()).getResultsFromApi();
                     dialog.dismiss();
                 }
             });
@@ -1822,7 +1900,7 @@ public class Tab_matematica_sexto_ extends Fragment{
 
             HashMap userMap_inicio_1 = new HashMap();
 
-            userMap_inicio_1.put("uid", user_id);
+            userMap_inicio_1.put(user_id, "true");
 
             DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
                     child("conteudo").child(position_firebase).child(user_id).
@@ -1832,7 +1910,7 @@ public class Tab_matematica_sexto_ extends Fragment{
                     if (task.isSuccessful()) {
                         Toast.makeText(getContext(), "Salvo", Toast.LENGTH_LONG).show();
                         listData_III_Bimestre.get(position_check).setB(true);
-                        notifyDataSetChanged();
+                        notifyItemChanged(position_check);
                     } else {
                         String message = task.getException().getMessage();
                         Toast.makeText(getContext(), "Não salvo. Erro: " + message, Toast.LENGTH_SHORT).show();
@@ -1853,7 +1931,7 @@ public class Tab_matematica_sexto_ extends Fragment{
 
             listData_III_Bimestre.get(position_check).setB(false);
 
-            notifyDataSetChanged();
+            notifyItemChanged(position_check);
             Toast.makeText(getContext(), "Salvo" , Toast.LENGTH_SHORT).show();
 
         }
@@ -1870,8 +1948,8 @@ public class Tab_matematica_sexto_ extends Fragment{
         DBR_Titulo_IV_Bimestre.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String str_Titulo_I_Bimestre = dataSnapshot.getValue(String.class);
-                tv_Titulo_I_Bimestre.setText(str_Titulo_I_Bimestre);
+                String str_Titulo_IV_Bimestre = dataSnapshot.getValue(String.class);
+                tv_Titulo_IV_Bimestre.setText(str_Titulo_IV_Bimestre);
             }
 
             @Override
@@ -1955,13 +2033,13 @@ public class Tab_matematica_sexto_ extends Fragment{
             holder.mCB.setChecked(x.isB());
             holder.setIsRecyclable(true);
 
-            bimestre = "4_bimestre";
+
 
             //Método que faz a captura do LongClick na Lista de Conteúdos.
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-
+                    bimestre = "4_bimestre";
                     position_check = position;
                     position_firebase = Integer.toString(position);
                     ExibeDialogOpcoes();
@@ -1973,11 +2051,51 @@ public class Tab_matematica_sexto_ extends Fragment{
 
         @Override
         public int getItemCount() {
-
-            if (listArray_IV != null)
+            if (listArray_IV != null){
+                if (cont_act_4 == 1){
+                    carrega_saves();
+                    cont_act_4 = 0;
+                }
                 return listArray_IV.size();
+            }
             else
                 return 0;
+        }
+
+        private void carrega_saves(){
+
+            DiscRefFirebase = FirebaseDatabase.getInstance().getReference().child("disciplinas");
+            final String user_id = fbAuth.getCurrentUser().getUid();
+            bimestre = "4_bimestre";
+
+            for(int cont =0; cont<= listArray_IV.size(); cont ++){
+                final int cont_ = cont;
+                final String posicao_lista = Integer.toString(cont_);
+
+                DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
+                        child("conteudo").child(posicao_lista).child(user_id).child(user_id).
+                        addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.exists()){
+                                    String isSave = (String) dataSnapshot.getValue();
+                                    if (isSave.equals("true")){
+                                        listData_IV_Bimestre.get(cont_).setB(true);
+                                        notifyItemChanged(cont_);
+                                    } else{
+                                        listData_IV_Bimestre.get(cont_).setB(false);
+                                        notifyItemChanged(cont_);
+                                    }
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+            }
 
         }
 
@@ -2001,7 +2119,6 @@ public class Tab_matematica_sexto_ extends Fragment{
                     //Toast.makeText(getContext(), "Conteúdo marcado ", Toast.LENGTH_SHORT).show();
 
                     MarcaConteudoFirebase();
-                    notifyDataSetChanged();
                     dialog.dismiss();
                 }
             });
@@ -2012,7 +2129,6 @@ public class Tab_matematica_sexto_ extends Fragment{
                 public void onClick(View v) {
                     //Toast.makeText(getContext(), "Conteúdo desmarcado ", Toast.LENGTH_SHORT).show();
                     DesmarcaConteudoFirebase();
-                    notifyDataSetChanged();
                     dialog.dismiss();
                 }
             });
@@ -2021,7 +2137,10 @@ public class Tab_matematica_sexto_ extends Fragment{
             btn_abrir_anotacoes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
+                    ((Main_activity) getActivity()).titulo = "Matemática_4_Bimestre_6ano";
+                    ((Main_activity) getActivity()).text1 = listData_IV_Bimestre.get(position_check).getX();
+                    ((Main_activity) getActivity()).getResultsFromApi();
                     dialog.dismiss();
                 }
             });
@@ -2039,7 +2158,7 @@ public class Tab_matematica_sexto_ extends Fragment{
 
             HashMap userMap_inicio_1 = new HashMap();
 
-            userMap_inicio_1.put("uid", user_id);
+            userMap_inicio_1.put(user_id, "true");
 
             DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
                     child("conteudo").child(position_firebase).child(user_id).
@@ -2049,7 +2168,7 @@ public class Tab_matematica_sexto_ extends Fragment{
                     if (task.isSuccessful()) {
                         Toast.makeText(getContext(), "Salvo", Toast.LENGTH_LONG).show();
                         listData_IV_Bimestre.get(position_check).setB(true);
-                        notifyDataSetChanged();
+                        notifyItemChanged(position_check);
                     } else {
                         String message = task.getException().getMessage();
                         Toast.makeText(getContext(), "Não salvo. Erro: " + message, Toast.LENGTH_SHORT).show();
@@ -2070,7 +2189,7 @@ public class Tab_matematica_sexto_ extends Fragment{
 
             listData_IV_Bimestre.get(position_check).setB(false);
 
-            notifyDataSetChanged();
+            notifyItemChanged(position_check);
             Toast.makeText(getContext(), "Salvo" , Toast.LENGTH_SHORT).show();
 
         }

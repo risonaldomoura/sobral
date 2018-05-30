@@ -71,8 +71,96 @@ import projeto.app.sobral.Portugues.Tab_portugues_setimo_;
 import projeto.app.sobral.Portugues.Tab_portugues_sexto_;
 
 
+//============================================ Imports Google Script API ==========================================================================================
+
+import android.Manifest;
+import android.accounts.AccountManager;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.auth.GoogleAuthException;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GooglePlayServicesAvailabilityIOException;
+import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
+import com.google.api.client.http.HttpRequest;
+import com.google.api.client.http.HttpRequestInitializer;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.util.ExponentialBackOff;
+import com.google.api.services.script.model.*;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import projeto.app.sobral.R;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
+
+//===================================================== FIM: Imports Google Script API ====================================================================================
+
+
+
 public class Main_activity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener, EasyPermissions.PermissionCallbacks{
+
+
+
+    //===================================== Parametros Google Script API =============================================================================
+    public String titulo;
+    public String text1;
+
+    GoogleAccountCredential mCredential;
+    private TextView mOutputText;
+    ProgressDialog mProgress;
+
+    static final int REQUEST_ACCOUNT_PICKER = 1000;
+    static final int REQUEST_AUTHORIZATION = 1001;
+    static final int REQUEST_GOOGLE_PLAY_SERVICES = 1002;
+    static final int REQUEST_PERMISSION_GET_ACCOUNTS = 1003;
+
+    private static final String PREF_ACCOUNT_NAME = "accountName";
+    //private static final String[] SCOPES = { "https://www.googleapis.com/auth/script.projects" };
+    //private static final String[] SCOPES = { "https://www.googleapis.com/auth/documents"};
+    private static final String[] SCOPES = {"https://www.googleapis.com/auth/calendar","https://www.googleapis.com/auth/documents","https://www.googleapis.com/auth/drive"};
+    //===================================== FIM: Parametros Google Script API ========================================================================
+
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -170,6 +258,8 @@ public class Main_activity extends AppCompatActivity
                 fl_spinner.setVisibility(View.VISIBLE);
             }
         });
+
+
 
         //FrameLayout contato
         final FrameLayout fl_contato = (FrameLayout) findViewById(R.id.fl_contato);
@@ -450,8 +540,17 @@ public class Main_activity extends AppCompatActivity
         });
         //==========================================================================================
 
-        DataSistema();
-        carrega_datas_firebase();
+
+        //================================Google Script API: Iniciar Credenciais=========================================
+        // Initialize credentials and service object.
+        mCredential = GoogleAccountCredential.usingOAuth2(
+                this, Arrays.asList(SCOPES))
+                .setBackOff(new ExponentialBackOff());
+
+        //================================Fim: Google Script API: Iniciar Credenciais=========================================
+
+
+
 
     }//end OnCreate
 
@@ -1200,7 +1299,7 @@ public class Main_activity extends AppCompatActivity
         DatabaseReference DBR_Obj_IV_Bimestre;
         FirebaseDatabase FDB6 = FirebaseDatabase.getInstance();
 
-        DBR_Obj_IV_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/9_ano/4_bimestre/objetivo/0/x");
+        DBR_Obj_IV_Bimestre = FDB6.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/portugues/9_ano/4_bimestre/objetivo/0/x");
         DBR_Obj_IV_Bimestre.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -1390,7 +1489,7 @@ public class Main_activity extends AppCompatActivity
         DatabaseReference DBR_Obj_IV_Bimestre;
         FirebaseDatabase FDB6 = FirebaseDatabase.getInstance();
 
-        DBR_Obj_IV_Bimestre = FDB5.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/6_ano/4_bimestre/objetivo/0/x");
+        DBR_Obj_IV_Bimestre = FDB6.getReferenceFromUrl("https://matriz-sobral-194718.firebaseio.com/disciplinas/matematica/6_ano/4_bimestre/objetivo/0/x");
         DBR_Obj_IV_Bimestre.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -2035,6 +2134,8 @@ public class Main_activity extends AppCompatActivity
         else
         {
             CheckUserExistence();
+            DataSistema();
+            carrega_datas_firebase();
         }
         verificaconexao();
     }
@@ -2880,5 +2981,403 @@ public class Main_activity extends AppCompatActivity
 
         //==========================================================================================
     }
+
+    // =========================================== Metodos Gogole Script API ==============================================================================================
+    /**
+     * Extend the given HttpRequestInitializer (usually a credentials object)
+     * with additional initialize() instructions.
+     *
+     * @param requestInitializer the initializer to copy and adjust; typically
+     *         a credential object.
+     * @return an initializer with an extended read timeout.
+     */
+    private static HttpRequestInitializer setHttpTimeout(
+            final HttpRequestInitializer requestInitializer) {
+        return new HttpRequestInitializer() {
+            @Override
+            public void initialize(HttpRequest httpRequest)
+                    throws IOException {
+                requestInitializer.initialize(httpRequest);
+                // This allows the API to call (and avoid timing out on)
+                // functions that take up to 6 minutes to complete (the maximum
+                // allowed script run time), plus a little overhead.
+                httpRequest.setReadTimeout(380000);
+            }
+        };
+    }
+
+    /**
+     * Attempt to call the API, after verifying that all the preconditions are
+     * satisfied. The preconditions are: Google Play Services installed, an
+     * account was selected and the device currently has online access. If any
+     * of the preconditions are not satisfied, the app will prompt the user as
+     * appropriate.
+     */
+    public void getResultsFromApi() {
+        if (! isGooglePlayServicesAvailable()) {
+            acquireGooglePlayServices();
+        } else if (mCredential.getSelectedAccountName() == null) {
+            chooseAccount();
+        } else if (! isDeviceOnline()) {
+            //mOutputText.setText("Internet não disponível.");
+        } else {
+            new MakeRequestTask(mCredential).execute();
+        }
+    }
+
+    /**
+     * Attempts to set the account used with the API credentials. If an account
+     * name was previously saved it will use that one; otherwise an account
+     * picker dialog will be shown to the user. Note that the setting the
+     * account to use with the credentials object requires the app to have the
+     * GET_ACCOUNTS permission, which is requested here if it is not already
+     * present. The AfterPermissionGranted annotation indicates that this
+     * function will be rerun automatically whenever the GET_ACCOUNTS permission
+     * is granted.
+     */
+    @AfterPermissionGranted(REQUEST_PERMISSION_GET_ACCOUNTS)
+    private void chooseAccount() {
+        if (EasyPermissions.hasPermissions(
+                this, Manifest.permission.GET_ACCOUNTS))
+        {
+            String accountName = getPreferences(Context.MODE_PRIVATE)
+                    .getString(PREF_ACCOUNT_NAME, null);
+            if (accountName != null) {
+                mCredential.setSelectedAccountName(accountName);
+                getResultsFromApi();
+            } else {
+                // Start a dialog from which the user can choose an account
+                startActivityForResult(
+                        mCredential.newChooseAccountIntent(),
+                        REQUEST_ACCOUNT_PICKER);
+            }
+        } else {
+            // Request the GET_ACCOUNTS permission via a user dialog
+            EasyPermissions.requestPermissions(
+                    this,
+                    "Este APP precisa acessar sua conta Google (via Contatos).",
+                    REQUEST_PERMISSION_GET_ACCOUNTS,
+                    Manifest.permission.GET_ACCOUNTS);
+        }
+    }
+
+    /**
+     * Called when an activity launched here (specifically, AccountPicker
+     * and authorization) exits, giving you the requestCode you started it with,
+     * the resultCode it returned, and any additional data from it.
+     * @param requestCode code indicating which activity result is incoming.
+     * @param resultCode code indicating the result of the incoming
+     *     activity result.
+     * @param data Intent (containing result data) returned by incoming
+     *     activity result.
+     */
+    @Override
+    protected void onActivityResult(
+            int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case REQUEST_GOOGLE_PLAY_SERVICES:
+                if (resultCode != RESULT_OK) {
+                    //mOutputText.setText("Este APP requer o Google Play Services. Por favor instalar o " +                                    "Google Play Services no seu dispositivo e reabra o aplicativo.");
+                } else {
+                    getResultsFromApi();
+                }
+                break;
+            case REQUEST_ACCOUNT_PICKER:
+                if (resultCode == RESULT_OK && data != null &&
+                        data.getExtras() != null) {
+                    String accountName =
+                            data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+                    if (accountName != null) {
+                        SharedPreferences settings =
+                                getPreferences(Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putString(PREF_ACCOUNT_NAME, accountName);
+                        editor.apply();
+                        mCredential.setSelectedAccountName(accountName);
+                        getResultsFromApi();
+                    }
+                }
+                break;
+            case REQUEST_AUTHORIZATION:
+                if (resultCode == RESULT_OK) {
+                    getResultsFromApi();
+                }
+                break;
+        }
+    }
+
+    /**
+     * Respond to requests for permissions at runtime for API 23 and above.
+     * @param requestCode The request code passed in
+     *     requestPermissions(android.app.Activity, String, int, String[])
+     * @param permissions The requested permissions. Never null.
+     * @param grantResults The grant results for the corresponding permissions
+     *     which is either PERMISSION_GRANTED or PERMISSION_DENIED. Never null.
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(
+                requestCode, permissions, grantResults, this);
+    }
+
+    /**
+     * Callback for when a permission is granted using the EasyPermissions
+     * library.
+     * @param requestCode The request code associated with the requested
+     *         permission
+     * @param list The requested permission list. Never null.
+     */
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> list) {
+        // Do nothing.
+    }
+
+    /**
+     * Callback for when a permission is denied using the EasyPermissions
+     * library.
+     * @param requestCode The request code associated with the requested
+     *         permission
+     * @param list The requested permission list. Never null.
+     */
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> list) {
+        // Do nothing.
+    }
+
+    /**
+     * Checks whether the device currently has a network connection.
+     * @return true if the device has a network connection, false otherwise.
+     */
+    private boolean isDeviceOnline() {
+        ConnectivityManager connMgr =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        return (networkInfo != null && networkInfo.isConnected());
+    }
+
+    /**
+     * Check that Google Play services APK is installed and up to date.
+     * @return true if Google Play Services is available and up to
+     *     date on this device; false otherwise.
+     */
+    private boolean isGooglePlayServicesAvailable() {
+        GoogleApiAvailability apiAvailability =
+                GoogleApiAvailability.getInstance();
+        final int connectionStatusCode =
+                apiAvailability.isGooglePlayServicesAvailable(this.getApplicationContext());
+        return connectionStatusCode == ConnectionResult.SUCCESS;
+    }
+
+    /**
+     * Attempt to resolve a missing, out-of-date, invalid or disabled Google
+     * Play Services installation via a user dialog, if possible.
+     */
+    private void acquireGooglePlayServices() {
+        GoogleApiAvailability apiAvailability =
+                GoogleApiAvailability.getInstance();
+        final int connectionStatusCode =
+                apiAvailability.isGooglePlayServicesAvailable(this);
+        if (apiAvailability.isUserResolvableError(connectionStatusCode)) {
+            showGooglePlayServicesAvailabilityErrorDialog(connectionStatusCode);
+        }
+    }
+
+
+    /**
+     * Display an error dialog showing that Google Play Services is missing
+     * or out of date.
+     * @param connectionStatusCode code describing the presence (or lack of)
+     *     Google Play Services on this device.
+     */
+    void showGooglePlayServicesAvailabilityErrorDialog(
+            final int connectionStatusCode) {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        Dialog dialog = apiAvailability.getErrorDialog(
+                this,
+                connectionStatusCode,
+                REQUEST_GOOGLE_PLAY_SERVICES);
+        dialog.show();
+    }
+
+    /**
+     * An asynchronous task that handles the Google Apps Script API call.
+     * Placing the API calls in their own task ensures the UI stays responsive.
+     */
+    private class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
+        private com.google.api.services.script.Script mService = null;
+        private Exception mLastError = null;
+
+        MakeRequestTask(GoogleAccountCredential credential) {
+            HttpTransport transport = AndroidHttp.newCompatibleTransport();
+            JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
+            mService = new com.google.api.services.script.Script.Builder(
+                    transport, jsonFactory, setHttpTimeout(credential))
+                    .setApplicationName("title_activity_config_bimestre")
+                    .build();
+        }
+
+        /**
+         * Background task to call Google Apps Script API.
+         * @param params no parameters needed for this task.
+         */
+        @Override
+        protected List<String> doInBackground(Void... params) {
+            try {
+                return getDataFromApi();
+            } catch (Exception e) {
+                mLastError = e;
+                cancel(true);
+                return null;
+            }
+        }
+
+        /**
+         * Call the API to run an Apps Script function that returns a list
+         * of folders within the user's root directory on Drive.
+         *
+         * @return list of String folder names and their IDs
+         * @throws IOException
+         */
+        private List<String> getDataFromApi()
+                throws IOException, GoogleAuthException {
+            // ID of the script to call. Acquire this from the Apps Script editor,
+            // under Publish > Deploy as API executable.
+            String scriptId = "1k-hbqzpdY4Ynxszn7hWQCDPyPiwx_1uSE89A9WP-IkWmfAcpfXW4gT_t";
+            //tring scriptId = "169ym8aJKxgVWCFdSD2mjaEnqeZebltuIiAIQXKi9jyf2djzF_B32qsSN";
+            List<String> folderList = new ArrayList<String>();
+
+            //
+            //String titulo = "Lingua Portuguesa - 6 ano - Oralidade";
+            //String text1 = "Relacionar as regras de cortesia e de interação";
+
+
+            List<Object> paramTituloTexto = new ArrayList<>();
+            paramTituloTexto.add(titulo);
+            paramTituloTexto.add(text1);
+
+
+
+
+            //
+            // Create an execution request object.
+            //ExecutionRequest request = new ExecutionRequest()
+            //        .setFunction("getFoldersUnderRoot");
+
+            ExecutionRequest request = new ExecutionRequest()
+                    .setFunction("CriaDocsDrive")
+                    .setParameters(paramTituloTexto);
+
+            // Make the request.
+            Operation op =
+                    mService.scripts().run(scriptId, request).execute();
+
+            // Print results of request.
+            if (op.getError() != null) {
+                throw new IOException(getScriptError(op));
+            }
+            if (op.getResponse() != null &&
+                    op.getResponse().get("result") != null) {
+                // The result provided by the API needs to be cast into
+                // the correct type, based upon what types the Apps Script
+                // function returns. Here, the function returns an Apps
+                // Script Object with String keys and values, so must be
+                // cast into a Java Map (folderSet).
+                Map<String, String> folderSet =
+                        (Map<String, String>)(op.getResponse().get("result"));
+
+                for (String id: folderSet.keySet()) {
+                    folderList.add(
+                            String.format("%s (%s)", folderSet.get(id), id));
+                }
+            }
+
+            return folderList;
+        }
+
+        /**
+         * Interpret an error response returned by the API and return a String
+         * summary.
+         *
+         * @param op the Operation returning an error response
+         * @return summary of error response, or null if Operation returned no
+         *     error
+         */
+        private String getScriptError(Operation op) {
+            if (op.getError() == null) {
+                return null;
+            }
+
+            // Extract the first (and only) set of error details and cast as a Map.
+            // The values of this map are the script's 'errorMessage' and
+            // 'errorType', and an array of stack trace elements (which also need to
+            // be cast as Maps).
+            Map<String, Object> detail = op.getError().getDetails().get(0);
+            List<Map<String, Object>> stacktrace =
+                    (List<Map<String, Object>>)detail.get("scriptStackTraceElements");
+
+            StringBuilder sb =
+                    new StringBuilder("\nMensagem de erro do Script: ");
+            sb.append(detail.get("MensagemdeErro"));
+
+            if (stacktrace != null) {
+                // There may not be a stacktrace if the script didn't start
+                // executing.
+                sb.append("\n Stacktrace Rrror do Script:");
+                for (Map<String, Object> elem : stacktrace) {
+                    sb.append("\n  ");
+                    sb.append(elem.get("function"));
+                    sb.append(":");
+                    sb.append(elem.get("lineNumber"));
+                }
+            }
+            sb.append("\n");
+            return sb.toString();
+        }
+
+
+        @Override
+        protected void onPreExecute() {
+            //mOutputText.setText("");
+            //mProgress.show();
+        }
+
+        @Override
+        protected void onPostExecute(List<String> output) {
+            //mProgress.hide();
+            if (output == null || output.size() == 0) {
+                //mOutputText.setText("Sem resultados retornados.");
+            } else {
+                output.add(0, "Dados recuperados usando o Google Apps Script API:");
+                //mOutputText.setText(TextUtils.join("\n", output));
+            }
+        }
+
+        @Override
+        protected void onCancelled() {
+            //mProgress.hide();
+            if (mLastError != null) {
+                if (mLastError instanceof GooglePlayServicesAvailabilityIOException) {
+                    showGooglePlayServicesAvailabilityErrorDialog(
+                            ((GooglePlayServicesAvailabilityIOException) mLastError)
+                                    .getConnectionStatusCode());
+                } else if (mLastError instanceof UserRecoverableAuthIOException) {
+                    startActivityForResult(
+                            ((UserRecoverableAuthIOException) mLastError).getIntent(),
+                            Main_activity.REQUEST_AUTHORIZATION);
+                } else {
+                    //mOutputText.setText("O seguinte erro ocorreu:\n"    + mLastError.getMessage());
+                }
+            } else {
+                //mOutputText.setText("Requisição cancelada.");
+            }
+        }
+    }
+
+    // =========================================== FIM: Metodos Gogole Script API ==============================================================================================
+
 
 }
