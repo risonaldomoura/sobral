@@ -46,9 +46,9 @@ import java.util.List;
 import javax.net.ssl.HttpsURLConnection;
 
 import projeto.app.sobral.R;
-import projeto.app.sobral.Utils.DatasFirebase;
-import projeto.app.sobral.Utils.Main_activity;
-import projeto.app.sobral.Utils.MyDataGetSet;
+import projeto.app.sobral.Utils.Classes.DatasFirebase;
+import projeto.app.sobral.Utils.Activities.Main_activity;
+import projeto.app.sobral.Utils.Classes.MyDataGetSet;
 
 //import android.app.Fragment;
 
@@ -1124,7 +1124,7 @@ public class Tab_portugues_sexto_backup extends Fragment{
 
         @Override
         public ViewholderPortugues_sexto onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_,parent,false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_itemview_lista_conteudo,parent,false);
 
             return new ViewholderPortugues_sexto(view);
         }

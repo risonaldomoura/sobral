@@ -2,10 +2,9 @@ package projeto.app.sobral.Portugues;
 
 import android.app.Dialog;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-//import android.app.Fragment;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -48,16 +46,22 @@ import java.util.List;
 import javax.net.ssl.HttpsURLConnection;
 
 import projeto.app.sobral.R;
-import projeto.app.sobral.Utils.Adaptador_Disciplina_ano;
-import projeto.app.sobral.Utils.DatasFirebase;
-import projeto.app.sobral.Utils.Main_activity;
-import projeto.app.sobral.Utils.MyDataGetSet;
+import projeto.app.sobral.Utils.Classes.DatasFirebase;
+import projeto.app.sobral.Utils.Activities.Main_activity;
+import projeto.app.sobral.Utils.Classes.MyDataGetSet;
+
+//import android.app.Fragment;
 
 /**
  * Created by Daniel on 09/01/2018.
  */
 
 public class Tab_portugues_oitavo_ extends Fragment{
+
+    String sTitulo_I_Bimestre;
+    String sTitulo_II_Bimestre;
+    String sTitulo_III_Bimestre;
+    String sTitulo_IV_Bimestre;
 
     RecyclerView rv_I_Bimestre;
     TextView tv_Titulo_I_Bimestre;
@@ -89,7 +93,7 @@ public class Tab_portugues_oitavo_ extends Fragment{
     DatabaseReference DiscRefFirebase;
 
     //cont_act é um contador para que o carregamento de saves do firebase ocorra somente uma vez por execução do fragment (Tab)
-    public int position_check, cont_act_1 = 1, cont_act_2 = 1, cont_act_3 = 1, cont_act_4 = 1;
+    public int position_check;
 
     String titulo, uid;
 
@@ -120,12 +124,11 @@ public class Tab_portugues_oitavo_ extends Fragment{
 
         View rView = inflater.inflate(R.layout.layout_model_conteudo,container,false);
 
-        fbAuth = FirebaseAuth.getInstance();
-        DiscRefFirebase = FirebaseDatabase.getInstance().getReference().child("disciplinas");
-
         //=========== INÍCIO DO TRATAMENTO DOS ADPATADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS BIMESTRES===============
 
         FDB = FirebaseDatabase.getInstance();
+        fbAuth = FirebaseAuth.getInstance();
+        DiscRefFirebase = FirebaseDatabase.getInstance().getReference().child("disciplinas");
 
 
         RecyclerView.LayoutManager LM_I = new LinearLayoutManager(getActivity().getApplicationContext());
@@ -172,12 +175,15 @@ public class Tab_portugues_oitavo_ extends Fragment{
         adp_portugues_oitavo_IV = new Adaptador_Portugues_oitavo_IV_Bimestre(listData_IV_Bimestre);
 
 
-        rv_I_Bimestre.setNestedScrollingEnabled(false);
-        rv_II_Bimestre.setNestedScrollingEnabled(false);
-        rv_III_Bimestre.setNestedScrollingEnabled(false);
-        rv_IV_Bimestre.setNestedScrollingEnabled(false);
+        rv_I_Bimestre.setNestedScrollingEnabled(true);
+        rv_II_Bimestre.setNestedScrollingEnabled(true);
+        rv_III_Bimestre.setNestedScrollingEnabled(true);
+        rv_IV_Bimestre.setNestedScrollingEnabled(true);
 
         //=================FIM DO TRATAMENTO DOS ADAPTADORES PARA CARREGAR A LISTA DE CONTEÚDOS DOS BIMESTRES==================
+
+
+        fbAuth = FirebaseAuth.getInstance();
 
 
         //=============MÉTODO CARREGA DO FIREBASE E SETA AS DATAS NOS BALÕES DE BIMESTRES===========
@@ -458,6 +464,12 @@ public class Tab_portugues_oitavo_ extends Fragment{
         UserData_termino_4.addValueEventListener(post_termino_4_Listener);
 
         //==========================================================================================
+
+
+        GetDataFirebase_I_Bimestre();
+        GetDataFirebase_II_Bimestre();
+        GetDataFirebase_III_Bimestre();
+        GetDataFirebase_IV_Bimestre();
 
         return rView;
     }
@@ -1022,10 +1034,6 @@ public class Tab_portugues_oitavo_ extends Fragment{
 
     }
 
-
-
-
-
     //======================Enviar Conteudo I - Bimestre Google Script API============================
 
     public class SendRequest extends AsyncTask<String,Void,String> {
@@ -1039,11 +1047,11 @@ public class Tab_portugues_oitavo_ extends Fragment{
                 JSONObject postDataParams = new JSONObject();
 
                 postDataParams.put("titulo",titulo);
-               //postDataParams.put("text1", adp_portugues_oitavo_1_bimestre.listArray.get(0).getX());
-                //postDataParams.put("text2", adp_portugues_oitavo_1_bimestre.listArray.get(1).getX());
-                //postDataParams.put("text3", adp_portugues_oitavo_1_bimestre.listArray.get(2).getX());
-                //postDataParams.put("text4", adp_portugues_oitavo_1_bimestre.listArray.get(3).getX());
-               // postDataParams.put("text5", adp_portugues_oitavo_1_bimestre.listArray.get(4).getX());
+                //postDataParams.put("text1", adp_portugues_setimo_1_bimestre.listArray.get(0).getX());
+                //postDataParams.put("text2", adp_portugues_setimo_1_bimestre.listArray.get(1).getX());
+                //postDataParams.put("text3", adp_portugues_setimo_1_bimestre.listArray.get(2).getX());
+                //postDataParams.put("text4", adp_portugues_setimo_1_bimestre.listArray.get(3).getX());
+                //postDataParams.put("text5", adp_portugues_setimo_1_bimestre.listArray.get(4).getX());
 
 
                 Log.e("params",postDataParams.toString());
@@ -1135,6 +1143,7 @@ public class Tab_portugues_oitavo_ extends Fragment{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String str_Titulo_I_Bimestre = dataSnapshot.getValue(String.class);
+                sTitulo_I_Bimestre = str_Titulo_I_Bimestre;
                 tv_Titulo_I_Bimestre.setText(str_Titulo_I_Bimestre);
             }
 
@@ -1182,6 +1191,7 @@ public class Tab_portugues_oitavo_ extends Fragment{
     public class Adaptador_Portugues_oitavo_I_Bimestre extends RecyclerView.Adapter<Adaptador_Portugues_oitavo_I_Bimestre.ViewholderPortugues_oitavo_I_Bimestre> {
 
         List<MyDataGetSet> listArray_I;
+        int  cont_act_1 = 1;
 
         public Adaptador_Portugues_oitavo_I_Bimestre(List<MyDataGetSet> List) {
             this.listArray_I = List;
@@ -1189,7 +1199,7 @@ public class Tab_portugues_oitavo_ extends Fragment{
 
         @Override
         public ViewholderPortugues_oitavo_I_Bimestre onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_itemview_lista_conteudo, parent, false);
 
             return new ViewholderPortugues_oitavo_I_Bimestre(view);
         }
@@ -1324,7 +1334,11 @@ public class Tab_portugues_oitavo_ extends Fragment{
                 @Override
                 public void onClick(View v) {
                     //Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
-                    ((Main_activity) getActivity()).titulo = "Português_1_Bimestre_8ano";
+                    ((Main_activity) getActivity()).disciplina = "Português";
+                    ((Main_activity) getActivity()).ano = "p_8ano";
+                    String p = String.valueOf(position_check);
+                    ((Main_activity) getActivity()).titulo = "p8a"+p+"_"+sTitulo_I_Bimestre;
+
                     ((Main_activity) getActivity()).text1 = listData_I_Bimestre.get(position_check).getX();
                     ((Main_activity) getActivity()).getResultsFromApi();
                     dialog.dismiss();
@@ -1394,6 +1408,7 @@ public class Tab_portugues_oitavo_ extends Fragment{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String str_Titulo_II_Bimestre = dataSnapshot.getValue(String.class);
+                sTitulo_II_Bimestre = str_Titulo_II_Bimestre;
                 tv_Titulo_II_Bimestre.setText(str_Titulo_II_Bimestre);
             }
 
@@ -1441,6 +1456,7 @@ public class Tab_portugues_oitavo_ extends Fragment{
     public class Adaptador_Portugues_oitavo_II_Bimestre extends RecyclerView.Adapter<Adaptador_Portugues_oitavo_II_Bimestre.ViewholderPortugues_oitavo_II_Bimestre> {
 
         List<MyDataGetSet> listArray_II;
+        int cont_act_2 = 1;
 
         public Adaptador_Portugues_oitavo_II_Bimestre(List<MyDataGetSet> List) {
             this.listArray_II = List;
@@ -1448,13 +1464,13 @@ public class Tab_portugues_oitavo_ extends Fragment{
 
         @Override
         public ViewholderPortugues_oitavo_II_Bimestre onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_itemview_lista_conteudo, parent, false);
 
             return new ViewholderPortugues_oitavo_II_Bimestre(view);
         }
 
         @Override
-        public void onBindViewHolder(final Adaptador_Portugues_oitavo_II_Bimestre.ViewholderPortugues_oitavo_II_Bimestre holder, final int position) {
+        public void onBindViewHolder(final ViewholderPortugues_oitavo_II_Bimestre holder, final int position) {
             MyDataGetSet x = listArray_II.get(position);
             holder.myText.setText(x.getX());
             holder.mCB.setChecked(x.isB());
@@ -1582,7 +1598,11 @@ public class Tab_portugues_oitavo_ extends Fragment{
                 @Override
                 public void onClick(View v) {
                     //Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
-                    ((Main_activity) getActivity()).titulo = "Português_2_Bimestre_8ano";
+                    ((Main_activity) getActivity()).disciplina = "Português";
+                    ((Main_activity) getActivity()).ano = "p_8ano";
+                    String p = String.valueOf(position_check);
+                    ((Main_activity) getActivity()).titulo = "p8a"+p+"_"+sTitulo_II_Bimestre;
+
                     ((Main_activity) getActivity()).text1 = listData_II_Bimestre.get(position_check).getX();
                     ((Main_activity) getActivity()).getResultsFromApi();
                     dialog.dismiss();
@@ -1652,6 +1672,7 @@ public class Tab_portugues_oitavo_ extends Fragment{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String str_Titulo_III_Bimestre = dataSnapshot.getValue(String.class);
+                sTitulo_III_Bimestre = str_Titulo_III_Bimestre;
                 tv_Titulo_III_Bimestre.setText(str_Titulo_III_Bimestre);
             }
 
@@ -1699,6 +1720,7 @@ public class Tab_portugues_oitavo_ extends Fragment{
     public class Adaptador_Portugues_oitavo_III_Bimestre extends RecyclerView.Adapter<Adaptador_Portugues_oitavo_III_Bimestre.ViewholderPortugues_oitavo_III_Bimestre> {
 
         List<MyDataGetSet> listArray_III;
+        int cont_act_3 = 1;
 
         public Adaptador_Portugues_oitavo_III_Bimestre(List<MyDataGetSet> List) {
             this.listArray_III = List;
@@ -1706,13 +1728,13 @@ public class Tab_portugues_oitavo_ extends Fragment{
 
         @Override
         public ViewholderPortugues_oitavo_III_Bimestre onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_itemview_lista_conteudo, parent, false);
 
             return new ViewholderPortugues_oitavo_III_Bimestre(view);
         }
 
         @Override
-        public void onBindViewHolder(final Adaptador_Portugues_oitavo_III_Bimestre.ViewholderPortugues_oitavo_III_Bimestre holder, final int position) {
+        public void onBindViewHolder(final ViewholderPortugues_oitavo_III_Bimestre holder, final int position) {
             MyDataGetSet x = listArray_III.get(position);
             holder.myText.setText(x.getX());
             holder.mCB.setChecked(x.isB());
@@ -1840,7 +1862,10 @@ public class Tab_portugues_oitavo_ extends Fragment{
                 @Override
                 public void onClick(View v) {
                     //Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
-                    ((Main_activity) getActivity()).titulo = "Português_3_Bimestre_8ano";
+                    ((Main_activity) getActivity()).disciplina = "Português";
+                    ((Main_activity) getActivity()).ano = "p_8ano";
+                    String p = String.valueOf(position_check);
+                    ((Main_activity) getActivity()).titulo = "p8a"+p+"_"+sTitulo_III_Bimestre;
                     ((Main_activity) getActivity()).text1 = listData_III_Bimestre.get(position_check).getX();
                     ((Main_activity) getActivity()).getResultsFromApi();
                     dialog.dismiss();
@@ -1909,6 +1934,7 @@ public class Tab_portugues_oitavo_ extends Fragment{
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String str_Titulo_IV_Bimestre = dataSnapshot.getValue(String.class);
+                sTitulo_IV_Bimestre = str_Titulo_IV_Bimestre;
                 tv_Titulo_IV_Bimestre.setText(str_Titulo_IV_Bimestre);
             }
 
@@ -1956,6 +1982,7 @@ public class Tab_portugues_oitavo_ extends Fragment{
     public class Adaptador_Portugues_oitavo_IV_Bimestre extends RecyclerView.Adapter<Adaptador_Portugues_oitavo_IV_Bimestre.ViewholderPortugues_oitavo_IV_Bimestre> {
 
         List<MyDataGetSet> listArray_IV;
+        int cont_act_4 = 1;
 
         public Adaptador_Portugues_oitavo_IV_Bimestre(List<MyDataGetSet> List) {
             this.listArray_IV = List;
@@ -1963,7 +1990,7 @@ public class Tab_portugues_oitavo_ extends Fragment{
 
         @Override
         public ViewholderPortugues_oitavo_IV_Bimestre onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_, parent, false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_itemview_lista_conteudo, parent, false);
 
             return new ViewholderPortugues_oitavo_IV_Bimestre(view);
         }
@@ -2098,7 +2125,11 @@ public class Tab_portugues_oitavo_ extends Fragment{
                 @Override
                 public void onClick(View v) {
                     //Toast.makeText(getContext(), "Abrir anotações deste conteúdo", Toast.LENGTH_SHORT).show();
-                    ((Main_activity) getActivity()).titulo = "Português_4_Bimestre_8ano";
+                    ((Main_activity) getActivity()).disciplina = "Português";
+                    ((Main_activity) getActivity()).ano = "p_8ano";
+                    String p = String.valueOf(position_check);
+                    ((Main_activity) getActivity()).titulo = "p8a"+p+"_"+sTitulo_IV_Bimestre;
+
                     ((Main_activity) getActivity()).text1 = listData_IV_Bimestre.get(position_check).getX();
                     ((Main_activity) getActivity()).getResultsFromApi();
                     dialog.dismiss();
@@ -2118,7 +2149,7 @@ public class Tab_portugues_oitavo_ extends Fragment{
 
             HashMap userMap_inicio_1 = new HashMap();
 
-            userMap_inicio_1.put(user_id, "true");
+            userMap_inicio_1.put("uid", user_id);
 
             DiscRefFirebase.child(disciplina).child(ano).child(bimestre).
                     child("conteudo").child(position_firebase).child(user_id).
@@ -2156,17 +2187,12 @@ public class Tab_portugues_oitavo_ extends Fragment{
 
     }
 
-
     @Override
     public void onStart() {
 
         super.onStart();
-        GetDataFirebase_I_Bimestre();
-        GetDataFirebase_II_Bimestre();
-        GetDataFirebase_III_Bimestre();
-        GetDataFirebase_IV_Bimestre();
-    }
 
+    }
 
 
     //===========================MÉTODO QUE RECEBE AS SOMBRAS DOS BIMESTRES===========================
@@ -2174,7 +2200,6 @@ public class Tab_portugues_oitavo_ extends Fragment{
     public void onViewCreated (View view, Bundle savedInstanceState) {
         ((Main_activity) getActivity()).SombraBimestre(view);
         ((Main_activity) getActivity()).tab_obj_port_oitavo_(view);
-
     }
     //==============================================================================================
 

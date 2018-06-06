@@ -9,13 +9,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/icon_app"
-        android:label="M-Sobral"
-        android:roundIcon="@drawable/icon_app"
+        android:icon="@drawable/logo_matriz_escolar"
+        android:label="M-Curricular"
+        android:roundIcon="@drawable/logo_matriz_escolar"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Utils.Splash_activity"
+            android:name=".Utils.Activities.Splash_activity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
@@ -26,54 +26,51 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Utils.Apresentacao_activity"
+            android:name=".Utils.Activities.Apresentacao_activity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/title_activity_apresentacao_activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Utils.Login_activity"
+            android:name=".Utils.Activities.Login_activity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/title_activity_login_activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Utils.Main_activity"
+            android:name=".Utils.Activities.Main_activity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Utils.Config_bimestre_activity"
+            android:name=".Utils.Activities.Config_bimestre_activity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/title_activity_config_bimestre"
-            android:parentActivityName=".Utils.Config_activity"
+            android:parentActivityName=".Utils.Activities.Config_activity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="projeto.app.sobral.Utils.Config_activity" />
+                android:value="projeto.app.sobral.Utils.Activities.Config_activity" />
         </activity>
         <activity
-            android:name=".Utils.IntroActivity"
+            android:name=".Introducao.IntroActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".Utils.Config_activity"
+            android:name=".Utils.Activities.Config_activity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
-            android:name=".Utils.Registro_activity"
+            android:name=".Utils.Activities.Registro_activity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label=" "
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Utils.Termos_activity"
+            android:name=".Utils.Activities.Termos_activity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Utils.Licencas_activity"
+            android:name=".Utils.Activities.Licencas_activity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".Utils.AppBarMainActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"></activity>
-        <activity android:name=".Utils.PostData"></activity>
-        <activity android:name=".Utils.Pdf_view_activity"></activity>
+        <activity android:name=".Utils.Classes.PostData"></activity>
+        <activity android:name=".Utils.Activities.Pdf_view_activity"></activity>
 
     </application>
 

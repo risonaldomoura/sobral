@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_icon_app"
+    android:orientation="vertical"
+    tools:context=".Utils.Activities.Login_activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:orientation="horizontal"
+                android:background="@drawable/logo_matriz_escolar">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="2dp"
+                android:text="Use sua conta Google"
+                android:textColor="@color/texto_cinza"
+                android:textSize="18sp"
+                android:gravity="center"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginTop="10dp">
+
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/signGoogleInButton"
+                    android:layout_width="232dp"
+                    android:layout_height="50dp">
+
+                </com.google.android.gms.common.SignInButton>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.08" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Saiba mais:"
+            android:textSize="16sp"
+            android:textColor="@color/texto_cinza"
+            android:layout_gravity="center"
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="30dp"/>
+
+        <LinearLayout
+            android:id="@+id/btn_google_for_education"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"
+            android:layout_gravity="center"
+            android:background="@drawable/logo_google_for_education"/>
+
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Utils.Config_bimestre_activity"
+    tools:context=".Utils.Activities.Config_bimestre_activity"
     android:orientation="vertical">
 
     <LinearLayout

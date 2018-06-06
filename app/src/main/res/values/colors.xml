@@ -20,6 +20,7 @@
     <color name="botao_pressionado">#ededed</color>
     <color name="white">#ffffff</color>
     <color name="bg_item_view">#ededed</color>
+    <color name="bg_icon_app">#FFE80E</color>
 
     <color name="gota_borda_on">#FFEB3B</color>
     <color name="gota_borda_off">#878787</color>

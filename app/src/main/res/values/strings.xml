@@ -1,5 +1,5 @@
 <resources xmlns:http="http://schemas.android.com/tools">
-    <string name="app_name">M-Sobral</string>
+    <string name="app_name">M-Curricular</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_apresentacao_activity">Apresentacao</string>
     <string name="title_activity_login_activity">Login</string>
@@ -9,30 +9,6 @@
     <string name="title_activity_config_activity">Configurações</string>
     <string name="conteudo">Configurações</string>
 
-    <string name="large_text">
-        "Material is the metaphor.\n\n"
-
-        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
-        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
-        "technologically advanced and open to imagination and magic.\n"
-        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
-        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
-        "flexibility of the material creates new affordances that supercede those in the physical "
-        "world, without breaking the rules of physics.\n"
-        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
-        "interact, and exist in space and in relation to each other. Realistic lighting shows "
-        "seams, divides space, and indicates moving parts.\n\n"
-
-        "Bold, graphic, intentional.\n\n"
-
-        "The foundational elements of print based design typography, grids, space, scale, color, "
-        "and use of imagery guide visual treatments. These elements do far more than please the "
-        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
-        "imagery, large scale typography, and intentional white space create a bold and graphic "
-        "interface that immerse the user in the experience.\n"
-        "An emphasis on user actions makes core functionality immediately apparent and provides "
-        "waypoints for the user.\n\n"
-    </string>
     <string name="title_activity_main">MainActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_table_activity">table_activity</string>
@@ -45,11 +21,11 @@
 
 
 
-    <string name="slide_1_title">Olá, professores!</string>
+    <string name="slide_1_title">Olá, professor(a)!</string>
     <string name="slide_1_description">
-        Esta é a matriz curricular digital
+        Esta é a matriz escolar digital
         \n
-        da cidade de Sobral.
+        da Base Nacional Comum Curricular.
 
     </string>
 
@@ -63,7 +39,7 @@
 
     <string name="slide_3_title">Marcações e anotações</string>
     <string name="slide_3_description">
-        Marque os conteúdos que voce já lecionou
+        Marque os conteúdos que você já ministrou
         \n
         e adicione anotações.
 
@@ -78,7 +54,7 @@
     </string>
 
     <string name="objetivo_I">
-        LÍNGUA PORTUGUESA\n Nesse segmento é esperado que o aluno já tenha desenvolvem as habilidades relacionadas a essa expectativa.\nRespeitar as regras de cortesia, combinadas pelo grupo, nas diversas situações de interação,\n a) ouvindo sem interromper;\n b) adequando a sua linguagem corporal;\n c) pedindo a palavra para expor suas ideias;\n d) modelando o tom de voz nas interações comunicativas;\n e) utilizando as formas de tratamento adequadas;\n f) colaborando com a elaboração do conjunto dos valores e das regras de convivência da classe, escola e/ou rede;\n g) evitando o uso de palavras com potencial ofensivo;\n h) reagindo de forma pacífica diante de conflitos;\n i) respeitando a opinião dos demais.\nExpressar-se de maneira efetiva nas diferentes interações,\n a) pronunciando, de forma articulada e com clareza palavras, frases, perguntas, queixas, opiniões ou manifestações gerais;\n b) utilizando vocabulário familiar de forma correta;\n c) fazendo uso da persuasão, sem coação, quando conveniente;\n d) mantendo-se no tema abordado;\n e) constituindo uma imagem positiva de si e de seus pares;\n f) conectando o tema abordado com suas próprias ideias;\n g) corrigindo sua fala mediante percepção de erro;\n h) explicando seu raciocínio aos interlocutores;\n i) reformulando o que lhe foi dito pelo interlocutor;\n j) apresentando, quando necessário, seu posicionamento diante da opinião de outros;\n k) avaliando a extensão da fala.\n
+        LÍNGUA PORTUGUESA\n Nesse segmento é esperado que o aluno já tenha desenvolvido as habilidades relacionadas a essa expectativa.\nRespeitar as regras de cortesia, combinadas pelo grupo, nas diversas situações de interação,\n a) ouvindo sem interromper;\n b) adequando a sua linguagem corporal;\n c) pedindo a palavra para expor suas ideias;\n d) modelando o tom de voz nas interações comunicativas;\n e) utilizando as formas de tratamento adequadas;\n f) colaborando com a elaboração do conjunto dos valores e das regras de convivência da classe, escola e/ou rede;\n g) evitando o uso de palavras com potencial ofensivo;\n h) reagindo de forma pacífica diante de conflitos;\n i) respeitando a opinião dos demais.\nExpressar-se de maneira efetiva nas diferentes interações,\n a) pronunciando, de forma articulada e com clareza palavras, frases, perguntas, queixas, opiniões ou manifestações gerais;\n b) utilizando vocabulário familiar de forma correta;\n c) fazendo uso da persuasão, sem coação, quando conveniente;\n d) mantendo-se no tema abordado;\n e) constituindo uma imagem positiva de si e de seus pares;\n f) conectando o tema abordado com suas próprias ideias;\n g) corrigindo sua fala mediante percepção de erro;\n h) explicando seu raciocínio aos interlocutores;\n i) reformulando o que lhe foi dito pelo interlocutor;\n j) apresentando, quando necessário, seu posicionamento diante da opinião de outros;\n k) avaliando a extensão da fala.\n
 
     </string>
 
@@ -89,75 +65,22 @@
         Você precisa concordar com os termos e condições de uso para prosseguir
     </string>
     <string name="slide_4_content">
-        1. Em geral. O aplicativo Midiacode é licenciado, não vendido, a você pela NOVARI COMUNICAÇÃO E TECNOLOGIA LTDA para uso em estrita conformidade com os termos e condições desta licença. E quaisquer “regras de utilização” estabelecida por qualquer outras regras de utilização de terceiros ou termos de uso, tais como Apple Inc. e os demais fornecedores (“Regras de Utilização”), que são aqui incorporadas por referência. O termo “aplicativo” refere e consiste no seguinte: (i ) o aplicativo de software móvel MIDIACODE desta Licença, incluindo, sem limitação, qualquer código de software, os scripts, interfaces gráficos, displays, texto, documentação e outros componentes; (ii) quaisquer atualizações, modificações ou melhorias para os itens listados no subitem (i ); (iii) qualquer site específico do aplicativo direciona para através de qualquer navegador localizado em qualquer dispositivo móvel (“dispositivo móvel”); e (iv) qualquer serviço web ou serviço na “nuvem”, usado através de qualquer navegador ou sistema computacional.
 
-2. Concessão de Licença e Restrições de Uso.
+Agradecemos por usar nossos produtos e serviços. Estes são fornecidos pela INTECELERI TECNOLOGIA PARA EDUCAÇÃO, localizada Avenida perimetral s/n Espaço Inovação 3º piso sala 10 - Parque de Ciência e Tecnologia do Guamá - Universidade Federal do Pará, Belém - PA, Brasil.\n\n
 
-2.1 Concessão de Licença. Midiacode lhe concede uma licença não-exclusiva e não-transferível, revogável, limitado a instalar e usar o aplicativo em dispositivos móveis de propriedade e controladas por voce, e para acessar e usar o aplicativo em tais dispositivos móveis e na web, em estrita conformidade com os termos e condições desta Licença e com as Regras de Utilização e qualquer acordo de serviço relacionado com seus dispositivos móveis (coletivamente, “acordos relacionados”).
+Ao usar nossos Serviços, você está concordando com estes termos. Leia-os com atenção.\n\n
 
-2.2 Restrições de uso. Você deve usar o aplicativo em estrita conformidade com os termos dos respectivos contratos e não deve: (a) descompilar, fazer engenharia reversa, desmontar, tentar obter o código fonte, ou decifrar o Aplicativo; (b) fazer qualquer modificação, adaptação, melhoria, aperfeiçoamento, tradução ou trabalho derivado de Aplicação; (c) violar quaisquer leis, regras e regulamentos em relação ao seu acesso ou utilização da Aplicação; (d) remover, alterar ou ocultar qualquer aviso de propriedade (incluindo qualquer aviso de copyright ou marca) do Midiacode ou suas afiliadas, parceiros, fornecedores ou os licenciadores; (e) usar o aplicativo para qualquer empreendimento de geração de receita, empresa comercial, ou outra finalidade para a qual ele não foi projetado ou previsto; (f) disponibilizar o aplicativo através de uma rede ou outro ambiente que permitam o acesso ou uso por vários dispositivos móveis ou usuários ao mesmo tempo; (g) usar o aplicativo para criar um produto, serviço ou software que seja, direta ou indiretamente, competitivo, com ou de qualquer forma um substituto para qualquer serviço, produto ou software oferecido pela Midiacode; (h) usar o aplicativo para enviar consultas automáticas para qualquer site ou enviar qualquer e-mail comercial não solicitado; ou (i) usar qualquer informação proprietária ou interfaces do Midiacode ou outra propriedade intelectual da Midiacode na concepção, desenvolvimento, fabricação, licenciamento ou distribuição de quaisquer aplicações, acessórios ou dispositivos para uso com o aplicativo.
+        Você precisa criar uma Conta do Google ou acessar com uma conta Google existente para utilizar nosso produto e serviços. Se você estiver usando uma Conta do Google atribuída a você por um administrador, termos diferentes ou adicionais podem aplicar-se e seu administrador poderá ser capaz de acessar ou desativar sua conta.\n\n
 
-3. Direitos de Propriedade Intelectual
+        Em geral, o aplicativo Matriz Curricular Escolar é licenciado, não vendido, a você pela INTECELERI TECNOLOGIA PARA EDUCAÇÃO LTDA para uso em estrita conformidade com os termos e condições desta licença. E quaisquer “regras de utilização” estabelecida por qualquer outras regras de utilização de terceiros ou termos de uso, tais como Google Inc. e os demais fornecedores (“Regras de Utilização”), que são aqui incorporadas por referência. O termo “aplicativo” refere e consiste no seguinte: (i ) o aplicativo de software móvel Matriz Curricular Escolar desta Licença, incluindo, sem limitação, qualquer código de software, os scripts, interfaces gráficos, displays, texto, documentação e outros componentes; (ii) quaisquer atualizações, modificações ou melhorias para os itens listados no subitem (i ); (iii) qualquer site específico do aplicativo direciona para através de qualquer navegador localizado em qualquer dispositivo móvel (“dispositivo móvel”); e (iv) qualquer serviço web ou serviço na “nuvem”, usado através de qualquer navegador ou sistema computacional.\n\n
+De acordo com nossos Termos de Serviço, "Você mantém a propriedade de quaisquer direitos de propriedade intelectual que você detenha sobre o conteúdo inserido. Em resumo, o que pertence a você, permanece com você."\n\n
 
-3.1 Direitos da aplicação. Você reconhece e concorda que a aplicação e todos os direitos autorais, patentes, marcas, segredos comerciais e outros direitos de propriedade intelectual que lhe estão associados são, e devem permanecer, de propriedade de Midiacode. Além disso. Você reconhece e concorda que o código fonte e objeto dos pedidos e o formato, diretórios, consultas, algoritmos, estrutura e organização do aplicativo são de propriedade intelectual e as informações confidenciais e proprietárias de Midiacode e suas afiliadas, licenciadores e fornecedores. Exceto quando expressamente indicado nesta Licença. A você não são concedidos quaisquer direitos de propriedade intelectual ou para a aplicação, por implicação, preclusão ou de outra teoria legal, e todos os direitos sobre a Aplicação não concedidos expressamente nesta licença ficam reservadas e mantidas em nome de Midiacode.
+Não reivindicamos a propriedade sobre conteúdos criados por você. Isso inclui textos, dados, informações compartilhados ou armazenados na sua conta Google. A função dos Termos de Serviço é permitir que você acesse os serviços que quiser. Assim, poderemos fornecer os recursos necessários se você quiser compartilhar um documento com outra pessoa ou abri-lo em outro dispositivo.\n\n
 
-3.2 Software de Terceiros. A Aplicação pode utilizar ou incluir software de terceiros que está sujeito ao código aberto e os termos de licença de terceiros (“Software de Terceiros”). Você reconhece e concorda que seu direito de usar este software de terceiros como parte da aplicação é sujeito e regido pelos termos e condições do “open source” ou de licença de terceiros aplicável a tal Software de Terceiros, incluindo, sem limitação, qualquer lei, reconhecimentos, termos de licença e isenções de responsabilidade nele contidas. Em caso de um conflito entre os termos desta Licença e os termos de licenças de terceiros ou fonte, os termos de licenças de terceiros, open source ou outro, deve controlar sua utilização do Software relevante de Terceiros. Em nenhum caso, deve o Aplicativo ou seus componentes considerados como “open source” ou software “disponível publicamente”.
-
-3.3 Marcas do Midiacode. Você não está autorizado a usar as marcas registradas Midiacode em qualquer propaganda, publicidade ou de qualquer outra forma comercial sem o prévio consentimento por escrito da Midiacode, que pode ser retida por qualquer motivo ou mesmo sem motivo. 3.4 Reconhecimento de Violação. Você e Midiacode reconhece e concorda que, no caso de uma reclamação de terceiros que a aplicação ou a sua posse ou uso do Aplicativo viola os direitos de propriedade intelectual de qualquer terceiro. Você (e não Midiacode) será responsável pela investigação, defesa, liquidação e quitação de qualquer alegação de violação de propriedade intelectual. Voce, no entanto, irá notificar prontamente a Midiacode, por escrito, de tal alegação.
-
-4. Restrição à transferência. Você não pode alugar, arrendar, emprestar, sub-licenciar ou transferir a aplicação, esta Licença ou qualquer dos direitos concedidos. Qualquer tentativa de transferência, em violação desta disposição será nula e de nenhum valor ou efeito.
-
-5. Uso de Informações.
-
-5.1 Autorização para a utilização da informação. Você autoriza e concorda com a coleta, armazenamento e uso, por Midiacode e seus afiliados, parceiros e agentes, de quaisquer informações e dados relacionados com ou derivados de sua utilização da Aplicação, e quaisquer informações ou dados que você fornece para Midiacode e seus afiliados, parceiros e licenciadores (“Informações”). Sem limitar a generalidade do acima exposto, a informação deve incluir, sem limitação, os seguintes tipos de informações e dados, em um (não em nível de usuário) agregado de forma: as solicitações de pesquisa, resultados de pesquisa, padrões de dados e sugestões com base nas ações do usuário. Não obstante o acima, você não deve fornecer informações e não deve incluir quaisquer informações ou dados que sejam pessoalmente identificáveis. As informações serão tratadas como sendo não-confidenciais e não protegidas, e a Midiacode não assume qualquer obrigação de proteger informações confidenciais ou proprietárias (exceto informações de identificação pessoal) de ser divulgado e estará livre para reproduzir, utilizar e distribuir as informações para terceiros sem restrição. Midiacode também estará livre para usar quaisquer idéias, conceitos, know-how ou técnicas contidas nas Informações para quaisquer fins, incluindo, sem limitação, desenvolvimento, fabricação e comercialização de produtos e serviços incorporando tais informações.
-
-5.2 Política de Privacidade. Você declara que devem cumprir com os termos e condições da Política de Privacidade Midiacode, que apresenta e descreve as práticas de Midiacode com relação à coleta, uso e divulgação de informações em conexão com o uso do aplicativo. Midiacode reserva-se o direito de alterar as disposições da sua Política de Privacidade a qualquer momento e de tempos em tempos, a seu exclusivo critério. Midiacode irá postar qualquer mudança em sua política de privacidade no endereço web estabelecido no preâmbulo desta Licença. O uso do aplicativo após a publicação de tais alterações à Política de Privacidade constituirá a sua aceitação de tais alterações.
-
-6. Conteúdo de Terceiros e Serviços.
-
-6.1 Geral. Você reconhece que a aplicação permite o acesso a produtos, serviços, web-sites, anúncios, promoções, recomendações, conselhos, informações e materiais criados e fornecidos pelos anunciantes, editores, parceiros de conteúdo, agentes de marketing, fornecedores e outros terceiros (“Conteúdo e Serviços de Terceiros”). 6.2 Disclaimer. Você reconhece que Midiacode não investiga, monitora, representa ou endossa o Conteúdo e Serviços de Terceiros (incluindo quaisquer sites de terceiros disponíveis através do aplicativo). Além disso, seu acesso e uso do Conteúdo e Serviços de Terceiros é por sua conta e risco, e a Midiacode e seus afiliados, parceiros, fornecedores e licenciadores não terão nenhuma responsabilidade por você decorrentes de ou em conexão com o acesso e uso do conteúdo e serviços de terceiros. Midiacode renuncia qualquer representação ou garantia em relação ao conteúdo e serviços de terceiros, de forma expressa, implícita ou estatutária, incluindo, sem limitação, as garantias implícitas de comerciabilidade ou adequação a uma finalidade específica, e qualquer representação ou garantia em relação à disponibilidade, qualidade, confiabilidade, características, apropriação, exatidão, integridade e legalidade do conteúdo e serviços de terceiros.
-
-6.3 Termos de serviço de Terceiros. Você reconhece e concorda que o seu acesso e uso do Conteúdo e Serviços de Terceiros e qualquer correspondência ou negócio entre Você e qualquer terceiro localizados usando o aplicativo são regidos e exigem a sua aceitação dos termos de serviço do tal terceiro, incluindo, sem limitação, todos os termos, políticas de privacidade, condições, representações, garantias ou isenções nele contidas. Além disso, Você reconhece e concorda que o Conteúdo e Serviços de Terceiros e quaisquer termos de terceiros relacionados de serviço estão sujeitas a alterações pelo terceiro aplicável a seu exclusivo critério e sem qualquer aviso prévio. Você assume todos os riscos decorrentes ou resultantes de sua transação de negócios pela Internet e com terceiros, e você concorda que a Midiacode e seus afiliados, parceiros, fornecedores e licenciadores não são responsáveis por qualquer perda ou resultado da presença de informações ou links para tais anunciantes ou prestadores de serviços. Além disso, você reconhece e concorda que não estão a ser concedidas uma licença para (i) o Conteúdo e Serviços de Terceiros; (ii) quaisquer produtos, serviços, processos ou tecnologia descritos na ou oferecidos pelo Conteúdo e Serviços de Terceiros; ou (iii) qualquer direito autoral, marcas, patentes ou outros direitos de propriedade intelectual no conteúdo ou serviços de terceiros ou quaisquer produtos, serviços, processos ou tecnologia descritos ou nele oferecidos.
-
-6.4 Endossos. Você reconhece e concorda que o fornecimento de acesso a qualquer conteúdo de terceiros e de serviço não constitui nem implica qualquer endosso por Midiacode ou suas afiliadas de tal Conteúdo e Serviços de Terceiros. Midiacode reserva-se o direito de restringir ou negar acesso a qualquer Conteúdo de Terceiros e Serviços de outra forma acessível através da aplicação, embora Midiacode não tem obrigação de restringir ou negar o acesso, mesmo que solicitado por você.
-
-6.5 Materiais inadequados. Você entende que ao acessar e utilizar o Conteúdo e Serviços de Terceiros. Você pode encontrar informações, materiais e assunto (i) que você ou outras pessoas podem considerar ofensivo, indecente ou censurável; (ii) que pode ou não pode ser identificado como tendo linguagem explícita, e (iii) que automaticamente não aparece nos resultados de busca, como um link ou referência a material censurável. Não obstante o acima, Você concorda em usar o conteúdo e serviços de terceiros a seu próprio risco e que a Midiacode e seus afiliados, parceiros, fornecedores e licenciadores não terá qualquer responsabilidade por informação, material ou assunto que é considerado ofensivo, indecente, ou censurável.
-
-6.6 Utilização de Conteúdo de Terceiros e Serviços. Você concorda que o Conteúdo e Serviços de Terceiros contêm informações proprietárias e material que é de propriedade da Midiacode e seus afiliados, parceiros, fornecedores e licenciadores e está protegido pela propriedade intelectual aplicável e outras leis, incluindo, sem limitação, nos termos do direito de autor, e que você não vai utilizar essas informações ou materiais proprietários de nenhuma forma, exceto para uso permitido do conteúdo e Serviços de Terceiros. Nenhuma parte do Conteúdo e Serviços de Terceiros pode ser reproduzida em qualquer forma ou por qualquer meio. Você concorda em não modificar, alugar, locar, emprestar, vender, distribuir ou criar obras derivadas a partir do conteúdo e serviços de terceiros, de qualquer maneira, e você não deve explorar o Conteúdo de Terceiros e Serviços de qualquer forma não autorizada, incluindo, sem limitação, por invasão ou sobrecarga da capacidade da rede. Você concorda que não irá utilizar qualquer Conteúdo e Serviços de Terceiros de forma a infringir ou violar os direitos de qualquer outra parte, e que Midiacode não é de forma alguma responsável por qualquer utilização por Você.
-
-7. Prazo e Rescisão.
-
-7.1 Prazo. Esta Licença entra em vigor até que seja rescindido.
-
-7.2 Rescisão. Midiacode poderá, a seu critério exclusivo e absoluto, a qualquer momento e por qualquer motivo ou sem motivo, suspender ou cancelar esta Licença e os direitos concedidos a você por este instrumento com ou sem aviso prévio. Além disso, se você deixar de cumprir com todos os termos e condições desta Licença, então esta Licença e quaisquer direitos concedidos a Você abaixo cessará automaticamente, sem qualquer aviso ou outra ação pela Midiacode. Com o término desta Licença, você deve deixar de utilizar a Aplicação e desinstalar o aplicativo.
-
-8. Garantias. VOCÊ CONCORDA QUE A APLICAÇÃO É FORNECIDA “COMO ESTÁ” E “COMO DISPONÍVEL”, E QUE SEU USO OU CONFIANÇA NA APLICAÇÃO E QUALQUER CONTEÚDO DE TERCEIROS E SERVIÇOS ACESSADOS ASSIM É POR SUA CONTA E RISCO E DISCRIÇÃO. A MIDIACODE E SUAS AFILIADAS, PARCEIROS E FORNECEDORES, LICENCIADORES, RENUNCIAM TODAS E QUAISQUER REPRESENTAÇÕES E GARANTIAS À APLICAÇÃO E CONTEÚDO DE TERCEIROS E SERVIÇOS, SEJA EXPRESSA OU IMPLÍCITA, E, INCLUINDO, SEM LIMITAÇÃO, AS GARANTIAS DE COMERCIALIZAÇÃO, ADEQUAÇÃO PARA UM DETERMINADO FIM, E NÃO VIOLAÇÃO. ALÉM DISSO, MIDIACODE E SEUS AFILIADOS, PARCEIROS, FORNECEDORES E LICENCIADORES NÃO GARANTEM QUE (I) A APLICAÇÃO OU CONTEÚDO DE TERCEIROS E SERVIÇOS ATENDERÁ AOS REQUISITOS; (II) A APLICAÇÃO OU CONTEÚDO DE TERCEIROS E SERVIÇOS SERÃO ININTERRUPTOS, PRECISOS E CONFIÁVEIS, PONTUAL, SEGURO E SEM ERROS; (III) A QUALIDADE DE QUAISQUER PRODUTOS, SERVIÇOS, INFORMAÇÃO OU OUTRO MATERIAL ACESSADO OU OBTIDOS POR VOCÊ COM O APLICATIVO SERÁ COMO REPRESENTADO OU SUAS EXPECTATIVAS; OU (IV) QUAISQUER ERROS NO APLICATIVO OU CONTEÚDO E SERVIÇOS DE TERCEIROS SERÃO CORRIGIDOS NO AVISO OU INFORMAÇÃO, VERBAL OU POR ESCRITO. ALÉM DISSO, VOCÊ RECONHECE QUE A MIDIACODE NÃO TEM OBRIGAÇÃO DE CORRIGIR QUAISQUER ERROS OU DE OUTRA FORMA APOIAR OU MANTER A APLICAÇÃO.
-
-9. Limitação de Responsabilidade. EM HIPÓTESE ALGUMA A MIDIACODE ou SUAS AFILIADAS, PARCEIROS, FORNCEDORES OU LICENSIADORES SERÃO RESPONSÁVEIS POR QUAISQUER DANOS INCIDENTAIS INDIRETOS, ESPECIAIS OU EXEMPLARES DECORRENTES DE OU EM CONEXÃO COM O SEU ACESSO OU IMPOSSIBILIDADE DE ACESSO OU USO DO APLICATIVO E QUALQUER CONTEÚDO E SERVIÇOS DE TERCEIROS. MESMO QUE POSSÍVEIS DANOS TENHAM SIDO AVISADOS, PREVISTOS, OU QUE A MIDIACODE TENHA SIDO AVISADA DE POSSÍVEIS DANOS. SEM LIMITAÇÃO DA GENERALIDADE DO ANTERIOR, A RESPONSABILIDADE DO MIDIACODE EM RELAÇÃO A VOCÊ (SEJA EM CONTRATO, ESTATUTO OU OUTRA) NÃO DEVE ULTRAPASSAR A QUANTIA DE CINQUENTA DÓLARES (U$ 50,00). AS LIMITAÇÕES PRECEDENTES SERÃO APLICÁVEIS MEESMO SE O RECURSO ACIMA MENCIONADO FALHAR EM SUA FINALIDADE ESSENCIAL.
-
-10. Indenização. Você deverá indenizar, defender e isentar a Midiacode e seus afiliados, parceiros, fornecedores e licenciadores, e cada um de seus respectivos funcionários, diretores, agentes e funcionários (as “Partes indenizadas”) de e contra qualquer reivindicação, processo. perda, dano, multa, penalidade, juros e despesas (incluindo, sem limitação, honorários de advogados e outros consultores profissionais) decorrentes de ou em conexão com o seguinte: (i) o seu acesso ou utilização da Aplicação ou Conteúdo de Terceiros e Serviços; (ii) A sua violação desta Licença; (iii) violação de lei; (iv) A sua culpa ou dolo; ou (v) a violação dos direitos de terceiros, incluindo a violação por Você de qualquer propriedade intelectual ou apropriação indevida de qualquer direito ou segredos comerciais de propriedade de qualquer pessoa ou entidade. Estas obrigações subsistirão após o término da licença.
-
-11. Compatibilidade. A Midiacode não garante que o aplicativo será compatível ou interoperável com o dispositivo móvel ou qualquer outra peça de hardware, software, equipamento ou dispositivo instalado ou utilizado em conexão com o seu dispositivo móvel. Além disso. Você reconhece que problemas de compatibilidade e interoperabilidade podem fazer com que o desempenho do seu dispositivo móvel possa diminuir ou falhar completamente, e pode resultar em permanente dano ao seu dispositivo móvel, a perda dos dados localizados em seu dispositivo móvel, e corrupção do software e arquivos localizado em seu dispositivo móvel. Você reconhece e concorda que a Midiacode e seus afiliados, parceiros, fornecedores e licenciadores não terá nenhuma responsabilidade por quaisquer danos sofridos resultantes ou que surja em conexão com problemas de compatibilidade ou de interoperabilidade.
-
-12. As reclamações do produto. Você reconhece que você (não Midiacode) é responsável por lidar com quaisquer reclamações de terceiros relacionadas ao seu uso ou posse da Aplicação, e concorda em notificar Midiacode de quaisquer reclamações de terceiros relacionadas com a aplicação de que tenha conhecimento. Além disso, você decide liberar a Midiacode de qualquer responsabilidade decorrente de sua utilização ou posse do aplicativo, incluindo, sem limitação, o seguinte: (i) qualquer reclamação de responsabilidade do produto; (ii) qualquer alegação de que a aplicação não está em conformidade com todos os requisitos legais ou regulamentares aplicáveis; e (iii) qualquer reclamação resultante da defesa do consumidor ou legislação similar.
-
-13. Diversos.
-
-13.1 Lei Aplicável. Esta Licença será considerada como tendo lugar no Estado de São Paulo e deverá ser regidos e interpretados de acordo com as leis do Brasil, excluindo seus conflitos de princípios legais. Quaisquer litígios decorrentes desta Licença deve ser julgada nos tribunais da cidade de São Paulo. Esta Licença não será regida pela Convenção das Nações Unidas sobre Contratos para a Venda Internacional de Mercadorias, cuja aplicação está expressamente excluída.
-
-13.2 Severidade. Se qualquer disposição desta Licença for considerada inválida ou ineficaz em relação a uma das partes, o restante desta Licença, ou a aplicação de tal disposição para fins diferentes daqueles para os quais as pessoas é considerada inválida ou inexequível, não é afetada e cada remanescente disposição desta Licença é válida e aplicável em toda a extensão permitida por lei.
-
-13.3 Renúncia. Salvo disposição em contrário, o não exercício de um direito ou de exigir o cumprimento de uma obrigação nos termos desta Licença, não procede, capacidade de uma parte de exercer tal direito ou exigir tal cumprimento em qualquer momento posterior nem a renúncia de violação constitui renúncia de qualquer subsequente violação.
-
-13.4 Controle de Exportação. Você não pode usar ou exportar ou re-exportar o aplicativo, exceto se autorizado pela legislação brasileira e as leis da jurisdição (es) em que o recurso foi obtido. Você declara e garante que não está localizado em qualquer país que esteja sujeito a um embargo do govemo brasileiro, ou que tenha sido designada pelo governo brasileiro como um país “terrorista de apoio”, ou listado em qualquer lista de partidos proibidos ou restritos pelo governo brasileiro. Você também concorda que não irá usar a aplicação para quaisquer fins proibidos pela legislação brasileira.
-
-13.5 Alteração ou Emenda. Midiacode poderá modificar ou alterar os termos desta Licença postando uma cópia da Licença modificado ou alterado no site da Midiacode (EULA). Você será considerado como tendo aceitado a qualquer modificação ou alteração por sua decisão de continuar usando o aplicativo a partir da data em que a Licença for modificada ou alterada e publicada no site da Midiacode (EULA).
-
-13.6 Remanescentes. As seções a seguir desta Licença e quaisquer outras disposições desta Licença que, pela sua linguagem expressa ou por seu contexto são destinados para sobreviver ao término desta Licença devem sobreviver a esse encerramento: 1, 2.2, 3, 4, 5, 7, 8, 9, 10, 12 e 13.
-
-13.7 Cessão. Exceto conforme permitido na Seção 4, Você não pode atribuir esta Licença ou quaisquer direitos ou obrigações aqui sem o prévio consentimento por escrito da Midiacode e qualquer tentativa de cessão em violação desta disposição será nula e de nenhum valor ou efeito.
-
-13.8 Acordo Integral. Esta Licença incluindo os documentos aqui incorporados por referência constituem o acordo no que diz respeito ao uso da infra licenciada Aplicação e substitui todos os entendimentos anteriores ou contemporâneos relativos a esta matéria.
+Você controla seus arquivos. Não compartilhamos arquivos nem dados com terceiros, exceto conforme descrito na Política de Privacidade.
+Não transformamos documentos privados em documentos públicos.
+Não usamos documentos privados em campanhas promocionais ou de marketing.
+Armazenamos seus dados apenas pelo tempo que você solicitar.
     </string>
 
     <string name="licencas">
